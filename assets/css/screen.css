@@ -11,6 +11,11 @@ License: https://www.wowthemes.net/freebies-license/
     padding: 1rem 0rem;
 }
 
+::selection {
+    color: #fff;
+    background-color: #1C9963;
+}
+
 a {
     color: #00ab6b;
     transition: all 0.2s;
