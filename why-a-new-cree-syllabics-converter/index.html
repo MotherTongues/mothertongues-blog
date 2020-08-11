@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>Why I made yet another Cree syllabics converter | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Why I made yet another Cree syllabics converter" />
+<meta name="author" content="_eddieantonio" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How existing converters fall short, and how I have addressed these shortcomings." />
+<meta property="og:description" content="How existing converters fall short, and how I have addressed these shortcomings." />
+<link rel="canonical" href="https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/" />
+<meta property="og:url" content="https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/why-cree-syllabics--header.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@_eddieantonio" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"_eddieantonio"},"description":"How existing converters fall short, and how I have addressed these shortcomings.","headline":"Why I made yet another Cree syllabics converter","dateModified":"2020-08-07T00:00:00+00:00","datePublished":"2020-08-07T00:00:00+00:00","@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/why-cree-syllabics--header.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"_eddieantonio"},"url":"https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Why I made yet another Cree syllabics converter&url=https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7183e460abfb84d668e408c32631abd4?s=250&d=mm&r=x"
+                            alt="Eddie">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://eddieantonio.ca/">Eddie</a><a
+                            target="_blank" href="https://twitter.com/_eddieantonio" class="btn follow">Follow</a>
+                        <span class="author-description">Software developer and Unicode nerd</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Why I made yet another Cree syllabics converter</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/why-cree-syllabics--header.png"
+                alt="Why I made yet another Cree syllabics converter">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>The Western Cree languages—<strong>Plains Cree</strong>, <strong>Woods Cree</strong>, and <strong>Swampy Cree</strong>—are written using two systems: one with letters borrowed from the
+English alphabet, in a system known as the <strong>standard Roman orthography</strong> (<strong>SRO</strong>), and <strong>ᓀᐦᐃᔭᐏ ᒐᐦᑭᐯᐦᐃᑲᓇ</strong> (Cree syllabics). SRO is relatively easy to type on a modern computer, but syllabics are more difficult, because of the lack of a well-established syllabics input layout. It’s easier to just use a <strong>converter</strong> which, given Cree text in SRO, produces Cree text in syllabics. In this post, I describe my criticisms of the converters that existed prior to July 2018, and introduce <a href="https://syllabics.app/">syllabics.app</a>—a syllabics converter that I developed in reaction to the former converters.</p>
+
+<h2 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h2>
+
+<p>For the latter part of this blog post, where I discuss using the
+converter in your own project, I assume you know how to use:</p>
+
+<ul>
+  <li><a href="https://www.npmjs.com/package/cree-sro-syllabics">npm</a> for installing JavaScript packages; or</li>
+  <li><a href="https://packaging.python.org/tutorials/installing-packages/#use-pip-for-installing">pip</a> for installing Python packages</li>
+</ul>
+
+<p>If you don’t care about embedding my converter in your coding project,
+then there’s no prior technical knowledge needed!</p>
+
+<h2 id="what-are-the-freely-available-transliterators">What are the freely available transliterators?</h2>
+
+<p>A quick Google search will net you at least the following SRO to syllabics transliterators.</p>
+
+<ul>
+  <li><a href="http://www.creedictionary.com/converter/maskwacis.php">The Maskwacîs Plains Cree Syllabic Converter</a><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li><a href="https://syllabics.atlas-ling.ca/">The Algonquian Linguistic Atlas Cree Syllabics Converter</a></li>
+  <li><a href="http://www.syllabics.net/convert/plainscree">Syllabics.net’s Plains Cree Syllabics Converter</a></li>
+</ul>
+
+<p>However, none of these transliterators are perfect.</p>
+
+<h2 id="the-issues">The issues</h2>
+
+<h3 id="word-final-hk">Word final “hk”</h3>
+
+<p>In syllabics, a word that ends with an “hk”—or «ᐠ» in syllabics—are
+supposed end with «ᕽ» instead. However, this replacement can never occur in the middle of a word.</p>
+
+<p>For example, the word “ê-wêpâpîhkêwêpinamâhk” (<em>we (and not you) are setting it swinging</em>), contains both a final “hk” and a “hk” cluster in the middle of the word. Its syllabic transcription is <strong>ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ</strong>.</p>
+
+<p><a href="https://syllabics.atlas-ling.ca/">The Algonquian Linguistic Atlas’s converter</a> and <a href="http://www.syllabics.net/convert/plainscree">syllabics.net’s converter</a> both handle the conversion of “hk” to «ᐠ», without erroneously converting the sequence in the middle of a word. Notably, the community of <strong>Maskwacîs</strong> does not follow this convention. Therefore, the <a href="http://www.creedictionary.com/converter/maskwacis.php">Maskwacîs Converter</a> produces <strong>ᐁ ᐁᐧᐸᐱᐦᑫᐁᐧᐱᓇᒪᐦᐠ</strong>, unlike what is expected in other Cree communities.</p>
+
+<h3 id="transliterating-non-cree-words">Transliterating non-Cree words</h3>
+
+<p>Some transliterators attempt to convert every Latin character, even if it doesn’t make sense. Take the case of “Maskêkosihk Trail”—a road that goes from Edmonton to <a href="http://enochnation.ca/">Enoch Cree Nation</a>. The City of Edmonton unveiled the street sign, and, in the process, they unveiled an embarrassment:</p>
+
+<figure>
+  <img src="/assets/images/why-cree-syllabics--mayor-and-okimaw.jpg" />
+  <figcaption>
+    “Maskêkosihk trail” erroneously converted as «ᒪᐢᑫᑯᓯᐦᐠ ᐟrᐊᐃl»
+    <cite> Image source: <a href="https://www.cbc.ca/news/canada/edmonton/renamed-maskekosihk-trail-part-of-city-s-ongoing-reconciliation-commitment-1.3446162">CBC</a>
+    </cite>
+  </figcaption>
+</figure>
+
+<p>Not only does the syllabics transliteration of the sign contain the “hk”
+cluster as mentioned above,<sup id="fnref:4"><a href="#fn:4" class="footnote">2</a></sup> but it half-transliterates <em>the English word</em> “trail” into syllabics. The result is that “trail” is rendered as «ᐟrᐊᐃl», which <em>contains Latin characters in the transliteration!</em></p>
+
+<p>In my opinion, an SRO to syllabics transliterator should refuse to transliterate words that do not have the structure of a Cree word. However, all three of the mentioned transliterators do attempt to transliterate “trail” with differing results:<sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Maskwacîs Cree Dictionary</td>
+      <td>ᐟrᐊᐃl</td>
+    </tr>
+    <tr>
+      <td>Algonquian Linguistic Atlas</td>
+      <td>ᐟᕒᐊᐃᐪ</td>
+    </tr>
+    <tr>
+      <td>Syllabics.net</td>
+      <td>ᐟᕒᐊᐃᓬ</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="long-vowels">Long vowels</h3>
+
+<p>Long vowels (êîôâ) are distinct from short vowels (ioa) in Cree. Long vowels are written with a dot above in syllabics. The exception is for “ê” because it is always long; as a result, some writers also drop the diacritic when writing “e” in SRO as well. It’s important to differentiate between long and short vowels, because it makes distinctions between words. For example, nipiy/ᓂᐱᕀ means “water” while nîpiy/ᓃᐱᕀ means “leaf”. However, there is such a thing as “plain” script, where the vowel dots are omitted, and <a href="https://en.wikipedia.org/wiki/Canadian_Aboriginal_syllabics#Pointing">pointed</a> script where the vowels have all dots.</p>
+
+<p>Another complication is that the “standard” Roman orthography in practice has multiple conventions for writing long vowels: using a macron (◌̄) and using a circumflex (◌̂).<sup id="fnref:3"><a href="#fn:3" class="footnote">4</a></sup></p>
+
+<p>How do the various converters handle long vowel diacritics? <a href="http://www.creedictionary.com/converter/maskwacis.php">The Maskwacîs converter</a> does not produce dots for long vowels at all, however it accepts both macrons and circumflexes as input. The <a href="https://syllabics.atlas-ling.ca/">Algonquian Lingustic Atlas’s converter</a> not only produces dots, but supports input in either macrons or circumflexes. The <a href="http://www.syllabics.net/convert/plainscree">syllabics.net converter</a> does worst of all, handling <em>only</em> macrons for long vowels. It simply spits out characters written with circumflexes. Additionally, it does not handle “ê” without an diacritics, which all other converters do.</p>
+
+<h3 id="other-odds-and-ends">Other odds and ends</h3>
+
+<p>Other issues for syllabics converters include how they deal with dashes, how they deal with combining diacritics, rather than pre-composed characters, and whether they produce the correct Unicode characters for the syllabics rather than very convincing look-alikes. There’s also the <a href="https://crk-orthography.readthedocs.io/en/stable/glossary.html#term-sandhi">sandhi orthographic rule</a>, but honestly, I’m not sure I fully comprehend how to apply this rule myself.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Here’s a breakdown of the previous issues, and whether each transliterator can handle it correctly.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: right">Word-final “hk”</th>
+      <th style="text-align: right">Non-Cree words</th>
+      <th style="text-align: right">Long vowels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Maskwacîs Cree Dictionary</td>
+      <td style="text-align: right">*</td>
+      <td style="text-align: right">❌</td>
+      <td style="text-align: right">❌</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Algonquian Linguistic Atlas</td>
+      <td style="text-align: right">✅</td>
+      <td style="text-align: right">❌</td>
+      <td style="text-align: right">✅</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Syllabics.net</td>
+      <td style="text-align: right">✅</td>
+      <td style="text-align: right">❌</td>
+      <td style="text-align: right">❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="wheres-the-source-code">Where’s the source code?</h2>
+
+<p>The most pressing issue to me personally is that I cannot find <strong>source code</strong> for any of these converters! This means that if other people want to incorporate a converter into their own app without an active internet connection, <strong>they can’t</strong>. They have to either reverse-engineer the converters online, or write their own code to do the conversion.</p>
+
+<h2 id="cree-sro-syllabics-an-open-source-python-and-javascript-library-for-syllabics-conversion"><code class="highlighter-rouge">cree-sro-syllabics</code>: an open-source Python and JavaScript library for syllabics conversion</h2>
+
+<p>My solution was to create a code library that is <strong>free and open source</strong>. It is available both for <a href="https://pypi.org/project/cree-sro-syllabics/">Python</a> and <a href="https://www.npmjs.com/package/cree-sro-syllabics">JavaScript</a>, and you can try it out right now!</p>
+
+<p>It handles all the issues previously mentioned. Try it with the following test cases:</p>
+
+<ul>
+  <li><a href="https://syllabics.app/#!sro:Maskekosihk%20trail">Maskekosihk trail</a></li>
+  <li><a href="https://syllabics.app/#!sro:êwêpâpîhkêwêpinamahk">êwêpâpîhkêwêpinamahk</a></li>
+  <li><a href="https://syllabics.app/#!sro:ēwēpâpīhkēwēpinamahk">ēwēpâpīhkēwēpinamahk</a></li>
+  <li><a href="https://syllabics.app/#!sro:ewepapihkewepinamahk">ewepapihkewepinamahk</a></li>
+</ul>
+
+<p>The source code for <code class="highlighter-rouge">cree-sro-syllabics</code> can be found on their respective GitHub repositories:</p>
+
+<ul>
+  <li><a href="https://github.com/eddieantonio/cree-sro-syllabics"><code class="highlighter-rouge">cree-sro-syllabics</code> for Python</a></li>
+  <li><a href="https://github.com/eddieantonio/cree-sro-syllabics.js"><code class="highlighter-rouge">cree-sro-syllabics</code> for JavaScript</a></li>
+</ul>
+
+<p>But it can also be seamlessly incorporated into a Python project that uses <code class="highlighter-rouge">pip</code> by installing it with:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>pip install cree-sro-syllabics
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Or, you can use <code class="highlighter-rouge">npm</code> to install <code class="highlighter-rouge">cree-sro-syllabics</code> in your JavaScript project:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npm install cree-sro-syllabics --save
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Or you can <a href="https://raw.githubusercontent.com/eddieantonio/cree-sro-syllabics.js/master/cree-sro-syllabics.js">copy-paste the <code class="highlighter-rouge">.js</code> file</a> to your project.</p>
+
+<h2 id="use-cases">Use cases</h2>
+
+<p>Most folks will just use <a href="https://syllabics.app/">syllabics.app</a> to convert a few words or
+sentences of Cree.</p>
+
+<p>However, software developers can embed the converter in clever ways in their application. For example, I’ve used the converter in <a href="https://itwewina.dev/">itwêwina — the Plains Cree dictionary</a>. Although the underlying dictionary content is written entirely in SRO, we can present all Cree text in syllabics. In addition, we support searches in syllabics by using <code class="highlighter-rouge">cree-sro-syllabics</code> to convert the search string to SRO first, then search our dictionary content.</p>
+
+<p><strong>How can <em>you</em> use <code class="highlighter-rouge">cree-sro-syllabics</code>?</strong></p>
+
+<blockquote>
+  <p><strong>Note</strong>: This blog post has been adapted from a <a href="https://eddieantonio.ca/blog/2018/07/30/why-i-made-yet-another-cree-syllabics-converter/">post on Eddie’s blog</a>.</p>
+</blockquote>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>This is the same converter bundled in the <a href="http://www.creedictionary.com/software/index.php">Cree Dictionary app</a>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>This may not be a mistake; they <em>could</em> be using Maskwacîs’s conventions, but I’m really not sure. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>I strongly suspect the sign designer used the Maskwacîs transliterator to get this result. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Anecdotally, I find that most writers near Edmonton and Maskwacîs prefer circumflexes to macrons; however noted Algonquian linguist Arok Wolvengrey prefers macrons. Heck, Jean Okimāsis writes her surname with a macron! <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2020-08-07">07 Aug 2020</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/categories#blog">Blog</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#basic">#basic</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/g2p/"> &laquo;
+                    Getting from 'a' to 'b' with the 'g2p'</a>
+                
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (3)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (4)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2020 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    
+
+</body>
+
+</html>

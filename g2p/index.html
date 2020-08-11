@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>Getting from 'a' to 'b' with the 'g2p' | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Getting from ‘a’ to ‘b’ with the ‘g2p’" />
+<meta name="author" content="AidanPine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to get from ‘a’ to ‘b’ using the g2p library" />
+<meta property="og:description" content="How to get from ‘a’ to ‘b’ using the g2p library" />
+<link rel="canonical" href="https://blog.mothertongues.org/g2p/" />
+<meta property="og:url" content="https://blog.mothertongues.org/g2p/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/bonjour-g2p.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@AidanPine" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"AidanPine"},"description":"How to get from ‘a’ to ‘b’ using the g2p library","headline":"Getting from ‘a’ to ‘b’ with the ‘g2p’","dateModified":"2020-08-07T00:00:00+00:00","datePublished":"2020-08-07T00:00:00+00:00","@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/bonjour-g2p.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/g2p/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"url":"https://blog.mothertongues.org/g2p/","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Getting from 'a' to 'b' with the 'g2p'&url=https://blog.mothertongues.org/g2p/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/g2p/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/g2p/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7623fd3eeb0acbe1084fecc20c3093ae?s=250&d=mm&r=x"
+                            alt="Aidan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://aidanpine.ca">Aidan</a><a
+                            target="_blank" href="https://twitter.com/aidanpine" class="btn follow">Follow</a>
+                        <span class="author-description">Lead developer of Mother Tongues.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Getting from 'a' to 'b' with the 'g2p'</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/bonjour-g2p.png"
+                alt="Getting from 'a' to 'b' with the 'g2p'">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>This blog post describes the background context for a software tool called ‘g2p’ which is shorthand for ‘Grapheme-to-Phoneme’, but if you don’t know those terms, don’t worry, this post will explain it. Essentially, it is a tool for converting between two types of text, whether you want to convert between a <a href="#use-case-1-getting-the-pronunciation-from-a-words-spelling">writing system and the phonetic alphabet</a>, between two <a href="use-case-2-a-language-with-multiple-writing-systems">writing systems for the same language</a>, or between a legacy <a href="use-case-3-converting-from-legacy-writing-systems">‘font-hacked’ writing system and its current Unicode-supported version</a>.</p>
+
+<h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
+
+<ul>
+  <li>To understand the advanced section, you will need to know some <a href="https://www.python.org/">python</a></li>
+</ul>
+
+<h1 id="who-is-involved-with-this-project">Who is involved with this project?</h1>
+
+<ul>
+  <li>Maintainer (i.e. the person to bug with questions): <a href="aidanpine.ca">Aidan Pine</a></li>
+  <li>Lots of <a href="https://github.com/roedoejet/g2p/graphs/contributors">other contributors</a></li>
+</ul>
+
+<h1 id="what-are-the-motivations-behind-this-projecttechnologytip">What are the motivations behind this project/technology/tip?</h1>
+
+<p>There are many reasons why you might want to systematically convert between different ‘letters’ referred to in computer science typically as ‘characters’. Here are a few use cases:</p>
+
+<h3 id="use-case-1-getting-the-pronunciation-from-a-words-spelling">Use Case #1: Getting the pronunciation from a word’s spelling</h3>
+
+<p>Sometimes you want to convert between a language’s writing system (also known as <em>orthography</em>) and its pronunciation. “Letters” in a writing system are usually referred to as “graphemes” and their corresponding meaningful sounds are referred to as “phonemes”; hence “g2p” or “grapheme-to-phoneme”.</p>
+
+<p>It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as in “th” which can be pronounced <em><a href="https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22">unvoiced</a>.)</em> as in ‘thin’ or <em><a href="https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&amp;text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.">voiced</a></em> as in ‘that’.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">International Phonetic Alphabet</a> is not so ambiguous, and writes the ‘th’ in ‘thin’ as <strong>θ</strong> and the ‘th’ in ‘that’ as <strong>ð</strong>. Knowing how to convert between the written and spoken form of a language is useful in a variety of computational tasks, but I will describe the usefulness specifically with a project called “ReadAlongs” <a href="#readalongs">below</a></p>
+
+<h3 id="use-case-2-a-language-with-multiple-writing-systems">Use Case #2: A language with multiple writing systems</h3>
+
+<p>Some languages have two (or more!) different writing systems. Take Cree for example, where you can either write a word in <em>Standard Roman Orthography</em> like “ê-wêpâpîhkêwêpinamâhk” or in <em>Syllabics</em> like <strong>ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ</strong>. My colleague <a href="https:://eddieanotonio.ca">Eddie</a> has a great blog post about a tool he created to convert between the two <a href="https://blog.mothertongues.org/why-a-new-cree-syllabics-converter">here</a>.</p>
+
+<h3 id="use-case-3-converting-from-legacy-writing-systems">Use Case #3: Converting from legacy writing systems</h3>
+
+<p>Some languages historically used ‘font hacks’ to render the characters in their writing system before they were supported standardly on computers. There’s a longer discussion to be had here, but the coles’ notes version is that when computers were gaining popularity, they weren’t typically able to <em>render</em> (ie display) characters outside of the 128 characters supported by the <a href="https://en.wikipedia.org/wiki/ASCII">American Standard Code for Information Interchange (ASCII)</a>. To get around this, language communities would come up with their own custom fonts (often referred to as ‘font hacks’ or ‘font encodings’) where they would render things characters like ‘©’ which existed in ASCII as ‘ǧ’ instead (example taken from the Heiltsuk Doulos font). For more information on this topic, please check out <a href="http://aidanpine.ca/static/cv/pdfs/Pine-Turin-Convertextract-2018.pdf">‘Seeing the Heiltsuk Orthography from Font Encoding through to Unicode’</a> or <a href="https://markturin.sites.olt.ubc.ca/files/2020/06/Schillo_Turin_typeface_2020.pdf">‘Applications and innovations in typeface design for North American Indigenous languages’</a>.</p>
+
+<h1 id="how-to-get-from-a-to-b-or-a-to-æ-with-g2p">How to get from ‘a’ to ‘b’ (or ‘a’ to ‘æ’) with g2p</h1>
+
+<p>…more to come…</p>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2020-08-07">07 Aug 2020</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#explanation">#explanation</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tech-showcase">#tech-showcase</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tutorial">#tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/post-template/"> &laquo;
+                    Standard post template</a>
+                
+                
+                <a class="next d-block col-md-6 text-lg-right"
+                    href="https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/">Why I made yet another Cree syllabics converter &raquo; </a>
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (3)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (4)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2020 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    
+
+</body>
+
+</html>

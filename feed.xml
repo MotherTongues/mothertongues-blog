@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mother Tongues Blog</title>
+    <description>Smashing the lore of language technology!</description>
+    <link>https://blog.mothertongues.org/</link>
+    <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 11 Aug 2020 17:59:02 +0000</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2020 17:59:02 +0000</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Why I made yet another Cree syllabics converter</title>
+        <description>&lt;p&gt;The Western Cree languages—&lt;strong&gt;Plains Cree&lt;/strong&gt;, &lt;strong&gt;Woods Cree&lt;/strong&gt;, and &lt;strong&gt;Swampy Cree&lt;/strong&gt;—are written using two systems: one with letters borrowed from the
+English alphabet, in a system known as the &lt;strong&gt;standard Roman orthography&lt;/strong&gt; (&lt;strong&gt;SRO&lt;/strong&gt;), and &lt;strong&gt;ᓀᐦᐃᔭᐏ ᒐᐦᑭᐯᐦᐃᑲᓇ&lt;/strong&gt; (Cree syllabics). SRO is relatively easy to type on a modern computer, but syllabics are more difficult, because of the lack of a well-established syllabics input layout. It’s easier to just use a &lt;strong&gt;converter&lt;/strong&gt; which, given Cree text in SRO, produces Cree text in syllabics. In this post, I describe my criticisms of the converters that existed prior to July 2018, and introduce &lt;a href=&quot;https://syllabics.app/&quot;&gt;syllabics.app&lt;/a&gt;—a syllabics converter that I developed in reaction to the former converters.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h2&gt;
+
+&lt;p&gt;For the latter part of this blog post, where I discuss using the
+converter in your own project, I assume you know how to use:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/cree-sro-syllabics&quot;&gt;npm&lt;/a&gt; for installing JavaScript packages; or&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://packaging.python.org/tutorials/installing-packages/#use-pip-for-installing&quot;&gt;pip&lt;/a&gt; for installing Python packages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you don’t care about embedding my converter in your coding project,
+then there’s no prior technical knowledge needed!&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-freely-available-transliterators&quot;&gt;What are the freely available transliterators?&lt;/h2&gt;
+
+&lt;p&gt;A quick Google search will net you at least the following SRO to syllabics transliterators.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;The Maskwacîs Plains Cree Syllabic Converter&lt;/a&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;The Algonquian Linguistic Atlas Cree Syllabics Converter&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;Syllabics.net’s Plains Cree Syllabics Converter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, none of these transliterators are perfect.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-issues&quot;&gt;The issues&lt;/h2&gt;
+
+&lt;h3 id=&quot;word-final-hk&quot;&gt;Word final “hk”&lt;/h3&gt;
+
+&lt;p&gt;In syllabics, a word that ends with an “hk”—or «ᐠ» in syllabics—are
+supposed end with «ᕽ» instead. However, this replacement can never occur in the middle of a word.&lt;/p&gt;
+
+&lt;p&gt;For example, the word “ê-wêpâpîhkêwêpinamâhk” (&lt;em&gt;we (and not you) are setting it swinging&lt;/em&gt;), contains both a final “hk” and a “hk” cluster in the middle of the word. Its syllabic transcription is &lt;strong&gt;ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;The Algonquian Linguistic Atlas’s converter&lt;/a&gt; and &lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;syllabics.net’s converter&lt;/a&gt; both handle the conversion of “hk” to «ᐠ», without erroneously converting the sequence in the middle of a word. Notably, the community of &lt;strong&gt;Maskwacîs&lt;/strong&gt; does not follow this convention. Therefore, the &lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;Maskwacîs Converter&lt;/a&gt; produces &lt;strong&gt;ᐁ ᐁᐧᐸᐱᐦᑫᐁᐧᐱᓇᒪᐦᐠ&lt;/strong&gt;, unlike what is expected in other Cree communities.&lt;/p&gt;
+
+&lt;h3 id=&quot;transliterating-non-cree-words&quot;&gt;Transliterating non-Cree words&lt;/h3&gt;
+
+&lt;p&gt;Some transliterators attempt to convert every Latin character, even if it doesn’t make sense. Take the case of “Maskêkosihk Trail”—a road that goes from Edmonton to &lt;a href=&quot;http://enochnation.ca/&quot;&gt;Enoch Cree Nation&lt;/a&gt;. The City of Edmonton unveiled the street sign, and, in the process, they unveiled an embarrassment:&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/why-cree-syllabics--mayor-and-okimaw.jpg&quot; /&gt;
+  &lt;figcaption&gt;
+    “Maskêkosihk trail” erroneously converted as «ᒪᐢᑫᑯᓯᐦᐠ ᐟrᐊᐃl»
+    &lt;cite&gt; Image source: &lt;a href=&quot;https://www.cbc.ca/news/canada/edmonton/renamed-maskekosihk-trail-part-of-city-s-ongoing-reconciliation-commitment-1.3446162&quot;&gt;CBC&lt;/a&gt;
+    &lt;/cite&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Not only does the syllabics transliteration of the sign contain the “hk”
+cluster as mentioned above,&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; but it half-transliterates &lt;em&gt;the English word&lt;/em&gt; “trail” into syllabics. The result is that “trail” is rendered as «ᐟrᐊᐃl», which &lt;em&gt;contains Latin characters in the transliteration!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In my opinion, an SRO to syllabics transliterator should refuse to transliterate words that do not have the structure of a Cree word. However, all three of the mentioned transliterators do attempt to transliterate “trail” with differing results:&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Maskwacîs Cree Dictionary&lt;/td&gt;
+      &lt;td&gt;ᐟrᐊᐃl&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Algonquian Linguistic Atlas&lt;/td&gt;
+      &lt;td&gt;ᐟᕒᐊᐃᐪ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Syllabics.net&lt;/td&gt;
+      &lt;td&gt;ᐟᕒᐊᐃᓬ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;long-vowels&quot;&gt;Long vowels&lt;/h3&gt;
+
+&lt;p&gt;Long vowels (êîôâ) are distinct from short vowels (ioa) in Cree. Long vowels are written with a dot above in syllabics. The exception is for “ê” because it is always long; as a result, some writers also drop the diacritic when writing “e” in SRO as well. It’s important to differentiate between long and short vowels, because it makes distinctions between words. For example, nipiy/ᓂᐱᕀ means “water” while nîpiy/ᓃᐱᕀ means “leaf”. However, there is such a thing as “plain” script, where the vowel dots are omitted, and &lt;a href=&quot;https://en.wikipedia.org/wiki/Canadian_Aboriginal_syllabics#Pointing&quot;&gt;pointed&lt;/a&gt; script where the vowels have all dots.&lt;/p&gt;
+
+&lt;p&gt;Another complication is that the “standard” Roman orthography in practice has multiple conventions for writing long vowels: using a macron (◌̄) and using a circumflex (◌̂).&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;How do the various converters handle long vowel diacritics? &lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;The Maskwacîs converter&lt;/a&gt; does not produce dots for long vowels at all, however it accepts both macrons and circumflexes as input. The &lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;Algonquian Lingustic Atlas’s converter&lt;/a&gt; not only produces dots, but supports input in either macrons or circumflexes. The &lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;syllabics.net converter&lt;/a&gt; does worst of all, handling &lt;em&gt;only&lt;/em&gt; macrons for long vowels. It simply spits out characters written with circumflexes. Additionally, it does not handle “ê” without an diacritics, which all other converters do.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-odds-and-ends&quot;&gt;Other odds and ends&lt;/h3&gt;
+
+&lt;p&gt;Other issues for syllabics converters include how they deal with dashes, how they deal with combining diacritics, rather than pre-composed characters, and whether they produce the correct Unicode characters for the syllabics rather than very convincing look-alikes. There’s also the &lt;a href=&quot;https://crk-orthography.readthedocs.io/en/stable/glossary.html#term-sandhi&quot;&gt;sandhi orthographic rule&lt;/a&gt;, but honestly, I’m not sure I fully comprehend how to apply this rule myself.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Here’s a breakdown of the previous issues, and whether each transliterator can handle it correctly.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Word-final “hk”&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Non-Cree words&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Long vowels&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Maskwacîs Cree Dictionary&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;*&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Algonquian Linguistic Atlas&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Syllabics.net&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;wheres-the-source-code&quot;&gt;Where’s the source code?&lt;/h2&gt;
+
+&lt;p&gt;The most pressing issue to me personally is that I cannot find &lt;strong&gt;source code&lt;/strong&gt; for any of these converters! This means that if other people want to incorporate a converter into their own app without an active internet connection, &lt;strong&gt;they can’t&lt;/strong&gt;. They have to either reverse-engineer the converters online, or write their own code to do the conversion.&lt;/p&gt;
+
+&lt;h2 id=&quot;cree-sro-syllabics-an-open-source-python-and-javascript-library-for-syllabics-conversion&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt;: an open-source Python and JavaScript library for syllabics conversion&lt;/h2&gt;
+
+&lt;p&gt;My solution was to create a code library that is &lt;strong&gt;free and open source&lt;/strong&gt;. It is available both for &lt;a href=&quot;https://pypi.org/project/cree-sro-syllabics/&quot;&gt;Python&lt;/a&gt; and &lt;a href=&quot;https://www.npmjs.com/package/cree-sro-syllabics&quot;&gt;JavaScript&lt;/a&gt;, and you can try it out right now!&lt;/p&gt;
+
+&lt;p&gt;It handles all the issues previously mentioned. Try it with the following test cases:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:Maskekosihk%20trail&quot;&gt;Maskekosihk trail&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:êwêpâpîhkêwêpinamahk&quot;&gt;êwêpâpîhkêwêpinamahk&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:ēwēpâpīhkēwēpinamahk&quot;&gt;ēwēpâpīhkēwēpinamahk&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:ewepapihkewepinamahk&quot;&gt;ewepapihkewepinamahk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The source code for &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; can be found on their respective GitHub repositories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/eddieantonio/cree-sro-syllabics&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; for Python&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/eddieantonio/cree-sro-syllabics.js&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; for JavaScript&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But it can also be seamlessly incorporated into a Python project that uses &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; by installing it with:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;pip install cree-sro-syllabics
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or, you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt; to install &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; in your JavaScript project:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;npm install cree-sro-syllabics --save
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or you can &lt;a href=&quot;https://raw.githubusercontent.com/eddieantonio/cree-sro-syllabics.js/master/cree-sro-syllabics.js&quot;&gt;copy-paste the &lt;code class=&quot;highlighter-rouge&quot;&gt;.js&lt;/code&gt; file&lt;/a&gt; to your project.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-cases&quot;&gt;Use cases&lt;/h2&gt;
+
+&lt;p&gt;Most folks will just use &lt;a href=&quot;https://syllabics.app/&quot;&gt;syllabics.app&lt;/a&gt; to convert a few words or
+sentences of Cree.&lt;/p&gt;
+
+&lt;p&gt;However, software developers can embed the converter in clever ways in their application. For example, I’ve used the converter in &lt;a href=&quot;https://itwewina.dev/&quot;&gt;itwêwina — the Plains Cree dictionary&lt;/a&gt;. Although the underlying dictionary content is written entirely in SRO, we can present all Cree text in syllabics. In addition, we support searches in syllabics by using &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; to convert the search string to SRO first, then search our dictionary content.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How can &lt;em&gt;you&lt;/em&gt; use &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This blog post has been adapted from a &lt;a href=&quot;https://eddieantonio.ca/blog/2018/07/30/why-i-made-yet-another-cree-syllabics-converter/&quot;&gt;post on Eddie’s blog&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;This is the same converter bundled in the &lt;a href=&quot;http://www.creedictionary.com/software/index.php&quot;&gt;Cree Dictionary app&lt;/a&gt;. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;This may not be a mistake; they &lt;em&gt;could&lt;/em&gt; be using Maskwacîs’s conventions, but I’m really not sure. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;I strongly suspect the sign designer used the Maskwacîs transliterator to get this result. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;Anecdotally, I find that most writers near Edmonton and Maskwacîs prefer circumflexes to macrons; however noted Algonquian linguist Arok Wolvengrey prefers macrons. Heck, Jean Okimāsis writes her surname with a macron! &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/</guid>
+        
+        <category>basic</category>
+        
+        
+        <category>Blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Getting from 'a' to 'b' with the 'g2p'</title>
+        <description>&lt;p&gt;This blog post describes the background context for a software tool called ‘g2p’ which is shorthand for ‘Grapheme-to-Phoneme’, but if you don’t know those terms, don’t worry, this post will explain it. Essentially, it is a tool for converting between two types of text, whether you want to convert between a &lt;a href=&quot;#use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;writing system and the phonetic alphabet&lt;/a&gt;, between two &lt;a href=&quot;use-case-2-a-language-with-multiple-writing-systems&quot;&gt;writing systems for the same language&lt;/a&gt;, or between a legacy &lt;a href=&quot;use-case-3-converting-from-legacy-writing-systems&quot;&gt;‘font-hacked’ writing system and its current Unicode-supported version&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To understand the advanced section, you will need to know some &lt;a href=&quot;https://www.python.org/&quot;&gt;python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Maintainer (i.e. the person to bug with questions): &lt;a href=&quot;aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Lots of &lt;a href=&quot;https://github.com/roedoejet/g2p/graphs/contributors&quot;&gt;other contributors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-projecttechnologytip&quot;&gt;What are the motivations behind this project/technology/tip?&lt;/h1&gt;
+
+&lt;p&gt;There are many reasons why you might want to systematically convert between different ‘letters’ referred to in computer science typically as ‘characters’. Here are a few use cases:&lt;/p&gt;
+
+&lt;h3 id=&quot;use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;Use Case #1: Getting the pronunciation from a word’s spelling&lt;/h3&gt;
+
+&lt;p&gt;Sometimes you want to convert between a language’s writing system (also known as &lt;em&gt;orthography&lt;/em&gt;) and its pronunciation. “Letters” in a writing system are usually referred to as “graphemes” and their corresponding meaningful sounds are referred to as “phonemes”; hence “g2p” or “grapheme-to-phoneme”.&lt;/p&gt;
+
+&lt;p&gt;It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as in “th” which can be pronounced &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22&quot;&gt;unvoiced&lt;/a&gt;.)&lt;/em&gt; as in ‘thin’ or &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&amp;amp;text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.&quot;&gt;voiced&lt;/a&gt;&lt;/em&gt; as in ‘that’.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/International_Phonetic_Alphabet&quot;&gt;International Phonetic Alphabet&lt;/a&gt; is not so ambiguous, and writes the ‘th’ in ‘thin’ as &lt;strong&gt;θ&lt;/strong&gt; and the ‘th’ in ‘that’ as &lt;strong&gt;ð&lt;/strong&gt;. Knowing how to convert between the written and spoken form of a language is useful in a variety of computational tasks, but I will describe the usefulness specifically with a project called “ReadAlongs” &lt;a href=&quot;#readalongs&quot;&gt;below&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;use-case-2-a-language-with-multiple-writing-systems&quot;&gt;Use Case #2: A language with multiple writing systems&lt;/h3&gt;
+
+&lt;p&gt;Some languages have two (or more!) different writing systems. Take Cree for example, where you can either write a word in &lt;em&gt;Standard Roman Orthography&lt;/em&gt; like “ê-wêpâpîhkêwêpinamâhk” or in &lt;em&gt;Syllabics&lt;/em&gt; like &lt;strong&gt;ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ&lt;/strong&gt;. My colleague &lt;a href=&quot;https:://eddieanotonio.ca&quot;&gt;Eddie&lt;/a&gt; has a great blog post about a tool he created to convert between the two &lt;a href=&quot;https://blog.mothertongues.org/why-a-new-cree-syllabics-converter&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-case-3-converting-from-legacy-writing-systems&quot;&gt;Use Case #3: Converting from legacy writing systems&lt;/h3&gt;
+
+&lt;p&gt;Some languages historically used ‘font hacks’ to render the characters in their writing system before they were supported standardly on computers. There’s a longer discussion to be had here, but the coles’ notes version is that when computers were gaining popularity, they weren’t typically able to &lt;em&gt;render&lt;/em&gt; (ie display) characters outside of the 128 characters supported by the &lt;a href=&quot;https://en.wikipedia.org/wiki/ASCII&quot;&gt;American Standard Code for Information Interchange (ASCII)&lt;/a&gt;. To get around this, language communities would come up with their own custom fonts (often referred to as ‘font hacks’ or ‘font encodings’) where they would render things characters like ‘©’ which existed in ASCII as ‘ǧ’ instead (example taken from the Heiltsuk Doulos font). For more information on this topic, please check out &lt;a href=&quot;http://aidanpine.ca/static/cv/pdfs/Pine-Turin-Convertextract-2018.pdf&quot;&gt;‘Seeing the Heiltsuk Orthography from Font Encoding through to Unicode’&lt;/a&gt; or &lt;a href=&quot;https://markturin.sites.olt.ubc.ca/files/2020/06/Schillo_Turin_typeface_2020.pdf&quot;&gt;‘Applications and innovations in typeface design for North American Indigenous languages’&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-get-from-a-to-b-or-a-to-æ-with-g2p&quot;&gt;How to get from ‘a’ to ‘b’ (or ‘a’ to ‘æ’) with g2p&lt;/h1&gt;
+
+&lt;p&gt;…more to come…&lt;/p&gt;
+</description>
+        <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/g2p/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/g2p/</guid>
+        
+        <category>tutorial</category>
+        
+        <category>explanation</category>
+        
+        <category>tech-showcase</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Standard post template</title>
+        <description>&lt;p&gt;This blog post describes what a basic template for a post on this blog should look like. Feel free to just copy past the headers into your post and replace the text! The instructions for each section are italicized, and the answers for this specific blog post are following the italicized text.&lt;/p&gt;
+
+&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;We reccomend having a section at the top that gives an extremely short summary of the post (ideally 2 or 3 sentences). This should be high-level, and shouldn’t assume any technical knowledge.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a template of a blog post to follow when writing other blog posts - how meta!&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Your post should have a list of technical skills that you think are needed to understand the blog post. This will help the reader know if they’ll be able to benefit from reading it or whether they should study up on something first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Knowledge of writing &lt;a href=&quot;https://www.markdowntutorial.com/&quot;&gt;markdown&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Beyond the author’s information which will be part of this post, there should be a list of everybody involved with the technology discussed in the post, if applicable. The list of contacts should be clear&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Author/Blog Maintainer: &lt;a href=&quot;aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-needed-to-replicate-the-content-in-the-post&quot;&gt;What is needed to replicate the content in the post?&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Is the technology or tip you’re describing reproducible? If so, what are the requirements? For example, is it available for any language, given 20 hours of audio data?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to follow the steps of &lt;a href=&quot;https://blog.mothertongues.org/become-an-author&quot;&gt;becoming an author&lt;/a&gt; and &lt;a href=&quot;https://blog.mothertongues.org/write-a-post&quot;&gt;writing a post&lt;/a&gt; before using this template.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-projecttechnologytip&quot;&gt;What are the motivations behind this project/technology/tip?&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Was this project funded? By whom? What were the explicit goals of the technology in question, or are they left unstated?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mothertongues.org&quot;&gt;Mother Tongues&lt;/a&gt; was created to release open-source software for language revitalization and includes tools for &lt;a href=&quot;https://docs.mothertongues.org&quot;&gt;dictionaries&lt;/a&gt; and [orthography converters][https://github.com/roedoejet/convertextract]. Please read the &lt;a href=&quot;https://blog.mothertongues.org/about&quot;&gt;About section&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;h1 id=&quot;main-post--replace-title&quot;&gt;Main Post &amp;lt;– replace title&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Here is where the main post should go - because this is just a template, there’s nothing here!&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/post-template/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/post-template/</guid>
+        
+        <category>basic</category>
+        
+        <category>contributing</category>
+        
+        
+        <category>Tutorial</category>
+        
+        <category>Blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Write a post</title>
+        <description>&lt;p&gt;Here’s a short tutorial on how to write your first blog post on the official Mother Tongues Blog. This tutorial assumes you’ve already signed up to &lt;a href=&quot;https://blog.mothertongues.org/become-an-author&quot;&gt;become an author&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Posts on the Mother Tongues Blog are written in &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;Markdown&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to write a new post, follow the following steps.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;In your fork of the &lt;a href=&quot;https://github.com/roedoejet/mothertongues-blog&quot;&gt;Mother Tongues Blog Respository&lt;/a&gt;, make sure you’re in the &lt;code class=&quot;highlighter-rouge&quot;&gt;dev.author&lt;/code&gt; branch and add a new post to the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; folder. Your post file name must by &lt;a href=&quot;https://blog.tersmitten.nl/slugify/&quot;&gt;slugified&lt;/a&gt;. It must start with the date (yyyy-mm-dd) and then the blog post name, &lt;code class=&quot;highlighter-rouge&quot;&gt;2020-01-15-this-is-a-sample.md&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Add some meta data about the post at the top:
+    &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Become&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;an&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;author&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;aidan&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;categories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Tutorial&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Blog&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;intermediate&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;assets/images/01.jpg&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Write&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;own&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;articles&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Mother&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Tongues&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Blog&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;featured&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Write the content of your post in Markdown. Please have a look at the &lt;a href=&quot;https://blog.mothertongues.org/post-template&quot;&gt;template&lt;/a&gt; for writing accessible posts!&lt;/li&gt;
+  &lt;li&gt;When you’re happy with it, Submit a &lt;a href=&quot;https://github.com/roedoejet/mothertongues-blog/pull/new/dev.author&quot;&gt;pull request&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Thanks for contributing!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/write-a-post/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/write-a-post/</guid>
+        
+        <category>intermediate</category>
+        
+        <category>contributing</category>
+        
+        
+        <category>Tutorial</category>
+        
+        <category>Blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome</title>
+        <description>&lt;p&gt;Welcome to the Mother Tongues official blog!&lt;/p&gt;
+
+&lt;p&gt;Mother Tongues is an organization that releases free and open source tools for language revitalization.&lt;/p&gt;
+
+&lt;p&gt;Here you’ll find blog posts, tips, tricks and tutorials for developing language technology with a focus on Indigenous languages.&lt;/p&gt;
+
+&lt;p&gt;Be sure to &lt;a href=&quot;https://mailchi.mp/b87b1fbde236/mothertongues&quot;&gt;sign up&lt;/a&gt; to our mailing list to keep track of new blog posts and any events.&lt;/p&gt;
+
+&lt;p&gt;If you’re interested in becoming an author, and you have a &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt; account, please checkout how to &lt;a href=&quot;https://blog.mothertongues.org/become-an-author&quot;&gt;become an author&lt;/a&gt; and after you’ve signed up, learn how to &lt;a href=&quot;https://blog.mothertongues.org/write-a-post&quot;&gt;write a post&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/welcome/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/welcome/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Become an author</title>
+        <description>&lt;p&gt;Do you have a tip you’d like to share? Have you pulled your hair out fixing a bug only to find out that the reason the bug exists is because many mainstream platforms don’t consider less-resourced languages? The Mother Tongues blog is the place to share your tips, tricks, and tutorials for all things related to technology for less-resourced languages.&lt;/p&gt;
+
+&lt;p&gt;To become an author, you’ll need a &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt; account&lt;sup&gt;&lt;a href=&quot;#github-footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then, follow these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.github.com/en/github/getting-started-with-github/fork-a-repo&quot;&gt;Fork&lt;/a&gt; the &lt;a href=&quot;https://github.com/roedoejet/mothertongues-blog&quot;&gt;Mother Tongues Blog Respository&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Checkout to the &lt;code class=&quot;highlighter-rouge&quot;&gt;dev.author&lt;/code&gt; branch&lt;/li&gt;
+  &lt;li&gt;Edit the file labelled &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. * denotes a required value.
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;na&quot;&gt;AidanPine&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;gravatar&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;7623fd3eeb0acbe1084fecc20c3093ae&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello@aidanpine.ca&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://aidanpine.ca&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;twitter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://twitter.com/aidanpine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Lead&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;developer&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Mother&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Tongues.&quot;&lt;/span&gt;
+ &lt;span class=&quot;s&quot;&gt;yourname*&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;              &lt;span class=&quot;c1&quot;&gt;# This should be your twitter handle&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;YourName*&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;YourName*&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your@email.com*&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;gravatar&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;YourGravatarID&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# this is an md5 hash of your email that you used to sign up for https://en.gravatar.com/ you can either calculate this on the command line, or use an online generator like https://www.md5hashgenerator.com/ &lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yoursite.com&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;twitter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://twitter.com/yourhandle&lt;/span&gt;
+     &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Guest&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Author.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;YourDescriptionHere&quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Submit a &lt;a href=&quot;https://github.com/roedoejet/mothertongues-blog/pull/new/dev.author&quot;&gt;pull request&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That’s it! Start &lt;a href=&quot;https://blog.mothertongues.org/write-a-post&quot;&gt;writing your posts&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt; 
+&lt;br /&gt; 
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
+
+&lt;p&gt;&lt;a name=&quot;github-footnote&quot;&gt;1&lt;/a&gt;: Any suggestions for good GitHub tutorials? Leave them in the comments below!&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/become-an-author/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/become-an-author/</guid>
+        
+        <category>intermediate</category>
+        
+        <category>contributing</category>
+        
+        
+        <category>Tutorial</category>
+        
+        <category>Blog</category>
+        
+      </item>
+    
+  </channel>
+</rss>
