@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Write a post"
-author: aidan
+author: AidanPine
 categories: [ Tutorial, Blog ]
 tags: [ intermediate, contributing ]
 image: false

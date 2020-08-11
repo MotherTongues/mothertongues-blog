@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Standard post template"
-author: aidan
+author: AidanPine
 categories: [ Tutorial, Blog ]
 tags: [ basic, contributing ]
 image: false
