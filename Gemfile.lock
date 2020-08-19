@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    base32 (0.3.2)
     colorator (1.1.0)
     concurrent-ruby (1.1.4)
     em-websocket (0.5.1)
@@ -52,6 +53,13 @@ GEM
       jekyll (~> 3.3)
     jekyll-watch (2.1.2)
       listen (~> 3.0)
+    jekyll_picture_tag (1.10.2)
+      addressable (~> 2.6)
+      base32 (~> 0.3)
+      jekyll (< 5)
+      mime-types (~> 3)
+      mini_magick (~> 4)
+      objective_elements (~> 1.1.2)
     kramdown (1.17.0)
     liquid (4.0.1)
     listen (3.1.5)
@@ -59,6 +67,10 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     mercenary (0.3.6)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2020.0512)
+    mini_magick (4.10.1)
     mini_portile2 (2.4.0)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -66,6 +78,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
+    objective_elements (1.1.2)
     parallel (1.19.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
@@ -98,9 +111,10 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-seo-tag
   jekyll-sitemap
+  jekyll_picture_tag (~> 1.10.2)
   kramdown
   rake
   rouge
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
