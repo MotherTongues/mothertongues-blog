@@ -25,7 +25,7 @@
 <meta name="twitter:site" content="@AidanPine" />
 <meta name="twitter:creator" content="@AidanPine" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"AidanPine"},"description":"How to write a basic blog post","headline":"Standard post template","dateModified":"2020-07-31T00:00:00+00:00","datePublished":"2020-07-31T00:00:00+00:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/post-template/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"url":"https://blog.mothertongues.org/post-template/","@context":"http://schema.org"}</script>
+{"dateModified":"2020-07-31T00:00:00+00:00","datePublished":"2020-07-31T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/post-template/"},"author":{"@type":"Person","name":"AidanPine"},"description":"How to write a basic blog post","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"url":"https://blog.mothertongues.org/post-template/","headline":"Standard post template","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -266,7 +266,7 @@
 
 <h1 id="tldr">TL;DR</h1>
 
-<p><em>We reccomend having a section at the top that gives an extremely short summary of the post (ideally 2 or 3 sentences). This should be high-level, and shouldn’t assume any technical knowledge.</em></p>
+<p><em>We recommend having a section at the top that gives an extremely short summary of the post (ideally 2 or 3 sentences). This should be high-level, and shouldn’t assume any technical knowledge.</em></p>
 
 <p>This is a template of a blog post to follow when writing other blog posts - how meta!</p>
 
@@ -301,6 +301,34 @@
 <h1 id="main-post--replace-title">Main Post &lt;– replace title</h1>
 
 <p><em>Here is where the main post should go - because this is just a template, there’s nothing here!</em></p>
+
+<h2 id="how-to-add-an-image-to-your-post">How to add an image to your post</h2>
+
+<ol>
+  <li>
+    <p>Place your image in <code class="highlighter-rouge">assets/images/</code>. I recommend prefixing your image
+  name with your post title, followed by two dashes. For example, the post title for this very
+  post you are reading right now is <code class="highlighter-rouge">post-template</code>. I have an image
+  called <code class="highlighter-rouge">ime-development.jpg</code>, so I’ll copy it as
+  <code class="highlighter-rouge">assets/images/post-template--ime-development.jpg</code>.</p>
+  </li>
+  <li>
+    <p>Embed your picture using the <code class="highlighter-rouge">{% picture %}</code> tag. In your post,
+where you want your image, embed it as follows:</p>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>{% picture post-template--ime-development.jpg --alt An early draft storyboard of how to use the IME %}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>It will produce the following image:</p>
+
+<p><img src="/assets/images/g/post-template--ime-development-800-af046f.jpg" alt="An early draft storyboard of how to use the IME" srcset="/assets/images/g/post-template--ime-development-400-af046f.jpg 400w, /assets/images/g/post-template--ime-development-600-af046f.jpg 600w, /assets/images/g/post-template--ime-development-800-af046f.jpg 800w, /assets/images/g/post-template--ime-development-1000-af046f.jpg 1000w" /></p>
+
+<p>The text after the <code class="highlighter-rouge">--alt</code> is the text that will show up if the image
+doesn’t load, or the text that screenreader users will hear when
+listening to the blog post.</p>
 
             </div>
 
