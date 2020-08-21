@@ -13,6 +13,9 @@ group :jekyll_plugins do
     gem 'jekyll-feed'
     gem 'jekyll-sitemap'
     gem 'jekyll-paginate'
+    # v1.10.2 is the last version that works with Jekyll 3.x
+    # See: https://github.com/rbuchberger/jekyll_picture_tag/issues/192
+    gem 'jekyll_picture_tag', "~> 1.10.2"
     gem 'jekyll-seo-tag'
     gem 'jekyll-archives'
     gem 'kramdown'
