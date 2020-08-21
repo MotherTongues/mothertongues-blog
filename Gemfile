@@ -13,6 +13,7 @@ group :jekyll_plugins do
     gem 'jekyll-feed'
     gem 'jekyll-sitemap'
     gem 'jekyll-paginate'
+    gem 'jekyll_picture_tag', "~> 1.10.2"
     gem 'jekyll-seo-tag'
     gem 'jekyll-archives'
     gem 'kramdown'
