@@ -21,6 +21,7 @@ I assume that you know some background about the [g2p library](https://github.co
 For the purposes of using these tools, a library is a collection of code and documentation, but if you would like to dig deeper you can check out this [Wikipedia article](https://en.wikipedia.org/wiki/Library_(computing)) 
 The g2p library uses existing and custom mappings (i.e. arbitrary input->output conversions). For example, you might want **k'** (input) to be converted to **k̓** (output). The Mapping is the roadmap for converting.
 These conversions are **arbitrary**, so depending on your use case you may need to create new mappings. Most of the existing mappings convert *Graphemes* (a character in the writing system of a language) to *Phonemes* (their equivalent sound in the language), hence the name 'g2p'. 
+To see existing mappings click https://: [here](https://g2p-studio.herokuapp.com)
 To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is [here](https://github.com/roedoejet/g2p#writing-mapping-files)
 
 # Who is involved with this project?
@@ -33,12 +34,12 @@ To keep this post simple, I will not explain how to add new g2p mappings. The do
 
 - App developer: [Aidan Pine](aidanpine.ca)
 
-- Support for adding mappings/parsers: [Fineen](fineen.davis@gmail.com)
+- Support for adding mappings/parsers: [Fineen Davis](fineen.davis@gmail.com)
 
 
 # What is needed to replicate the content in the post?
 
-- [g2p](https://github.com/roedoejet/g2p) Mappingof the desired conversions
+- [g2p](https://g2p-studio.herokuapp.com) Mapping of the desired conversions
 - Language text to be converted
 - [Convertextract](https://github.com/roedoejet/convertextract/) app (read the post for installation!) 
 
@@ -59,7 +60,7 @@ The latest update now includes a [GUI](https://en.wikipedia.org/wiki/Graphical_u
 
 ### 1. G2P mapping
 
-*Convertextract* will carry out the streamlining for you, but it has to know what to convert. The g2p Mapping is this roadmap. See the previous section *What you need to know to understand this post* for more information on how to see if your language is supported. 
+*Convertextract* will carry out the streamlining for you, but it has to know what to convert. The g2p Mapping is this roadmap. See the section *What you need to know to understand this post* for more information on how to see if your language is supported. 
 
 ### 2. Language data
 
