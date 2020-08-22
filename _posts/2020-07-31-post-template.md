@@ -28,7 +28,7 @@ This is a template of a blog post to follow when writing other blog posts - how 
 
 *Beyond the author's information which will be part of this post, there should be a list of everybody involved with the technology discussed in the post, if applicable. The list of contacts should be clear*
 
-- Author/Blog Maintainer: [Aidan Pine](aidanpine.ca)
+- Author/Blog Maintainer: [Aidan Pine](https://aidanpine.ca)
 
 # What is needed to replicate the content in the post?
 
