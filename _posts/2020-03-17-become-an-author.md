@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Become an author"
-author: aidan
+author: AidanPine
 categories: [ Tutorial, Blog ]
 tags: [ intermediate, contributing ]
 image: assets/images/01.jpg
@@ -21,7 +21,7 @@ Then, follow these steps:
 3. Edit the file labelled `_config.yml`. * denotes a required value.
    ```yaml
    authors:
-    aidan:
+    AidanPine:
        name: Aidan
        display_name: Aidan
        gravatar: 7623fd3eeb0acbe1084fecc20c3093ae 
@@ -29,7 +29,7 @@ Then, follow these steps:
        web: https://aidanpine.ca
        twitter: https://twitter.com/aidanpine
        description: "Lead developer of Mother Tongues."
-    yourname*:
+    yourname*:              # This should be your twitter handle
         name: YourName*
         display_name: YourName*
         email: your@email.com*

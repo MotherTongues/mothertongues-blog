@@ -68,7 +68,7 @@ For example, the word "ê-wêpâpîhkêwêpinamâhk" (_we (and not you) are sett
 Some transliterators attempt to convert every Latin character, even if it doesn't make sense. Take the case of "Maskêkosihk Trail"---a road that goes from Edmonton to [Enoch Cree Nation][enoch]. The City of Edmonton unveiled the street sign, and, in the process, they unveiled an embarrassment:
 
 <figure>
-  <img src="{{ 'assets/images/why-cree-syllabics--mayor-and-okimaw.jpg' | relative_url }}">
+  {% picture why-cree-syllabics--mayor-and-okimaw.jpg %}
   <figcaption>
     “Maskêkosihk trail” erroneously converted as «ᒪᐢᑫᑯᓯᐦᐠ ᐟrᐊᐃl»
     <cite> Image source: <a

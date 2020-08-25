@@ -22,7 +22,7 @@ For the purposes of using these tools, a library is a collection of code and doc
 The g2p library uses existing and custom mappings (i.e. arbitrary input->output conversions). For example, you might want **k'** (input) to be converted to **k̓** (output). The Mapping is the roadmap for converting.
 These conversions are **arbitrary**, so depending on your use case you may need to create new mappings. Most of the existing mappings convert *Graphemes* (a character in the writing system of a language) to *Phonemes* (their equivalent sound in the language), hence the name 'g2p'. 
 To see existing mappings click https://[here](https://g2p-studio.herokuapp.com)
-To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is [here](https://github.com/roedoejet/g2p#writing-mapping-files)
+To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is https://[here](https://github.com/roedoejet/g2p#writing-mapping-files)
 
 # Who is involved with this project?
 

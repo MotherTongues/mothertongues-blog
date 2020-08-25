@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Standard post template"
-author: aidan
+author: AidanPine
 categories: [ Tutorial, Blog ]
 tags: [ basic, contributing ]
 image: false
@@ -14,7 +14,7 @@ This blog post describes what a basic template for a post on this blog should lo
 
 # TL;DR
 
-*We reccomend having a section at the top that gives an extremely short summary of the post (ideally 2 or 3 sentences). This should be high-level, and shouldn't assume any technical knowledge.*
+*We recommend having a section at the top that gives an extremely short summary of the post (ideally 2 or 3 sentences). This should be high-level, and shouldn't assume any technical knowledge.*
 
 This is a template of a blog post to follow when writing other blog posts - how meta!
 
@@ -45,3 +45,26 @@ You will need to follow the steps of [becoming an author]({{ "become-an-author" 
 # Main Post <-- replace title
 
 *Here is where the main post should go - because this is just a template, there's nothing here!*
+
+## How to add an image to your post
+
+ 1. Place your image in `assets/images/`. I recommend prefixing your image
+  name with your post title, followed by two dashes. For example, the post title for this very
+  post you are reading right now is `post-template`. I have an image
+  called `ime-development.jpg`, so I'll copy it as
+  `assets/images/post-template--ime-development.jpg`.
+
+ 2. Embed your picture using the `{{ "{% picture " }}%}` tag. In your post,
+    where you want your image, embed it as follows:
+
+```
+{{ "{% picture " }}post-template--ime-development.jpg --alt An early draft storyboard of how to use the IME %}
+```
+
+It will produce the following image:
+
+{% picture post-template--ime-development.jpg --alt An early draft storyboard of how to use the IME %}
+
+The text after the `--alt` is the text that will show up if the image
+doesn't load, or the text that screenreader users will hear when
+listening to the blog post.

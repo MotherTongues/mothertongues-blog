@@ -24,7 +24,7 @@ authors:
   # If you want your posts to be associated with your Twitter handle,
   # make sure your short name here to match your @: 
   # See: https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/advanced-usage.md#author-information
-  aidan:
+  AidanPine:
     name: Aidan
     display_name: Aidan
     gravatar: 7623fd3eeb0acbe1084fecc20c3093ae
@@ -60,6 +60,7 @@ authors:
 # Plugins
 plugins:
   - jekyll-paginate
+  - jekyll_picture_tag
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
@@ -76,6 +77,13 @@ jekyll-archives:
 # Pagination 
 paginate: 6
 paginate_path: /page:num/
+
+# {% picture %} tag
+picture:
+  # Authors: plop your source images in ./assets/images
+  source: "assets/images"
+  # The processed images will be generated here:
+  output: "assets/images/g"
 
 # SEO
 twitter:
