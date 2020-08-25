@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the release branch
+on:
+  push:
+    branches: [review]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Waiting for 200 from the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1
+        with:
+          site_name: "${{ secrets.PREVIEW_URL }}"
+          max_timeout: 60
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Install dependencies
+        run: npm install broken-link-checker -g
+      - name: Check links
+        run: blc "https://${{ secrets.PREVIEW_URL }}.netlify.app" -ro
+
+      
