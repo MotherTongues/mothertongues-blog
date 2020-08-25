@@ -13,39 +13,39 @@ hidden: false
 # TL;DR
 
 Have you ever wanted to *NOT* spend hours tediously checking that **k + '** is written as **k̓** and not **k'**?
-If you said **YES!**, *Convertextract* is the app for you. With minimal technical knowledge, you can now systemically make your [ELAN](https://archive.mpi.nl/tla/elan) annotations consistent.
+If you said **YES!**, *Convertextract* is the app for you. With minimal technical knowledge, you can now systemically make your https://[ELAN](https://archive.mpi.nl/tla/elan) annotations consistent.
 
 # What you need to know to understand this post
 
-I assume that you know some background about the [g2p library](https://github.com/roedoejet/g2p).
-For the purposes of using these tools, a library is a collection of code and documentation, but if you would like to dig deeper you can check out this [Wikipedia article](https://en.wikipedia.org/wiki/Library_(computing)) 
+I assume that you know some background about the https://[g2p library](https://github.com/roedoejet/g2p).
+For the purposes of using these tools, a library is a collection of code and documentation, but if you would like to dig deeper you can check out this https://[Wikipedia article](https://en.wikipedia.org/wiki/Library_(computing)) 
 The g2p library uses existing and custom mappings (i.e. arbitrary input->output conversions). For example, you might want **k'** (input) to be converted to **k̓** (output). The Mapping is the roadmap for converting.
 These conversions are **arbitrary**, so depending on your use case you may need to create new mappings. Most of the existing mappings convert *Graphemes* (a character in the writing system of a language) to *Phonemes* (their equivalent sound in the language), hence the name 'g2p'. 
-To see existing mappings click https://: [here](https://g2p-studio.herokuapp.com)
+To see existing mappings click https://[here](https://g2p-studio.herokuapp.com)
 To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is [here](https://github.com/roedoejet/g2p#writing-mapping-files)
 
 # Who is involved with this project?
 
 - Kwak̓wala Corpus Collection group
 
-	Sara Child [saratlilinukw@gmail.com](mailto:saratlilinukw@gmail.com)
-	Daisy Rosenblum [daisy.rosenblum@ubc.ca](mailto:daisy.rosenblum@ubc.ca)
-	Caroline Running Wolf [caroline.oldcoyote@gmail.com](mailto:caroline.oldcoyote@gmail.com)
+	Sara Child https://[saratlilinukw@gmail.com](mailto:saratlilinukw@gmail.com)
+	Daisy Rosenblum https://[daisy.rosenblum@ubc.ca](mailto:daisy.rosenblum@ubc.ca)
+	Caroline Running Wolf https://[caroline.oldcoyote@gmail.com](mailto:caroline.oldcoyote@gmail.com)
 
-- App developer: [Aidan Pine](aidanpine.ca)
+- App developer: https://[Aidan Pine](aidanpine.ca)
 
-- Support for adding mappings/parsers: [Fineen Davis](fineen.davis@gmail.com)
+- Support for adding mappings/parsers: https://[Fineen Davis](fineen.davis@gmail.com)
 
 
 # What is needed to replicate the content in the post?
 
-- [g2p](https://g2p-studio.herokuapp.com) Mapping of the desired conversions
+- https://[g2p](https://g2p-studio.herokuapp.com) Mapping of the desired conversions
 - Language text to be converted
-- [Convertextract](https://github.com/roedoejet/convertextract/) app (read the post for installation!) 
+- https://[Convertextract](https://github.com/roedoejet/convertextract/) app (read the post for installation!) 
 
 # What are the motivations behind this technology?
 
-As a Student Intern on the NRC's [Indigenous Language Technology (ILT) project](https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project), I was approached by the Kwak̓wala Corpus Collection group to help create a systemic way to streamline the quality control process for their ELAN annotation data. Having many different people with many different orthographic conventions (i.e. different ways of writing the same thing) all working on annotating Kwak̓wala language data had resulted in inconsistencies. 
+As a Student Intern on the NRC's https://[Indigenous Language Technology (ILT) project](https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project), I was approached by the Kwak̓wala Corpus Collection group to help create a systemic way to streamline the quality control process for their ELAN annotation data. Having many different people with many different orthographic conventions (i.e. different ways of writing the same thing) all working on annotating Kwak̓wala language data had resulted in inconsistencies. 
 
 For example, there was four ways that people were writing **t̓s**:
 - **t's**, **t̕s**, **ts̓**, **ts'**
@@ -54,9 +54,9 @@ So, I added mappings in the g2p library that took the alternative forms and *str
 
 # How to use the new Convertextract app for 'quality control' of ELAN annotations
 
-[Convertextract](https://github.com/roedoejet/convertextract), created by Aidan Pine, is a `python` library which extracts text data and finds/replaces specific text based on arbitrary correspondences. 
-Until now, only basic [CLI](https://en.wikipedia.org/wiki/Command-line_interface) (Command Line Interface) was supported. Using Convertextract in the CLI allowed the user to convert a file based on pre-existing Mappings in the [g2p library](https://github.com/roedoejet/g2p/tree/master/g2p/mappings/langs) or based on a custom Mapping (not described here). However, the downside is that some programming knowledge is needed to use the CLI.
-The latest update now includes a [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface) (Graphical User Interface) in the form of an app (for Mac computers **only**). The app makes Convertextract more accessible for non-programmers.
+https://[Convertextract](https://github.com/roedoejet/convertextract), created by Aidan Pine, is a `python` library which extracts text data and finds/replaces specific text based on arbitrary correspondences. 
+Until now, only basic https://[CLI](https://en.wikipedia.org/wiki/Command-line_interface) (Command Line Interface) was supported. Using Convertextract in the CLI allowed the user to convert a file based on pre-existing Mappings in the https://[g2p library](https://github.com/roedoejet/g2p/tree/master/g2p/mappings/langs) or based on a custom Mapping (not described here). However, the downside is that some programming knowledge is needed to use the CLI.
+The latest update now includes a https://[GUI](https://en.wikipedia.org/wiki/Graphical_user_interface) (Graphical User Interface) in the form of an app (for Mac computers **only**). The app makes Convertextract more accessible for non-programmers.
 
 ### 1. G2P mapping
 
@@ -65,7 +65,7 @@ The latest update now includes a [GUI](https://en.wikipedia.org/wiki/Graphical_u
 ### 2. Language data
 
 You language data must be in one of the supported file formats. The most recent addition is `.eaf` files, which allows ELAN annotations to be used!
-For a full list of supported file types click [here](https://github.com/roedoejet/convertextract/tree/master/convertextract/parsers).
+For a full list of supported file types click https://[here](https://github.com/roedoejet/convertextract/tree/master/convertextract/parsers).
 
 ### 3. Convertextract application
 
