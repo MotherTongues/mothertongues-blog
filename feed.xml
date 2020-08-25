@@ -5,9 +5,163 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 22 Aug 2020 00:27:40 +0000</pubDate>
-    <lastBuildDate>Sat, 22 Aug 2020 00:27:40 +0000</lastBuildDate>
+    <pubDate>Tue, 25 Aug 2020 20:13:44 +0000</pubDate>
+    <lastBuildDate>Tue, 25 Aug 2020 20:13:44 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>How to use the new Convertextract application for 'quality control' of ELAN annotations</title>
+        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;Have you ever wanted to &lt;em&gt;NOT&lt;/em&gt; spend hours tediously checking that &lt;strong&gt;k + ‘&lt;/strong&gt; is written as &lt;strong&gt;k̓&lt;/strong&gt; and not &lt;strong&gt;k’&lt;/strong&gt;?
+If you said &lt;strong&gt;YES!&lt;/strong&gt;, &lt;em&gt;Convertextract&lt;/em&gt; is the app for you. With minimal technical knowledge, you can now systemically make your &lt;a href=&quot;https://archive.mpi.nl/tla/elan&quot;&gt;ELAN&lt;/a&gt; annotations consistent.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;p&gt;I assume that you know some background about the &lt;a href=&quot;https://github.com/roedoejet/g2p&quot;&gt;g2p library&lt;/a&gt;.
+For the purposes of using these tools, a library is a collection of code and documentation, but if you would like to dig deeper you can check out this &lt;a href=&quot;https://en.wikipedia.org/wiki/Library_(computing)&quot;&gt;Wikipedia article&lt;/a&gt; 
+The g2p library uses existing and custom mappings (i.e. arbitrary input-&amp;gt;output conversions). For example, you might want &lt;strong&gt;k’&lt;/strong&gt; (input) to be converted to &lt;strong&gt;k̓&lt;/strong&gt; (output). The Mapping is the roadmap for converting.
+These conversions are &lt;strong&gt;arbitrary&lt;/strong&gt;, so depending on your use case you may need to create new mappings. Most of the existing mappings convert &lt;em&gt;Graphemes&lt;/em&gt; (a character in the writing system of a language) to &lt;em&gt;Phonemes&lt;/em&gt; (their equivalent sound in the language), hence the name ‘g2p’. 
+To see existing mappings click &lt;a href=&quot;https://g2p-studio.herokuapp.com&quot;&gt;here&lt;/a&gt;
+To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is &lt;a href=&quot;https://github.com/roedoejet/g2p#writing-mapping-files&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Kwak̓wala Corpus Collection group&lt;/p&gt;
+
+    &lt;p&gt;Sara Child &lt;a href=&quot;mailto:saratlilinukw@gmail.com&quot;&gt;saratlilinukw@gmail.com&lt;/a&gt;
+  Daisy Rosenblum &lt;a href=&quot;mailto:daisy.rosenblum@ubc.ca&quot;&gt;daisy.rosenblum@ubc.ca&lt;/a&gt;
+  Caroline Running Wolf &lt;a href=&quot;mailto:caroline.oldcoyote@gmail.com&quot;&gt;caroline.oldcoyote@gmail.com&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;App developer: &lt;a href=&quot;https://aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Support for adding mappings/parsers: &lt;a href=&quot;mailto:fineen.davis@gmail.com&quot;&gt;Fineen Davis&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-needed-to-replicate-the-content-in-the-post&quot;&gt;What is needed to replicate the content in the post?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://g2p-studio.herokuapp.com&quot;&gt;g2p&lt;/a&gt; Mapping of the desired conversions&lt;/li&gt;
+  &lt;li&gt;Language text to be converted&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/roedoejet/convertextract/&quot;&gt;Convertextract&lt;/a&gt; app (read the post for installation!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-technology&quot;&gt;What are the motivations behind this technology?&lt;/h1&gt;
+
+&lt;p&gt;As a Student Intern on the NRC’s &lt;a href=&quot;https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project&quot;&gt;Indigenous Language Technology (ILT) project&lt;/a&gt;, I was approached by the Kwak̓wala Corpus Collection group to help create a systemic way to streamline the quality control process for their ELAN annotation data. Having many different people with many different orthographic conventions (i.e. different ways of writing the same thing) all working on annotating Kwak̓wala language data had resulted in inconsistencies.&lt;/p&gt;
+
+&lt;p&gt;For example, there was four ways that people were writing &lt;strong&gt;t̓s&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;t’s&lt;/strong&gt;, &lt;strong&gt;t̕s&lt;/strong&gt;, &lt;strong&gt;ts̓&lt;/strong&gt;, &lt;strong&gt;ts’&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, I added mappings in the g2p library that took the alternative forms and &lt;em&gt;streamlined&lt;/em&gt; them therefore producing only one form in the output.Then I added support for ELAN files in the Convertextract library, so that the process became automated. Aidan Pine then turned Convertextract into an app!&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-use-the-new-convertextract-app-for-quality-control-of-elan-annotations&quot;&gt;How to use the new Convertextract app for ‘quality control’ of ELAN annotations&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/roedoejet/convertextract&quot;&gt;Convertextract&lt;/a&gt;, created by Aidan Pine, is a &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; library which extracts text data and finds/replaces specific text based on arbitrary correspondences. 
+Until now, only basic &lt;a href=&quot;https://en.wikipedia.org/wiki/Command-line_interface&quot;&gt;CLI&lt;/a&gt; (Command Line Interface) was supported. Using Convertextract in the CLI allowed the user to convert a file based on pre-existing Mappings in the &lt;a href=&quot;https://github.com/roedoejet/g2p/tree/master/g2p/mappings/langs&quot;&gt;g2p library&lt;/a&gt; or based on a custom Mapping (not described here). However, the downside is that some programming knowledge is needed to use the CLI.
+The latest update now includes a &lt;a href=&quot;https://en.wikipedia.org/wiki/Graphical_user_interface&quot;&gt;GUI&lt;/a&gt; (Graphical User Interface) in the form of an app (for Mac computers &lt;strong&gt;only&lt;/strong&gt;). The app makes Convertextract more accessible for non-programmers.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-g2p-mapping&quot;&gt;1. G2P mapping&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Convertextract&lt;/em&gt; will carry out the streamlining for you, but it has to know what to convert. The g2p Mapping is this roadmap. See the section &lt;em&gt;What you need to know to understand this post&lt;/em&gt; for more information on how to see if your language is supported.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-language-data&quot;&gt;2. Language data&lt;/h3&gt;
+
+&lt;p&gt;You language data must be in one of the supported file formats. The most recent addition is &lt;code class=&quot;highlighter-rouge&quot;&gt;.eaf&lt;/code&gt; files, which allows ELAN annotations to be used!
+For a full list of supported file types click &lt;a href=&quot;https://github.com/roedoejet/convertextract/tree/master/convertextract/parsers&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-convertextract-application&quot;&gt;3. Convertextract application&lt;/h3&gt;
+
+&lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt; The app works on &lt;strong&gt;Mac only!!!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To download the app: &lt;a href=&quot;https://github.com/roedoejet/convertextract/releases&quot;&gt;https://github.com/roedoejet/convertextract/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In your downloads folder, find the .zip file and double click on it to unzip.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Downloads&amp;gt;&lt;strong&gt;convertextract&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Right-click on the application in the dist folder and select &lt;em&gt;Open&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Downloads&amp;gt;convertextract&amp;gt;dist&amp;gt;&lt;strong&gt;Convertextract&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Note: If you try to double click to open the app, you will get a security message. Right-clicking to open will allow you to override the security message.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;using-the-app&quot;&gt;Using the app&lt;/h4&gt;
+
+&lt;p&gt;This is what the app looks like when you open it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/gui-800-e3246b.png&quot; alt=&quot;convertextract GUI&quot; srcset=&quot;/assets/images/g/gui-400-e3246b.png 400w, /assets/images/g/gui-600-e3246b.png 600w, /assets/images/g/gui-800-e3246b.png 800w, /assets/images/g/gui-807-e3246b.png 807w&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All you have to do is add your language data, choose the encoding (usually ‘utf-8’ should suffice), and pick your g2p mapping!
+The output will be exported as a copy of the input file + &lt;em&gt;_converted.ext&lt;/em&gt; in the filename.&lt;/p&gt;
+
+&lt;h5 id=&quot;example-case&quot;&gt;Example case&lt;/h5&gt;
+
+&lt;p&gt;When typing, there is more than one way to write &lt;strong&gt;k̓&lt;/strong&gt; in the Kwak̓wala language. Convertextract takes all of these possibilities and generates &lt;em&gt;one&lt;/em&gt; output for the sake of consistency.&lt;/p&gt;
+
+&lt;p&gt;I used the following inputs for &lt;em&gt;Convertextract&lt;/em&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Encoding: &lt;code class=&quot;highlighter-rouge&quot;&gt;utf-8&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Input_language: &lt;code class=&quot;highlighter-rouge&quot;&gt;kwk-umista &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Output_language: &lt;code class=&quot;highlighter-rouge&quot;&gt;kwk-umista-con&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Performing ‘&lt;em&gt;quality control&lt;/em&gt;’&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Input language&lt;/th&gt;
+      &lt;th&gt;Output language&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Language code&lt;/td&gt;
+      &lt;td&gt;kwk-umista&lt;/td&gt;
+      &lt;td&gt;kwk-umista-con&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sample text&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;kwak’wala&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;kwak̓wala&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;kwak]wala&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;kwak̓wala&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you need help setting up the app or have any questions at all, please feel free to comment below or send me an email!&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/convertextract-app/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/convertextract-app/</guid>
+        
+        <category>basic</category>
+        
+        
+        <category>Tutorial</category>
+        
+        <category>Blog</category>
+        
+      </item>
     
       <item>
         <title>Why I made yet another Cree syllabics converter</title>
@@ -214,13 +368,13 @@ sentences of Cree.&lt;/p&gt;
       </item>
     
       <item>
-        <title>Getting from 'a' to 'b' with the 'g2p'</title>
-        <description>&lt;p&gt;This blog post describes the background context for a software tool called &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; which is shorthand for ‘Grapheme-to-Phoneme’, but if you don’t know those terms, don’t worry, this post will explain it. Essentially, &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; is a tool for converting between two types of text, whether you want to convert between a &lt;a href=&quot;#use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;writing system and the phonetic alphabet&lt;/a&gt;, between two &lt;a href=&quot;#use-case-2-a-language-with-multiple-writing-systems&quot;&gt;writing systems for the same language&lt;/a&gt;, or between a legacy &lt;a href=&quot;#use-case-3-converting-from-legacy-writing-systems&quot;&gt;‘font-hacked’ writing system and its current Unicode-supported version&lt;/a&gt;.&lt;/p&gt;
+        <title>Getting from 'a' to 'b' with g2p</title>
+        <description>&lt;p&gt;This blog post describes the background context for a software tool called &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; which is shorthand for ‘Grapheme-to-Phoneme’, but if you don’t know those terms, don’t worry, this post will explain it. Essentially, &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; is a tool for systematically converting between two types of text. Common use cases include converting between a &lt;a href=&quot;#use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;writing system and the phonetic alphabet&lt;/a&gt;, between two &lt;a href=&quot;#use-case-2-a-language-with-multiple-writing-systems&quot;&gt;writing systems for the same language&lt;/a&gt;, or between a legacy &lt;a href=&quot;#use-case-3-converting-from-legacy-writing-systems&quot;&gt;‘font-hacked’ writing system and its current Unicode-supported version&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;To understand the advanced section, you will need to know some &lt;a href=&quot;https://www.python.org/&quot;&gt;python&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;To understand the advanced section, you will need to know some &lt;a href=&quot;https://www.python.org/&quot;&gt;Python&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
@@ -230,9 +384,9 @@ sentences of Cree.&lt;/p&gt;
   &lt;li&gt;Lots of &lt;a href=&quot;https://github.com/roedoejet/g2p/graphs/contributors&quot;&gt;other contributors&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;what-are-the-motivations-behind-this-projecttechnologytip&quot;&gt;What are the motivations behind this project/technology/tip?&lt;/h1&gt;
+&lt;h1 id=&quot;what-are-the-motivations-behind-g2p&quot;&gt;What are the motivations behind G2P?&lt;/h1&gt;
 
-&lt;p&gt;There are many reasons why you might want to systematically convert between different ‘letters’ referred to in computer science typically as ‘characters’. Here are a few use cases:&lt;/p&gt;
+&lt;p&gt;There are many reasons why you might want to systematically convert between different characters&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Here are a few possible use cases:&lt;/p&gt;
 
 &lt;h3 id=&quot;use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;Use Case #1: Getting the pronunciation from a word’s spelling&lt;/h3&gt;
 
@@ -240,7 +394,7 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;p&gt;It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as in “th” which can be pronounced &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22&quot;&gt;unvoiced&lt;/a&gt;.)&lt;/em&gt; as in ‘thin’ or &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&amp;amp;text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.&quot;&gt;voiced&lt;/a&gt;&lt;/em&gt; as in ‘that’.&lt;/p&gt;
 
-&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/International_Phonetic_Alphabet&quot;&gt;International Phonetic Alphabet&lt;/a&gt; is not so ambiguous, and writes the ‘th’ in ‘thin’ as &lt;strong&gt;θ&lt;/strong&gt; and the ‘th’ in ‘that’ as &lt;strong&gt;ð&lt;/strong&gt;. Knowing how to convert between the written and spoken form of a language is useful in a variety of computational tasks, but I will describe the usefulness specifically with a project called “ReadAlongs” &lt;a href=&quot;#readalongs&quot;&gt;below&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/International_Phonetic_Alphabet&quot;&gt;International Phonetic Alphabet&lt;/a&gt; is not so ambiguous, and writes the ‘th’ in ‘thin’ as &lt;strong&gt;θ&lt;/strong&gt; and the ‘th’ in ‘that’ as &lt;strong&gt;ð&lt;/strong&gt;. Knowing how to convert between the written and spoken form of a language is useful in a variety of computational tasks, but I will describe the usefulness specifically with a project called “ReadAlongs” &lt;a href=&quot;#readalongs&quot;&gt;below&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;use-case-2-a-language-with-multiple-writing-systems&quot;&gt;Use Case #2: A language with multiple writing systems&lt;/h3&gt;
 
@@ -248,11 +402,11 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;h3 id=&quot;use-case-3-converting-from-legacy-writing-systems&quot;&gt;Use Case #3: Converting from legacy writing systems&lt;/h3&gt;
 
-&lt;p&gt;Some languages historically used ‘font hacks’ to render the characters in their writing system before they were supported standardly on computers. There’s a longer discussion to be had here, but the coles’ notes version is that when computers were gaining popularity, they weren’t typically able to &lt;em&gt;render&lt;/em&gt; (ie display) characters outside of the 128 characters supported by the &lt;a href=&quot;https://en.wikipedia.org/wiki/ASCII&quot;&gt;American Standard Code for Information Interchange (ASCII)&lt;/a&gt;. To get around this, language communities would come up with their own custom fonts (often referred to as ‘font hacks’ or ‘font encodings’) where they would render things characters like ‘©’ which existed in ASCII as ‘ǧ’ instead (example taken from the Heiltsuk Doulos font). For more information on this topic, please check out &lt;a href=&quot;http://aidanpine.ca/static/cv/pdfs/Pine-Turin-Convertextract-2018.pdf&quot;&gt;‘Seeing the Heiltsuk Orthography from Font Encoding through to Unicode’&lt;/a&gt; or &lt;a href=&quot;https://markturin.sites.olt.ubc.ca/files/2020/06/Schillo_Turin_typeface_2020.pdf&quot;&gt;‘Applications and innovations in typeface design for North American Indigenous languages’&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Some languages historically used ‘font hacks’ to render the characters in their writing system before they were supported standardly on computers. There’s a longer discussion to be had here, but the coles’ notes version is that when computers were gaining popularity, they weren’t typically able to &lt;em&gt;render&lt;/em&gt; (ie display) characters outside of the 128 characters supported by the &lt;a href=&quot;https://en.wikipedia.org/wiki/ASCII&quot;&gt;American Standard Code for Information Interchange (ASCII)&lt;/a&gt;. To get around this, language communities would come up with their own custom fonts (often referred to as ‘font hacks’ or ‘font encodings’) where they would render characters like ‘©’ which existed in ASCII as ‘ǧ’ instead (example taken from the Heiltsuk Doulos font). For more information on this topic, please check out &lt;a href=&quot;http://aidanpine.ca/static/cv/pdfs/Pine-Turin-Convertextract-2018.pdf&quot;&gt;‘Seeing the Heiltsuk Orthography from Font Encoding through to Unicode’&lt;/a&gt; or &lt;a href=&quot;https://markturin.sites.olt.ubc.ca/files/2020/06/Schillo_Turin_typeface_2020.pdf&quot;&gt;‘Applications and innovations in typeface design for North American Indigenous languages’&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;how-to-get-from-a-to-b-or-a-to-æ-with-g2p&quot;&gt;How to get from ‘a’ to ‘b’ (or ‘a’ to ‘æ’) with g2p&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; is a Python library[^2] that helps you convert between different characters based on user-defined rules. The inspiration for how to write these rules was mostly taken from the notion of &lt;a href=&quot;https://en.wikipedia.org/wiki/Phonological_rule&quot;&gt;phonological rewrite rules&lt;/a&gt;, which is a common way of capturing ‘multi-level’ phonological changes. What is meant by that is the idea that a word, like ‘cats’ or ‘dogs’ can have multiple ‘levels’ of representation. For example, you might think of the way that those words are written in English orthography (writing system) as one level. Then, you might think of a general pronunciation for those words, written in the phonetic alphabet, as another level. You could also separate that level into more than one level by having a level each for &lt;a href=&quot;https://en.wikipedia.org/wiki/Phonetic_transcription#Narrow_versus_broad_transcription:~:text=orthography.-,Narrow%20versus%20broad%20transcription&quot;&gt;narrow and broad transcriptions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; is a Python library&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; that helps you convert between different characters based on user-defined rules. The inspiration for how to write these rules was mostly taken from the notion of &lt;a href=&quot;https://en.wikipedia.org/wiki/Phonological_rule&quot;&gt;phonological rewrite rules&lt;/a&gt;, which is a common way of describing ‘multi-level’ phonological changes in linguistics. What is meant by that is the idea that a word, like ‘cats’ or ‘dogs’ can have multiple ‘levels’ of representation. For example, you might think of the way that those words are written in English orthography (writing system) as one level. Then, you might think of a general pronunciation for those words, written in the phonetic alphabet, as another level. You could also separate that level into more than one level by having a level each for &lt;a href=&quot;https://en.wikipedia.org/wiki/Phonetic_transcription#Narrow_versus_broad_transcription:~:text=orthography.-,Narrow%20versus%20broad%20transcription&quot;&gt;narrow and broad transcriptions&lt;/a&gt;.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -287,11 +441,11 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;p&gt;Now, just by looking at these three levels, you can probably see some fairly systematic rules here that you could imagine would get you from one level to the next, even if you don’t know the phonetic alphabet by-heart and even if you don’t really know about the English phonology (sound patterns and systems).&lt;/p&gt;
 
-&lt;p&gt;First of all, it looks like all of the ‘a’ characters in level one turn to ‘æ’, so we might want a rule to express that all instances of ‘a’ turn to /æ/. And, for another example, it looks like between levels 2 and 3, /k/ turns into either [k] or [kʰ] depending on whether it occurs before or after /æ/[^3]. So, with these hypotheses about the rules to transform from one level to another, how do we start translating this into rules for &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;First of all, it looks like all of the ‘a’ characters in level one turn to ‘æ’, so we might want a rule to express that all instances of ‘a’ turn to /æ/. And, for another example, it looks like between levels 2 and 3, /k/ turns into either [k] or [kʰ] depending on whether it occurs before or after /æ/&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. So, with these hypotheses about the rules to transform from one level to another, how do we start translating this into rules for &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;?&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-rule-writing&quot;&gt;Basic Rule writing&lt;/h2&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; lets you describe these patterns using an ordered list of rules. Each rule must be defined to have an sequence of one or more input characters and a sequence of zero or more output characters. We can define these rules in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; either using a tabular, spreadsheet format (csv) or using a format called JavaScript Object Notation or &lt;a href=&quot;https://www.json.org/json-en.html&quot;&gt;JSON&lt;/a&gt;. To actually write these rules along with this blog post, I recommend getting some sort of text editor, like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;. You can also write the spreadsheet-type rules in your favourite spreadsheet editor.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; lets you describe these patterns using an ordered list of rules. Each rule must be defined to have an sequence of one or more input characters and a sequence of zero or more output characters. We can define these rules in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; either using a tabular, spreadsheet format (csv) or using a format called JavaScript Object Notation or &lt;a href=&quot;https://www.json.org/json-en.html&quot;&gt;JSON&lt;/a&gt;. To actually write these rules along with this blog post, I recommend getting some sort of text editor, like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;. You could also write the spreadsheet-type rules in your favourite spreadsheet editor.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -324,7 +478,7 @@ sentences of Cree.&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Both of the above rules capture our first, rule that turns an orthographic ‘a’ into a broad IPA /æ/. You can choose to write your rules in &lt;strong&gt;either&lt;/strong&gt; format.&lt;/p&gt;
+&lt;p&gt;Both of the above rules capture our first, rule that turns an orthographic ‘a’ into a broad IPA /æ/. You can choose to write your rules in &lt;strong&gt;either&lt;/strong&gt; format, although JSON will offer you slightly more flexibility when writing &lt;a href=&quot;#advanced-a-deeper-dive-into-writing-tricky-rules&quot;&gt;advanced rules&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;If we want to write rules that depend on a particular context, we need a couple more columns (csv) or keys (JSON) than just &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;out&lt;/code&gt;. This is where we use &lt;code class=&quot;highlighter-rouge&quot;&gt;context_before&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;context_after&lt;/code&gt;. So, our second rule from above was to turn /k/ to [kʰ] when the character after /k/ is /æ/. Here, we could write the rules like this:&lt;/p&gt;
 
@@ -367,15 +521,15 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;h2 id=&quot;ok-so-how-do-i-actually-get-started-here&quot;&gt;Ok, so how do I actually get started here?&lt;/h2&gt;
 
-&lt;p&gt;So, you’ve understood the &lt;a href=&quot;#basic-rule-writing&quot;&gt;basics of writing rules&lt;/a&gt; either described above and you want to actually use them to convert something! This section describes exactly how to do that. The easiest way to write rules quickly is using the &lt;a href=&quot;https://g2p-studio.herokuapp.com/&quot;&gt;G2P Studio&lt;/a&gt; web application[^4].&lt;/p&gt;
+&lt;p&gt;So, you’ve understood the &lt;a href=&quot;#basic-rule-writing&quot;&gt;basics of writing rules&lt;/a&gt; either described above and you want to actually use them to convert something! This section describes exactly how to do that.&lt;/p&gt;
 
-&lt;p&gt;Once landing on the G2P Studio page, you can scroll down to the &lt;a href=&quot;https://g2p-studio.herokuapp.com/#out_delimiter-0:~:text=Custom%20Rules&quot;&gt;Custom Rules&lt;/a&gt; section and start directly editing the spreadsheet available there. Below is a list of all the rules to capture the transformations between level 1 and level 2 above. There are some rules that we discussed in that section, and some others that might look unfamiliar. For a full description of some of these rules, have a look at the &lt;a href=&quot;#a-deeper-dive-into-writing-tricky-rules&quot;&gt;advanced mapping section&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The easiest way to write rules quickly is using the &lt;a href=&quot;https://g2p-studio.herokuapp.com/&quot;&gt;G2P Studio&lt;/a&gt; web application&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;. Once landing on the G2P Studio page, you can scroll down to the &lt;a href=&quot;https://g2p-studio.herokuapp.com/#out_delimiter-0:~:text=Custom%20Rules&quot;&gt;Custom Rules&lt;/a&gt; section and start directly editing the spreadsheet available there. Below is a list of all the rules to capture the transformations between level 1 and level 2 above. There are some rules that we discussed in that section, and some others that might look unfamiliar. For a full description of some of these rules, have a look at the &lt;a href=&quot;#a-deeper-dive-into-writing-tricky-rules&quot;&gt;advanced rule-writing section&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/custom-rules-g2p-studio-800-xxxxxx.png&quot; srcset=&quot;/assets/images/g/custom-rules-g2p-studio-400-xxxxxx.png 400w, /assets/images/g/custom-rules-g2p-studio-600-xxxxxx.png 600w, /assets/images/g/custom-rules-g2p-studio-800-xxxxxx.png 800w, /assets/images/g/custom-rules-g2p-studio-1000-xxxxxx.png 1000w&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/custom-rules-g2p-studio-800-2a352d.png&quot; srcset=&quot;/assets/images/g/custom-rules-g2p-studio-400-2a352d.png 400w, /assets/images/g/custom-rules-g2p-studio-600-2a352d.png 600w, /assets/images/g/custom-rules-g2p-studio-800-2a352d.png 800w, /assets/images/g/custom-rules-g2p-studio-968-2a352d.png 968w&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then, you can write some text in the left text-area at the top of the G2P Studio, and g2p will apply your rules and produce the output in the right text area as seen below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/custom-rules-output-g2p-studio-800-xxxxxx.png&quot; srcset=&quot;/assets/images/g/custom-rules-output-g2p-studio-400-xxxxxx.png 400w, /assets/images/g/custom-rules-output-g2p-studio-600-xxxxxx.png 600w, /assets/images/g/custom-rules-output-g2p-studio-800-xxxxxx.png 800w, /assets/images/g/custom-rules-output-g2p-studio-1000-xxxxxx.png 1000w&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/custom-rules-output-g2p-studio-800-8fbdf4.png&quot; srcset=&quot;/assets/images/g/custom-rules-output-g2p-studio-400-8fbdf4.png 400w, /assets/images/g/custom-rules-output-g2p-studio-600-8fbdf4.png 600w, /assets/images/g/custom-rules-output-g2p-studio-800-8fbdf4.png 800w, /assets/images/g/custom-rules-output-g2p-studio-977-8fbdf4.png 977w&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You can then click on ‘Export’ under the Custom Rules section to export your rules to a CSV file if you want to save them for later.&lt;/p&gt;
 
@@ -383,9 +537,325 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;p&gt;When you combine multiple rules in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; for a particular purpose, this is called a &lt;em&gt;mapping&lt;/em&gt;. In addition to each file containing your rules, you need a configuration file that tells &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; how to process your rules. We write mapping configurations in files titled &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yaml&lt;/code&gt;. You will need some sort of text editor, like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; in order to edit your configuration file.&lt;/p&gt;
 
+&lt;p&gt;Here is a basic configuration for your mapping:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# this is a shared value for all the mappings in this configuration&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# this is a 'display name'. It is a user-friendly name for your mapping.&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# This is the code for the output of your mapping. By convention in g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# This is a way to keep track of who has contributed to the mapping&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# This is the path to your mapping file. It should be in the same folder as your config.yaml file&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are familiar with yaml, you will see that you can have more than one mapping under the &lt;code class=&quot;highlighter-rouge&quot;&gt;mappings&lt;/code&gt; key. So to add another mapping to this file, it would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English IPA to Arpabet&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-arpabet&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_ipa_to_arpabet.json&lt;/span&gt; 
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h3 id=&quot;special-settings&quot;&gt;Special settings&lt;/h3&gt;
 
-&lt;p&gt;…more to come…&lt;/p&gt;
+&lt;p&gt;You can add extra settings to your configuration file to change the way that &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; interprets your mappings. Below is a list of possible settings and their use. All of the settings keys below must be declared for each individual mapping in your &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yaml&lt;/code&gt; and must be declared on the same level as all of the other keys (&lt;code class=&quot;highlighter-rouge&quot;&gt;language_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;in_lang&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;out_lang&lt;/code&gt; etc). These settings can also be set in the &lt;code class=&quot;highlighter-rouge&quot;&gt;G2P Studio&lt;/code&gt; instead of in a &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yml&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h5 id=&quot;as_is-default-true&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;as_is&lt;/code&gt; (default: True)&lt;/h5&gt;
+&lt;p&gt;As described in the earlier part of this post, your rules apply in the order you write them. And as described in the advanced section on &lt;a href=&quot;#rule-ordering&quot;&gt;rule ordering&lt;/a&gt;, sometimes this can make your mapping produce unexpected results!&lt;/p&gt;
+
+&lt;p&gt;If you set your mapping to &lt;code class=&quot;highlighter-rouge&quot;&gt;as_is: false&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; will sort all of your rules based on the length of the input to the rule, so that rules with longer inputs apply before rules with shorter inputs. This prevents some common ‘bleeding’ rule-ordering relationships described in the &lt;a href=&quot;#rule-ordering&quot;&gt;rule ordering&lt;/a&gt; section. So, if you declared your rules as:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ab&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, with &lt;code class=&quot;highlighter-rouge&quot;&gt;as_is&lt;/code&gt; set to True (the default), you would get ‘bb’ as the output for the input ‘ab’. Whereas with &lt;code class=&quot;highlighter-rouge&quot;&gt;as_is&lt;/code&gt; set to False, you would get ‘c’ as the output for the input ‘ab’.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;as_is&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add this&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;case_sensitive-default-true&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;case_sensitive&lt;/code&gt; (default: True)&lt;/h5&gt;
+
+&lt;p&gt;The default is to treat your rules as case sensitive, but setting this to False, will make your rules case insensitive.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;case_sensitive&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add this&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;escape_special-default-false&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;escape_special&lt;/code&gt; (default: False)&lt;/h5&gt;
+
+&lt;p&gt;As described in the section on &lt;a href=&quot;#regular-expressions&quot;&gt;regular expressions&lt;/a&gt;, you can define rules using ‘special’ characters. By default, these characters are interpreted as ‘special’, but if you want all special characters in your mapping to be interpreted as their actual characters, you can set &lt;code class=&quot;highlighter-rouge&quot;&gt;escape_special&lt;/code&gt; to true.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;escape_special&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add this&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;norm_form-default-nfd&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;norm_form&lt;/code&gt; (default: “NFD”)&lt;/h5&gt;
+
+&lt;p&gt;If you’ve never heard of Unicode normalization don’t worry, you’re not alone! But, for writing rules and mappings using &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;, there can be some surprising ‘gotcha’ moments if you don’t choose the right normalization strategy.&lt;/p&gt;
+
+&lt;p&gt;The basic gist of the problem is that there can be multiple ways to write the &lt;em&gt;same&lt;/em&gt; character in Unicode, depending on whether you use ‘combining characters’ to type or not. For example, on some keyboards, you might type ‘é’ by writing an e first and then another keystroke to type the acute accent that sits above it. The Unicode representation for this would likely be \u0065 (e) followed by \u0301 (a combining acute accent), however there is an entirely separate Unicode code point that has these two characters &lt;em&gt;pre-composed&lt;/em&gt; (\u00e9).&lt;/p&gt;
+
+&lt;p&gt;Many fonts will render these two different representations identically and it can be really difficult and confounding as a user if both appear in the same text. Often times find/replace won’t work and frustrating things like that. Luckily, there is a standard for normalizing these differences so that all instances of sequences like \u0065\u0301 would be (NF)Composed into \u00e9, or the opposite direction where all instances of \u00e9 would be (NF)Decomposed into \u0065\u0301. For a more in-depth conversation on this, check out &lt;a href=&quot;https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html&quot;&gt;this blog article&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;norm_form&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;NFC&quot;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add your Unicode normalization strategy here&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;out_delimiter-default-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;out_delimiter&lt;/code&gt; (default: ‘’)&lt;/h5&gt;
+
+&lt;p&gt;Some mappings require that a delimiting character (or characters) be inserted in between when a rule applies. So, using the first example, maybe you want &lt;code class=&quot;highlighter-rouge&quot;&gt;kæt&lt;/code&gt; to go to &lt;code class=&quot;highlighter-rouge&quot;&gt;kʰ|æ|t&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;kʰæt&lt;/code&gt;. For this, you would set &lt;code class=&quot;highlighter-rouge&quot;&gt;out_delimiter: &quot;|&quot;&lt;/code&gt; in your mapping.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_delimiter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;|&quot;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add your delimiter here&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;reverse-default-false&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;reverse&lt;/code&gt; (default: False)&lt;/h5&gt;
+
+&lt;p&gt;Setting this to reverse will try to reverse the mappings so that all characters defined as &lt;code class=&quot;highlighter-rouge&quot;&gt;out&lt;/code&gt; in your mapping become the input characters and vice versa. Except for a few cases, this is unlikely to work very well for advanced mapings.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add this&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;prevent_feeding-default-false&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; (default: False)&lt;/h5&gt;
+
+&lt;p&gt;Let’s say you have the following rules:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;in&lt;/th&gt;
+      &lt;th&gt;out&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;kw&lt;/td&gt;
+      &lt;td&gt;kʷ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;k&lt;/td&gt;
+      &lt;td&gt;kʲ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Ordered in the way they are defined, an input of &lt;code class=&quot;highlighter-rouge&quot;&gt;kw&lt;/code&gt; will produce &lt;code class=&quot;highlighter-rouge&quot;&gt;kʲʷ&lt;/code&gt; and ordered the other way, an input of &lt;code class=&quot;highlighter-rouge&quot;&gt;kw&lt;/code&gt; will produce &lt;code class=&quot;highlighter-rouge&quot;&gt;kʲw&lt;/code&gt;. Neither of these are correct though! For this mapping, we want &lt;code class=&quot;highlighter-rouge&quot;&gt;kʷ&lt;/code&gt; as the output. So, how do we solve this? There is a setting called &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; which, if set to true, will prevent the output of one rule from being processed by any subsequent rule. As described in &lt;a href=&quot;#rule-ordering&quot;&gt;rule order&lt;/a&gt; this process when one rule provides the context for another rule to apply is called ‘feeding’ and so this setting will prevent that from happening. Note, setting &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding: true&lt;/code&gt; for your whole mapping will do this for every rule. If you just want to prevent feeding for one particular rule, you can write your rules in JSON and add the key to the specific rule you want to prevent feeding for.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kʷ&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;prevent_feeding&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;k&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;kʲ&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;mappings&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;display_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;English to IPA&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;in_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;out_lang&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng-ipa&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mapping&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Aidan Pine&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;eng_to_ipa.json&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;prevent_feeding&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# &amp;lt;------- Add this&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;advanced-a-deeper-dive-into-writing-tricky-rules&quot;&gt;Advanced: A deeper dive into writing tricky rules&lt;/h2&gt;
 
@@ -430,7 +900,7 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;h3 id=&quot;rule-ordering&quot;&gt;Rule Ordering&lt;/h3&gt;
 
-&lt;p&gt;The order of your rules in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; really matters! This is because some rules can either create or remove the context for other rules to apply. In linguistic, these rule ordering patterns are usually talked about as either &lt;a href=&quot;https://linguistics.stackexchange.com/questions/6084/whats-the-difference-between-counterbleeding-bleeding-and-feeding&quot;&gt;feeding, bleeding, counter-feeding, or counter-bleeding&lt;/a&gt; relationships. There are valid reasons to want to encode any of these types of relationships in your rules.&lt;/p&gt;
+&lt;p&gt;The order of your rules in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; really matters! This is because some rules can either create or remove the context for other rules to apply. In linguistics, these rule ordering patterns are usually talked about as either &lt;a href=&quot;https://linguistics.stackexchange.com/questions/6084/whats-the-difference-between-counterbleeding-bleeding-and-feeding&quot;&gt;feeding, bleeding, counter-feeding, or counter-bleeding&lt;/a&gt; relationships. There are potentially valid reasons to want to encode any of these types of relationships in your rules.&lt;/p&gt;
 
 &lt;p&gt;To illustrate a possible problem, let’s consider a &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; mapping for language that converts ‘a̱’ to ‘ə’ and ‘a’ to ‘æ’. ‘a̱’ is a sequence of a normal a followed by a combining macron below (\u0331). Because \u0331 (‘a̱’) is easily confusable with \u0332 (‘a̲’), in order to follow the rule of thumb for &lt;a href=&quot;#unicode-escape-sequences&quot;&gt;Unicode escape sequences&lt;/a&gt;, I’ll write the rules as follows:&lt;/p&gt;
 
@@ -478,11 +948,158 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;h3 id=&quot;defining-sets-of-characters&quot;&gt;Defining sets of characters&lt;/h3&gt;
 
-&lt;p&gt;…more to come…&lt;/p&gt;
+&lt;p&gt;Some rules are written with repeating sets of characters that can be tedious to write out. For this, we might want to define certain sets of characters using a &lt;em&gt;variable&lt;/em&gt; name. These can be written using special types of mapping files in &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example, consider a series of rules which contextually apply only between vowels. Let’s say as an example of one of those rules, that &lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt; turns to &lt;code class=&quot;highlighter-rouge&quot;&gt;ð&lt;/code&gt; when it exists between two vowels. This language has the following vowels in its inventory: &lt;code class=&quot;highlighter-rouge&quot;&gt;a,e,i,o,u,æ,å,ø&lt;/code&gt;. You could write the rules like this&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;in&lt;/th&gt;
+      &lt;th&gt;out&lt;/th&gt;
+      &lt;th&gt;context_before&lt;/th&gt;
+      &lt;th&gt;context_after&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dd&lt;/td&gt;
+      &lt;td&gt;ð&lt;/td&gt;
+      &lt;td&gt;(a|e|i|o|u|æ|å|ø)&lt;/td&gt;
+      &lt;td&gt;(a|e|i|o|u|æ|å|ø)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;But, if there are lots of rules with these vowels, this could get very tedious, not to mention annoying if the characters in the set change at some point. It is also less readable, and leaves the reader of the mapping to infer the meaning of the rule.&lt;/p&gt;
+
+&lt;p&gt;So, in a separate file, by convention it is usually called &lt;code class=&quot;highlighter-rouge&quot;&gt;abbreviations.csv&lt;/code&gt;, you can define a list of sets where each row is a new set. The first column contains the name of the set (by convention this is capitalized), and you can add characters to every following column. So, for example:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;variable name&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;VOWEL&lt;/td&gt;
+      &lt;td&gt;a&lt;/td&gt;
+      &lt;td&gt;e&lt;/td&gt;
+      &lt;td&gt;i&lt;/td&gt;
+      &lt;td&gt;o&lt;/td&gt;
+      &lt;td&gt;u&lt;/td&gt;
+      &lt;td&gt;æ&lt;/td&gt;
+      &lt;td&gt;å&lt;/td&gt;
+      &lt;td&gt;ø&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CONSONANT&lt;/td&gt;
+      &lt;td&gt;p&lt;/td&gt;
+      &lt;td&gt;b&lt;/td&gt;
+      &lt;td&gt;t&lt;/td&gt;
+      &lt;td&gt;d&lt;/td&gt;
+      &lt;td&gt;k&lt;/td&gt;
+      &lt;td&gt;g&lt;/td&gt;
+      &lt;td&gt;f&lt;/td&gt;
+      &lt;td&gt;s&lt;/td&gt;
+      &lt;td&gt;h&lt;/td&gt;
+      &lt;td&gt;v&lt;/td&gt;
+      &lt;td&gt;j&lt;/td&gt;
+      &lt;td&gt;r&lt;/td&gt;
+      &lt;td&gt;l&lt;/td&gt;
+      &lt;td&gt;m&lt;/td&gt;
+      &lt;td&gt;n&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;FRONT&lt;/td&gt;
+      &lt;td&gt;i&lt;/td&gt;
+      &lt;td&gt;e&lt;/td&gt;
+      &lt;td&gt;œ&lt;/td&gt;
+      &lt;td&gt;ø&lt;/td&gt;
+      &lt;td&gt;y&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BACK&lt;/td&gt;
+      &lt;td&gt;u&lt;/td&gt;
+      &lt;td&gt;o&lt;/td&gt;
+      &lt;td&gt;a&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Then, in your configuration, you can add the file to a specific mapping using &lt;code class=&quot;highlighter-rouge&quot;&gt;abbreviations: abbreviations.csv&lt;/code&gt;. After adding it to your mapping, you can write the above rule like this instead:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;in&lt;/th&gt;
+      &lt;th&gt;out&lt;/th&gt;
+      &lt;th&gt;context_before&lt;/th&gt;
+      &lt;th&gt;context_after&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dd&lt;/td&gt;
+      &lt;td&gt;ð&lt;/td&gt;
+      &lt;td&gt;VOWEL&lt;/td&gt;
+      &lt;td&gt;VOWEL&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You can also use abbreviations like this in the G2P studio by writing them in the section at the bottom of the page titled ‘Custom Abbreviations’ They will be automatically applied to your custom rules above.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/g2p-abbs-800-7cd2be.png&quot; srcset=&quot;/assets/images/g/g2p-abbs-400-7cd2be.png 400w, /assets/images/g/g2p-abbs-600-7cd2be.png 600w, /assets/images/g/g2p-abbs-800-7cd2be.png 800w, /assets/images/g/g2p-abbs-968-7cd2be.png 968w&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;regular-expressions&quot;&gt;Regular Expressions&lt;/h3&gt;
 
-&lt;p&gt;…more to come…&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Regular_expression&quot;&gt;Regular expressions&lt;/a&gt; are used ubiquitously in programming to do define certain search patterns in text. In fact, this is how &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; rules work! They eventually get compiled into a regular expression too. For the most part, you can add basic regular expressions to your rules&lt;/p&gt;
 
 &lt;h3 id=&quot;using-specific-indices&quot;&gt;Using specific indices&lt;/h3&gt;
 
@@ -509,9 +1126,31 @@ sentences of Cree.&lt;/p&gt;
 
 &lt;p&gt;…more to come…&lt;/p&gt;
 
-&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
+&lt;h2 id=&quot;advanced-adding-a-pre-processing-mapping&quot;&gt;Advanced: adding a ‘pre-processing’ mapping&lt;/h2&gt;
 
 &lt;p&gt;…more to come…&lt;/p&gt;
+
+&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Because the word ‘letter’ usually refers to a character within a specific alphabet or writing system, instead of ‘letter’, I’m going to use the word ‘character’ throughout this post. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;A Python ‘library’ is a collection of code &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;Orthographic characters are circumfixed with apostrophes like ‘a’, broad IPA typically uses forward slashes like /k/ and narrow IPA typically uses square brackets like [kʰ] &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;I’m using the free, hobby plan at &lt;a href=&quot;https://www.heroku.com/&quot;&gt;https://www.heroku.com/&lt;/a&gt; to host it though, so occasionally the server goes to sleep. If you first go to the site and it takes a few seconds to boot up, don’t worry! &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;You’ll notice that the syntax here is a little weird, what the heck are all of those pipes (the up-down things like |) doing there? That’s because I’m using &lt;a href=&quot;https://en.wikipedia.org/wiki/Regular_expression&quot;&gt;regular expressions&lt;/a&gt; to express a &lt;strong&gt;OR&lt;/strong&gt; e &lt;strong&gt;OR&lt;/strong&gt; u etc… For more info, check out the &lt;a href=&quot;#regular-expressions&quot;&gt;section on regular expressions&lt;/a&gt; &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
         <link>https://blog.mothertongues.org/g2p/</link>
