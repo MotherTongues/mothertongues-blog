@@ -16,7 +16,7 @@ Posts on the Mother Tongues Blog are written in [Markdown](https://en.wikipedia.
 
 In order to write a new post, follow the following steps.
 
-1. In your fork of the [Mother Tongues Blog Respository](https://github.com/roedoejet/mothertongues-blog), make sure you're in the `dev.author` branch and add a new post to the `_posts` folder. Your post file name must by [slugified](https://blog.tersmitten.nl/slugify/). It must start with the date (yyyy-mm-dd) and then the blog post name, `2020-01-15-this-is-a-sample.md`.
+1. In your fork of the [Mother Tongues Blog Respository](https://github.com/MotherTongues/mothertongues-blog), make sure you're in the `dev.author` branch and add a new post to the `_posts` folder. Your post file name must by [slugified](https://blog.tersmitten.nl/slugify/). It must start with the date (yyyy-mm-dd) and then the blog post name, `2020-01-15-this-is-a-sample.md`.
 2. Add some meta data about the post at the top:
    ```markdown
    ---
@@ -32,7 +32,7 @@ In order to write a new post, follow the following steps.
    ---
 ```
 3. Write the content of your post in Markdown. Please have a look at the [template]({{ "post-template" | absolute_url }}) for writing accessible posts!
-4. When you're happy with it, Submit a [pull request](https://github.com/roedoejet/mothertongues-blog/pull/new/dev.author)
+4. When you're happy with it, Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
 
 
 Thanks for contributing!

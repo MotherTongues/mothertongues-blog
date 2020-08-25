@@ -16,7 +16,7 @@ To become an author, you'll need a [GitHub](https://github.com) account<sup>[1](
 
 Then, follow these steps:
 
-1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the [Mother Tongues Blog Respository](https://github.com/roedoejet/mothertongues-blog)
+1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the [Mother Tongues Blog Respository](https://github.com/MotherTongues/mothertongues-blog)
 2. Checkout to the `dev.author` branch
 3. Edit the file labelled `_config.yml`. * denotes a required value.
    ```yaml
@@ -38,7 +38,7 @@ Then, follow these steps:
         twitter: https://twitter.com/yourhandle
         description: "Guest Author. YourDescriptionHere"
     ```
-4. Submit a [pull request](https://github.com/roedoejet/mothertongues-blog/pull/new/dev.author)
+4. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
 
 That's it! Start [writing your posts]({{ "write-a-post" | absolute_url }}).
 

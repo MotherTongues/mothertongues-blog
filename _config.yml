@@ -84,6 +84,7 @@ picture:
   source: "assets/images"
   # The processed images will be generated here:
   output: "assets/images/g"
+  ignore_missing_images: true
 
 # SEO
 twitter:
