@@ -87,7 +87,7 @@ Right-click on the application in the dist folder and select *Open*.
 
 This is what the app looks like when you open it.
 
-{% picture gui.png -alt convertextract GUI %}
+{% picture gui.png --alt convertextract GUI %}
 
 All you have to do is add your language data, choose the encoding (usually 'utf-8' should suffice), and pick your g2p mapping!
 The output will be exported as a copy of the input file + *_converted.ext* in the filename.
