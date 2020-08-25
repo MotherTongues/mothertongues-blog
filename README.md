@@ -6,9 +6,10 @@ Welcome to the Mother Tongues Blog repository.
 
 To contribute to the site, please have a read through the purpose of the Git branches:
 
-- master: Changes made here will build and push to `gh-pages`.
-- gh-pages: This branch is auto generated from the `master` branch. Do **not** edit this directly, as edits will be overwritten.
-- dev.author: Create and continue to work on new posts here. You can spin off extra branches like `dev.author-aidan` for example, but you must merge them into `dev.author` before merging to `master` and pushing a new release.
+- review (default): Create and continue to work on new posts here. You can spin off extra branches if you want, but you must merge them into `review` before merging to `publish` and pushing a new release.
+- publish: Changes made here will build and push to `gh-pages`.
+- gh-pages: This branch is auto generated from the `publish` branch. Do **not** edit this directly, as edits will be overwritten.
+
 
 ### Copyright
 
