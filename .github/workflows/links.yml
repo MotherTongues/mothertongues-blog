@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Waiting for 200 from the Netlify Preview
         uses: jakepartusch/wait-for-netlify-action@v1
+        id: waitFor200
         with:
           site_name: "${{ secrets.PREVIEW_URL }}"
           max_timeout: 60
@@ -25,6 +26,6 @@ jobs:
       - name: Install dependencies
         run: npm install broken-link-checker -g
       - name: Check links
-        run: blc "https://${{ secrets.PREVIEW_URL }}.netlify.app" -ro
+        run: blc ${{ steps.waitFor200.outputs.url }} -ro
 
       
