@@ -9,12 +9,6 @@ post_class: post-template
 ================================================== -->
 <main class="container">
     <div class="row">
-
-        <!-- Post Share -->
-        <div class="col-md-2 pl-0">
-            {% include share.html %}
-        </div>
-
         <!-- Post -->
         {% assign author = site.authors[page.author] %}
 
@@ -158,6 +152,11 @@ post_class: post-template
 
         </article>
         <!-- End Post -->
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            {% include share.html %}
+        </div>
 
     </div>
 </main>
