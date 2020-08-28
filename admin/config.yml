@@ -2,7 +2,8 @@ backend:
   # local_backend: true
   # name: proxy
   # proxy_url: http://localhost:8082/api/v1
-  name: git-gateway
+  name: github
+  repo: MotherTongues/mothertongues-blog
   branch: review # Branch to update (optional; defaults to master)
 media_folder: 'assets/uploads'
 collections:
