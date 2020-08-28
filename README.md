@@ -38,6 +38,8 @@ backend:
   # branch: review # Branch to update (optional; defaults to master)
 ```
 
+Don't forget to change this back before you push to the site.
+
 Then, run the proxy server for Netlify CMS:
 
 `cd ~/mothertongues-blog && npx netlify-cms-proxy-server`
