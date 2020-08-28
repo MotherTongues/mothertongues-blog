@@ -1,0 +1,26 @@
+backend:
+  local_backend: true
+  name: proxy
+  proxy_url: http://localhost:8082/api/v1
+  # name: git-gateway
+  branch: review # Branch to update (optional; defaults to master)
+media_folder: 'assets/uploads'
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: '_posts/'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine', '_eddieantonio', 'delaney', 'fineen' ] }
+      - { label: 'Categories', name: 'categories', widget: 'list', default: [] }
+      - { label: 'Tags', name: 'tags', widget: 'list', default: [] }
+      - { label: 'Featured Image', name: 'image', widget: 'image', default: false }
+      - { label: 'Description', name: 'description', widget: 'string', default: "" }
+      - { label: 'Featured', name: 'featured', widget: 'boolean', default: false }
+      - { label: 'Hide Post', name: 'hidden', widget: 'boolean', default: true }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
