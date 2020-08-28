@@ -42,12 +42,14 @@ Then, follow these steps:
         twitter: https://twitter.com/yourhandle
         description: "Guest Author. YourDescriptionHere"
    ```
- 4. Add your name to the list of authors in `admin/config.yml`
+
+4. Add your name to the list of authors in `admin/config.yml`
    
    ```yaml
    - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine',    '_eddieantonio', 'delaney', 'fineen', 'YOURNAME' ] }
    ```
- 5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
+   
+5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
 
 That's it! Start \[writing your posts]({{ "write-a-post" | absolute_url }}).
 
