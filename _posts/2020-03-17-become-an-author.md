@@ -44,8 +44,8 @@ Then, follow these steps:
    ```
  4. Add your name to the list of authors in `admin/config.yml`
    
-   ```
-   - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine', '_eddieantonio', 'delaney', 'fineen', 'YOURNAME' ] }
+   ```yaml
+   - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine',    '_eddieantonio', 'delaney', 'fineen', 'YOURNAME' ] }
    ```
  5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
 
