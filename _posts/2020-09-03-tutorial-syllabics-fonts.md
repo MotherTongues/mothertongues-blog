@@ -67,16 +67,16 @@ I am aware of the following fonts:
  - **Gadugi**
  - **Noto Sans Canadian Aboriginal**
 
-I made an interactive demonstration of these fonts that you can play with. Feel free
-to type any text in (western) Cree and it will be converted to syllabics
-and displayed in the appropriate font, if it's available on your system:
+I made an **interactive demonstration** of these fonts that you can play
+with. Go ahead and type any text in (western) Cree into the box and it
+will be converted to syllabics and displayed in the appropriate font, if
+it's available on your system:
 
 <p class="codepen" data-height="500" data-theme-id="light" data-default-tab="result" data-user="eddieantonio" data-slug-hash="GRZOBYY" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Syllabics font playground">
   <span>See the Pen <a href="https://codepen.io/eddieantonio/pen/GRZOBYY">
   Syllabics font playground</a> by Eddie Antonio Santos (<a href="https://codepen.io/eddieantonio">@eddieantonio</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---
 
@@ -135,7 +135,7 @@ font”][gadugi-office] on Microsoft Office products.
 ### Euphemia
 
 **Euphemia** or **Euphemia UCAS**[^1] is a sleek font for syllabics. It also
-includes shapes for Latin (e.g., English/French characters).
+includes glyphs for Latin (e.g., English/French characters).
 
 [^1]: UCAS, or "Unified Canadian Aboriginal Syllabics", the name of [the Unicode block](https://unicode.org/charts/PDF/U1400.pdf) that this font covers.
 
@@ -177,3 +177,105 @@ service.
 
 [noto]: https://www.google.com/get/noto/
 [noto-embed]: https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal
+
+## How to get the right fonts to appear on your webpage
+
+Now that we know about what fonts are out there, lets construct
+a `font-family` declaration that will support syllabics on as many
+devices as possible.
+
+Recall that the `font-family` declaration is a list of fonts that the
+web browser **will try in order**. The first font in the list that is
+installed will be used.
+
+Let's start with the **fallbacks** first. Let's say our users' device
+does not have a font that supports syllabics installed on their
+computer. Since Google allows **Noto Sans Canadian Aboriginal** to be
+automatically downloaded on your website, let's start with this
+`font-family` declaration:
+
+```css
+body {
+  font-family: 'Noto Sans Canadian Aboriginal', sans-serif;
+}
+```
+
+To get your browser to download the appropriate fonts, add this to your
+website's `<head>`:
+
+```html
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css">
+```
+
+### Add support for Aboriginal Sans
+
+Perhaps your reader has installed **Aboriginal Sans** to their computer.
+Update your `font-family` declaration as follows:
+
+```css
+body {
+  font-family: 'Aboriginal Sans', 'Noto Sans Canadian Aboriginal', sans-serif;
+}
+```
+
+This way, the web browser will try using Aboriginal Sans if it's
+installed, and _then_ attempt to download Noto Sans.
+
+### Add support for Mac/iPhone/iPad users
+
+Now let's support users of Apple devices. Prepend **Euphemia UCAS** to
+the `font-family` declaration:
+
+```css
+body {
+  font-family: 'Euphemia UCAS', 'Aboriginal Sans', 'Noto Sans Canadian Aboriginal', sans-serif;
+}
+```
+
+### Add support for Windows Users
+
+Recall that earlier versions of Windows include **Euphemia**; later
+versions support **Gadugi**. Prepend the following rules to try using
+Gadugi first.
+
+```css
+body {
+  font-family: Gadugi, Euphemia, 'Euphemia UCAS', 'Aboriginal Sans', 'Noto Sans Canadian Aboriginal', sans-serif;
+}
+```
+
+
+### Finally, specify your Latin fonts
+
+If you're displaying Latin text (e.g., English, French, Cree SRO, etc.),
+then this font goes **first**. Recall that many of the syllabics fonts
+actually contain glyphs for Latin characters, so we will have to list
+our preferred Latin font **first**.
+
+For this example, say I want to use **Open Sans** (which you can
+download from [Google Fonts][]). Prepend **Open Sans** to the front of
+the list:
+
+```css
+body {
+  font-family: 'Open Sans', Gadugi, Euphemia, 'Euphemia UCAS', 'Aboriginal Sans', 'Noto Sans Canadian Aboriginal', sans-serif;
+}
+```
+
+
+You're done! You're ready to display syllabics on the web!
+
+## Finished!
+
+With these declarations, you should be able to display syllabics on your
+website, and be reasonably confident that every body can read it.
+
+Here's a complete example that uses our syllabics font stack, plus uses
+a few fonts from Google Fonts to round things out:
+
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="eddieantonio" data-slug-hash="mdPqoxK" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Syllabics font stack complete example">
+  <span>See the Pen <a href="https://codepen.io/eddieantonio/pen/mdPqoxK">
+  Syllabics font stack complete example</a> by Eddie Antonio Santos (<a href="https://codepen.io/eddieantonio">@eddieantonio</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
