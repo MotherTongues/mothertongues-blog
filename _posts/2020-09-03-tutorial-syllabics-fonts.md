@@ -4,7 +4,7 @@ title: "Tutorial: Choosing the right fonts to show syllabics on your website"
 author: _eddieantonio
 categories: [ Tutorial ]
 tags: [ intermediate, syllabics, Cree, fonts, html, css ]
-image: false
+image: assets/images/tutorial-syllabics-fonts--hero.png
 description: "Use these HTML/CSS snippets to choose the right fonts to display syllabics reliably for visitors to your website"
 featured: false
 ---
