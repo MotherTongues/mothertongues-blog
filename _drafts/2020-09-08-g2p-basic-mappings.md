@@ -12,6 +12,7 @@ hidden: false
 
 TODO:
     - split into local and g2p studio sections. 
+    - How do you know when to make a rule?
     
     "It might be easier to make the first post almost exclusively about writing rules in the G2P Studio. Then, a separate basic blog post for writing rules but on your computer with a clone of g2p, and then the other two blog posts later." - Aidan
 
