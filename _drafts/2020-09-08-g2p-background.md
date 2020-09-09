@@ -13,7 +13,7 @@ hidden: false
 TODO:
     - Make this more awesome. Get people stoked.
 
-This blog post describes the background context for a software tool called `g2p`. `g2p` is a tool for systematically converting certain characters[^1] into other ones. Common use cases include converting between a [writing system and the phonetic alphabet](#use-case-1-getting-the-pronunciation-from-a-words-spelling), between two [writing systems for the same language](#use-case-2-a-language-with-multiple-writing-systems), or between a legacy ['font-hacked' writing system and its current Unicode-supported version](#use-case-3-converting-from-legacy-writing-systems).
+This is the first blog post in a series about a software tool called `g2p`. This post describes some of the background context for *why* `g2p` was created, and subsequent posts will go into more detail about how to use `g2p`. `g2p` is a tool for systematically converting certain characters[^1] into other ones. Common use cases include [getting the pronunciation from a word's spelling](#use-case-1-getting-the-pronunciation-from-a-words-spelling), as well as [converting text for a language with multiple writing systems](#use-case-2-a-language-with-multiple-writing-systems), and [converting text from legacy writing systems](#use-case-3-converting-from-legacy-writing-systems).
 
 # Who is involved with this project?
 
@@ -26,11 +26,9 @@ There are many reasons why you might want to systematically convert between diff
 
 ### Use Case #1: Getting the pronunciation from a word's spelling
 
-Sometimes you want to convert between a language's writing system (also known as *orthography*) and its pronunciation. "Letters" in a writing system are usually referred to as "graphemes" and their corresponding meaningful sounds are referred to as "phonemes"; hence "g2p" or "grapheme-to-phoneme". 
+Sometimes you want to convert between a language's writing system (also known as *orthography*) and its pronunciation. This is a very common task in [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) and is essential in the creation of text-to-speech and automatic speech recognition systems. In [another post in this series](https://thislinkis.dead), I will describe the usefulness of `g2p` specifically with a project called "ReadAlongs".
 
-It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as with the *digraph* "th" which can be pronounced *[unvoiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22)* as in 'thin' or *[voiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.)* as in 'that'.
-
-The [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) (IPA) is not so ambiguous! In IPA, the 'th' in 'thin' is written as **θ** and the 'th' in 'that' is written as **ð**. Knowing how to convert between the written and spoken form of a language is useful in a variety of computational tasks, but I will describe the usefulness specifically with a project called "ReadAlongs" [below](#readalongs).
+"Letters" in a writing system are usually referred to as "graphemes" and their corresponding meaningful sounds are referred to as "phonemes"; hence "g2p" or "grapheme-to-phoneme". It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as with the *digraph* "th" which can be pronounced *[unvoiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22)* as in 'thin' or *[voiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.)* as in 'that'. The [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) (IPA) is not so ambiguous! In IPA, the 'th' in 'thin' is written as **θ** and the 'th' in 'that' is written as **ð**.
 
 ### Use Case #2: A language with multiple writing systems
 
