@@ -34,7 +34,7 @@ You will need to know how to:
 
  * how to edit your website's <abbr title="Cascading Stylesheets">CSS</abbr>
  * how to add a `<link>` element to your HTML's `<head>`
- 
+
 If you've ever added a custom font from [Google Fonts][] to your
 website, you know enough to follow this post!
 
@@ -55,8 +55,8 @@ when you tried, all you got was [tofu]:
 
 Tofu no longer! Let's discuss the various syllabics fonts that exist out
 there, where they are commonly found, and let's create a **font stack**:
-a list of fonts that your web browser tries in order, such that it finds
-a font that can displays syllabics correctly.
+a list of fonts that your web browser tries in order such that it finds
+a font that displays syllabics correctly.
 
 ## Common syllabics fonts
 
@@ -96,7 +96,7 @@ These fonts were created by the Language Geek himself, [Chris Harvey][].
 #### Where can I find these fonts?
 
 As far as I know, no system has Aboriginal Sans or Aboriginal Serif
-pre-installed, so you can either [download them yourself from his
+pre-installed, so you have to [download them yourself from his
 website][languagegeek-fonts]. Sometimes, they are bundled with certain
 [Keyman][] keyboard layouts.
 
@@ -135,7 +135,7 @@ font”][gadugi-office] on Microsoft Office products.
 ### Euphemia
 
 **Euphemia** or **Euphemia UCAS**[^1] is a sleek font for syllabics. It also
-includes glyphs for Latin (e.g., English/French characters).
+includes glyphs for Latin (e.g., English/French) characters.
 
 [^1]: UCAS, or "Unified Canadian Aboriginal Syllabics", the name of [the Unicode block](https://unicode.org/charts/PDF/U1400.pdf) that this font covers.
 
@@ -149,7 +149,7 @@ includes glyphs for Latin (e.g., English/French characters).
 
 Euphemia is distributed on [**Windows Vista and newer**][euphemia-ms].
 It is currently distributed as **Euphemia UCAS** on Apple systems
-(**macOS**/**iOS**). 
+(**macOS**/**iOS**).
 
 [euphemia-ms]: https://docs.microsoft.com/en-us/typography/font-list/euphemia#products-that-supply-this-font
 
@@ -191,8 +191,8 @@ installed will be used.
 Let's start with the **fallbacks** first. Let's say our users' device
 does not have a font that supports syllabics installed on their
 computer. Since Google allows **Noto Sans Canadian Aboriginal** to be
-automatically downloaded on your website, let's start with this
-`font-family` declaration:
+automatically downloaded on your website when needed, let's start with
+this `font-family` declaration:
 
 ```css
 body {
@@ -249,7 +249,7 @@ body {
 
 If you're displaying Latin text (e.g., English, French, Cree SRO, etc.),
 then this font goes **first**. Recall that many of the syllabics fonts
-actually contain glyphs for Latin characters, so we will have to list
+contain glyphs for Latin characters, so we will have to list
 our preferred Latin font **first**.
 
 For this example, say I want to use **Open Sans** (which you can
@@ -268,10 +268,10 @@ You're done! You're ready to display syllabics on the web!
 ## Finished!
 
 With these declarations, you should be able to display syllabics on your
-website, and be reasonably confident that every body can read it.
+website, and be reasonably confident that everybody can read it.
 
-Here's a complete example that uses our syllabics font stack, plus uses
-a few fonts from Google Fonts to round things out:
+Here's a complete example that uses our syllabics font stack in
+addition to a few fonts from Google Fonts to round things out:
 
 <p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="eddieantonio" data-slug-hash="mdPqoxK" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Syllabics font stack complete example">
   <span>See the Pen <a href="https://codepen.io/eddieantonio/pen/mdPqoxK">
