@@ -161,7 +161,7 @@ It is currently distributed as **Euphemia UCAS** on Apple systems
 Noto is Google's project to [eliminate tofu (□) for all languages of the
 world][noto], hence _noto_ (“**no** more **to**fu”).
 
-As far as I'm aware, Google does not have a "Noto Serif Canadian
+As far as I'm aware, Google does not have a "Noto *Serif* Canadian
 Aboriginal".
 
 #### Who created this font?
