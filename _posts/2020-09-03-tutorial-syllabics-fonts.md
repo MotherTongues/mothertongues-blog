@@ -32,8 +32,8 @@ web and advanced techniques for inclusion!
 
 You will need to know how to:
 
- * how to edit your website's <abbr title="Cascading Stylesheets">CSS</abbr>
- * how to add a `<link>` element to your HTML's `<head>`
+ * How to edit your website's <abbr title="Cascading Stylesheets">[CSS](https://knowledge.hubspot.com/cos-general/create-edit-and-attach-css-files-to-style-your-site)</abbr>
+ * How to add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element to your HTML's `<head>`
 
 If you've ever added a custom font from [Google Fonts][] to your
 website, you know enough to follow this post!
