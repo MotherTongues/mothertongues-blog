@@ -32,8 +32,8 @@ web and advanced techniques for inclusion!
 
 You will need to know how to:
 
- * How to edit your website's <abbr title="Cascading Stylesheets">[CSS](https://knowledge.hubspot.com/cos-general/create-edit-and-attach-css-files-to-style-your-site)</abbr>
- * How to add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element to your HTML's `<head>`
+ * How to edit your website's <abbr title="Cascading Stylesheets">[CSS][]</abbr>
+ * How to add a [`<link>`][link] element to your HTML's `<head>`
 
 If you've ever added a custom font from [Google Fonts][] to your
 website, you know enough to follow this post!
@@ -41,6 +41,8 @@ website, you know enough to follow this post!
 It's also helpful to know the [difference between serif and sans-serif
 fonts][serif-vs-sans-serif].
 
+[CSS]: https://www.w3schools.com/css/css_howto.asp#:~:text=With%20an%20external%20style%20sheet,%20you%20can%20change%20the%20look%20of%20an%20entire%20website%20by%20changing%20just%20one%20file!
+[link]: https://www.w3schools.com/tags/tag_link.asp
 [Google Fonts]: https://fonts.google.com/
 [serif-vs-sans-serif]: https://about.easil.com/support/serif-vs-sans-serif/
 
