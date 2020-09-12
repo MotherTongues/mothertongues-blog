@@ -25,8 +25,8 @@ smartphone/computer/device:
 <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css">
 ```
 
-Read the rest of this article to learn more about syllabics fonts on the
-web and advanced techniques for inclusion!
+Read the rest of this article to learn more about choosing syllabics
+fonts for the web!
 
 ## What you need to know to understand this post
 
