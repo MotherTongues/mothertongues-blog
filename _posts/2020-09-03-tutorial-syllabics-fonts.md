@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tutorial: Choosing the right fonts to show syllabics on your website"
+title: "Tutorial: Choosing the right fonts to show Cree syllabics on your website"
 author: _eddieantonio
 categories: [ Tutorial ]
 tags: [ intermediate, syllabics, Cree, fonts, html, css ]
@@ -69,7 +69,7 @@ a font that displays syllabics correctly.
   syllabics characters for all languages that use syllabics, and there's
   even some incorrect characters in one font! 😱 So even though this is
   the stack I guarantee to work for Western Cree, for other languages,
-  your millage may vary.
+  your mileage may vary.
 </aside>
 
 
@@ -211,7 +211,7 @@ website][noto-embed]**, just as you can embed other fonts via their [Google Font
 service.
 
 Most modern web browsers will **automatically download** Noto Sans if
-you included it in your font stack and no appropriate font is found. Use
+you included it in your font stack and no appropriate font is found.
 
 [noto]: https://www.google.com/get/noto/
 [noto-embed]: https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal
