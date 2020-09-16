@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>Tutorial: Choosing the right fonts to show Cree syllabics on your website | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Tutorial: Choosing the right fonts to show Cree syllabics on your website" />
+<meta name="author" content="_eddieantonio" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Use these HTML/CSS snippets to choose the right fonts to display syllabics reliably for visitors to your website" />
+<meta property="og:description" content="Use these HTML/CSS snippets to choose the right fonts to display syllabics reliably for visitors to your website" />
+<link rel="canonical" href="https://blog.mothertongues.org/tutorial-syllabics-fonts/" />
+<meta property="og:url" content="https://blog.mothertongues.org/tutorial-syllabics-fonts/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/tutorial-syllabics-fonts--hero.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@_eddieantonio" />
+<script type="application/ld+json">
+{"dateModified":"2020-09-03T00:00:00+00:00","datePublished":"2020-09-03T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/tutorial-syllabics-fonts/"},"author":{"@type":"Person","name":"_eddieantonio"},"description":"Use these HTML/CSS snippets to choose the right fonts to display syllabics reliably for visitors to your website","image":"https://blog.mothertongues.org/assets/images/tutorial-syllabics-fonts--hero.png","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"_eddieantonio"},"url":"https://blog.mothertongues.org/tutorial-syllabics-fonts/","headline":"Tutorial: Choosing the right fonts to show Cree syllabics on your website","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Tutorial: Choosing the right fonts to show Cree syllabics on your website&url=https://blog.mothertongues.org/tutorial-syllabics-fonts/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/tutorial-syllabics-fonts/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/tutorial-syllabics-fonts/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7183e460abfb84d668e408c32631abd4?s=250&d=mm&r=x"
+                            alt="Eddie">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://eddieantonio.ca/">Eddie</a><a
+                            target="_blank" href="https://twitter.com/_eddieantonio" class="btn follow">Follow</a>
+                        <span class="author-description">Software developer and Unicode nerd</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Tutorial: Choosing the right fonts to show Cree syllabics on your website</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/tutorial-syllabics-fonts--hero.png"
+                alt="Tutorial: Choosing the right fonts to show Cree syllabics on your website">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p><abbr title="too long; didn't read"><strong>tl;dr</strong></abbr>: Use this
+<code class="highlighter-rouge">font-family</code> CSS declaration to successfully display Western Cree syllabics
+for most visitors to your website:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">font-family</span><span class="o">:</span> <span class="nt">Gadugi</span><span class="o">,</span> <span class="nt">Euphemia</span><span class="o">,</span> <span class="s2">'Euphemia UCAS'</span><span class="o">,</span> <span class="s2">'Aboriginal Sans'</span><span class="o">,</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="o">,</span> <span class="nt">sans-serif</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Include the following line to your website’s <code class="highlighter-rouge">&lt;head&gt;</code> to automatically download
+a syllabics font if no appropriate fonts are installed on your
+smartphone/computer/device:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Read the rest of this article to learn more about choosing syllabics
+fonts for the web!</p>
+
+<h2 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h2>
+
+<p>You will need to know how to:</p>
+
+<ul>
+  <li>How to edit your website’s <abbr title="Cascading Stylesheets"><a href="https://www.w3schools.com/css/css_howto.asp#:~:text=With%20an%20external%20style%20sheet,%20you%20can%20change%20the%20look%20of%20an%20entire%20website%20by%20changing%20just%20one%20file!">CSS</a></abbr></li>
+  <li>How to add a <a href="https://www.w3schools.com/tags/tag_link.asp"><code class="highlighter-rouge">&lt;link&gt;</code></a> element to your HTML’s <code class="highlighter-rouge">&lt;head&gt;</code></li>
+</ul>
+
+<p>If you’ve ever added a custom font from <a href="https://fonts.google.com/">Google Fonts</a> to your
+website, you know enough to follow this post!</p>
+
+<p>It’s also helpful to know the <a href="https://about.easil.com/support/serif-vs-sans-serif/">difference between serif and sans-serif
+fonts</a>.</p>
+
+<h2 id="lets-get-started">Let’s get started!</h2>
+
+<p>Have you ever wanted to display <strong>Cree syllabics</strong> on your website, but
+when you tried, all you got were these blank boxes, colloquially called
+<em><a href="https://english.stackexchange.com/a/331483">tofu</a></em>?</p>
+
+<blockquote>
+  <p>□□□ □□□□□□! □□□□□□□□□□ □□□□□ «□ □□□□□□□□□»□</p>
+</blockquote>
+
+<p>Tofu no longer! Let’s discuss the various syllabics fonts that exist out
+there, where they are commonly found, and let’s create a <strong>font stack</strong>:
+a list of fonts that your web browser tries in order such that it finds
+a font that displays syllabics correctly.</p>
+
+<aside>
+  <strong>Note</strong>: I am most familiar with <strong>Western Cree
+  Syllabics</strong> (Y-dialect, Th-dialect, N-dialect).
+  However most of these fonts <em>might</em> work for other languages.
+  Note that some fonts in this post do not contain <em>all</em>
+  syllabics characters for all languages that use syllabics, and there's
+  even some incorrect characters in one font! 😱 So even though this is
+  the stack I guarantee to work for Western Cree, for other languages,
+  your mileage may vary.
+</aside>
+
+<h2 id="common-syllabics-fonts">Common syllabics fonts</h2>
+
+<p>I will discuss the following fonts:</p>
+
+<ul>
+  <li><strong>Aboriginal Sans</strong> and <strong>Aboriginal Serif</strong></li>
+  <li><strong>Euphemia</strong></li>
+  <li><strong>Gadugi</strong></li>
+  <li><strong>Noto Sans Canadian Aboriginal</strong></li>
+</ul>
+
+<p><a href="https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/">There are many more syllabics fonts out there</a>, but in this post, I want
+to focus on just enough for you to make syllabics work on websites.</p>
+
+<p>I made an <strong>interactive demonstration</strong> of these fonts that you can play
+with. Go ahead and type any text in Western Cree into the box and it
+will be converted to syllabics and displayed in the appropriate font, if
+it’s available on your system:</p>
+
+<p class="codepen" data-height="500" data-theme-id="light" data-default-tab="result" data-user="eddieantonio" data-slug-hash="GRZOBYY" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Syllabics font playground">
+  <span>See the Pen <a href="https://codepen.io/eddieantonio/pen/GRZOBYY">
+  Syllabics font playground</a> by Eddie Antonio Santos (<a href="https://codepen.io/eddieantonio">@eddieantonio</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<hr />
+
+<p>But <strong>where</strong> do these fonts come from? Where should you <strong>expect these fonts to be
+available</strong>?</p>
+
+<h3 id="aboriginal-sans-and-aboriginal-serif">Aboriginal Sans and Aboriginal Serif</h3>
+
+<p>As the names suggest, they have both serif and sans-serif variants for
+writing in Latin script (e.g., English, French, etc.).</p>
+
+<h4 id="who-created-these-fonts">Who created these fonts?</h4>
+
+<p>These fonts were created by the Language Geek himself, <a href="http://www.languagegeek.com/">Chris Harvey</a>.</p>
+
+<h4 id="where-are-these-fonts-pre-installed">Where are these fonts pre-installed?</h4>
+
+<p>As far as I know, no system has Aboriginal Sans or Aboriginal Serif
+pre-installed, so you have to <a href="http://www.languagegeek.com/font/fontdownload.html">download them yourself from his
+website</a>. Sometimes, they are bundled with certain
+<a href="https://keyman.com/">Keyman</a> keyboard layouts.</p>
+
+<p>If you’ve tried getting syllabics to work on your computer, chances are,
+you’ve downloaded either of these fonts!</p>
+
+<p><a href="http://www.languagegeek.com/font/fontdownload.html">Languagegeek.com</a> has many other fonts that
+display syllabics.</p>
+
+<h3 id="gadugi">Gadugi</h3>
+
+<p>This is a modern font that displays both syllabics and Cherokee.
+“Gadugi” is a Cherokee word that means “<a href="https://archive.org/details/cherokeeenglishd0000feel/page/92/mode/2up?q=gadugi">cooperative
+labour</a>”.</p>
+
+<h4 id="who-created-this-font">Who created this font?</h4>
+
+<p>I believe Microsoft commissioned this font.</p>
+
+<h4 id="where-is-this-font-pre-installed">Where is this font pre-installed?</h4>
+
+<p>Gadugi has been included in <a href="https://docs.microsoft.com/en-us/typography/font-list/gadugi#products-that-supply-this-font"><strong>all versions of Windows since Windows
+8</strong></a>. <a href="https://support.microsoft.com/en-us/office/cloud-fonts-in-office-f7b009fe-037f-45ed-a556-b5fe6ede6adb?ui=en-us&amp;rs=en-us&amp;ad=us#text:~:text=gadugi.ttf">It’s also available as a “Cloud
+font”</a> on Microsoft Office products.</p>
+
+<h3 id="euphemia">Euphemia</h3>
+
+<p><strong>Euphemia</strong> or <strong>Euphemia UCAS</strong><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> is a sleek font for syllabics. It also
+includes glyphs for Latin (e.g., English/French) characters.</p>
+
+<h4 id="who-created-this-font-1">Who created this font?</h4>
+
+<p><a href="https://www.tiro.com/syllabics/resources/index.html">Tiro Typeworks created Euphemia</a>. Ross Mills from Tiro has also
+created the <a href="https://www.pauktuutit.ca/library/">Pigiarniq</a> for Inuktitut, but I will not cover that font
+in this blog post.</p>
+
+<h4 id="where-is-this-font-pre-installed-1">Where is this font pre-installed?</h4>
+
+<p>Euphemia is distributed on <a href="https://docs.microsoft.com/en-us/typography/font-list/euphemia#products-that-supply-this-font"><strong>Windows Vista and newer</strong></a>.
+It is currently distributed as <strong>Euphemia UCAS</strong> on Apple systems
+(<strong>macOS</strong>/<strong>iOS</strong>).</p>
+
+<h4 id="issues">Issues</h4>
+
+<p>Unfortunately, for East Cree, this font will <strong>NOT</strong> work, as it has the
+<a href="https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/syllabic-font-orientation/">incorrect orientation for the ᔓ (<em>sho</em>) and ᔕ (<em>sha</em>) syllabics</a> 😱</p>
+
+<p>So I would recommend <strong>omitting it from the font stack for Eastern
+Cree</strong>.</p>
+
+<p>So if you can’t use Euphemia, which font should you use instead?</p>
+
+<h3 id="noto-sans-canadian-aboriginal">Noto Sans Canadian Aboriginal</h3>
+
+<p>Noto is Google’s project to <a href="https://www.google.com/get/noto/">eliminate tofu (□) for all languages of the
+world</a>, hence <em>noto</em> (“<strong>no</strong> more <strong>to</strong>fu”).</p>
+
+<p>As far as I’m aware, Google does not have a “Noto <em>Serif</em> Canadian
+Aboriginal”.</p>
+
+<h4 id="who-created-this-font-2">Who created this font?</h4>
+
+<p>As mentioned, <a href="https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal">Google created Noto Sans</a>!</p>
+
+<h4 id="where-is-this-font-pre-installed-2">Where is this font pre-installed?</h4>
+
+<p>Noto Sans Canadian Aboriginal can be found on Google products, such as
+<strong>Android phones</strong>, <strong>Android tablets</strong>, and <strong>Chromebooks</strong>.</p>
+
+<p>Importantly, Google allows website authors to <strong><a href="https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal">embed Noto on your
+website</a></strong>, just as you can embed other fonts via their <a href="https://fonts.google.com/">Google Fonts</a>
+service.</p>
+
+<p>Most modern web browsers will <strong>automatically download</strong> Noto Sans if
+you included it in your font stack and no appropriate font is found.</p>
+
+<h2 id="how-to-get-the-right-fonts-to-appear-on-your-webpage">How to get the right fonts to appear on your webpage</h2>
+
+<p>Now that we know about what fonts are out there, lets construct
+a <code class="highlighter-rouge">font-family</code> declaration that will support syllabics on as many
+devices as possible.</p>
+
+<p>Recall that the <code class="highlighter-rouge">font-family</code> declaration is a list of fonts that the
+web browser <strong>will try in order</strong>. The first font in the list that is
+installed will be used.</p>
+
+<p>Let’s start with the <strong>fallbacks</strong> first. Let’s say our users’ device
+does not have a font that supports syllabics installed on their
+computer. Since Google allows <strong>Noto Sans Canadian Aboriginal</strong> to be
+automatically downloaded on your website when needed, let’s start with
+this <code class="highlighter-rouge">font-family</code> declaration:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To get your browser to download the appropriate fonts, add this to your
+website’s <code class="highlighter-rouge">&lt;head&gt;</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="add-support-for-aboriginal-sans">Add support for Aboriginal Sans</h3>
+
+<p>Perhaps your reader has installed <strong>Aboriginal Sans</strong> to their computer.
+Update your <code class="highlighter-rouge">font-family</code> declaration as follows:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'Aboriginal Sans'</span><span class="p">,</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This way, the web browser will try using Aboriginal Sans if it’s
+installed, and <em>then</em> attempt to download Noto Sans.</p>
+
+<h3 id="add-support-for-maciphoneipad-users">Add support for Mac/iPhone/iPad users</h3>
+
+<p>(omit this step for <a href="https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/syllabic-font-orientation/">East Cree</a>!)</p>
+
+<p>Now let’s support users of Apple devices. Prepend <strong>Euphemia UCAS</strong> to
+the <code class="highlighter-rouge">font-family</code> declaration:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'Euphemia UCAS'</span><span class="p">,</span> <span class="s2">'Aboriginal Sans'</span><span class="p">,</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="add-support-for-windows-users">Add support for Windows Users</h3>
+
+<p>Recall that earlier versions of Windows include <strong>Euphemia</strong>; later
+versions support <strong>Gadugi</strong>. Prepend the following rules to try using
+Gadugi first.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="n">Gadugi</span><span class="p">,</span> <span class="n">Euphemia</span><span class="p">,</span> <span class="s2">'Euphemia UCAS'</span><span class="p">,</span> <span class="s2">'Aboriginal Sans'</span><span class="p">,</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="finally-specify-your-latin-fonts">Finally, specify your Latin fonts</h3>
+
+<p>If you’re displaying Latin text (e.g., English, French, Cree SRO, etc.),
+then this font goes <strong>first</strong>. Recall that many of the syllabics fonts
+contain glyphs for Latin characters, so we will have to list
+our preferred Latin font <strong>first</strong>.</p>
+
+<p>For this example, say I want to use <strong>Open Sans</strong> (which you can
+embed from <a href="https://fonts.google.com/">Google Fonts</a>). Prepend <strong>Open Sans</strong> to the front of
+the list:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'Open Sans'</span><span class="p">,</span> <span class="n">Gadugi</span><span class="p">,</span> <span class="n">Euphemia</span><span class="p">,</span> <span class="s2">'Euphemia UCAS'</span><span class="p">,</span> <span class="s2">'Aboriginal Sans'</span><span class="p">,</span> <span class="s2">'Noto Sans Canadian Aboriginal'</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You’re done! You’re ready to display syllabics on the web!</p>
+
+<h2 id="finished">Finished!</h2>
+
+<p>With these declarations, you should be able to display syllabics on your
+website, and be reasonably confident that everybody can read it.</p>
+
+<p>Here’s a complete example that uses our syllabics font stack in
+addition to a few fonts from Google Fonts to round things out:</p>
+
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="eddieantonio" data-slug-hash="mdPqoxK" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Syllabics font stack complete example">
+  <span>See the Pen <a href="https://codepen.io/eddieantonio/pen/mdPqoxK">
+  Syllabics font stack complete example</a> by Eddie Antonio Santos (<a href="https://codepen.io/eddieantonio">@eddieantonio</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>UCAS, or “Unified Canadian Aboriginal Syllabics”, the name of <a href="https://unicode.org/charts/PDF/U1400.pdf">the Unicode block</a> that this font covers. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2020-09-03">03 Sep 2020</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/categories#tutorial">Tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#cree">#Cree</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#css">#css</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#fonts">#fonts</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#html">#html</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#intermediate">#intermediate</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#syllabics">#syllabics</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/convertextract-app/"> &laquo;
+                    How to use the new Convertextract application for 'quality control' of ELAN annotations</a>
+                
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (5)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (5)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2020 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>

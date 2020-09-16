@@ -366,19 +366,13 @@
 
 <p>or using <a href="https://www.json.org/json-en.html">JSON</a>:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"æ"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>Both of the above rules capture our first, rule that turns an orthographic ‘a’ into a broad IPA /æ/. You can choose to write your rules in <strong>either</strong> format, although JSON will offer you slightly more flexibility when writing <a href="#advanced-a-deeper-dive-into-writing-tricky-rules">advanced rules</a>.</p>
 
@@ -405,21 +399,14 @@
 
 <p>or like this using JSON:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʰ"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"context_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"æ"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="ok-so-how-do-i-actually-get-started-here">Ok, so how do I actually get started here?</h2>
 
@@ -441,16 +428,7 @@
 
 <p>Here is a basic configuration for your mapping:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> <span class="c1"># this is a shared value for all the mappings in this configuration</span>
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> <span class="c1"># this is a 'display name'. It is a user-friendly name for your mapping.</span>
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> <span class="c1"># This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code</span>
@@ -459,28 +437,11 @@
     <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> <span class="c1"># This is the path to your mapping file. It should be in the same folder as your config.yaml file</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>If you are familiar with yaml, you will see that you can have more than one mapping under the <code class="highlighter-rouge">mappings</code> key. So to add another mapping to this file, it would look like this:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -497,7 +458,7 @@
     <span class="na">authors</span><span class="pi">:</span> 
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_ipa_to_arpabet.json</span> 
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h3 id="special-settings">Special settings</h3>
 
@@ -508,17 +469,7 @@
 
 <p>If you set your mapping to <code class="highlighter-rouge">as_is: false</code>, <code class="highlighter-rouge">g2p</code> will sort all of your rules based on the length of the input to the rule, so that rules with longer inputs apply before rules with shorter inputs. This prevents some common ‘bleeding’ rule-ordering relationships described in the <a href="#rule-ordering">rule ordering</a> section. So, if you declared your rules as:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="w">
@@ -528,21 +479,11 @@
         </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>Then, with <code class="highlighter-rouge">as_is</code> set to True (the default), you would get ‘bb’ as the output for the input ‘ab’. Whereas with <code class="highlighter-rouge">as_is</code> set to False, you would get ‘c’ as the output for the input ‘ab’.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -552,23 +493,13 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">as_is</span><span class="pi">:</span> <span class="no">false</span>   <span class="c1"># &lt;------- Add this</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="case_sensitive-default-true"><code class="highlighter-rouge">case_sensitive</code> (default: True)</h5>
 
 <p>The default is to treat your rules as case sensitive, but setting this to False, will make your rules case insensitive.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -578,23 +509,13 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">case_sensitive</span><span class="pi">:</span> <span class="no">false</span>   <span class="c1"># &lt;------- Add this</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="escape_special-default-false"><code class="highlighter-rouge">escape_special</code> (default: False)</h5>
 
 <p>As described in the section on <a href="#regular-expressions">regular expressions</a>, you can define rules using ‘special’ characters. By default, these characters are interpreted as ‘special’, but if you want all special characters in your mapping to be interpreted as their actual characters, you can set <code class="highlighter-rouge">escape_special</code> to true.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -604,7 +525,7 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">escape_special</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="norm_form-default-nfd"><code class="highlighter-rouge">norm_form</code> (default: “NFD”)</h5>
 
@@ -614,17 +535,7 @@
 
 <p>Many fonts will render these two different representations identically and it can be really difficult and confounding as a user if both appear in the same text. Often times find/replace won’t work and frustrating things like that. Luckily, there is a standard for normalizing these differences so that all instances of sequences like \u0065\u0301 would be (NF)Composed into \u00e9, or the opposite direction where all instances of \u00e9 would be (NF)Decomposed into \u0065\u0301. For a more in-depth conversation on this, check out <a href="https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html">this blog article</a>.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -634,23 +545,13 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">norm_form</span><span class="pi">:</span> <span class="s2">"</span><span class="s">NFC"</span>   <span class="c1"># &lt;------- Add your Unicode normalization strategy here</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="out_delimiter-default-"><code class="highlighter-rouge">out_delimiter</code> (default: ‘’)</h5>
 
 <p>Some mappings require that a delimiting character (or characters) be inserted in between when a rule applies. So, using the first example, maybe you want <code class="highlighter-rouge">kæt</code> to go to <code class="highlighter-rouge">kʰ|æ|t</code> instead of <code class="highlighter-rouge">kʰæt</code>. For this, you would set <code class="highlighter-rouge">out_delimiter: "|"</code> in your mapping.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -660,23 +561,13 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">out_delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">|"</span>   <span class="c1"># &lt;------- Add your delimiter here</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="reverse-default-false"><code class="highlighter-rouge">reverse</code> (default: False)</h5>
 
 <p>Setting this to reverse will try to reverse the mappings so that all characters defined as <code class="highlighter-rouge">out</code> in your mapping become the input characters and vice versa. Except for a few cases, this is unlikely to work very well for advanced mapings.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -686,7 +577,7 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">reverse</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h5 id="prevent_feeding-default-false"><code class="highlighter-rouge">prevent_feeding</code> (default: False)</h5>
 
@@ -713,18 +604,7 @@
 
 <p>Ordered in the way they are defined, an input of <code class="highlighter-rouge">kw</code> will produce <code class="highlighter-rouge">kʲʷ</code> and ordered the other way, an input of <code class="highlighter-rouge">kw</code> will produce <code class="highlighter-rouge">kʲw</code>. Neither of these are correct though! For this mapping, we want <code class="highlighter-rouge">kʷ</code> as the output. So, how do we solve this? There is a setting called <code class="highlighter-rouge">prevent_feeding</code> which, if set to true, will prevent the output of one rule from being processed by any subsequent rule. As described in <a href="#rule-ordering">rule order</a> this process when one rule provides the context for another rule to apply is called ‘feeding’ and so this setting will prevent that from happening. Note, setting <code class="highlighter-rouge">prevent_feeding: true</code> for your whole mapping will do this for every rule. If you just want to prevent feeding for one particular rule, you can write your rules in JSON and add the key to the specific rule you want to prevent feeding for.</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kw"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʷ"</span><span class="p">,</span><span class="w">
@@ -735,19 +615,9 @@
       </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʲ"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="na">mappings</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
@@ -757,7 +627,7 @@
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
     <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">prevent_feeding</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <h2 id="advanced-a-deeper-dive-into-writing-tricky-rules">Advanced: A deeper dive into writing tricky rules</h2>
 
@@ -784,19 +654,13 @@
 
 <p>or using <a href="https://www.json.org/json-en.html">JSON</a>:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\u</span><span class="s2">0067"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\u</span><span class="s2">0261"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>This is also helpful when you need to write rules between combining characters or other confusable characters. The <strong>rule of thumb</strong> is, if your rules are clearer using Unicode escape sequences, do it! Otherwise, just use the normal character in place.</p>
 
@@ -1200,7 +1064,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#tutorial">Tutorial
-                        (4)</a>
+                        (5)</a>
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#blog">Blog
@@ -1247,6 +1111,10 @@ https://search.google.com/structured-data/testing-tool/u/0/
 
     
     <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
     
 
 </body>

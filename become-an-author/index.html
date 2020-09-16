@@ -280,25 +280,10 @@
 <ol>
   <li><a href="https://docs.github.com/en/github/getting-started-with-github/fork-a-repo">Fork</a> the <a href="https://github.com/MotherTongues/mothertongues-blog">Mother Tongues Blog Respository</a></li>
   <li>Checkout to the <code class="highlighter-rouge">dev.author</code> branch</li>
-  <li>Edit the file labelled <code class="highlighter-rouge">_config.yml</code>. * denotes a required value.
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="rouge-code"><pre><span class="na">authors</span><span class="pi">:</span>
+  <li>
+    <p>Edit the file labelled <code class="highlighter-rouge">_config.yml</code>. * denotes a required value.</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">authors</span><span class="pi">:</span>
  <span class="na">AidanPine</span><span class="pi">:</span>
     <span class="na">name</span><span class="pi">:</span> <span class="s">Aidan</span>
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">Aidan</span>
@@ -315,12 +300,18 @@
      <span class="na">web</span><span class="pi">:</span> <span class="s">yoursite.com</span>
      <span class="na">twitter</span><span class="pi">:</span> <span class="s">https://twitter.com/yourhandle</span>
      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Guest</span><span class="nv"> </span><span class="s">Author.</span><span class="nv"> </span><span class="s">YourDescriptionHere"</span>
-</pre></td></tr></tbody></table></code></pre></div>    </div>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add your name to the list of authors in <code class="highlighter-rouge">admin/config.yml</code></p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="pi">{</span> <span class="nv">label</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Author'</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">author'</span><span class="pi">,</span> <span class="nv">widget</span><span class="pi">:</span> <span class="s1">'</span><span class="s">select'</span><span class="pi">,</span> <span class="nv">options</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">AidanPine'</span><span class="pi">,</span>    <span class="s1">'</span><span class="s">_eddieantonio'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">delaney'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">fineen'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">YOURNAME'</span> <span class="pi">]</span> <span class="pi">}</span>
+</code></pre></div>    </div>
   </li>
   <li>Submit a <a href="https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author">pull request</a></li>
 </ol>
 
-<p>That’s it! Start <a href="https://blog.mothertongues.org/write-a-post">writing your posts</a>.</p>
+<p>That’s it! Start [writing your posts](https://blog.mothertongues.org/write-a-post).</p>
 
 <p><br /> 
 <br /> 
@@ -329,7 +320,6 @@
 <h2 id="footnotes">Footnotes</h2>
 
 <p><a name="github-footnote">1</a>: Any suggestions for good GitHub tutorials? Leave them in the comments below!</p>
-
 
             </div>
 
@@ -479,7 +469,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#tutorial">Tutorial
-                        (4)</a>
+                        (5)</a>
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#blog">Blog
@@ -526,6 +516,10 @@ https://search.google.com/structured-data/testing-tool/u/0/
 
     
     <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
     
 
 </body>

@@ -209,6 +209,10 @@ td.rouge-code {
 pre.lineno {
   color: #9999; }
 
+pre.highlight {
+  background-color: #f6f8fa;
+  padding: 1rem; }
+
 .rating-holder {
   font-size: 16px;
   display: inline-block;
@@ -339,3 +343,14 @@ pre.lineno {
 
 .c-rating--big {
   font-size: 150%; }
+
+/*
+ * Noto Sans Canadian Aboriginal (Canadian Aboriginal) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Noto Sans Canadian Aboriginal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.ttf) format("truetype"); }

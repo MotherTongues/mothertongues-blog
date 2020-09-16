@@ -271,18 +271,7 @@
 <ol>
   <li>In your fork of the <a href="https://github.com/MotherTongues/mothertongues-blog">Mother Tongues Blog Respository</a>, make sure you’re in the <code class="highlighter-rouge">dev.author</code> branch and add a new post to the <code class="highlighter-rouge">_posts</code> folder. Your post file name must by <a href="https://blog.tersmitten.nl/slugify/">slugified</a>. It must start with the date (yyyy-mm-dd) and then the blog post name, <code class="highlighter-rouge">2020-01-15-this-is-a-sample.md</code>.</li>
   <li>Add some meta data about the post at the top:
-    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="nn">---</span>
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
 <span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
 <span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Become</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">author"</span>
 <span class="na">author</span><span class="pi">:</span> <span class="s">aidan</span>
@@ -293,7 +282,7 @@
 <span class="na">featured</span><span class="pi">:</span> <span class="no">false</span>
 <span class="na">hidden</span><span class="pi">:</span> <span class="no">false</span>
 <span class="nn">---</span>
-</pre></td></tr></tbody></table></code></pre></div>    </div>
+</code></pre></div>    </div>
   </li>
   <li>Write the content of your post in Markdown. Please have a look at the <a href="https://blog.mothertongues.org/post-template">template</a> for writing accessible posts!</li>
   <li>When you’re happy with it, Submit a <a href="https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author">pull request</a></li>
@@ -452,7 +441,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#tutorial">Tutorial
-                        (4)</a>
+                        (5)</a>
                     
                     <a data-proofer-ignore class="mt-1 mb-1"
                         href="/categories#blog">Blog
@@ -499,6 +488,10 @@ https://search.google.com/structured-data/testing-tool/u/0/
 
     
     <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
     
 
 </body>
