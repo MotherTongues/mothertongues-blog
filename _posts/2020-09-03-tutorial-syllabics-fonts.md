@@ -10,15 +10,15 @@ featured: false
 ---
 
 <abbr title="too long; didn't read">**tl;dr**</abbr>: Use this
-`font-family` CSS declaration to successfully display syllabics for most
-visitors to your website:
+`font-family` CSS declaration to successfully display Western Cree syllabics
+for most visitors to your website:
 
 ```css
 font-family: Gadugi, Euphemia, 'Euphemia UCAS', 'Aboriginal Sans', 'Noto Sans Canadian Aboriginal', sans-serif;
 ```
 
 Include the following line to your website's `<head>` to automatically download
-a syllabics font if there are no appropriate fonts are installed on your
+a syllabics font if no appropriate fonts are installed on your
 smartphone/computer/device:
 
 ```html
@@ -48,8 +48,9 @@ fonts][serif-vs-sans-serif].
 
 ## Let's get started!
 
-Have you ever wanted to display **syllabics** on your website, but
-when you tried, all you got was [tofu]:
+Have you ever wanted to display **Cree syllabics** on your website, but
+when you tried, all you got were these blank boxes, colloquially called
+_[tofu]_?
 
 > □□□ □□□□□□! □□□□□□□□□□ □□□□□ «□ □□□□□□□□□»□
 
@@ -60,17 +61,32 @@ there, where they are commonly found, and let's create a **font stack**:
 a list of fonts that your web browser tries in order such that it finds
 a font that displays syllabics correctly.
 
+<aside>
+  <strong>Note</strong>: I am most familiar with <strong>Western Cree
+  Syllabics</strong> (Y-dialect, Th-dialect, N-dialect).
+  However most of these fonts <em>might</em> work for other languages.
+  Note that some fonts in this post do not contain <em>all</em>
+  syllabics characters for all languages that use syllabics, and there's
+  even some incorrect characters in one font! 😱 So even though this is
+  the stack I guarantee to work for Western Cree, for other languages,
+  your millage may vary.
+</aside>
+
+
 ## Common syllabics fonts
 
-I am aware of the following fonts:
+I will discuss the following fonts:
 
  - **Aboriginal Sans** and **Aboriginal Serif**
  - **Euphemia**
  - **Gadugi**
  - **Noto Sans Canadian Aboriginal**
 
+[There are many more syllabics fonts out there][moj], but in this post, I want
+to focus on just enough for you to make syllabics work on websites.
+
 I made an **interactive demonstration** of these fonts that you can play
-with. Go ahead and type any text in (western) Cree into the box and it
+with. Go ahead and type any text in Western Cree into the box and it
 will be converted to syllabics and displayed in the appropriate font, if
 it's available on your system:
 
@@ -79,6 +95,8 @@ it's available on your system:
   Syllabics font playground</a> by Eddie Antonio Santos (<a href="https://codepen.io/eddieantonio">@eddieantonio</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
+
+[moj]: https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/
 
 ---
 
@@ -95,7 +113,7 @@ writing in Latin script (e.g., English, French, etc.).
 
 These fonts were created by the Language Geek himself, [Chris Harvey][].
 
-#### Where can I find these fonts?
+#### Where are these fonts pre-installed?
 
 As far as I know, no system has Aboriginal Sans or Aboriginal Serif
 pre-installed, so you have to [download them yourself from his
@@ -123,7 +141,7 @@ labour][gadugi-def]”.
 
 I believe Microsoft commissioned this font.
 
-#### Where can I find this font?
+#### Where is this font pre-installed?
 
 Gadugi has been included in [**all versions of Windows since Windows
 8**][gadugi-availability]. [It's also available as a “Cloud
@@ -143,11 +161,15 @@ includes glyphs for Latin (e.g., English/French) characters.
 
 #### Who created this font?
 
-[Tiro Typeworks created Euphemia][tiro].
+[Tiro Typeworks created Euphemia][tiro]. Ross Mills from Tiro has also
+created the [Pigiarniq][] for Inuktitut, but I will not cover that font
+in this blog post.
+
+[Pigiarniq]: https://www.pauktuutit.ca/library/
 
 [tiro]: https://www.tiro.com/syllabics/resources/index.html
 
-#### Where can I find this font?
+#### Where is this font pre-installed?
 
 Euphemia is distributed on [**Windows Vista and newer**][euphemia-ms].
 It is currently distributed as **Euphemia UCAS** on Apple systems
@@ -155,6 +177,17 @@ It is currently distributed as **Euphemia UCAS** on Apple systems
 
 [euphemia-ms]: https://docs.microsoft.com/en-us/typography/font-list/euphemia#products-that-supply-this-font
 
+#### Issues
+
+Unfortunately, for East Cree, this font will **NOT** work, as it has the
+[incorrect orientation for the _sho_ and _sha_ syllabics][Euphemia bug] 😱
+
+So I would recommend **omitting it from the font stack for Eastern
+Cree**.
+
+[Euphemia bug]: https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/syllabic-font-orientation/
+
+So if you can't use Euphemia, which font should you use instead?
 
 ### Noto Sans Canadian Aboriginal
 
@@ -168,7 +201,7 @@ Aboriginal".
 
 As mentioned, [Google created Noto Sans][noto-embed]!
 
-#### Where can I find this font?
+#### Where is this font pre-installed?
 
 Noto Sans Canadian Aboriginal can be found on Google products, such as
 **Android phones**, **Android tablets**, and **Chromebooks**.
@@ -176,6 +209,9 @@ Noto Sans Canadian Aboriginal can be found on Google products, such as
 Importantly, Google allows website authors to **[embed Noto on your
 website][noto-embed]**, just as you can embed other fonts via their [Google Fonts][]
 service.
+
+Most modern web browsers will **automatically download** Noto Sans if
+you included it in your font stack and no appropriate font is found. Use
 
 [noto]: https://www.google.com/get/noto/
 [noto-embed]: https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal
@@ -225,6 +261,8 @@ installed, and _then_ attempt to download Noto Sans.
 
 ### Add support for Mac/iPhone/iPad users
 
+(omit this step for [East Cree][Euphemia bug]!)
+
 Now let's support users of Apple devices. Prepend **Euphemia UCAS** to
 the `font-family` declaration:
 
@@ -255,7 +293,7 @@ contain glyphs for Latin characters, so we will have to list
 our preferred Latin font **first**.
 
 For this example, say I want to use **Open Sans** (which you can
-download from [Google Fonts][]). Prepend **Open Sans** to the front of
+embed from [Google Fonts][]). Prepend **Open Sans** to the front of
 the list:
 
 ```css
