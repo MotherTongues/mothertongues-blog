@@ -180,7 +180,7 @@ It is currently distributed as **Euphemia UCAS** on Apple systems
 #### Issues
 
 Unfortunately, for East Cree, this font will **NOT** work, as it has the
-[incorrect orientation for the _sho_ and _sha_ syllabics][Euphemia bug] 😱
+[incorrect orientation for the ᔓ (_sho_) and ᔕ (_sha_) syllabics][Euphemia bug] 😱
 
 So I would recommend **omitting it from the font stack for Eastern
 Cree**.
