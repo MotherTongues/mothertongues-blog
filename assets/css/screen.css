@@ -336,22 +336,32 @@ span.post-read-more a:hover {
 }
 
 .article-post {
-    font-family: Merriweather;
+    font-family: Merriweather, Gadugi, Aboriginal Serif, Noto Sans Canadian Aboriginal, serif;
     font-size: 1.1rem;
     line-height: 1.84;
     color: rgba(0, 0, 0, .8);
 }
 
-blockquote {
+aside, blockquote {
     border-left: 4px solid #00ab6b;
     padding: 0 20px;
+}
+
+blockquote {
     font-style: italic;
-    color: rgba(0, 0, 0, .5);
+    color: #808080;
 }
 
 .article-post p,
+.article-post aside,
 .article-post blockquote {
     margin: 0 0 1.5rem 0;
+}
+
+.article-post aside {
+    color: #555;
+
+    font-size: .9em;
 }
 
 .featured-image {
@@ -792,6 +802,16 @@ iframe {
     .jumbotron.fortags .row {
         margin: 0;
     }
+
+    .article-post aside {
+        float: right;
+
+        max-width: 50%;
+        margin-left: 1em;
+        margin-right: -1em;
+
+        text-align: justify;
+    }
 }
 
 .jumbotron.fortags {
@@ -936,4 +956,16 @@ table tr:nth-child(even) {
 
 table th, table td {
     padding: 10px 15px;
+}
+
+/* The styles from Bootstrap's reset renders poorly on Chrome, so use the 1991
+ * original underline style for it... */
+abbr[title] { text-decoration: underline }
+/* ... then apply the pretty styles for browsers that understand how to skip
+ * ink! */
+@supports(text-decoration-skip-ink: none) {
+    abbr[title] {
+        text-decoration-skip-ink: none;
+        text-decoration: underline dotted;
+    }
 }
