@@ -359,16 +359,9 @@ blockquote {
 }
 
 .article-post aside {
-    float: right;
-
-    max-width: 50%;
-    margin-left: 1em;
-    margin-right: -1em;
-
     color: #555;
 
     font-size: .9em;
-    text-align: justify;
 }
 
 .featured-image {
@@ -808,6 +801,16 @@ iframe {
 
     .jumbotron.fortags .row {
         margin: 0;
+    }
+
+    .article-post aside {
+        float: right;
+
+        max-width: 50%;
+        margin-left: 1em;
+        margin-right: -1em;
+
+        text-align: justify;
     }
 }
 
