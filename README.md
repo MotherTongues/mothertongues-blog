@@ -10,7 +10,7 @@ To contribute to the site, please have a read through the purpose of the Git bra
 - publish: Changes made here will build and push to `gh-pages`.
 - gh-pages: This branch is auto generated from the `publish` branch. Do **not** edit this directly, as edits will be overwritten.
 
-## Local devlopment
+## Local development
 
 You must have ruby on your machine and bundler.
 
