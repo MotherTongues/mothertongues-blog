@@ -3,34 +3,49 @@ layout: post
 title:  "Guide: advanced mappings with g2p"
 author: AidanPine
 categories: []
-tags: [ tutorial, explanation, python ]
-image: assets/images/bonjour-g2p.png
+tags: [ tutorial, explanation, python, g2p ]
+image: assets/images/ab-abc-i.png
 description: "Guide: advanced mappings with g2p"
 featured: false
 hidden: false
 ---
 
-TODO:
-    - make section about indices, and default `g2p` behaviour easier to follow.
-    - How do you find the \uXXXX notation for the character you want?
-    - Note difference between Unicode "U+" notation and Python "\uXXXX"
+This is the 4th blog post in a seven-part series about g2p. This is a relatively long post, where we get in to all the nitty gritty of writing complex mappings in g2p.
+
+### G2P Blog Series Index
+
+- [Background]({{ "g2p-background" | absolute_url }})
+- [How to write a basic mapping in G2P Studio]({{ "g2p-basic-mappings-gui" | absolute_url }})
+- [Writing mappings on your computer]({{ "g2p-basic-mappings-local" | absolute_url }})
+- Advanced mappings
+- [ReadAlong Studio & Other Applications]({{ "g2p-applications" | absolute_url }})
+- [Preprocessing mappings]({{ "g2p-preprocess" | absolute_url }})
+- [Contributing]({{ "g2p-contributing" | absolute_url }})
 
 ## Advanced: A deeper dive into writing tricky rules
 
-You may have noticed that the rules described above for converting words like 'dog' and 'cat' to IPA are woefully incomplete. The real world use cases for `g2p` often need to account for a lot more messiness than was described in the artificial example above. In fact, for languages like English, `g2p` is likely **not** a good solution. The English writing system is notoriously inconsistent, and there already exist a variety of other tools that account for all of the lexical (word-specific) idiosyncracies in deriving the IPA-form from the orthographic form. For many Indigenous languages, the writing system is sufficiently close to the spoken form that `g2p` is a very appropriate solution. In the following sections, I'll describe some common problems when writing rules, and how to fix them.
+You may have noticed that the rules described in the previous posts for converting words like 'dog' and 'cat' to IPA are woefully incomplete. The real world use cases for `g2p` often need to account for a lot more messiness than was described in the artificial example above. In fact, for languages like English, `g2p` is likely **not** a good solution. The English writing system is notoriously inconsistent, and there already exist a variety of other tools that account for many of the lexical (word-specific) idiosyncracies in deriving the IPA-form from the orthographic form. For many Indigenous languages, the writing system is sufficiently close to the spoken form that `g2p` is a very appropriate solution. In the following sections, I'll describe some common problems when writing rules, and how to fix them.
+
+- [Background]({{ "g2p-background" | absolute_url }})
+- [How to write a basic mapping in G2P Studio]({{ "g2p-basic-mappings-gui" | absolute_url }})
+- [Writing mappings on your computer]({{ "g2p-basic-mappings-local" | absolute_url }})
+- Advanced mappings
+- [ReadAlong Studio]({{ "g2p-applications" | absolute_url }})
+- [Preprocessing mappings]({{ "g2p-applications" | absolute_url }})
+- [Contributing]({{ "g2p-contributing" | absolute_url }})
 
 ### Rule Ordering
 
 **The order of your rules in `g2p` really matters**! This is because some rules can either create or remove the context for other rules to apply. In linguistics, these rule ordering patterns are usually talked about as either [feeding, bleeding, counter-feeding, or counter-bleeding](https://linguistics.stackexchange.com/questions/6084/whats-the-difference-between-counterbleeding-bleeding-and-feeding) relationships. There are potentially valid reasons to want to encode any of these types of relationships in your rules. 
 
-To illustrate a possible problem, let's consider a `g2p` mapping for language that converts 'a̱' to 'ə' and 'a' to 'æ'. 'a̱' is a sequence of a normal a followed by a combining macron below (\u0331). Because \u0331 ('a̱') is easily confusable with \u0332 ('a̲'), in order to follow the rule of thumb for [Unicode escape sequences](#unicode-escape-sequences), I'll write the rules as follows:
+To illustrate a possible problem, let's consider a `g2p` mapping for language that converts 'a̱' to 'ə' and 'a' to 'æ'. 'a̱' is a sequence of a regular 'a' followed by a combining macron below (\u0331). Because \u0331 ('a̱') is easily confusable with \u0332 ('a̲'), in order to follow the rule of thumb for [Unicode escape sequences](#unicode-escape-sequences), I'll write the rules as follows:
 
 | in | out |
 |---|---|
 | a | æ |
 | a\u0331 | ə |
 
-Now, assuming an input to this mapping of 'a̱' (a\u0331), we would get 'æ̱' (æ\u0331) instead of 'ə'. Why is that? Because the first rule applies and turns 'a' into 'æ' before the second rule has a chance to apply. This is called a *bleeding* relationship. In order to avoid it, we would need to write our rules as follows:
+Now, assuming an input to this mapping of 'a̱' (a\u0331), we would get 'æ̱' (æ\u0331) instead of 'ə'. Why is that? Because the first rule applies and turns 'a' into 'æ' before the second rule has a chance to apply. This is called a *bleeding* relationship because the first rule *bleeds* the context of the second rule from applying. In order to avoid it, we would need to write our rules as follows:
 
 | in | out |
 |---|---|
@@ -60,6 +75,12 @@ or using [JSON](https://www.json.org/json-en.html):
 ```
 
 This is also helpful when you need to write rules between combining characters or other confusable characters. The **rule of thumb** is, if your rules are clearer using Unicode escape sequences, do it! Otherwise, just use the normal character in place.
+
+#### Tip for finding a character's codepoing
+
+If you want to find out what a particular character's \uXXXX notation is, simply paste the character(s) into the search bar of this handy site: https://unicode.scarfboy.com/ and you will get a list of the Unicode codepoints for those characters.
+
+Note, you might find some resources that write a character's codepoint as U+0261 instead of \u0261. The U+XXXX format is the one officially adopted by the Unicode consortium, as early as of Unicode 2.0.0. However, the Python programming language uses the [\uXXXX format](https://docs.python.org/3/reference/lexical_analysis.html#:~:text=escape%20sequences%20only%20recognized%20in%20string%20literals%20are%3A). The important part is recognizing that the Unicode codepoint is contained by the XXXX hexadecimal sequence.
 
 ### Special settings for your mapping configuration
 
@@ -279,7 +300,7 @@ Even people familiar with using `g2p` might not be aware that one of its main fe
 
 {% picture k-to-kh.png %}
 
-The default interpretation of rule indices by `g2p` is that it zips up the characters between the input and the output of a rule until it reaches the end of either one, then it glombs on any remaining characters the last character of the shorter one (whether that's the input or output). For example, compare the following examples where 'abc' is converted to 'ab' and glombs the excess input character onto the last output character:
+The default interpretation of rule indices by `g2p` is that it matches the characters between the input and the output one-by-one in a given rule until it reaches the end of either one, then it matches any remaining characters in the longer part (input or output) to the last character of the shorter part. For example, compare the following examples where 'abc' is converted to 'ab' and glombs the excess input character onto the last output character:
 
 {% picture abc-ab.png %}
 
