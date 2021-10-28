@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Applications for g2p, an example with ReadAlongs"
+title:  "G2P Part 5: Applications for g2p, an example with ReadAlongs"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Contributing a new mapping to g2p for everyone to use"
+title:  "G2P Part 7: Contributing a new mapping to g2p for everyone to use"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]

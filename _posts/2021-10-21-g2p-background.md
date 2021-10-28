@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Getting from 'a' to 'b' with g2p - why g2p exists and will let you do awesome things"
+title:  "G2P Part 1: Getting from 'a' to 'b' with g2p - why g2p exists and will let you do awesome things"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]
