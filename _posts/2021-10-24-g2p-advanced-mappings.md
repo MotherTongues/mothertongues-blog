@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Guide: advanced mappings with g2p"
+title:  "G2P Part 4: advanced mappings with g2p"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, python, g2p ]

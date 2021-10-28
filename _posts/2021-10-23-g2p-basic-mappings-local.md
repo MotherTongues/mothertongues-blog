@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tutorial: Make a basic mapping with g2p"
+title:  "G2P Part 3: Make a basic mapping with g2p"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]

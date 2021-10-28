@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tutorial: Solve inconsistencies in your text with a g2p pre-processing mapping"
+title:  "G2P Part 6: Solve inconsistencies in your text with a g2p pre-processing mapping"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]

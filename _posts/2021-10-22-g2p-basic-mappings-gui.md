@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Tutorial: Using G2P Studio"
+title:  "G2P Part 2: Using G2P Studio"
 author: AidanPine
 categories: []
 tags: [ tutorial, explanation, tech-showcase, g2p ]
