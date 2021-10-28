@@ -54,7 +54,7 @@ So, with these hypotheses about the rules to transform from one level to another
 
 `g2p` lets you describe these patterns using **an ordered series of rules**. Each rule must be defined to have a sequence of one or more input characters and a sequence of zero or more output characters. In the [G2P Studio](https://g2p-studio.herokuapp.com/), we write these rules in a spreadsheet-type interface. 
 
-In the photo below we can see a very basic rule that will turn all instances of the character `a` into `b`. Each row is a new rule. The `In` column describes what characters will be matched, and the `Out` column describes what those matched characters will be turned into.
+In the screenshot below we can see a very basic rule that will turn all instances of the character `a` into `b`. Each row is a new rule. The `In` column describes what characters will be matched, and the `Out` column describes what those matched characters will be turned into.
 
 {% picture basic-rule-studio.png %}
 
@@ -64,7 +64,7 @@ In the photo below we can see a very basic rule that will turn all instances of 
 
 ## Ok, so how do I actually get these rules to do something?
 
-So, you've understood the [basics of writing rules](#basic-rule-writing) either described above and you want to actually use them to convert something! This section describes exactly how to do that. 
+So, you've understood the [basics of writing rules](#basic-rule-writing) described above and you want to actually use them to convert something? This section describes exactly how to do that. 
 
 Below is a list of all the rules to capture the transformations between level 1 and level 2 above. There are some rules that we discussed in that section, and some others that might look unfamiliar. For a full description of some of these rules, have a look at the [advanced rule-writing section]({{ "g2p-advanced-mappings" | absolute_url }}).
 
@@ -82,4 +82,4 @@ Have a read through the next blog post on [writing rules on your computer withou
 
 [^1]: I'm using the free, hobby plan at <https://www.heroku.com/> to host it though, so occasionally the server goes to sleep. If you first go to the site and it takes a few seconds to boot up, don't worry!
 [^2]: A Python 'library' is a collection of code
-[^3]: Orthographic characters are circumfixed with apostrophes like 'a', broad IPA typically uses forward slashes like /k/ and narrow IPA typically uses square brackets like [kʰ]
+[^3]: Orthographic characters are wrapped in single quotes, like 'a'; broad IPA typically uses forward slashes like /k/ and narrow IPA typically uses square brackets like [kʰ]

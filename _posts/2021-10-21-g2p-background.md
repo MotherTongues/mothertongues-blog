@@ -33,7 +33,7 @@ There are many reasons why you might want to systematically convert between diff
 
 ### Use Case #1: Getting the pronunciation from a word's spelling
 
-Sometimes you want to convert between a language's writing system (also known as *orthography*) and its pronunciation. This is a very common task in [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) and is essential in the creation of text-to-speech and automatic speech recognition systems. In [another post in this series]({{ "g2p-applications" | absolute_url }}), I will describe the usefulness of `g2p` specifically with a project called "ReadAlongs".
+Sometimes you want to convert from a language's writing system (also known as *orthography*) to its pronunciation. This is a very common task in [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) and is essential in the creation of text-to-speech and automatic speech recognition systems. In [another post in this series]({{ "g2p-applications" | absolute_url }}), I will describe the usefulness of `g2p` specifically with a project called "ReadAlongs".
 
 "Letters" in a writing system are usually referred to as "graphemes" and their corresponding meaningful sounds are referred to as "phonemes"; hence "g2p" or "grapheme-to-phoneme". It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as with the *digraph* "th" which can be pronounced *[unvoiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22)* as in 'thin' or *[voiced](https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.)* as in 'that'. The [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) (IPA) is not so ambiguous! In IPA, the 'th' in 'thin' is written as **θ** and the 'th' in 'that' is written as **ð**.
 
@@ -47,7 +47,7 @@ Some languages historically used “font hacks” to render the characters in th
 
 # Using g2p studio
 
-If you want to use `g2p` to convert some text in one of the supported languages[^2], simply visit the [G2P Studio](https://g2p-studio.herokuapp.com), select a language from the dropdown, and type in your text, as shown below. That's all there is to it! To learn how to add support for other languages and use `g2p` for other cool things, go on to [the next part of the series](https://thislinkis.dead)!
+If you want to use `g2p` to convert some text in one of the supported languages[^2], simply visit the [G2P Studio](https://g2p-studio.herokuapp.com), select a language from the dropdown, and type in your text, as shown below. That's all there is to it! To learn how to add support for other languages and use `g2p` for other cool things, go on to [the next part of the series]({{ "g2p-basic-mappings-gui" | absolute_url }})!
 
 {% picture studio-basic.png %}
 
