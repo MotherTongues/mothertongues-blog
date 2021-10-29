@@ -36,11 +36,11 @@ Convertextract is a tool that lets you use `g2p` mappings to convert text inside
 
 ReadAlongs is a research project from the [National Research Council's Indigenous Language Technology Project](https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project).
 
-Language revitalization communities have potentially many different recordings of language and some associated text, but mobilizing these materials into something that is educationally useful can be time consuming. It's also tough from the learner's perspective to try and follow along the text (maybe a Word Document) just by simply playing the audio. It's easy to get lost in the recording quickly, and from personal experience, trying to do that usually involves a lot of frustrating rewinding.
+Communities engaged in language revitalization have potentially many different recordings of their language and some associated text, but mobilizing these materials into something that is educationally useful can be time consuming. It's also tough from the learner's perspective to try and follow along the text (maybe a Word Document) just by simply playing the audio. It's easy to get lost in the recording quickly, and from personal experience, trying to do that usually involves a lot of frustrating rewinding.
 
-What if we could develop a tool that *automatically* figured out what parts of the audio file corresponded to what parts of the text? In [Natural Language Processing](https://en.wikipedia.org/wiki/Natural_language_processing), this is called *forced alignment*, and this is fundamentally what the ReadAlongs project does. But how does it do it? In part, by using a whole bunch of `g2p` mappings!
+What if we could develop a tool that *automatically* figured out what parts of the audio file corresponded to what parts of the text? In [Natural Language Processing](https://en.wikipedia.org/wiki/Natural_language_processing), this is called *forced alignment*, and this is fundamentally what the [ReadAlongs project](https://github.com/ReadAlongs/Studio) does. But how does it do it? In part, by using a whole bunch of `g2p` mappings!
 
-First of all, it's good to know that forced alignment is essentially a "solved problem" for languages with a lot of data, thanks to people like David Huggins-Daines who is a collaborator on the ReadAlongs project. And, if you know Python, and have sentence-aligned parallel audio/text data in your language, you can train a model using one of the few tools out there developed for this task, like [the Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/). But what if you don't have that much data (or any) and what if you don't know Python? If your language has a `g2p` mapping between its writing system and the ipa, you can likely circumvent that whole process. Here's how:
+First of all, it's good to know that forced alignment is essentially a "solved problem" for languages with a lot of data, thanks to people like David Huggins-Daines who is a collaborator on the ReadAlongs project. And, if you know Python, and have sentence-aligned parallel audio/text data in your language, you can train a model using one of the several tools out there developed for this task, like [the Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/). But what if you don't have that much data (or any) and what if you don't know Python? If your language has a `g2p` mapping between its writing system and the IPA, you can likely circumvent that whole process. Here's how:
 
 We take a model for doing forced alignment on English and we manually write a `g2p` mapping from the writing system to IPA for the language we want to make a ReadAlong for. For example's sake let's say, Kanyen'kéha (Mohawk). This step requires somebody who is both familiar with the writing system used, and with the International Phonetic Alphabet. 
 
@@ -48,7 +48,7 @@ Then, we use the very cool Python library [PanPhon](https://github.com/dmort27/p
 
 Then, we convert the ReadAlong in question from its original orthographic form all the way to English IPA (well, actually to 'Arpabet' which is an ASCII-compliant phonetic transcription standard that the alignment model understands).
 
-Then, after we "do the alignment" (ie figure out which parts of the audio correspond to which part of the text), ReadAlongs puts it all back together again and ta-da! There is your aligned audio and text! Keep reading to see how to generate an X-to-English IPA mapping for your language.
+Then, after we "do the alignment" (ie figure out which parts of the audio correspond to which parts of the text), ReadAlongs puts it all back together again and ta-da! There is your aligned audio and text! Keep reading to see how to generate an X-to-English IPA mapping for your language.
 
 #### Generate your mapping between your language's IPA and English IPA
 
@@ -62,7 +62,7 @@ That will automatically generate a moh-ipa to eng-ipa mapping in `g2p/mappings/l
 
 #### Visualizing the process
 
-This is actually where the introductory picture to this blog post comes from! In the graphic below, you can see the word 'bonjour' in French converted to its IPA transcription. Then, its IPA transcription gets converted into its corresponding *English* IPA transcription based on the generated mapping (notice how uvular /ʁ/ gets transformed to alveolo-palatal /ʒ/). Then finally, the English IPA form is converted to Arpabet. So in all, we have an input of 'bonjour' that gets output as 'B AO N ZH UW ZH' and the aligner runs on that form.
+This is actually where the introductory picture to this blog series comes from! In the graphic below, you can see the word 'bonjour' in French converted to its IPA transcription. Then, its IPA transcription gets converted into its corresponding *English* IPA transcription based on the generated mapping (notice how uvular /ʁ/ gets transformed to alveolo-palatal /ʒ/). Then finally, the English IPA form is converted to Arpabet. So in all, we have an input of 'bonjour' that gets output as 'B AO N ZH UW ZH' and the aligner runs on that form.
 
 {% picture bonjour-g2p.png %}
 
@@ -72,7 +72,7 @@ You can recreate this type of animation using the G2P studio by selecting the Fr
 
 #### What can you do with your aligned audio/text?
 
-ReadAlongs exports to a variety of formats, including epub (for e-readers), [Praat](https://www.fon.hum.uva.nl/praat/) TextGrids, [ELAN](https://archive.mpi.nl/tla/elan) files, various subtitle formats, and an embeddable web component for your website. This project is still *very* unstable though, and it is **not** yet recommended to use it in production.
+ReadAlongs exports to a variety of formats, including epub (for e-readers), [Praat](https://www.fon.hum.uva.nl/praat/) TextGrids, [ELAN](https://archive.mpi.nl/tla/elan) files, various subtitle formats, and an embeddable web component for your website.
 
 Below is an example of the embeddable web component in Danish.
 

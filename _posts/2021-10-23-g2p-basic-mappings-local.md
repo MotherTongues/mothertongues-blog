@@ -34,13 +34,17 @@ As described in the [previous post]({{"g2p-basic-mappings-gui" | absolute_url }}
 
 You can follow along by writing your rules and mappings on your computer using a text editor like [Visual Studio Code](https://code.visualstudio.com/).
 
-You should also install `g2p` by running `pip3 install g2p` in your command line or an [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) within [Visual Studio Code](https://code.visualstudio.com/). See [this post](https://www.kaggle.com/getting-started/99468) for more information on installing Python packages with pip. 
+You should also install `g2p` by running `pip3 install g2p`[^1] in your command line or an [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) within [Visual Studio Code](https://code.visualstudio.com/). See [this post](https://www.kaggle.com/getting-started/99468) for more information on installing Python packages with pip. 
 
 ### Use in Python and the command line
 
 #### Installation
 
-We recommend installing `g2p` using [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)):
+There are two ways to install `g2p`:
+ - install the latest published version of `g2p`, for use as is;
+ - install an editable version to create your own mappings or edit `g2p` yourself.
+
+To install the latest published version of `g2p`, we recommend installing it using [pip](https://en.wikipedia.org/wiki/Pip_(package_manager)):
 
 ```python
 pip install g2p
@@ -62,7 +66,7 @@ cd g2p && pip install -e .
 
 #### Usage
 
-Using `g2p` within Python can be done, either programatically using the `make_g2p` function:
+Using `g2p` within Python can be done programatically using the `make_g2p` function:
 
 ```python
 >>> from g2p import make_g2p
@@ -129,7 +133,7 @@ or like this using JSON:
 
 ## Mapping configuration
 
-When you combine multiple rules in `g2p` for a particular purpose, this is called a *mapping*. In addition to each file containing your rules, you need a configuration file that tells `g2p` how to process your rules. We write mapping configurations in files titled YAML file `config.yaml`. ".yaml" is the file extension for YAML which stands for 'Yet Another Markup Language' - which might be how you're feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!
+When you combine multiple rules in `g2p` for a particular purpose, this is called a *mapping*. In addition to each file containing your rules, you need a configuration file that tells `g2p` how to process your rules. We write mapping configurations in YAML files titled `config.yaml`. ".yaml" is the file extension for YAML which stands for 'Yet Another Markup Language' - which might be how you're feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!
 
 Here is a basic configuration for your mapping:
 
@@ -138,7 +142,7 @@ mappings:
   - language_name: My Test Language # this is a shared value for all the mappings in this configuration
     display_name: My Test Language to IPA # this is a 'display name'. It is a user-friendly name for your mapping.
     in_lang: test # This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code
-    out_lang: test-ipa # This is the code for the output of your mapping. By convention in g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA
+    out_lang: test-ipa # This is the code for the output of your mapping. In g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA
     type: mapping 
     authors: # This is a way to keep track of who has contributed to the mapping
       - Aidan Pine
@@ -167,7 +171,7 @@ mappings:
     mapping: test_ipa_to_arpabet.json 
 ```
 
-If you're not familiar with YAML, and you're not just copy pasting from here, I recommend having a look at one of the many [tutorials](https://gettaurus.org/docs/YAMLTutorial/) on how to use YAML properly before attempting to write your own mapping configuration.
+If you're not familiar with YAML, and you're not just copy pasting from here, I recommend having a look at one of the many [tutorials](https://gettaurus.org/docs/YAMLTutorial/) on how to use YAML properly before attempting to write your own mapping configuration, or looking at some of the examples of configurations in `g2p/mappings/langs/*`.
 
 ## Bringing it all together
 
@@ -199,8 +203,7 @@ and your `test_to_ipa.json` file should look like this:
 
 Then, type the following command in your command line or integrated terminal: `g2p convert "kæt" test test-ipa --config /path/to/config.yaml`, replace `/path/to/config.yaml` with the path from your current working directory in the command line to your config.yaml file. You should see the output `kʰæt` produced below. Congratulations! You did your first conversion with `g2p`. Try changing your rules around or converting other text and experiment to see what happens.
 
+
 ### Footnotes
 
-[^1]: I'm using the free, hobby plan at <https://www.heroku.com/> to host it though, so occasionally the server goes to sleep. If you first go to the site and it takes a few seconds to boot up, don't worry!
-[^2]: A Python 'library' is a collection of code
-[^3]: Orthographic characters are circumfixed with apostrophes like 'a', broad IPA typically uses forward slashes like /k/ and narrow IPA typically uses square brackets like [kʰ]
+[^1]: See this link for more information on the difference between pip and pip3: https://www.pythonpool.com/pip-vs-pip3/
