@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>G2P Part 4: advanced mappings with g2p | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="G2P Part 4: advanced mappings with g2p" />
+<meta name="author" content="AidanPine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Guide: advanced mappings with g2p" />
+<meta property="og:description" content="Guide: advanced mappings with g2p" />
+<link rel="canonical" href="https://blog.mothertongues.org/g2p-advanced-mappings/" />
+<meta property="og:url" content="https://blog.mothertongues.org/g2p-advanced-mappings/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/ab-abc-i.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@AidanPine" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"AidanPine"},"description":"Guide: advanced mappings with g2p","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/g2p-advanced-mappings/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/ab-abc-i.png","url":"https://blog.mothertongues.org/g2p-advanced-mappings/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"G2P Part 4: advanced mappings with g2p","dateModified":"2021-10-24T00:00:00+00:00","datePublished":"2021-10-24T00:00:00+00:00","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=G2P Part 4: advanced mappings with g2p&url=https://blog.mothertongues.org/g2p-advanced-mappings/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/g2p-advanced-mappings/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/g2p-advanced-mappings/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7623fd3eeb0acbe1084fecc20c3093ae?s=250&d=mm&r=x"
+                            alt="Aidan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://aidanpine.ca">Aidan</a><a
+                            target="_blank" href="https://twitter.com/aidanpine" class="btn follow">Follow</a>
+                        <span class="author-description">Lead developer of Mother Tongues.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">G2P Part 4: advanced mappings with g2p</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/ab-abc-i.png"
+                alt="G2P Part 4: advanced mappings with g2p">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>This is the 4th blog post in a seven-part series about g2p. This is a relatively long post, where we get in to all the nitty gritty of writing complex mappings in g2p.</p>
+
+<h3 id="g2p-blog-series-index">G2P Blog Series Index</h3>
+
+<ul>
+  <li><a href="https://blog.mothertongues.org/g2p-background">Background</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-gui">How to write a basic mapping in G2P Studio</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-local">Writing mappings on your computer</a></li>
+  <li>Advanced mappings</li>
+  <li><a href="https://blog.mothertongues.org/g2p-applications">ReadAlong Studio &amp; Other Applications</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-preprocess">Preprocessing mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
+</ul>
+
+<h2 id="advanced-a-deeper-dive-into-writing-tricky-rules">Advanced: A deeper dive into writing tricky rules</h2>
+
+<p>You may have noticed that the rules described in the previous posts for converting words like ‘dog’ and ‘cat’ to IPA are woefully incomplete. The real world use cases for <code class="highlighter-rouge">g2p</code> often need to account for a lot more messiness than was described in the artificial example above. In fact, for languages like English, <code class="highlighter-rouge">g2p</code> is likely <strong>not</strong> a good solution. The English writing system is notoriously inconsistent, and there already exist a variety of other tools that account for many of the lexical (word-specific) idiosyncracies in deriving the IPA form from the orthographic form. For many Indigenous languages, the writing system is sufficiently close to the spoken form that <code class="highlighter-rouge">g2p</code> is a very appropriate solution. In the following sections, I’ll describe some common problems when writing rules, and how to fix them.</p>
+
+<p>As this post is quite long, please refer to the following index for quick navigation:</p>
+
+<ul>
+  <li><a href="#rule-ordering">Rule Ordering</a></li>
+  <li><a href="#unicode-escape-equences">Unicode Escape Sequences</a></li>
+  <li><a href="#special-settings-for-your-mapping-configuration">Special Settings &amp; Configuration</a></li>
+  <li><a href="#defining-sets-of-characters">Defining variables</a></li>
+  <li><a href="#regular-expressions">Regular Expresssions</a></li>
+  <li><a href="#using-specific-indices">Using indices</a></li>
+</ul>
+
+<h3 id="rule-ordering">Rule Ordering</h3>
+
+<p><strong>The order of your rules in <code class="highlighter-rouge">g2p</code> really matters</strong>! This is because some rules can either create or remove the context for other rules to apply. In linguistics, these rule ordering patterns are usually talked about as either <a href="https://linguistics.stackexchange.com/questions/6084/whats-the-difference-between-counterbleeding-bleeding-and-feeding">feeding, bleeding, counter-feeding, or counter-bleeding</a> relationships. There are potentially valid reasons to want to encode any of these types of relationships in your rules.</p>
+
+<p>To illustrate a possible problem, let’s consider a <code class="highlighter-rouge">g2p</code> mapping for language that converts ‘a̱’ to ‘ə’ and ‘a’ to ‘æ’. ‘a̱’ is a sequence of a regular ‘a’ followed by a combining macron below (\u0331). Because \u0331 (‘a̱’) is easily confusable with \u0332 (‘a̲’), in order to follow the rule of thumb for <a href="#unicode-escape-sequences">Unicode escape sequences</a>, I’ll write the rules as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a</td>
+      <td>æ</td>
+    </tr>
+    <tr>
+      <td>a\u0331</td>
+      <td>ə</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now, assuming an input to this mapping of ‘a̱’ (a\u0331), we would get ‘æ̱’ (æ\u0331) instead of ‘ə’. Why is that? Because the first rule applies and turns ‘a’ into ‘æ’ before the second rule has a chance to apply. This is called a <em>bleeding</em> relationship because the first rule <em>bleeds</em> the context of the second rule from applying. In order to avoid it, we would need to write our rules as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a\u0331</td>
+      <td>ə</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>æ</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>With this ordering, our input of ‘a̱’ (a\u0331) would turn into ‘ə’ as we expect, and our input of ‘a’ would turn into æ also as expected. Try it out on the <a href="https://g2p-studio.herokuapp.com">G2P Studio</a> if you don’t believe me!</p>
+
+<h3 id="unicode-escape-sequences">Unicode Escape Sequences</h3>
+
+<p>Sometimes you need rules to convert from characters that either don’t render very well, or render in a confusing way. In those cases, you can use <a href="https://www.rapidtables.com/code/text/unicode-characters.html">Unicode escape sequences</a>. For example, maybe you want to write a rule that converts the standard ASCII ‘g’ to the strict IPA Unicode /ɡ/. As you can likely see in your browser, these characters look very similar, but they’re not the same character! The ASCII ‘g’ is U+0067 and the strict IPA ‘ɡ’ is U+0261. So, you can write a rule as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\u0067</td>
+      <td>\u0261</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>or using <a href="https://www.json.org/json-en.html">JSON</a>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\u</span><span class="s2">0067"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\u</span><span class="s2">0261"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This is also helpful when you need to write rules between combining characters or other confusable characters. The <strong>rule of thumb</strong> is, if your rules are clearer using Unicode escape sequences, do it! Otherwise, just use the normal character in place.</p>
+
+<h4 id="tip-for-finding-a-characters-codepoint">Tip for finding a character’s codepoint</h4>
+
+<p>If you want to find out what a particular character’s \uXXXX notation is, simply paste the character(s) into the search bar of this handy site: <a href="https://unicode.scarfboy.com/">https://unicode.scarfboy.com/</a> and you will get a list of the Unicode codepoints for those characters.</p>
+
+<p>Note, you might find some resources that write a character’s codepoint as U+0261 instead of \u0261. The U+XXXX format is the one officially adopted by the Unicode consortium, as early as of Unicode 2.0.0. However, the Python programming language uses the <a href="https://docs.python.org/3/reference/lexical_analysis.html#:~:text=escape%20sequences%20only%20recognized%20in%20string%20literals%20are%3A">\uXXXX format</a>. The important part is recognizing that the Unicode codepoint is identified by the XXXX hexadecimal sequence.</p>
+
+<h3 id="special-settings-for-your-mapping-configuration">Special settings for your mapping configuration</h3>
+
+<p>You can add extra settings to your configuration file to change the way that <code class="highlighter-rouge">g2p</code> interprets your mappings. Below is a list of possible settings and their use. It’s best practise to declare all the setting keys below for each individual mapping in your <code class="highlighter-rouge">config.yaml</code>, however default values do exist. Your setting keys must be declared on the same level as all of the other keys (<code class="highlighter-rouge">language_name</code>, <code class="highlighter-rouge">in_lang</code>, <code class="highlighter-rouge">out_lang</code> etc). These settings are also available in the G2P Studio as check boxes to select or unselect.</p>
+
+<h5 id="rule_ordering-default-as-written"><code class="highlighter-rouge">rule_ordering</code> (default: ‘as-written’)</h5>
+<p>As described in the earlier part of this post, your rules apply in the order you write them. And as described in the advanced section on <a href="#rule-ordering">rule ordering</a>, sometimes this can make your mapping produce unexpected results!</p>
+
+<p>If you set your mapping to <code class="highlighter-rouge">rule_ordering: 'apply-longest-first'</code>, <code class="highlighter-rouge">g2p</code> will sort all of your rules based on the length of the input to the rule, so that rules with longer inputs apply before rules with shorter inputs. This prevents some common ‘bleeding’ rule-ordering relationships described in the <a href="#rule-ordering">rule ordering</a> section. So, if you declared your rules as:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Then, with <code class="highlighter-rouge">rule_ordering: 'as-written'</code> (the default), you would get ‘bb’ as the output for the input ‘ab’. Whereas with <code class="highlighter-rouge">rule_ordering: 'apply-longest-first'</code>, you would get ‘c’ as the output for the input ‘ab’.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rule_ordering</span><span class="pi">:</span> <span class="s1">'</span><span class="s">apply-longest-first'</span>   <span class="c1"># &lt;------- Add this</span>
+</code></pre></div></div>
+
+<h5 id="case_sensitive-default-true"><code class="highlighter-rouge">case_sensitive</code> (default: true)</h5>
+
+<p>The default is to treat your rules as case sensitive, but setting <code class="highlighter-rouge">case_sensitive: false</code>, will make your rules case insensitive.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">case_sensitive</span><span class="pi">:</span> <span class="no">false</span>   <span class="c1"># &lt;------- Add this</span>
+</code></pre></div></div>
+
+<h5 id="escape_special-default-false"><code class="highlighter-rouge">escape_special</code> (default: false)</h5>
+
+<p>As I will describe later in the section on <a href="#regular-expressions">regular expressions</a>, you can define rules using ‘special’ characters. By default, these characters are interpreted as ‘special’, but if you want all special characters in your mapping to be interpreted as their actual characters, you can set <code class="highlighter-rouge">escape_special: true</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">escape_special</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
+</code></pre></div></div>
+
+<h5 id="norm_form-default-nfd"><code class="highlighter-rouge">norm_form</code> (default: “NFD”)</h5>
+
+<p>If you’ve never heard of Unicode normalization don’t worry, you’re not alone! But, for writing rules and mappings using <code class="highlighter-rouge">g2p</code>, there can be some surprising ‘gotcha’ moments if you don’t choose the right normalization strategy.</p>
+
+<p>The basic gist of the problem is that there can be multiple ways to write the <em>same</em> character in Unicode, depending on whether you use ‘combining characters’ to type or not. For example, on some keyboards, you might type ‘é’ by writing an e first and then another keystroke to type the acute accent that sits above it. The Unicode representation for this would be \u0065 (e) followed by \u0301 (a combining acute accent), however there is an entirely separate Unicode code point that has these two characters <em>pre-composed</em> (\u00e9), which some keyboard layouts will generate instead.</p>
+
+<p>Many fonts will render these two different representations identically and it can be really difficult and confounding as a user if both appear in the same text. This causes problems, like text that looks identical will not appear in “find &amp; replace” or search engines will not find the text that you’re looking for, even though something that <em>looks</em> identical exists. Luckily, there is a standard for normalizing these differences so that all instances of sequences like \u0065\u0301 would be (NF)Composed into \u00e9, or the opposite direction where all instances of \u00e9 would be (NF)Decomposed into \u0065\u0301. For a more in-depth conversation on this, check out <a href="https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html">this blog article</a>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">norm_form</span><span class="pi">:</span> <span class="s2">"</span><span class="s">NFC"</span>   <span class="c1"># &lt;------- Add your Unicode normalization strategy here</span>
+</code></pre></div></div>
+
+<h5 id="out_delimiter-default-"><code class="highlighter-rouge">out_delimiter</code> (default: ‘’)</h5>
+
+<p>Some mappings require that a delimiting character (or delimiting characters) be inserted whenever a rule applies. So, using the example from the first part of this post, maybe you want <code class="highlighter-rouge">kæt</code> to go to <code class="highlighter-rouge">kʰ|æ|t</code> instead of <code class="highlighter-rouge">kʰæt</code>. For this, you would set <code class="highlighter-rouge">out_delimiter: "|"</code> in your mapping.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">out_delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">|"</span>   <span class="c1"># &lt;------- Add your delimiter here</span>
+</code></pre></div></div>
+
+<h5 id="reverse-default-false"><code class="highlighter-rouge">reverse</code> (default: false)</h5>
+
+<p>Setting <code class="highlighter-rouge">reverse: true</code> will try to reverse the mappings so that all characters defined as <code class="highlighter-rouge">out</code> in your mapping become the input characters and vice versa. Except for a few cases, this is unlikely to work very well for advanced mapings.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">reverse</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
+</code></pre></div></div>
+
+<h5 id="prevent_feeding-default-false"><code class="highlighter-rouge">prevent_feeding</code> (default: false)</h5>
+
+<p>Let’s say you have the following rules:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>kw</td>
+      <td>kʷ</td>
+    </tr>
+    <tr>
+      <td>k</td>
+      <td>kʲ</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Let’s say the intended output here is that whenever we get a <code class="highlighter-rouge">kw</code> as an input, we get <code class="highlighter-rouge">kʷ</code> and whenever we get <code class="highlighter-rouge">k</code> we get <code class="highlighter-rouge">kʲ</code>. Ordered in the way they are defined, an input of <code class="highlighter-rouge">kw</code> will produce <code class="highlighter-rouge">kʲʷ</code> and ordered the other way, an input of <code class="highlighter-rouge">kw</code> will produce <code class="highlighter-rouge">kʲw</code>. Neither of these are correct though! So, how do we solve this? There is a setting called <code class="highlighter-rouge">prevent_feeding</code> which, if set to true, will prevent the output of one rule from being processed by any subsequent rule. As described in the <a href="#rule-ordering">rule ordering section</a> the process when one rule provides the context for another rule to apply is called ‘feeding’. And so this setting is named <code class="highlighter-rouge">prevent_feeding</code> because it prevents that from happening. Note, setting <code class="highlighter-rouge">prevent_feeding: true</code> for your whole mapping will do this for every rule. If you just want to prevent feeding for one particular rule, you can write your rules in JSON and add the key to the specific rule you want to prevent feeding for.</p>
+
+<p>Prevent feeding for a single rule (in JSON rule mapping file):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kw"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʷ"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"prevent_feeding"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʲ"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Prevent feeding for every rule (in <code class="highlighter-rouge">config.yaml</code>):</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">English to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">eng</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">eng-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">prevent_feeding</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
+</code></pre></div></div>
+
+<h3 id="defining-sets-of-characters">Defining sets of characters</h3>
+
+<p>Some rules are written with repeating sets of characters that can be tedious to write out. As a result, we might want to define certain sets of reusable characters using a <em>variable</em> name. These can be written using special types of mapping files in <code class="highlighter-rouge">g2p</code>.</p>
+
+<p>For example, consider a series of rules which contextually apply only between vowels. Let’s say as an example of one of those rules, that <code class="highlighter-rouge">dd</code> turns to <code class="highlighter-rouge">ð</code> when it exists between two vowels. This language has the following vowels in its inventory: <code class="highlighter-rouge">a,e,i,o,u,æ,å,ø</code>. You could write the rules like this<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>dd</td>
+      <td>ð</td>
+      <td>(a|e|i|o|u|æ|å|ø)</td>
+      <td>(a|e|i|o|u|æ|å|ø)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>But, if there are lots of rules with these vowels, this could get very tedious, not to mention annoying and error-prone if the characters in the set change at some point. It is also less readable, and leaves the reader of the mapping to infer the meaning of the rule.</p>
+
+<p>So, in a separate file, by convention it is usually called <code class="highlighter-rouge">abbreviations.csv</code>, you can define a list of sets where each row is a new set. The first column contains the name of the set (by convention this is capitalized), and you can add characters to every following column. So, for example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>variable name</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>VOWEL</td>
+      <td>a</td>
+      <td>e</td>
+      <td>i</td>
+      <td>o</td>
+      <td>u</td>
+      <td>æ</td>
+      <td>å</td>
+      <td>ø</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>CONSONANT</td>
+      <td>p</td>
+      <td>b</td>
+      <td>t</td>
+      <td>d</td>
+      <td>k</td>
+      <td>g</td>
+      <td>f</td>
+      <td>s</td>
+      <td>h</td>
+      <td>v</td>
+      <td>j</td>
+      <td>r</td>
+      <td>l</td>
+      <td>m</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>FRONT</td>
+      <td>i</td>
+      <td>e</td>
+      <td>œ</td>
+      <td>ø</td>
+      <td>y</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>BACK</td>
+      <td>u</td>
+      <td>o</td>
+      <td>a</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then, in your configuration, you can add the file to a specific mapping using <code class="highlighter-rouge">abbreviations: abbreviations.csv</code>. After adding it to your mapping, you can write the above rule like this instead:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>dd</td>
+      <td>ð</td>
+      <td>VOWEL</td>
+      <td>VOWEL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can also use abbreviations like this in the G2P studio by writing them in the section at the bottom of the page titled ‘Custom Abbreviations’ They will be automatically applied to your custom rules above.</p>
+
+<p><img src="/assets/images/g/g2p-abbs-800-7cd2be.png" srcset="/assets/images/g/g2p-abbs-400-7cd2be.png 400w, /assets/images/g/g2p-abbs-600-7cd2be.png 600w, /assets/images/g/g2p-abbs-800-7cd2be.png 800w, /assets/images/g/g2p-abbs-968-7cd2be.png 968w" /></p>
+
+<h3 id="regular-expressions">Regular Expressions</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Regular_expression">Regular expressions</a> are used ubiquitously in programming to define certain search patterns in text. In fact, this is how <code class="highlighter-rouge">g2p</code> rules work! They eventually get compiled into a regular expression too. For the most part, you can add regular expression syntax to your rules. So, suppose you wanted to write a rule that deleted word-final ‘s’, you could write the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>s</td>
+      <td> </td>
+      <td>\B</td>
+      <td>\b</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As you can see <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/">in this handy regular expression cheatsheet</a> our rule turns ‘s’ into nothing if it is preceded by \B (any character that is not a word boundary) and followed by \b (word boundary).</p>
+
+<p>Note: There are some ‘gotchas’ with writing regular expressions using g2p. This is a technical note, but if you’re writing some complicated regular expressions and they’re not working, don’t hesitate to <a href="https://github.com/roedoejet/g2p/issues/new/choose">raise an issue</a>. For example there are some active issues around edge cases where regular expressions and <code class="highlighter-rouge">g2p</code>’s custom <a href="#using-specific-indices">syntax for indices</a> don’t play nice together.</p>
+
+<h3 id="using-specific-indices">Using specific indices</h3>
+
+<p>Even people familiar with using <code class="highlighter-rouge">g2p</code> might not be aware that one of its main features is that it preserves indices between input and output segments. Meaning that when we convert from something like ‘kæt’ to ‘kʰæt’ as in the first example, <code class="highlighter-rouge">g2p</code> knows that it’s the ‘k’ that turned into the ‘k’ and ‘ʰ’ as seen below.</p>
+
+<p><img src="/assets/images/g/k-to-kh-800-7e64e3.png" srcset="/assets/images/g/k-to-kh-400-7e64e3.png 400w, /assets/images/g/k-to-kh-600-7e64e3.png 600w, /assets/images/g/k-to-kh-800-7e64e3.png 800w, /assets/images/g/k-to-kh-942-7e64e3.png 942w" /></p>
+
+<p>The default interpretation of rule indices by <code class="highlighter-rouge">g2p</code> is that it matches the characters between the input and the output one-by-one in a given rule until it reaches the end of either one, then it matches any remaining characters in the longer part (input or output) to the last character of the shorter part. For example, compare the following examples where ‘abc’ is converted to ‘ab’ and gloms the excess input character onto the last output character:</p>
+
+<p><img src="/assets/images/g/abc-ab-800-3a0e08.png" srcset="/assets/images/g/abc-ab-400-3a0e08.png 400w, /assets/images/g/abc-ab-600-3a0e08.png 600w, /assets/images/g/abc-ab-800-3a0e08.png 800w, /assets/images/g/abc-ab-942-3a0e08.png 942w" /></p>
+
+<p>and where ‘ab’ is converted to ‘abc’ and gloms the excess output character onto the last input character:</p>
+
+<p><img src="/assets/images/g/ab-abc-800-418b5c.png" srcset="/assets/images/g/ab-abc-400-418b5c.png 400w, /assets/images/g/ab-abc-600-418b5c.png 600w, /assets/images/g/ab-abc-800-418b5c.png 800w, /assets/images/g/ab-abc-942-418b5c.png 942w" /></p>
+
+<p>But what if - for some imaginary reason - we want to show a rule where ‘ab’ turns into ‘bca’, and specifically make note that it was ‘b’ that turned into ‘bc’, and ‘a’ stays as ‘a’? Well, we can use special <code class="highlighter-rouge">g2p</code> syntax for explicitly writing these indices. Instead of,</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ab</td>
+      <td>bca</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>we can write</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a{1}b{2}</td>
+      <td>bc{2}a{1}</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now, our indices will reflect our imaginary need to index ‘a’ with ‘a’ and ‘b’ with ‘bc’:</p>
+
+<p><img src="/assets/images/g/ab-bca-i-800-bfa620.png" srcset="/assets/images/g/ab-bca-i-400-bfa620.png 400w, /assets/images/g/ab-bca-i-600-bfa620.png 600w, /assets/images/g/ab-bca-i-800-bfa620.png 800w, /assets/images/g/ab-bca-i-1000-bfa620.png 1000w" /></p>
+
+<p>Using the explicit indices syntax will break up your rule into a number of smaller rules that apply the same defaults of above but to explicit sets of characters. You <strong>must</strong> use curly brackets, but the choice of character you put inside is arbitrary — it just has to match on both sides. By convention, we use natural numbers. This will match all the characters to the left of each pair of curly brackets in the input with the matching index in the output. So here, ‘a’ is matched with ‘a’ and ‘b’ is matched with ‘bc’.</p>
+
+<p>These can get fairly complicated, so we recommend only using this functionality either for demonstration purposes, or for specific applications which require the preservation of indices.</p>
+
+<h3 id="footnotes">Footnotes</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>You’ll notice that the syntax here is a little weird, what the heck are all of those pipes (the up-down things like |) doing there? That’s because I’m using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> to express a <strong>OR</strong> e <strong>OR</strong> u etc… For more info, check out the <a href="#regular-expressions">section on regular expressions</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2021-10-24">24 Oct 2021</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#explanation">#explanation</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#g2p">#g2p</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#python">#python</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tutorial">#tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/g2p-basic-mappings-local/"> &laquo;
+                    G2P Part 3: Make a basic mapping with g2p</a>
+                
+                
+                <a class="next d-block col-md-6 text-lg-right"
+                    href="https://blog.mothertongues.org/g2p-applications/">G2P Part 5: Applications for g2p, an example with ReadAlongs &raquo; </a>
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (5)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (5)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2021 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>

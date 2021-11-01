@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>G2P Part 3: Make a basic mapping with g2p | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="G2P Part 3: Make a basic mapping with g2p" />
+<meta name="author" content="AidanPine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tutorial: Make a basic mapping with g2p" />
+<meta property="og:description" content="Tutorial: Make a basic mapping with g2p" />
+<link rel="canonical" href="https://blog.mothertongues.org/g2p-basic-mappings-local/" />
+<meta property="og:url" content="https://blog.mothertongues.org/g2p-basic-mappings-local/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/ab-abc.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@AidanPine" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"AidanPine"},"description":"Tutorial: Make a basic mapping with g2p","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/g2p-basic-mappings-local/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/ab-abc.png","url":"https://blog.mothertongues.org/g2p-basic-mappings-local/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"G2P Part 3: Make a basic mapping with g2p","dateModified":"2021-10-23T00:00:00+00:00","datePublished":"2021-10-23T00:00:00+00:00","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=G2P Part 3: Make a basic mapping with g2p&url=https://blog.mothertongues.org/g2p-basic-mappings-local/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/g2p-basic-mappings-local/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/g2p-basic-mappings-local/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7623fd3eeb0acbe1084fecc20c3093ae?s=250&d=mm&r=x"
+                            alt="Aidan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://aidanpine.ca">Aidan</a><a
+                            target="_blank" href="https://twitter.com/aidanpine" class="btn follow">Follow</a>
+                        <span class="author-description">Lead developer of Mother Tongues.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">G2P Part 3: Make a basic mapping with g2p</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/ab-abc.png"
+                alt="G2P Part 3: Make a basic mapping with g2p">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>This is the third blog post in a seven-part series describing how to make a basic mapping with <code class="highlighter-rouge">g2p</code> on your computer. If you haven’t already, please read the <a href="https://blog.mothertongues.org/g2p-background">introductory blog post for g2p</a> and <a href="https://blog.mothertongues.org/g2p-basic-mappings-gui">the post about basic mappings with G2P Studio</a></p>
+
+<ul>
+  <li><a href="https://blog.mothertongues.org/g2p-background">Background</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-gui">How to write a basic mapping in G2P Studio</a></li>
+  <li>Writing mappings on your computer</li>
+  <li><a href="https://blog.mothertongues.org/g2p-advanced-mappings">Advanced mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-applications">ReadAlong Studio &amp; Other Applications</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-preprocess">Preprocessing mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
+</ul>
+
+<h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
+
+<ul>
+  <li>
+    <p>To be able to follow along, I suggest having some sort of text editor, like <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
+  </li>
+  <li>
+    <p>You will also need to have <a href="https://www.python.org/">Python</a> installed on your computer. If you need a bit of help, my colleague Eddie Antonio Santos wrote a very good blog article on <a href="https://eddieantonio.ca/blog/2020/01/26/installing-python-on-macos/">installing Python on Mac</a>.</p>
+  </li>
+</ul>
+
+<h2 id="whats-the-gist-of-what-were-about-to-do">What’s the gist of what we’re about to do?</h2>
+
+<p>As described in the <a href="https://blog.mothertongues.org/g2p-basic-mappings-gui">previous post</a>, in order to use <code class="highlighter-rouge">g2p</code> we need to understand the building blocks; <strong>rules</strong> and <strong>mappings</strong>. <strong>Rules</strong> are patterns that describe how to turn some input text into some other output text. When we combine a series of ordered rules together for a specific purpose, we call this a <strong>mapping</strong>. This blog post will show you how to write rules and mappings on your computer to use with <code class="highlighter-rouge">g2p</code>.</p>
+
+<h2 id="how-do-i-follow-along">How do I follow along?</h2>
+
+<p>You can follow along by writing your rules and mappings on your computer using a text editor like <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
+
+<p>You should also install <code class="highlighter-rouge">g2p</code> by running <code class="highlighter-rouge">pip3 install g2p</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> in your command line or an <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">integrated terminal</a> within <a href="https://code.visualstudio.com/">Visual Studio Code</a>. See <a href="https://www.kaggle.com/getting-started/99468">this post</a> for more information on installing Python packages with pip.</p>
+
+<h3 id="use-in-python-and-the-command-line">Use in Python and the command line</h3>
+
+<h4 id="installation">Installation</h4>
+
+<p>There are two ways to install <code class="highlighter-rouge">g2p</code>:</p>
+<ul>
+  <li>install the latest published version of <code class="highlighter-rouge">g2p</code>, for use as is;</li>
+  <li>install an editable version to create your own mappings or edit <code class="highlighter-rouge">g2p</code> yourself.</li>
+</ul>
+
+<p>To install the latest published version of <code class="highlighter-rouge">g2p</code>, we recommend installing it using <a href="https://en.wikipedia.org/wiki/Pip_(package_manager)">pip</a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">g2p</span>
+</code></pre></div></div>
+
+<p>If you are going to be creating your own mappings or editing <code class="highlighter-rouge">g2p</code> in any way, you must first fork <code class="highlighter-rouge">g2p</code> by going to <a href="https://github.com/roedoejet/g2p">https://github.com/roedoejet/g2p</a> and forking the project to your own GitHub space.</p>
+
+<p>Once you’ve forked <code class="highlighter-rouge">g2p</code>, clone your own fork:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/YourGitHubUsername/g2p.git
+</code></pre></div></div>
+
+<p>and then do an <em>editable</em> pip installation:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>g2p <span class="o">&amp;&amp;</span> pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<h4 id="usage">Usage</h4>
+
+<p>Using <code class="highlighter-rouge">g2p</code> within Python can be done programatically using the <code class="highlighter-rouge">make_g2p</code> function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">g2p</span> <span class="kn">import</span> <span class="n">make_g2p</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">transducer</span> <span class="o">=</span> <span class="n">make_g2p</span><span class="p">(</span><span class="s">'dan'</span><span class="p">,</span> <span class="s">'eng-arpabet'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">transducer</span><span class="p">(</span><span class="s">'hej'</span><span class="p">)</span><span class="o">.</span><span class="n">output_string</span>
+<span class="s">'HH EH Y'</span>
+</code></pre></div></div>
+
+<h4 id="command-line-interface">Command Line Interface</h4>
+
+<p>You can also use <code class="highlighter-rouge">g2p</code> from the command line. The basic command for conversions is:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g2p convert &lt;input_text&gt; &lt;in_lang&gt; &lt;out_lang&gt;
+</code></pre></div></div>
+
+<p>So in practice:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>g2p convert hej dan eng-arpabet
+HH EH YY
+</code></pre></div></div>
+
+<h2 id="basic-rule-writing">Basic Rule writing</h2>
+
+<p>Each rule must be defined to have a sequence of one or more input characters and a sequence of zero or more output characters. We can define these rules in <code class="highlighter-rouge">g2p</code> either using a tabular spreadsheet format (CSV) or using a format called JavaScript Object Notation or <a href="https://www.json.org/json-en.html">JSON</a>.</p>
+
+<p>For example, rules written in the tabular comma-separated values (CSV) format:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a</td>
+      <td>æ</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>or using <a href="https://www.json.org/json-en.html">JSON</a>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"æ"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Both of the above rules capture our first rule that turns an orthographic ‘a’ into a broad IPA /æ/. You can choose to write your rules in <strong>either</strong> format, although JSON will offer you slightly more flexibility when writing <a href="https://blog.mothertongues.org/g2p-advanced-mappings">advanced rules</a>.</p>
+
+<p>If we want to write rules that depend on a particular context, we need a couple more columns (CSV) or keys (JSON) than just <code class="highlighter-rouge">in</code> and <code class="highlighter-rouge">out</code>. This is where we use <code class="highlighter-rouge">context_before</code> and <code class="highlighter-rouge">context_after</code>. So, our second rule from above was to turn /k/ to [kʰ] when the character after /k/ is /æ/. Here, we could write the rules like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>in</th>
+      <th>out</th>
+      <th>context_before</th>
+      <th>context_after</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>k</td>
+      <td>kʰ</td>
+      <td> </td>
+      <td>æ</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>or like this using JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʰ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"context_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"æ"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="mapping-configuration">Mapping configuration</h2>
+
+<p>When you combine multiple rules in <code class="highlighter-rouge">g2p</code> for a particular purpose, this is called a <em>mapping</em>. In addition to each file containing your rules, you need a configuration file that tells <code class="highlighter-rouge">g2p</code> how to process your rules. We write mapping configurations in YAML files titled <code class="highlighter-rouge">config.yaml</code>. “.yaml” is the file extension for YAML which stands for ‘Yet Another Markup Language’ - which might be how you’re feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!</p>
+
+<p>Here is a basic configuration for your mapping:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span> <span class="c1"># this is a shared value for all the mappings in this configuration</span>
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language to IPA</span> <span class="c1"># this is a 'display name'. It is a user-friendly name for your mapping.</span>
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test</span> <span class="c1"># This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code</span>
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> <span class="c1"># This is the code for the output of your mapping. In g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
+    <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to your mapping file. It should be in the same folder as your config.yaml file</span>
+</code></pre></div></div>
+
+<p>If you are familiar with yaml, you will see that you can have more than one mapping under the <code class="highlighter-rouge">mappings</code> key. So to add another mapping to this file, it would look like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span> 
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language to IPA</span> 
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> 
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
+    <span class="na">authors</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> 
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span>
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language IPA to Arpabet</span>
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> 
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">test-arpabet</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
+    <span class="na">authors</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_ipa_to_arpabet.json</span> 
+</code></pre></div></div>
+
+<p>If you’re not familiar with YAML, and you’re not just copy pasting from here, I recommend having a look at one of the many <a href="https://gettaurus.org/docs/YAMLTutorial/">tutorials</a> on how to use YAML properly before attempting to write your own mapping configuration, or looking at some of the examples of configurations in <code class="highlighter-rouge">g2p/mappings/langs/*</code>.</p>
+
+<h2 id="bringing-it-all-together">Bringing it all together</h2>
+
+<p>From following the previous two sections, you should have two files created: <code class="highlighter-rouge">test_to_ipa.json</code> and <code class="highlighter-rouge">config.yaml</code>. Your <code class="highlighter-rouge">config.yaml</code> file should look like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span> <span class="c1"># this is a shared value for all the mappings in this configuration</span>
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language to IPA</span> <span class="c1"># this is a 'display name'. It is a user-friendly name for your mapping.</span>
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test</span> <span class="c1"># This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code</span>
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> <span class="c1"># This is the code for the output of your mapping. By convention in g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
+    <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to your mapping file. It should be in the same folder as your config.yaml file</span>
+</code></pre></div></div>
+
+<p>and your <code class="highlighter-rouge">test_to_ipa.json</code> file should look like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kʰ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"context_after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"æ"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Then, type the following command in your command line or integrated terminal: <code class="highlighter-rouge">g2p convert "kæt" test test-ipa --config /path/to/config.yaml</code>, replace <code class="highlighter-rouge">/path/to/config.yaml</code> with the path from your current working directory in the command line to your config.yaml file. You should see the output <code class="highlighter-rouge">kʰæt</code> produced below. Congratulations! You did your first conversion with <code class="highlighter-rouge">g2p</code>. Try changing your rules around or converting other text and experiment to see what happens.</p>
+
+<h3 id="footnotes">Footnotes</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>See this link for more information on the difference between pip and pip3: https://www.pythonpool.com/pip-vs-pip3/ <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2021-10-23">23 Oct 2021</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#explanation">#explanation</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#g2p">#g2p</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tech-showcase">#tech-showcase</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tutorial">#tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/g2p-basic-mappings-gui/"> &laquo;
+                    G2P Part 2: Using G2P Studio</a>
+                
+                
+                <a class="next d-block col-md-6 text-lg-right"
+                    href="https://blog.mothertongues.org/g2p-advanced-mappings/">G2P Part 4: advanced mappings with g2p &raquo; </a>
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (5)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (5)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2021 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>

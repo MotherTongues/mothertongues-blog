@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>G2P Part 5: Applications for g2p, an example with ReadAlongs | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="G2P Part 5: Applications for g2p, an example with ReadAlongs" />
+<meta name="author" content="AidanPine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Applications for g2p, an example with ReadAlongs" />
+<meta property="og:description" content="Applications for g2p, an example with ReadAlongs" />
+<link rel="canonical" href="https://blog.mothertongues.org/g2p-applications/" />
+<meta property="og:url" content="https://blog.mothertongues.org/g2p-applications/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/nikikw.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@AidanPine" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"AidanPine"},"description":"Applications for g2p, an example with ReadAlongs","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/g2p-applications/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/nikikw.png","url":"https://blog.mothertongues.org/g2p-applications/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"G2P Part 5: Applications for g2p, an example with ReadAlongs","dateModified":"2021-10-25T00:00:00+00:00","datePublished":"2021-10-25T00:00:00+00:00","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=G2P Part 5: Applications for g2p, an example with ReadAlongs&url=https://blog.mothertongues.org/g2p-applications/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/g2p-applications/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/g2p-applications/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7623fd3eeb0acbe1084fecc20c3093ae?s=250&d=mm&r=x"
+                            alt="Aidan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://aidanpine.ca">Aidan</a><a
+                            target="_blank" href="https://twitter.com/aidanpine" class="btn follow">Follow</a>
+                        <span class="author-description">Lead developer of Mother Tongues.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">G2P Part 5: Applications for g2p, an example with ReadAlongs</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/nikikw.png"
+                alt="G2P Part 5: Applications for g2p, an example with ReadAlongs">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>This is the 5th post in a seven-part series about g2p. In this post, we discuss using g2p to create interactive text/audio books with ReadAlong Studio.</p>
+
+<h3 id="g2p-blog-series-index">G2P Blog Series Index</h3>
+
+<ul>
+  <li><a href="https://blog.mothertongues.org/g2p-background">Background</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-gui">How to write a basic mapping in G2P Studio</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-local">Writing mappings on your computer</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-advanced-mappings">Advanced mappings</a></li>
+  <li>ReadAlong Studio &amp; Other Applications</li>
+  <li><a href="https://blog.mothertongues.org/g2p-preprocess">Preprocessing mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
+</ul>
+
+<p>This post will discuss the use of <code class="highlighter-rouge">g2p</code> in the <a href="#readalongs">ReadAlongs</a> project for creating interactive audio/text documents.</p>
+
+<h2 id="other-applications">Other Applications</h2>
+
+<p>There are number of different software tools that are already making use of <code class="highlighter-rouge">g2p</code>. For general purpose use in Python, have a look at <a href="https://blog.mothertongues.org/g2p-advanced-mappings">this post</a>.</p>
+
+<h3 id="convertextract">Convertextract</h3>
+
+<p>Convertextract is a tool that lets you use <code class="highlighter-rouge">g2p</code> mappings to convert text inside a variety of different documents, including Microsoft Office documents like Powerpoint and Word coduments. Have a look at the <a href="https://github.com/roedoejet/convertextract">convertextract repo readme</a> or at Fineen Davis’ <a href="https://blog.mothertongues.org/convertextract-app">blog post</a> about the Convertextract GUI.</p>
+
+<h3 id="readalongs">ReadAlongs</h3>
+
+<p>ReadAlongs is a research project from the <a href="https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project">National Research Council’s Indigenous Language Technology Project</a>.</p>
+
+<p>Communities engaged in language revitalization have potentially many different recordings of their language and some associated text, but mobilizing these materials into something that is educationally useful can be time consuming. It’s also tough from the learner’s perspective to try and follow along the text (maybe a Word Document) just by simply playing the audio. It’s easy to get lost in the recording quickly, and from personal experience, trying to do that usually involves a lot of frustrating rewinding.</p>
+
+<p>What if we could develop a tool that <em>automatically</em> figured out what parts of the audio file corresponded to what parts of the text? In <a href="https://en.wikipedia.org/wiki/Natural_language_processing">Natural Language Processing</a>, this is called <em>forced alignment</em>, and this is fundamentally what the <a href="https://github.com/ReadAlongs/Studio">ReadAlongs project</a> does. But how does it do it? In part, by using a whole bunch of <code class="highlighter-rouge">g2p</code> mappings!</p>
+
+<p>First of all, it’s good to know that forced alignment is essentially a “solved problem” for languages with a lot of data, thanks to people like David Huggins-Daines who is a collaborator on the ReadAlongs project. And, if you know Python, and have sentence-aligned parallel audio/text data in your language, you can train a model using one of the several tools out there developed for this task, like <a href="https://montreal-forced-aligner.readthedocs.io/en/latest/">the Montreal Forced Aligner</a>. But what if you don’t have that much data (or any) and what if you don’t know Python? If your language has a <code class="highlighter-rouge">g2p</code> mapping between its writing system and the IPA, you can likely circumvent that whole process. Here’s how:</p>
+
+<p>We take a model for doing forced alignment on English and we manually write a <code class="highlighter-rouge">g2p</code> mapping from the writing system to IPA for the language we want to make a ReadAlong for. For example’s sake let’s say, Kanyen’kéha (Mohawk). This step requires somebody who is both familiar with the writing system used, and with the International Phonetic Alphabet.</p>
+
+<p>Then, we use the very cool Python library <a href="https://github.com/dmort27/panphon">PanPhon</a> to figure out the mapping between the IPA characters in Mohawk and their <em>closest</em> IPA equivalents in English. We call this mapping a “Kanyen’kéha IPA to English IPA” mapping. If you have already created your mapping between the orthography and the IPA, you can generate this “Kanyen’kéha IPA to English IPA” using the <code class="highlighter-rouge">g2p</code> command line.</p>
+
+<p>Then, we convert the ReadAlong in question from its original orthographic form all the way to English IPA (well, actually to ‘Arpabet’ which is an ASCII-compliant phonetic transcription standard that the alignment model understands).</p>
+
+<p>Then, after we “do the alignment” (ie figure out which parts of the audio correspond to which parts of the text), ReadAlongs puts it all back together again and ta-da! There is your aligned audio and text! Keep reading to see how to generate an X-to-English IPA mapping for your language.</p>
+
+<h4 id="generate-your-mapping-between-your-languages-ipa-and-english-ipa">Generate your mapping between your language’s IPA and English IPA</h4>
+
+<p>After <a href="https://blog.mothertongues.org/g2p-basic-mappings-local">installing</a> <code class="highlighter-rouge">g2p</code> and once you have made your mapping, update <code class="highlighter-rouge">g2p</code> by running <code class="highlighter-rouge">g2p update</code>. When you add or modify any mapping, <code class="highlighter-rouge">g2p</code> doesn’t actually see it yet. <code class="highlighter-rouge">g2p update</code> is what scans all the mappings and makes them available to <code class="highlighter-rouge">g2p</code>. Then, you can run <code class="highlighter-rouge">g2p generate-mapping &lt;input-code&gt; --ipa</code>. So in our example for Kanyen’kéha (moh) we would run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g2p generate-mapping moh <span class="nt">--ipa</span>
+</code></pre></div></div>
+
+<p>That will automatically generate a moh-ipa to eng-ipa mapping in <code class="highlighter-rouge">g2p/mappings/langs/generated</code> - do not edit this file or its configuration unless you really know what you’re doing, because it will get overwritten. After generation, you can run <code class="highlighter-rouge">g2p update</code> again and your mapping will be <a href="https://blog.mothertongues.org/g2p-basic-mappings-local">usable</a> within <code class="highlighter-rouge">g2p</code>!</p>
+
+<h4 id="visualizing-the-process">Visualizing the process</h4>
+
+<p>This is actually where the introductory picture to this blog series comes from! In the graphic below, you can see the word ‘bonjour’ in French converted to its IPA transcription. Then, its IPA transcription gets converted into its corresponding <em>English</em> IPA transcription based on the generated mapping (notice how uvular /ʁ/ gets transformed to alveolo-palatal /ʒ/). Then finally, the English IPA form is converted to Arpabet. So in all, we have an input of ‘bonjour’ that gets output as ‘B AO N ZH UW ZH’ and the aligner runs on that form.</p>
+
+<p><img src="/assets/images/g/bonjour-g2p-800-cc09ee.png" srcset="/assets/images/g/bonjour-g2p-400-cc09ee.png 400w, /assets/images/g/bonjour-g2p-600-cc09ee.png 600w, /assets/images/g/bonjour-g2p-800-cc09ee.png 800w, /assets/images/g/bonjour-g2p-1000-cc09ee.png 1000w" /></p>
+
+<p>You can recreate this type of animation using the G2P studio by selecting the French (<code class="highlighter-rouge">fra</code>) to English Arpabet (<code class="highlighter-rouge">eng-arpabet</code>) mapping, choosing ‘animate’ and then typing your text in the input area as seen below:</p>
+
+<p><img src="/assets/images/g/g2p-animate-800-4e082a.png" srcset="/assets/images/g/g2p-animate-400-4e082a.png 400w, /assets/images/g/g2p-animate-600-4e082a.png 600w, /assets/images/g/g2p-animate-800-4e082a.png 800w, /assets/images/g/g2p-animate-980-4e082a.png 980w" /></p>
+
+<h4 id="what-can-you-do-with-your-aligned-audiotext">What can you do with your aligned audio/text?</h4>
+
+<p>ReadAlongs exports to a variety of formats, including epub (for e-readers), <a href="https://www.fon.hum.uva.nl/praat/">Praat</a> TextGrids, <a href="https://archive.mpi.nl/tla/elan">ELAN</a> files, various subtitle formats, and an embeddable web component for your website.</p>
+
+<p>Below is an example of the embeddable web component in Danish.</p>
+
+<div class="readalong">
+    <!-- ReadAlong Web Component -->
+    <link href="https://fonts.googleapis.com/css?family=Lato|Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/@roedoejet/readalong/dist/read-along/read-along.esm.js"></script>
+    <read-along text="/assets/ras/output.xml" alignment="/assets/ras/output.smil" audio="/assets/ras/output.wav"></read-along>
+    <noscript>Please enable JavaScript to view the ReadAlong</noscript>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2021-10-25">25 Oct 2021</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#explanation">#explanation</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#g2p">#g2p</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tech-showcase">#tech-showcase</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tutorial">#tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/g2p-advanced-mappings/"> &laquo;
+                    G2P Part 4: advanced mappings with g2p</a>
+                
+                
+                <a class="next d-block col-md-6 text-lg-right"
+                    href="https://blog.mothertongues.org/g2p-preprocess/">G2P Part 6: Solve inconsistencies in your text with a g2p pre-processing mapping &raquo; </a>
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (5)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (5)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2021 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>

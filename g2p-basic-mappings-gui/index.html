@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>G2P Part 2: Using G2P Studio | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="G2P Part 2: Using G2P Studio" />
+<meta name="author" content="AidanPine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tutorial: Using G2P Studio" />
+<meta property="og:description" content="Tutorial: Using G2P Studio" />
+<link rel="canonical" href="https://blog.mothertongues.org/g2p-basic-mappings-gui/" />
+<meta property="og:url" content="https://blog.mothertongues.org/g2p-basic-mappings-gui/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:image" content="https://blog.mothertongues.org/assets/images/basic-rule-studio.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@AidanPine" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"AidanPine"},"description":"Tutorial: Using G2P Studio","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/g2p-basic-mappings-gui/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/basic-rule-studio.png","url":"https://blog.mothertongues.org/g2p-basic-mappings-gui/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"G2P Part 2: Using G2P Studio","dateModified":"2021-10-22T00:00:00+00:00","datePublished":"2021-10-22T00:00:00+00:00","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=G2P Part 2: Using G2P Studio&url=https://blog.mothertongues.org/g2p-basic-mappings-gui/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/g2p-basic-mappings-gui/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/g2p-basic-mappings-gui/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/7623fd3eeb0acbe1084fecc20c3093ae?s=250&d=mm&r=x"
+                            alt="Aidan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://aidanpine.ca">Aidan</a><a
+                            target="_blank" href="https://twitter.com/aidanpine" class="btn follow">Follow</a>
+                        <span class="author-description">Lead developer of Mother Tongues.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">G2P Part 2: Using G2P Studio</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid"
+                src="/assets/images/basic-rule-studio.png"
+                alt="G2P Part 2: Using G2P Studio">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>This is the second blog post in a 7-part series describing how to make a basic mapping with <code class="highlighter-rouge">g2p</code>. For background information on what <code class="highlighter-rouge">g2p</code> is, have a look at the <a href="https://blog.mothertongues.org/g2p-background">introductory blog post for g2p</a></p>
+
+<ul>
+  <li><a href="https://blog.mothertongues.org/g2p-background">Background</a></li>
+  <li>How to write a basic mapping in G2P Studio</li>
+  <li><a href="https://blog.mothertongues.org/g2p-basic-mappings-local">Writing mappings on your computer</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-advanced-mappings">Advanced mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-applications">ReadAlong Studio &amp; Other Applications</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-preprocess">Preprocessing mappings</a></li>
+  <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
+</ul>
+
+<h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
+
+<ul>
+  <li>To be able to follow along, you’ll need access to the internet, and to have read the <a href="https://blog.mothertongues.org/g2p-background">introductory blog post for g2p</a></li>
+</ul>
+
+<h2 id="whats-the-gist-of-what-were-about-to-do">What’s the gist of what we’re about to do?</h2>
+
+<p>In order to use <code class="highlighter-rouge">g2p</code> we need to understand the building blocks; <strong>rules</strong> and <strong>mappings</strong>. <strong>Rules</strong> are patterns that describe how to turn some input text into some other output text. When we combine a series of ordered rules together for a specific purpose, we call this a <strong>mapping</strong>. This blog post will show you how to write rules and mappings to use with <code class="highlighter-rouge">g2p</code>.</p>
+
+<h2 id="how-do-i-follow-along">How do I follow along?</h2>
+
+<p>The easiest way to write rules quickly is using the <a href="https://g2p-studio.herokuapp.com/">G2P Studio</a> web application<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. Once landing on the G2P Studio page, you can scroll down to the <a href="https://g2p-studio.herokuapp.com/#out_delimiter-0:~:text=Custom%20Rules">Custom Rules</a> section and start directly editing the spreadsheet available there. You can also follow along by writing your rules and mappings on your computer using a text editor like <a href="https://code.visualstudio.com/">Visual Studio Code</a>. This post only shows how to create rules using the <a href="https://g2p-studio.herokuapp.com/">G2P Studio</a> web application. The <a href="https://blog.mothertongues.org/g2p-basic-mappings-local">next blog post</a> will show you how to write these rules locally on your computer.</p>
+
+<h1 id="how-to-get-from-a-to-b-or-a-to-æ-with-g2p">How to get from ‘a’ to ‘b’ (or ‘a’ to ‘æ’) with g2p</h1>
+
+<p><code class="highlighter-rouge">g2p</code> is a Python library<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> (i.e. software written in the Python programming language) that helps you convert between different characters based on user-defined rules. The inspiration for how to write these rules was mostly taken from the notion of <a href="https://en.wikipedia.org/wiki/Phonological_rule">phonological rewrite rules</a>, which is a common way of describing <em>multilevel</em> phonological changes in linguistics. <em>Multilevel</em> changes is the idea that a word, like ‘cats’ or ‘dogs’ can have multiple ‘levels’ of representation. For example, you might think of the way that those words are written in English orthography (writing system) as one level. Then, you might think of a general pronunciation for those words, written in the phonetic alphabet, as another level. You could also separate that level into more than one level by having a level each for <a href="https://en.wikipedia.org/wiki/Phonetic_transcription#Narrow_versus_broad_transcription:~:text=orthography.-,Narrow%20versus%20broad%20transcription">narrow and broad transcriptions</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Level Name</th>
+      <th>Word #1</th>
+      <th>Word #2</th>
+      <th>Word # 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Level 1 (orthography)</td>
+      <td>cat</td>
+      <td>dog</td>
+      <td>back</td>
+    </tr>
+    <tr>
+      <td>Level 2 (broad IPA)</td>
+      <td>kæt</td>
+      <td>dɑɡ</td>
+      <td>bæk</td>
+    </tr>
+    <tr>
+      <td>Level 3 (narrow IPA)</td>
+      <td>kʰæt</td>
+      <td>dɑɡ</td>
+      <td>bæk</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now, just by looking at these three levels, you can probably see some fairly systematic rules here that you could imagine would get you from one level to the next, even if you don’t know the phonetic alphabet by heart and even if you don’t really know much about English phonology (sound patterns and systems).</p>
+
+<p>One possible hypothesis would be that all ‘a’ characters in level one turn to ‘æ’, so we might want a rule to express that all instances of ‘a’ turn to /æ/. And, for another example, it looks like between levels 2 and 3, /k/ turns into either [k] or [kʰ] depending on whether it occurs before or after /æ/<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>.</p>
+
+<p>So, with these hypotheses about the rules to transform from one level to another, how do we start translating this into rules for <code class="highlighter-rouge">g2p</code>? Keep reading to find out!</p>
+
+<h2 id="basic-rule-writing">Basic Rule writing</h2>
+
+<p><code class="highlighter-rouge">g2p</code> lets you describe these patterns using <strong>an ordered series of rules</strong>. Each rule must be defined to have a sequence of one or more input characters and a sequence of zero or more output characters. In the <a href="https://g2p-studio.herokuapp.com/">G2P Studio</a>, we write these rules in a spreadsheet-type interface.</p>
+
+<p>In the screenshot below we can see a very basic rule that will turn all instances of the character <code class="highlighter-rouge">a</code> into <code class="highlighter-rouge">b</code>. Each row is a new rule. The <code class="highlighter-rouge">In</code> column describes what characters will be matched, and the <code class="highlighter-rouge">Out</code> column describes what those matched characters will be turned into.</p>
+
+<p><img src="/assets/images/g/basic-rule-studio-719-c7baf8.png" srcset="/assets/images/g/basic-rule-studio-400-c7baf8.png 400w, /assets/images/g/basic-rule-studio-600-c7baf8.png 600w, /assets/images/g/basic-rule-studio-719-c7baf8.png 719w" /></p>
+
+<p>The <code class="highlighter-rouge">Context Before</code> and <code class="highlighter-rouge">Context After</code> columns describe any conditions for the matched text. For example, if I wanted to turn all <code class="highlighter-rouge">a</code> characters into <code class="highlighter-rouge">b</code> only if a <code class="highlighter-rouge">c</code> came before the <code class="highlighter-rouge">a</code>, I would write the rule like this:</p>
+
+<p><img src="/assets/images/g/basic-rule-studio-context-731-74df3c.png" srcset="/assets/images/g/basic-rule-studio-context-400-74df3c.png 400w, /assets/images/g/basic-rule-studio-context-600-74df3c.png 600w, /assets/images/g/basic-rule-studio-context-731-74df3c.png 731w" /></p>
+
+<h2 id="ok-so-how-do-i-actually-get-these-rules-to-do-something">Ok, so how do I actually get these rules to do something?</h2>
+
+<p>So, you’ve understood the <a href="#basic-rule-writing">basics of writing rules</a> described above and you want to actually use them to convert something? This section describes exactly how to do that.</p>
+
+<p>Below is a list of all the rules to capture the transformations between level 1 and level 2 above. There are some rules that we discussed in that section, and some others that might look unfamiliar. For a full description of some of these rules, have a look at the <a href="https://blog.mothertongues.org/g2p-advanced-mappings">advanced rule-writing section</a>.</p>
+
+<p><img src="/assets/images/g/custom-rules-g2p-studio-800-2a352d.png" srcset="/assets/images/g/custom-rules-g2p-studio-400-2a352d.png 400w, /assets/images/g/custom-rules-g2p-studio-600-2a352d.png 600w, /assets/images/g/custom-rules-g2p-studio-800-2a352d.png 800w, /assets/images/g/custom-rules-g2p-studio-968-2a352d.png 968w" /></p>
+
+<p>Once you have written your rules in this section, you can write some text in the left text area at the top of the G2P Studio, and <code class="highlighter-rouge">g2p</code> will apply your rules and produce the output in the right text area as seen below:</p>
+
+<p><img src="/assets/images/g/custom-rules-output-g2p-studio-800-8fbdf4.png" srcset="/assets/images/g/custom-rules-output-g2p-studio-400-8fbdf4.png 400w, /assets/images/g/custom-rules-output-g2p-studio-600-8fbdf4.png 600w, /assets/images/g/custom-rules-output-g2p-studio-800-8fbdf4.png 800w, /assets/images/g/custom-rules-output-g2p-studio-977-8fbdf4.png 977w" /></p>
+
+<p>You can also click on ‘Export’ under the Custom Rules section to export your rules to a CSV file if you want to save them for later.</p>
+
+<p>Have a read through the next blog post on <a href="https://blog.mothertongues.org/g2p-basic-mappings-local">writing rules on your computer without G2P Studio</a>.</p>
+
+<h3 id="footnotes">Footnotes</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>I’m using the free, hobby plan at <a href="https://www.heroku.com/">https://www.heroku.com/</a> to host it though, so occasionally the server goes to sleep. If you first go to the site and it takes a few seconds to boot up, don’t worry! <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>A Python ‘library’ is a collection of code <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Orthographic characters are wrapped in single quotes, like ‘a’; broad IPA typically uses forward slashes like /k/ and narrow IPA typically uses square brackets like [kʰ] <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2021-10-22">22 Oct 2021</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#explanation">#explanation</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#g2p">#g2p</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tech-showcase">#tech-showcase</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#tutorial">#tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/g2p-background/"> &laquo;
+                    G2P Part 1: Getting from 'a' to 'b' with g2p - why g2p exists and will let you do awesome things</a>
+                
+                
+                <a class="next d-block col-md-6 text-lg-right"
+                    href="https://blog.mothertongues.org/g2p-basic-mappings-local/">G2P Part 3: Make a basic mapping with g2p &raquo; </a>
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (5)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (5)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2021 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>
