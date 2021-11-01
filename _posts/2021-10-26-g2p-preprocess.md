@@ -23,11 +23,11 @@ This is the 6th blog post in a seven-part series about a software tool called `g
 
 ## Adding a 'pre-processing' mapping
 
-It's often not sufficient to just write a mapping between the characters in a language's orthography and the IPA. As seen in [use case #2](#use-case-2-a-language-with-multiple-writing-systems) and [use case #3](#use-case-3-converting-from-legacy-writing-systems). Real-world text input is pretty messy, and if we want ReadAlongs or Convertextract - or any other tool that uses `g2p` - to work properly, we need to account for as much of that messiness as possible. Generally speaking, solving this kind of messiness is usually called 'Text Normalization'.[^n] This 'normalization' can either be about ensuring that the same Unicode characters are used consistently, or it can also be about converting symbols into their pronounced form, like & or 123.
+It's often not sufficient to just write a mapping between the characters in a language's orthography and the IPA, as illustrated in [use case #2](#use-case-2-a-language-with-multiple-writing-systems) and [use case #3](#use-case-3-converting-from-legacy-writing-systems) below. Real-world text input is pretty messy, and if we want ReadAlongs or Convertextract - or any other tool that uses `g2p` - to work properly, we need to account for as much of that messiness as possible. Generally speaking, solving this kind of messiness is usually called 'Text Normalization'.[^n] This 'normalization' can either be about ensuring that the same Unicode characters are used consistently, or it can also be about converting symbols into their pronounced form, like & or 123.
 
 [^n]: not to be confused with Unicode Normalization, which is different usage of the same term!
 
-For example, maybe your language uses underlines in its orthography. There are two commonly confusable Unicode characters here: U+0331 COMBING MACRON BELOW and U+0332 COMBINING LOW LINE, and they look almost identical (cf. g̱ (U+0331) vs g̲ (U+0332)). So, let's 'normalize' to consistently use U+0331.
+For example, maybe your language uses underlines in its orthography. There are two commonly confusable Unicode characters here: U+0331 COMBINING MACRON BELOW and U+0332 COMBINING LOW LINE, and they look almost identical (cf. g̱ (U+0331) vs g̲ (U+0332)). So, let's 'normalize' to consistently use U+0331.
 
 | in | out | context_before | context_after |
 |---|---|---|---|
@@ -38,5 +38,7 @@ Second, maybe we have a text that has a lot of puncutation like '&' in it. We co
 | in | out | context_before | context_after |
 |---|---|---|---|
 | & | og | |  |
+
+A third example can be seen in the [Gitksan mapping](https://github.com/roedoejet/g2p/blob/master/g2p/mappings/langs/git/equiv.csv) where the writing system uses a single quote ' to mark [ejectives](https://en.wikipedia.org/wiki/Ejective_consonant) and glottal stops, but there are many apostrophe-like confusable characters, like ’ or ʼ. In this mapping we can see that they're all mapped to the single quote ' (U+0027).
 
 How do we link this up with the rest of our mappings? We recommend calling these mappings `<yourlang>-equiv`, for "equivalencies" which is more neutral and sometimes preferred than the term "normalization". When you run `g2p update`, `g2p` creates a [directed graph](https://mathinsight.org/definition/directed_graph#:~:text=A%20directed%20graph%20is%20graph,digraph%20or%20a%20directed%20network.) between all possible mappings. Similar to when [using g2p for ReadAlongs]({{ "g2p-applications" | absolute_url }}), consider we have a `g2p` pipeline from 'dan' to 'eng-arpabet' that goes through the `g2p` graph like so, 'dan' → 'dan-ipa' → 'eng-ipa' → 'eng-arpabet'. We basically want to add one more conversion along this path that does this normalization step. So, we [configure a mapping]({{ "g2p-basic-mappings-local" | absolute_url }}) for a mapping from 'dan' → 'dan-equiv' containing our normalizations, then we rename the existing mapping to 'dan-equiv' → 'dan-ipa'. Then, we `g2p update` and the next time we run a mapping from 'dan' → 'eng-arpabet', it will pass through the normalization mapping too.
