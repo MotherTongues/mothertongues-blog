@@ -289,9 +289,9 @@ You can also use abbreviations like this in the G2P studio by writing them in th
 
 | in | out | context_before | context_after |
 |---|---|---|---|
-| s |  | \S | \s\|$ |
+| s |  | \B | \b |
 
-As you can see [in this handy regular expression cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/) our rule turns 's' into nothing if it is preceded by \S (not white space) and followed by either \s (white space) or $ (end of the text).
+As you can see [in this handy regular expression cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/) our rule turns 's' into nothing if it is preceded by \B (any character that is not a word boundary) and followed by \b (word boundary).
 
 Note: There are some 'gotchas' with writing regular expressions using g2p. This is a technical note, but if you're writing some complicated regular expressions and they're not working, don't hesitate to [raise an issue](https://github.com/roedoejet/g2p/issues/new/choose). For example there are some active issues around edge cases where regular expressions and `g2p`'s custom [syntax for indices](#using-specific-indices) don't play nice together.
 
@@ -309,23 +309,23 @@ and where 'ab' is converted to 'abc' and gloms the excess output character onto 
 
 {% picture ab-abc.png %}
 
-But what if - for some silly and imaginary reason - we want to show that it was actually 'a' that turned into 'c', and 'b' that turned into 'ab'? Well, we can use special `g2p` syntax for explicitly writing these indices. Instead of, 
+But what if - for some imaginary reason - we want to show a rule where 'ab' turns into 'bca', and specifically make note that it was 'b' that turned into 'bc', and 'a' stays as 'a'? Well, we can use special `g2p` syntax for explicitly writing these indices. Instead of, 
 
 | in | out | context_before | context_after |
 |---|---|---|---|
-| ab | abc | |  |
+| ab | bca | |  |
 
 we can write
 
 | in | out | context_before | context_after |
 |---|---|---|---|
-| a{1}b{2} | ab{2}c{1} | |  |
+| a{1}b{2} | bc{2}a{1} | |  |
 
-Now, our indices will reflect our imaginary need to index 'a' with 'c' and 'b' with 'ab':
+Now, our indices will reflect our imaginary need to index 'a' with 'a' and 'b' with 'bc':
 
-{% picture ab-abc-i.png %}
+{% picture ab-bca-i.png %}
 
-Using the explicit indices syntax will break up your rule into a number of smaller rules that apply the same defaults of above but to explicit sets of characters. You **must** use curly brackets, but the choice of character you put inside is arbitrary — it just has to match on both sides. By convention, we use natural numbers. This will match all the characters to the left of each pair of curly brackets in the input with the matching index in the output. So here, 'a' is matched with 'c' and 'b' is matched with 'ab'.
+Using the explicit indices syntax will break up your rule into a number of smaller rules that apply the same defaults of above but to explicit sets of characters. You **must** use curly brackets, but the choice of character you put inside is arbitrary — it just has to match on both sides. By convention, we use natural numbers. This will match all the characters to the left of each pair of curly brackets in the input with the matching index in the output. So here, 'a' is matched with 'a' and 'b' is matched with 'bc'.
 
 These can get fairly complicated, so we recommend only using this functionality either for demonstration purposes, or for specific applications which require the preservation of indices.
 
