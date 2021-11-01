@@ -7,15 +7,13 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env:
-      NOKOGIRI_USE_SYSTEM_LIBRARIES: true
     steps:
       - uses: actions/checkout@v2
+      - name: Install deps
+        run: sudo apt-get install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev libcurl4-openssl-dev libxslt-dev libxml2-dev # required to avoid SSL errors
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Install libcurl4-openssl-dev
-        run: sudo apt-get install -y libcurl4-openssl-dev # required to avoid SSL errors
       - name: Build site
         run: |
           JEKYLL_ENV=production bundle install
