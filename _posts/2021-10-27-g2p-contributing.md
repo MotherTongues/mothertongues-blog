@@ -28,9 +28,9 @@ So, you've written some cool rules and you want to contribute, that's awesome! T
 So, you write your mapping once, and you get three things for free (G2P studio, convertextract and readalongs). Here's how:
 
 1. Fork g2p, see <https://docs.github.com/en/github/getting-started-with-github/fork-a-repo> for more details
-2. Add a folder for your language using the appropriate [ISO 639.3 code](https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes) to `g2p/mappings/langs`
-3. Add a `config.yaml` file as described [here]({{ "g2p-basic-mappings" | absolute_url }})
-4. Add your mapping in that same folder (`g2p/mappings/langs/<yourlang>`)
+2. Add a folder for your language using the appropriate [ISO 639.3 code](https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes) to `g2p/mappings/langs`, i.e., create the folder `g2p/mapping/langs/<yourlangcode>/`
+3. Add a `config.yaml` file as described [here]({{ "g2p-basic-mappings" | absolute_url }}) in that folder
+4. Add your mapping in that same folder
 5. If your mapping is for an IPA mapping, you can optionally run `g2p update` to update your mapping into `g2p` and then generate the mapping as described in the [ReadAlongs post]({{ "g2p-applications" | absolute_url }}) between your language and English IPA.
 6. Run `g2p update` to add your mapping to `g2p`
 7. Add some test data to `g2p/tests/public/data`. 
@@ -40,14 +40,14 @@ Finally, either myself, or somebody else will review the changes, and you will g
 
 ### Adding tests
 
-Testing your work is a really important part of software engineering. It lets us make changes to code and be confident that new features don't break the expected functionality of `g2p`. In order to add tests for your mapping, you can add a CSV/TSV/PSV file with 4 columns to `g2p/tests/public/data`. The name of the file should be just the input language code, for example `fra.psv` for the French tests. The first column in the file is for the input language code, the second is for the output language code, the third is for the input text and the fourth is for the asserted output of that mapping and input. Here is an example between French (fra) and French IPA (fra-ipa) asserting that 'manger' results in 'mɑ̃ʒe':
+Testing your work is a really important part of software engineering. It lets us make changes to code and be confident that new features don't break the expected functionality of `g2p`. In order to add tests for your mapping, you can add a CSV/TSV/PSV file with 4 columns to `g2p/tests/public/data`. The name of the file should be just the input language code, for example `fra.psv` for the French tests. The first column in the file is for the input language code, the second is for the output language code, the third is for the input text and the fourth is for the expected output of that mapping and input. Here is an example between French (fra) and French IPA (fra-ipa) asserting that 'manger' results in 'mɑ̃ʒe':
 
 ```psv
 fra|fra-ipa|manger|mɑ̃ʒe
 fra|fra-ipa|écoutons|ekutɔ̃
 ```
 
-There is a test running script at the root of the `g2p` project called `run_tests.py`. You can run all of the tests here using the following:
+There is a script for running tests at the root of the `g2p` project called `run_tests.py`. You can run all of the tests here using the following:
 
 ```python
 python run_tests.py all
@@ -58,3 +58,5 @@ or just run the language assertions including your tests like shown above using:
 ```python
 python run_tests.py langs
 ```
+
+Writing g2p mappings that handle all the special cases can be quite tricky, especially when there are potential interactions between rules. To be confident that your g2p mappings work as you think, you should add a bunch of different words covering most of the spelling phenomena of the language you're working on, with their expected IPA mapping. Ideally, you should also add some test cases to eng-ipa and eng-arpabet, to make sure the generated mapping works correctly. If you run into difficulties, feel free to post comments on this blog post or on the g2p library GitHub issues page!
