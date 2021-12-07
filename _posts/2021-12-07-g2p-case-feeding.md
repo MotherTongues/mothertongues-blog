@@ -34,14 +34,15 @@ We assume:
 
 - g2p project owner: [Aidan Pine](https://aidanpine.ca)
 - Author of this post, and g2p software developer: Eric Joanis
+- TODO anyone else I should name???
 
 # What is needed to replicate the content in the post?
 
-To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions on [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line works.
+To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions at [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line works.
 
 You'll need a recent version of `g2p`, since which supports the `--config` option is a new feature. Release v0.5.202112?? or more recent will work. (TODO create that release before this blog post is published, since I depend on commits made 2021-12-02. See PR #143 TODO)
 
-# What are the motivations behind this project/technology/tip?
+# What are the motivations behind this technique?
 
 In an advanced g2p mapping scenario, our collaborators (TODO: name them???) found themselves writing rules where, as soon as one rule matched a piece of text, no further rules should touch that text. There were many dozens of rules, each one handling some sequence of characters occurring in a specific context, with some catch-all rules at the end that applied if none of the listed contexts applied.
 
@@ -137,7 +138,7 @@ Now, when you run `g2p convert --config casefeed-config.yaml intinatin in out`, 
 
 ## What if my mapping is case sensitive?
 
-OK, so this solution depends on the fact that if your mapping is case insensitive, all input gets dropped to lower case before mapping starts, so distinctions of case in the input were not meaningful. This allowed us to use upper case characters as that temporary intermediate representation that could not be matched as the input of other rules.
+OK, so this solution depends on the fact that if your mapping is case insensitive, all input gets dropped to lower case before mapping starts, so distinctions of case in the input are not meaningful. This allows us to use upper case characters as that temporary intermediate representation that could not be matched as the input of other rules.
 
 If your mapping has to be case sensitive, then you cannot use this solution. Instead, you would have to carefully choose your own temporary representation to block feeding via your rule design, while still being able to place that temporary representation in the context of other rules. But make sure you use characters that cannot be valid input in the language you're working with!
 
