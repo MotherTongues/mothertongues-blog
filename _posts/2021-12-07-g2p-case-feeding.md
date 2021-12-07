@@ -16,7 +16,7 @@ This blog post describes a technique that can be used to handle complex rule fee
 
 # TL;DR
 
-If you want your g2p mapping to prevent feeding between the input and output of your rules, while retaining the ability to match the input and output of your rules in the context of other rules, you can use a three step mapping instead of a single mapping with `prevent_feeding` enabled.
+If you want your g2p mapping to prevent feeding between the input and output of your rules, while retaining the ability to match the output of your rules in the context of other rules, you can use this three-step mapping technique instead of a single mapping with `prevent_feeding` enabled.
 
 # What you need to know to understand this post
 
@@ -33,22 +33,28 @@ We assume:
 # Who is involved with this project?
 
 - g2p project owner: [Aidan Pine](https://aidanpine.ca)
-- Author: Eric Joanis
+- Author of this post, and g2p software developer: Eric Joanis
 
 # What is needed to replicate the content in the post?
 
-To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions on [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line tool works.
+To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions on [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line works.
+
+You'll need a recent version of `g2p`, since which supports the `--config` option is a new feature. Release v0.5.202112?? or more recent will work. (TODO create that release before this blog post is published, since I depend on commits made 2021-12-02. See PR #143 TODO)
 
 # What are the motivations behind this project/technology/tip?
 
-In an advanced g2p mapping scenario, our collaborators (Q: name them???) found themselves writing rules where, as soon as one rule matched some text, no further rules should touch that text.
+In an advanced g2p mapping scenario, our collaborators (Q: name them???) found themselves writing rules where, as soon as one rule matched a piece of text, no further rules should touch that text. There were many dozens of rules, each one handling some sequence of characters occurring in a specific context, with some catch-all rules at the end that applied if none of the listed contexts applied.
 
-Imagine I use a g2p mapping to modify some spelling rules, and the same sequence of letters might get mapped differently depending on the context it is found in. The real use case for this was more complex, but let's simplify it to replace "in" by something else depending on the context:
- - when the string "atin" occurs, it should be replaced by "etin", and "in" should not be further modified;
+Here we'll create a fictitious scenario with a minimum number of rules exhibiting the same behaviour.
+
+Imagine we use a g2p mapping to modify some spelling rules, and the same sequence of letters might get mapped differently depending on the context it is found in. In our simplistic example, we want to handle "in" as follows:
+ - when the string "atin" occurs, it should be replaced by "etin", and that "in" should not be further modified;
  - when "in" occurs before "a" or "e", it should remain as "in";
- - otherwise, "in" should be changed to "an".
+ - otherwise, "in" should be changed to "an" (catch-all rule).
 
-With these rules, the word "intinatin" should get changed to "antinetin" because the third "in" is part of "atin", the second "in" is followed by "a", and the first in falls on the "otherwise" clause above.
+With these rules, the word "intinatin" should get changed to "antinetin" because the third "in" is part of "atin", the second "in" is followed by "a", and the first "in" is handled by our catch-all rule.
+
+Notice that the first two rules preserve "in" in their output, so we have to make sure the input of each rule cannot be the output of previous rules.
 
 # Solving this situation with prevent-feeding
 
@@ -77,13 +83,13 @@ prevent_feeding: true
 
 When you run `g2p convert --config in-config.yaml intinatin in out`, you will get "antanetin" as output instead of "antinetin".
 
-**What's the error?** (I know, it's subtle...) The middle "in" should have matched the second rule, since it was followed by "a" before the first rule is applied, and is still followed by "e" after the first rule is applied. That should have blocked the application of the third rule, but it didn't.
+**What's the error?** (I know, it's subtle...) The middle "in" should have matched the second rule, since it was followed by "a" before the first rule is applied, and is still followed by "e" after the first rule is applied. That should have blocked the application of the third rule, but apparently it didn't.
 
 **Why is this happening?** We need to talk about how `prevent_feeding` is implemented to answer that question. The point of the prevent-feeding option is to make sure that the output of a rule is never matched again as the input of any other rule. To accomplish that, we actually map the output of each rule temporarily to characters in the Supplementary Private Use Area in the Unicode standard, and map them back to the real output when all rules have been applied. Those characters are intended for internal ("private") use within software, but should never be printed, so they were perfect to solve the prevent feeding problem: they could never occur in the input of any rules, and so there would never unintended feeding between rules.
 
 The problem is that those private characters are also inaccessible to the `context_before` and `context_after` parts of your rules. So `prevent_feeding` not only blocks the characters from being matched as the input of other rules, it also blocks them from being matched in their contexts.
 
-## Three step prevent-feeding solution
+## Three step prevent-feeding solution, which does work
 
 The work-around we propose in this blog post is the following.
 
