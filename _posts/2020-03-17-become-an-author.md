@@ -20,7 +20,7 @@ To become an author, you'll need a [GitHub](https://github.com) account<sup>[1](
 Then, follow these steps:
 
 1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the [Mother Tongues Blog Respository](https://github.com/MotherTongues/mothertongues-blog)
-2. Checkout to the `dev.author` branch
+2. Create a branch called `dev.author` and check it out
 3. Edit the file labelled `_config.yml`. * denotes a required value.
 
    ```yaml
@@ -49,7 +49,7 @@ Then, follow these steps:
    - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine',    '_eddieantonio', 'delaney', 'fineen', 'YOURNAME' ] }
    ```
    
-5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author)
+5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author) to merge your changes in `dev.author` into the `review` branch.
 
 That's it! Start \[writing your posts]({{ "write-a-post" | absolute_url }}).
 
