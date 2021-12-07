@@ -40,7 +40,7 @@ We assume:
 
 To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions at [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line works.
 
-You'll need a recent version of `g2p`, since which supports the `--config` option is a new feature. Release v0.5.202112?? or more recent will work. (TODO create that release before this blog post is published, since I depend on commits made 2021-12-02. See PR #143 TODO)
+You'll need a recent version of `g2p`, since the `--config` option is a new feature. Release v0.5.202112?? or more recent will work. (TODO create that release before this blog post is published, since I depend on commits made 2021-12-02. See PR #143 TODO)
 
 # What are the motivations behind this technique?
 
@@ -54,8 +54,8 @@ The problem they faced was that using `prevent_feeding` solved making sure no pa
 
 For this blog post, we'll create a fictitious scenario with a minimum number of rules exhibiting the problem found in the real use case described above.
 
-Imagine we use a g2p mapping to modify some spelling rules, and the same sequence of letters might get mapped differently depending on the context it is found in. In our minimal example, we want to handle "in" as follows:
- - when the string "atin" occurs, it should be replaced by "etin", and that "in" should not be further modified;
+Imagine we use a g2p mapping to modify some spelling rules, where the same sequence of letters is mapped differently depending on context. In our minimal example, we want to handle "in" as follows:
+ - when the string "atin" occurs, it should be replaced by "etin", and the resulting "in" should not be further modified;
  - when "in" occurs before "a" or "e", it should remain as "in";
  - otherwise, "in" should be changed to "an" (catch-all rule).
 
@@ -86,13 +86,15 @@ case_sensitive: false
 prevent_feeding: true
 ```
 
-When you run `g2p convert --config config.yaml intinatin in out`, you will get "antanetin" as output instead of "antinetin".
+When you run `g2p convert --config config.yaml intinatin in out`, you will get "antanetin" as output instead of the intended "antinetin".
 
 **What's the error?** (I know, it's subtle...) The middle "in" should have matched the second rule, since it was followed by "a" before the first rule was applied, and is still followed by "e" after the first rule was applied. That should have blocked the application of the third rule, but apparently it didn't.
 
 **Why is this happening?** We need to talk about how `prevent_feeding` is implemented to answer that question. The point of the prevent-feeding option is to make sure that the output of a rule is never matched as the input of any other rule. To accomplish that, we actually map the output of each rule temporarily to characters in a [Private Use Area](https://en.wikipedia.org/wiki/Private_Use_Areas) in the Unicode standard, and map them back to the real output once all rules have been applied. The private use area characters are intended for internal (hence "private") use within software, but should never be printed, so they were perfect to solve the prevent-feeding problem: they should never occur in input text or in the input of any rule, and so there would never unintended feeding between rules.
 
 The problem is that those private characters are also inaccessible to the `context_before` and `context_after` parts of our rules. So `prevent_feeding` not only blocks the characters from being matched as the input of other rules, it also blocks them from being matched in their contexts.
+
+If you want to see exactly what's going on, run that convert command again with the `--debugger` option. For each rule that gets applied, you'll see the rule, as well as the text before and after it is applied. That can help understand what's going on whe you're trying to debug a g2p mapping.
 
 ## Three step prevent-feeding solution, which does work
 
