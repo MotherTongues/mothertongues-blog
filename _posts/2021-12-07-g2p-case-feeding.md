@@ -57,11 +57,11 @@ The problem they faced was that using `prevent_feeding` solved making sure no pa
 For this blog post, we'll create a fictitious scenario with a minimum number of rules exhibiting the problem found in the real use case described above.
 
 Imagine we use a g2p mapping to modify some spelling rules, where the same sequence of letters is mapped differently depending on context. In our minimal example, we want to handle "un" as follows:
- - when the string "atin" occurs, it should be replaced by "etin", and the resulting "un" should not be further modified;
+ - when the string "atun" occurs, it should be replaced by "etun", and the resulting "un" should not be further modified;
  - when "un" occurs before "a" or "e", it should remain as "un";
  - otherwise, "un" should be changed to "on" (catch-all rule).
 
-With these rules, the word "untunatun" should get changed to "antinetin" because the third "un" is part of "atun", the second "un" is followed by "a" or "e", and only the first "un" is handled by our catch-all rule.
+With these rules, the word "untunatun" should get changed to "ontunetun" because the third "un" is part of "atun", the second "un" is followed by "a" or "e", and only the first "un" is handled by our catch-all rule.
 
 Notice that the first two rules preserve "un" in their output, so we have to make sure the output of a rule cannot be reused as the output of a subsequent rule.
 
