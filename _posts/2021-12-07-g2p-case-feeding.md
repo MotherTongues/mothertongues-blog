@@ -36,17 +36,16 @@ Note: the word "feeding" comes from the linguistic concept of [feeding order](ht
 
 - g2p project owner: [Aidan Pine](https://aidanpine.ca)
 - Author of this post, and g2p software developer: Eric Joanis
-- TODO anyone else I should name???
 
 # What is needed to replicate the content in the post?
 
 To reproduce the examples below, you will need to install `g2p` on your own machine by following the instructions at [GitHub/g2p](https://github.com/roedoejet/g2p) and make sure the `g2p convert` command line works.
 
-You'll need a recent version of `g2p`, since we'll make use of the new `--config` option to `g2p convert`. Release v0.5.202112?? or more recent will work, or the master branch on GitHub as of 2021-12-07 or more recent. (TODO create that release before this blog post is published.)
+You'll need a recent version of `g2p`, since we'll make use of the new `--config` option to `g2p convert`. Release v0.5.20211217 or more recent will work, or the master branch on GitHub as of 2021-12-07 or more recent.
 
 # What are the motivations behind this technique?
 
-In an advanced g2p mapping scenario, our collaborators (TODO: name them???) found themselves writing rules where, as soon as one rule matched a piece of text, no further rules should touch that text. There were many dozens of rules, each one handling some sequence of characters occurring in a specific context, with some catch-all rules at the end that applied if none of the listed contexts applied.
+In an advanced g2p mapping scenario, some of our collaborators found themselves writing rules where, as soon as one rule matched a piece of text, no further rules should touch that text. There were many dozens of rules, each one handling some sequence of characters occurring in a specific context, with some catch-all rules at the end that applied if none of the listed contexts applied.
 
 The problem they faced was that using `prevent_feeding` solved making sure no part of the text was touched more than once, but it also prevented touched text from being used in the context of subsequent rules, as was necessary.
 
