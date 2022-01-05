@@ -5,9 +5,165 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 01 Nov 2021 22:17:10 +0000</pubDate>
-    <lastBuildDate>Mon, 01 Nov 2021 22:17:10 +0000</lastBuildDate>
+    <pubDate>Wed, 05 Jan 2022 22:30:02 +0000</pubDate>
+    <lastBuildDate>Wed, 05 Jan 2022 22:30:02 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Preventing feeding of g2p rules with case</title>
+        <description>&lt;p&gt;When you write &lt;a href=&quot;https://blog.mothertongues.org/g2p-background&quot;&gt;g2p mappings&lt;/a&gt;, sometimes you find yourself wanting to &lt;a href=&quot;https://blog.mothertongues.org/g2p-advanced-mappings#prevent_feeding-default-false&quot;&gt;prevent feeding&lt;/a&gt; between rules, but your situation is too complex to be handled by the normal prevent-feeding option.&lt;/p&gt;
+
+&lt;p&gt;This blog post describes a technique that can be used to handle complex rule feeding scenarios.&lt;/p&gt;
+
+&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;If you want your g2p mapping to prevent feeding between the input and output of your rules, while retaining the ability to match the output of your rules in the context of other rules, you can use this three-step mapping technique using case to prevent rule feeding, instead of a single mapping with &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; enabled.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;p&gt;This post will only make sense if you’re already an advanced user of the g2p system, and you are writing your own mappings.&lt;/p&gt;
+
+&lt;p&gt;We assume:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Knowledge of the &lt;a href=&quot;https://github.com/roedoejet/g2p&quot;&gt;g2p module&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;You’ve read the &lt;a href=&quot;https://blog.mothertongues.org/g2p-background&quot;&gt;seven part blog post on g2p&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;You know how to use &lt;code class=&quot;highlighter-rouge&quot;&gt;context_after&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;context_before&lt;/code&gt; in g2p mappings.&lt;/li&gt;
+  &lt;li&gt;You know how to write mappings in &lt;code class=&quot;highlighter-rouge&quot;&gt;.csv&lt;/code&gt; files.&lt;/li&gt;
+  &lt;li&gt;You know how to call &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p convert&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;You’re trying to use &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; but it’s not doing what you want.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note: the word “feeding” comes from the linguistic concept of &lt;a href=&quot;https://en.wikipedia.org/wiki/Feeding_order&quot;&gt;feeding order&lt;/a&gt;, where a rule is said to feed into another rule if it creates the context for the second rule to apply.&lt;/p&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;g2p project owner: &lt;a href=&quot;https://aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Author of this post, and g2p software developer: Eric Joanis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-needed-to-replicate-the-content-in-the-post&quot;&gt;What is needed to replicate the content in the post?&lt;/h1&gt;
+
+&lt;p&gt;To reproduce the examples below, you will need to install &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; on your own machine by following the instructions at &lt;a href=&quot;https://github.com/roedoejet/g2p&quot;&gt;GitHub/g2p&lt;/a&gt; and make sure the &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p convert&lt;/code&gt; command line works.&lt;/p&gt;
+
+&lt;p&gt;You’ll need a recent version of &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;, since we’ll make use of the new &lt;code class=&quot;highlighter-rouge&quot;&gt;--config&lt;/code&gt; option to &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p convert&lt;/code&gt;. Release v0.5.20211217 or more recent will work, or the master branch on GitHub as of 2021-12-07 or more recent.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-technique&quot;&gt;What are the motivations behind this technique?&lt;/h1&gt;
+
+&lt;p&gt;In an advanced g2p mapping scenario, some of our collaborators found themselves writing rules where, as soon as one rule matched a piece of text, no further rules should touch that text. There were many dozens of rules, each one handling some sequence of characters occurring in a specific context, with some catch-all rules at the end that applied if none of the listed contexts applied.&lt;/p&gt;
+
+&lt;p&gt;The problem they faced was that using &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; solved making sure no part of the text was touched more than once, but it also prevented touched text from being used in the context of subsequent rules, as was necessary.&lt;/p&gt;
+
+&lt;h1 id=&quot;solving-this-complex-prevent-feeding-scenario&quot;&gt;Solving this complex prevent-feeding scenario&lt;/h1&gt;
+
+&lt;h2 id=&quot;minimal-setup&quot;&gt;Minimal setup&lt;/h2&gt;
+
+&lt;p&gt;For this blog post, we’ll create a fictitious scenario with a minimum number of rules exhibiting the problem found in the real use case described above.&lt;/p&gt;
+
+&lt;p&gt;Imagine we use a g2p mapping to modify some spelling rules, where the same sequence of letters is mapped differently depending on context. In our minimal example, we want to handle “un” as follows:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;when the string “atun” occurs, it should be replaced by “etun”, and the resulting “un” should not be further modified;&lt;/li&gt;
+  &lt;li&gt;when “un” occurs before “a” or “e”, it should remain as “un”;&lt;/li&gt;
+  &lt;li&gt;otherwise, “un” should be changed to “on” (catch-all rule).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With these rules, the word “untunatun” should get changed to “ontunetun” because the third “un” is part of “atun”, the second “un” is followed by “a” or “e”, and only the first “un” is handled by our catch-all rule.&lt;/p&gt;
+
+&lt;p&gt;Notice that the first two rules preserve “un” in their output, so we have to make sure the output of a rule cannot be reused as the output of a subsequent rule.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-obvious-solution-which-does-not-work&quot;&gt;The obvious solution, which does not work&lt;/h2&gt;
+
+&lt;p&gt;We can almost solve this by using &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt;, but not quite.&lt;/p&gt;
+
+&lt;p&gt;Let’s write the rules as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mapping.csv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;atun,etun,,
+un,un,,[ae]
+un,on,,
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and use config file &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yaml&lt;/code&gt;, where we are careful to set &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding: true&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;display name: mapping example for un with prevent feeding
+mapping: mapping.csv
+in_lang: l1
+out_lang: l2
+case_sensitive: false
+prevent_feeding: true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When you run &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p convert --config config.yaml untunatun l1 l2&lt;/code&gt;, you will get “ontonetun” as output instead of the intended “ontunetun”.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What’s the error?&lt;/strong&gt; (I know, it’s subtle…) The middle “un” should have matched the second rule, since it was followed by “a” before the first rule was applied, and is still followed by “e” after the first rule was applied. That should have blocked the application of the third rule, but apparently it didn’t.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why is this happening?&lt;/strong&gt; We need to talk about how &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; is implemented to answer that question. The point of the prevent-feeding option is to make sure that the output of a rule is never matched as the input of any other rule. To accomplish that, we actually map the output of each rule temporarily to characters in a &lt;a href=&quot;https://en.wikipedia.org/wiki/Private_Use_Areas&quot;&gt;Private Use Area&lt;/a&gt; in the Unicode standard, and map them back to the real output once all rules have been applied. The private use area characters are intended for internal (hence “private”) use within software, but should never be printed, so they were perfect to solve the prevent-feeding problem: they should never occur in input text or in the input of any rule, and so there would never unintended feeding between rules.&lt;/p&gt;
+
+&lt;p&gt;The problem is that those private characters are also inaccessible to the &lt;code class=&quot;highlighter-rouge&quot;&gt;context_before&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;context_after&lt;/code&gt; parts of our rules. So &lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_feeding&lt;/code&gt; not only blocks the characters from being matched as the input of other rules, it also blocks them from being matched in their contexts.&lt;/p&gt;
+
+&lt;p&gt;If you want to see exactly what’s going on, run that convert command again with the &lt;code class=&quot;highlighter-rouge&quot;&gt;--debugger&lt;/code&gt; option. For each rule that gets applied, you’ll see the rule, as well as the text before and after it is applied. That can help understand what’s going on whe you’re trying to debug a g2p mapping.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-three-step-prevent-feeding-solution-which-does-work&quot;&gt;A three-step prevent-feeding solution, which does work&lt;/h2&gt;
+
+&lt;p&gt;The work-around we propose in this blog post is the following:&lt;/p&gt;
+
+&lt;p&gt;Instead of defining one mapping with prevent feeding enabled, we’ll define three mappings applied one after the other, and we’ll create our own temporary representation for previously mapped characters:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;mapping 1: lowercase all input text;&lt;/li&gt;
+  &lt;li&gt;mapping 2: make a &lt;strong&gt;case-sensitive&lt;/strong&gt; mapping where the input of each rule is lowercase, the output of each rule is uppercase, and the context of each rule lists both cases, so contexts match before and after the application of other rules;&lt;/li&gt;
+  &lt;li&gt;mapping 3: lowercase all output text.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The result exists as a &lt;a href=&quot;https://github.com/roedoejet/g2p/tree/master/g2p/tests/public/mappings/case-feed/&quot;&gt;test case in the g2p repo&lt;/a&gt;, but we’ll show it here too, a bit simplified.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;case-nofeed-mapping.csv&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;atun,ETUN,,
+un,UN,,[aAeE]
+un,ON,,
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;case-nofeed-config.yaml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mappings:
+  - display name: case-nofeed input lowercaser
+    mapping: empty.csv
+    in_lang: l1
+    out_lang: l1-lc
+    case_sensitive: false
+  - display_name: main case-nofeed mapping with l1 in lc, l2 in uc, thus no feeding
+    mapping: case-nofeed-mapping.csv
+    in_lang: l1-lc
+    out_lang: l2-uc
+    case_sensitive: true
+  - display name: case-nofeed output lowercaser
+    mapping: empty.csv
+    in_lang: l2-uc
+    out_lang: l2
+    case_sensitive: false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For the two lowercasing mappings, notice we referred to file &lt;code class=&quot;highlighter-rouge&quot;&gt;empty.csv&lt;/code&gt;. We indeed need to create an empty file called &lt;code class=&quot;highlighter-rouge&quot;&gt;empty.csv&lt;/code&gt;. We’re using the fact that when a case insensitive mapping (i.e., a mapping with &lt;code class=&quot;highlighter-rouge&quot;&gt;case_sensitive: false&lt;/code&gt;) is applied, its input is lowercased before the rules are applied, so we don’t need to provide any actual rules, which means an empty CSV file will do.&lt;/p&gt;
+
+&lt;p&gt;Now, when you run &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p convert --config case-nofeed-config.yaml untunatun l1 l2&lt;/code&gt;, you get the expected “ontunetun” output because for the middle “un”, the second rule matches that “E” in its &lt;code class=&quot;highlighter-rouge&quot;&gt;context_after&lt;/code&gt;, since the first rule changed “atun” to “ETUN”.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-if-my-mapping-is-case-sensitive&quot;&gt;What if my mapping is case sensitive?&lt;/h2&gt;
+
+&lt;p&gt;OK, so this solution depends on the fact that if your mapping is case insensitive, all input gets dropped to lower case before mapping starts, so distinctions of case in the input are not meaningful. This allows us to use upper case characters as that temporary intermediate representation that could not be matched as the input of other rules.&lt;/p&gt;
+
+&lt;p&gt;If your mapping has to be case sensitive, then you cannot use this solution. Instead, you would have to carefully choose your own temporary representation to block feeding via your rule design, while still being able to use that temporary representation in the context of other rules. But make sure you use characters that cannot be valid input in the language you’re working with!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/g2p-case-feeding/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/g2p-case-feeding/</guid>
+        
+        <category>tutorial</category>
+        
+        <category>explanation</category>
+        
+        <category>g2p</category>
+        
+        
+        <category>Tutorial</category>
+        
+      </item>
     
       <item>
         <title>G2P Part 7: Contributing a new mapping to g2p for everyone to use</title>
@@ -1038,7 +1194,7 @@ HH EH YY
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;See this link for more information on the difference between pip and pip3: https://www.pythonpool.com/pip-vs-pip3/ &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;See this link for more information on the difference between pip and pip3: &lt;a href=&quot;https://www.pythonpool.com/pip-vs-pip3/&quot;&gt;https://www.pythonpool.com/pip-vs-pip3/&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -1714,208 +1870,6 @@ The output will be exported as a copy of the input file + &lt;em&gt;_converted.e
         
         
         <category>Tutorial</category>
-        
-        <category>Blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Why I made yet another Cree syllabics converter</title>
-        <description>&lt;p&gt;The Western Cree languages—&lt;strong&gt;Plains Cree&lt;/strong&gt;, &lt;strong&gt;Woods Cree&lt;/strong&gt;, and &lt;strong&gt;Swampy Cree&lt;/strong&gt;—are written using two systems: one with letters borrowed from the
-English alphabet, in a system known as the &lt;strong&gt;standard Roman orthography&lt;/strong&gt; (&lt;strong&gt;SRO&lt;/strong&gt;), and &lt;strong&gt;ᓀᐦᐃᔭᐏ ᒐᐦᑭᐯᐦᐃᑲᓇ&lt;/strong&gt; (Cree syllabics). SRO is relatively easy to type on a modern computer, but syllabics are more difficult, because of the lack of a well-established syllabics input layout. It’s easier to just use a &lt;strong&gt;converter&lt;/strong&gt; which, given Cree text in SRO, produces Cree text in syllabics. In this post, I describe my criticisms of the converters that existed prior to July 2018, and introduce &lt;a href=&quot;https://syllabics.app/&quot;&gt;syllabics.app&lt;/a&gt;—a syllabics converter that I developed in reaction to the former converters.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h2&gt;
-
-&lt;p&gt;For the latter part of this blog post, where I discuss using the
-converter in your own project, I assume you know how to use:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/cree-sro-syllabics&quot;&gt;npm&lt;/a&gt; for installing JavaScript packages; or&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://packaging.python.org/tutorials/installing-packages/#use-pip-for-installing&quot;&gt;pip&lt;/a&gt; for installing Python packages&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you don’t care about embedding my converter in your coding project,
-then there’s no prior technical knowledge needed!&lt;/p&gt;
-
-&lt;h2 id=&quot;what-are-the-freely-available-transliterators&quot;&gt;What are the freely available transliterators?&lt;/h2&gt;
-
-&lt;p&gt;A quick Google search will net you at least the following SRO to syllabics transliterators.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;The Maskwacîs Plains Cree Syllabic Converter&lt;/a&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;The Algonquian Linguistic Atlas Cree Syllabics Converter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;Syllabics.net’s Plains Cree Syllabics Converter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;However, none of these transliterators are perfect.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-issues&quot;&gt;The issues&lt;/h2&gt;
-
-&lt;h3 id=&quot;word-final-hk&quot;&gt;Word final “hk”&lt;/h3&gt;
-
-&lt;p&gt;In syllabics, a word that ends with an “hk”—or «ᐠ» in syllabics—are
-supposed end with «ᕽ» instead. However, this replacement can never occur in the middle of a word.&lt;/p&gt;
-
-&lt;p&gt;For example, the word “ê-wêpâpîhkêwêpinamâhk” (&lt;em&gt;we (and not you) are setting it swinging&lt;/em&gt;), contains both a final “hk” and a “hk” cluster in the middle of the word. Its syllabic transcription is &lt;strong&gt;ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;The Algonquian Linguistic Atlas’s converter&lt;/a&gt; and &lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;syllabics.net’s converter&lt;/a&gt; both handle the conversion of “hk” to «ᐠ», without erroneously converting the sequence in the middle of a word. Notably, the community of &lt;strong&gt;Maskwacîs&lt;/strong&gt; does not follow this convention. Therefore, the &lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;Maskwacîs Converter&lt;/a&gt; produces &lt;strong&gt;ᐁ ᐁᐧᐸᐱᐦᑫᐁᐧᐱᓇᒪᐦᐠ&lt;/strong&gt;, unlike what is expected in other Cree communities.&lt;/p&gt;
-
-&lt;h3 id=&quot;transliterating-non-cree-words&quot;&gt;Transliterating non-Cree words&lt;/h3&gt;
-
-&lt;p&gt;Some transliterators attempt to convert every Latin character, even if it doesn’t make sense. Take the case of “Maskêkosihk Trail”—a road that goes from Edmonton to &lt;a href=&quot;http://enochnation.ca/&quot;&gt;Enoch Cree Nation&lt;/a&gt;. The City of Edmonton unveiled the street sign, and, in the process, they unveiled an embarrassment:&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;/assets/images/g/why-cree-syllabics--mayor-and-okimaw-780-7a1851.jpg&quot; srcset=&quot;/assets/images/g/why-cree-syllabics--mayor-and-okimaw-400-7a1851.jpg 400w, /assets/images/g/why-cree-syllabics--mayor-and-okimaw-600-7a1851.jpg 600w, /assets/images/g/why-cree-syllabics--mayor-and-okimaw-780-7a1851.jpg 780w&quot; /&gt;
-
-  &lt;figcaption&gt;
-    “Maskêkosihk trail” erroneously converted as «ᒪᐢᑫᑯᓯᐦᐠ ᐟrᐊᐃl»
-    &lt;cite&gt; Image source: &lt;a href=&quot;https://www.cbc.ca/news/canada/edmonton/renamed-maskekosihk-trail-part-of-city-s-ongoing-reconciliation-commitment-1.3446162&quot;&gt;CBC&lt;/a&gt;
-    &lt;/cite&gt;
-  &lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Not only does the syllabics transliteration of the sign contain the “hk”
-cluster as mentioned above,&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; but it half-transliterates &lt;em&gt;the English word&lt;/em&gt; “trail” into syllabics. The result is that “trail” is rendered as «ᐟrᐊᐃl», which &lt;em&gt;contains Latin characters in the transliteration!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In my opinion, an SRO to syllabics transliterator should refuse to transliterate words that do not have the structure of a Cree word. However, all three of the mentioned transliterators do attempt to transliterate “trail” with differing results:&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Maskwacîs Cree Dictionary&lt;/td&gt;
-      &lt;td&gt;ᐟrᐊᐃl&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Algonquian Linguistic Atlas&lt;/td&gt;
-      &lt;td&gt;ᐟᕒᐊᐃᐪ&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Syllabics.net&lt;/td&gt;
-      &lt;td&gt;ᐟᕒᐊᐃᓬ&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;long-vowels&quot;&gt;Long vowels&lt;/h3&gt;
-
-&lt;p&gt;Long vowels (êîôâ) are distinct from short vowels (ioa) in Cree. Long vowels are written with a dot above in syllabics. The exception is for “ê” because it is always long; as a result, some writers also drop the diacritic when writing “e” in SRO as well. It’s important to differentiate between long and short vowels, because it makes distinctions between words. For example, nipiy/ᓂᐱᕀ means “water” while nîpiy/ᓃᐱᕀ means “leaf”. However, there is such a thing as “plain” script, where the vowel dots are omitted, and &lt;a href=&quot;https://en.wikipedia.org/wiki/Canadian_Aboriginal_syllabics#Pointing&quot;&gt;pointed&lt;/a&gt; script where the vowels have all dots.&lt;/p&gt;
-
-&lt;p&gt;Another complication is that the “standard” Roman orthography in practice has multiple conventions for writing long vowels: using a macron (◌̄) and using a circumflex (◌̂).&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;How do the various converters handle long vowel diacritics? &lt;a href=&quot;http://www.creedictionary.com/converter/maskwacis.php&quot;&gt;The Maskwacîs converter&lt;/a&gt; does not produce dots for long vowels at all, however it accepts both macrons and circumflexes as input. The &lt;a href=&quot;https://syllabics.atlas-ling.ca/&quot;&gt;Algonquian Lingustic Atlas’s converter&lt;/a&gt; not only produces dots, but supports input in either macrons or circumflexes. The &lt;a href=&quot;http://www.syllabics.net/convert/plainscree&quot;&gt;syllabics.net converter&lt;/a&gt; does worst of all, handling &lt;em&gt;only&lt;/em&gt; macrons for long vowels. It simply spits out characters written with circumflexes. Additionally, it does not handle “ê” without an diacritics, which all other converters do.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-odds-and-ends&quot;&gt;Other odds and ends&lt;/h3&gt;
-
-&lt;p&gt;Other issues for syllabics converters include how they deal with dashes, how they deal with combining diacritics, rather than pre-composed characters, and whether they produce the correct Unicode characters for the syllabics rather than very convincing look-alikes. There’s also the &lt;a href=&quot;https://crk-orthography.readthedocs.io/en/stable/glossary.html#term-sandhi&quot;&gt;sandhi orthographic rule&lt;/a&gt;, but honestly, I’m not sure I fully comprehend how to apply this rule myself.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Here’s a breakdown of the previous issues, and whether each transliterator can handle it correctly.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Word-final “hk”&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Non-Cree words&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Long vowels&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Maskwacîs Cree Dictionary&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Algonquian Linguistic Atlas&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Syllabics.net&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;✅&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;❌&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;wheres-the-source-code&quot;&gt;Where’s the source code?&lt;/h2&gt;
-
-&lt;p&gt;The most pressing issue to me personally is that I cannot find &lt;strong&gt;source code&lt;/strong&gt; for any of these converters! This means that if other people want to incorporate a converter into their own app without an active internet connection, &lt;strong&gt;they can’t&lt;/strong&gt;. They have to either reverse-engineer the converters online, or write their own code to do the conversion.&lt;/p&gt;
-
-&lt;h2 id=&quot;cree-sro-syllabics-an-open-source-python-and-javascript-library-for-syllabics-conversion&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt;: an open-source Python and JavaScript library for syllabics conversion&lt;/h2&gt;
-
-&lt;p&gt;My solution was to create a code library that is &lt;strong&gt;free and open source&lt;/strong&gt;. It is available both for &lt;a href=&quot;https://pypi.org/project/cree-sro-syllabics/&quot;&gt;Python&lt;/a&gt; and &lt;a href=&quot;https://www.npmjs.com/package/cree-sro-syllabics&quot;&gt;JavaScript&lt;/a&gt;, and you can try it out right now!&lt;/p&gt;
-
-&lt;p&gt;It handles all the issues previously mentioned. Try it with the following test cases:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:Maskekosihk%20trail&quot;&gt;Maskekosihk trail&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:êwêpâpîhkêwêpinamahk&quot;&gt;êwêpâpîhkêwêpinamahk&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:ēwēpâpīhkēwēpinamahk&quot;&gt;ēwēpâpīhkēwēpinamahk&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://syllabics.app/#!sro:ewepapihkewepinamahk&quot;&gt;ewepapihkewepinamahk&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The source code for &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; can be found on their respective GitHub repositories:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/eddieantonio/cree-sro-syllabics&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; for Python&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/eddieantonio/cree-sro-syllabics.js&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; for JavaScript&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;But it can also be seamlessly incorporated into a Python project that uses &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; by installing it with:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install cree-sro-syllabics
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Or, you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt; to install &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; in your JavaScript project:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install cree-sro-syllabics --save
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Or you can &lt;a href=&quot;https://raw.githubusercontent.com/eddieantonio/cree-sro-syllabics.js/master/cree-sro-syllabics.js&quot;&gt;copy-paste the &lt;code class=&quot;highlighter-rouge&quot;&gt;.js&lt;/code&gt; file&lt;/a&gt; to your project.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-cases&quot;&gt;Use cases&lt;/h2&gt;
-
-&lt;p&gt;Most folks will just use &lt;a href=&quot;https://syllabics.app/&quot;&gt;syllabics.app&lt;/a&gt; to convert a few words or
-sentences of Cree.&lt;/p&gt;
-
-&lt;p&gt;However, software developers can embed the converter in clever ways in their application. For example, I’ve used the converter in &lt;a href=&quot;https://itwewina.dev/&quot;&gt;itwêwina — the Plains Cree dictionary&lt;/a&gt;. Although the underlying dictionary content is written entirely in SRO, we can present all Cree text in syllabics. In addition, we support searches in syllabics by using &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt; to convert the search string to SRO first, then search our dictionary content.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;How can &lt;em&gt;you&lt;/em&gt; use &lt;code class=&quot;highlighter-rouge&quot;&gt;cree-sro-syllabics&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This blog post has been adapted from a &lt;a href=&quot;https://eddieantonio.ca/blog/2018/07/30/why-i-made-yet-another-cree-syllabics-converter/&quot;&gt;post on Eddie’s blog&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;This is the same converter bundled in the &lt;a href=&quot;http://www.creedictionary.com/software/index.php&quot;&gt;Cree Dictionary app&lt;/a&gt;. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;This may not be a mistake; they &lt;em&gt;could&lt;/em&gt; be using Maskwacîs’s conventions, but I’m really not sure. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;I strongly suspect the sign designer used the Maskwacîs transliterator to get this result. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;Anecdotally, I find that most writers near Edmonton and Maskwacîs prefer circumflexes to macrons; however noted Algonquian linguist Arok Wolvengrey prefers macrons. Heck, Jean Okimāsis writes her surname with a macron! &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
-        <link>https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/</link>
-        <guid isPermaLink="true">https://blog.mothertongues.org/why-a-new-cree-syllabics-converter/</guid>
-        
-        <category>basic</category>
-        
         
         <category>Blog</category>
         
