@@ -56,6 +56,14 @@ authors:
     web: 
     twitter: 
     description: "Computational linguist"
+  joanise:
+    name: Eric
+    display_name: Eric
+    gravatar: ae3dad4bc5354cd18e92f64b42e1dc7c
+    email: eric.joanis@nrc-cnrc.gc.ca
+    web:
+    twitter:
+    description: "Senior ILT Developer at NRC"
 
 # Plugins
 plugins:

@@ -206,4 +206,4 @@ Then, type the following command in your command line or integrated terminal: `g
 
 ### Footnotes
 
-[^1]: See this link for more information on the difference between pip and pip3: https://www.pythonpool.com/pip-vs-pip3/
+[^1]: See this link for more information on the difference between pip and pip3: <https://www.pythonpool.com/pip-vs-pip3/>
