@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Jan 2022 17:16:33 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Jan 2022 17:16:33 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Jan 2022 21:45:28 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Jan 2022 21:45:28 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -63,7 +63,11 @@
 
 &lt;h2 id=&quot;step-3-change-the-words&quot;&gt;Step 3: Change the words&lt;/h2&gt;
 
-&lt;p&gt;You can change the valid guesses and the wordlist used by wordle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/validGuesses.ts&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/wordlist.ts&lt;/code&gt; files. Just replace the list that is there with new lists. Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.&lt;/p&gt;
+&lt;p&gt;You can change the valid guesses and the wordlist used by wordle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/validGuesses.ts&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/wordlist.ts&lt;/code&gt; files. Just replace the list that is there with new lists.&lt;/p&gt;
+
+&lt;p&gt;Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.&lt;/p&gt;
+
+&lt;p&gt;Second Note: the words will be presented in whatever order you put them in here! So make sure to randomize your wordlist in advance. The valid guesses list can be in any order but if the word list is in alphabetical order it’ll make it easier for people to guess.&lt;/p&gt;
 
 &lt;h2 id=&quot;step-4-configure-the-app&quot;&gt;Step 4: Configure the app&lt;/h2&gt;
 
