@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Jan 2022 21:45:28 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Jan 2022 21:45:28 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Jan 2022 22:31:40 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Jan 2022 22:31:40 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -58,7 +58,7 @@
 
 &lt;p&gt;You can change the &lt;code class=&quot;highlighter-rouge&quot;&gt;ORTHOGRAPHY&lt;/code&gt; variable in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/orthography.ts&lt;/code&gt; to use your language’s alphabet. This must be a list of strings, and the letters can be more than one character long. Don’t change the name of the variable, or anything else. For example if your language has the five letters ‘a’, ‘b’, ‘c’, ‘aa’, and ‘aaa’:&lt;/p&gt;
 
-&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ORTHOGRAPHY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aaa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ORTHOGRAPHY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aaa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;step-3-change-the-words&quot;&gt;Step 3: Change the words&lt;/h2&gt;
@@ -67,7 +67,7 @@
 
 &lt;p&gt;Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.&lt;/p&gt;
 
-&lt;p&gt;Second Note: the words will be presented in whatever order you put them in here! So make sure to randomize your wordlist in advance. The valid guesses list can be in any order but if the word list is in alphabetical order it’ll make it easier for people to guess.&lt;/p&gt;
+&lt;p&gt;Second Note: the words will be presented in whatever order you put them in here! So make sure to randomize your wordlist in advance. The valid guesses list can be in any order but if the word list is in alphabetical order it’ll make it easier for people to guess. If you can’t easily shuffle/randomize your wordlist, you can set the &lt;code class=&quot;highlighter-rouge&quot;&gt;shuffle: true &lt;/code&gt; parameter in the configuration in Step 4.&lt;/p&gt;
 
 &lt;h2 id=&quot;step-4-configure-the-app&quot;&gt;Step 4: Configure the app&lt;/h2&gt;
 
@@ -77,15 +77,20 @@
     &lt;span class=&quot;na&quot;&gt;tries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes how many tries you get to finish the wordle&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLanguageHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes the display name for your language&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;wordLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;googleAnalytics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// You can use this if you use Google Analytics&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourNameHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put your name here so people know who made this Wordle!&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;authorWebsite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLinkHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to your website or social media here&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;wordListSource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionarySource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Describe the source material for your words here&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;wordListSourceLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionaryLink&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to the source material for your words here&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;wordListSourceLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionaryLink&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to the source material for your words here&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// THESE NEXT SETTINGS ARE FOR ADVANCED USERS&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;googleAnalytics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// You can use this if you use Google Analytics&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;shuffle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// whether to shuffle the words in the wordlist&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;normalization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NFC'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// whether to apply Unicode normalization to words and orthography - options: 'NFC', 'NFD', 'NKFC', 'NKFD', false&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note, you don’t need to use googleAnalytics, but you should put something for all the other parameters!&lt;/p&gt;
+&lt;p&gt;Note, you don’t need to use googleAnalytics, but you should put something for all the other parameters! Note that the default here uses NFC Unicode normalization on all words and letters in your alphabet. If you don’t know what the heck that means, &lt;a href=&quot;https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html&quot;&gt;you’re not alone!&lt;/a&gt; but it’s actually pretty important for making sure all the words in your wordlist are using the same bits and bytes as your writing system.&lt;/p&gt;
 
 &lt;h2 id=&quot;step-5-publish&quot;&gt;Step 5: Publish&lt;/h2&gt;
 
@@ -102,6 +107,14 @@
 &lt;h2 id=&quot;advanced&quot;&gt;Advanced&lt;/h2&gt;
 
 &lt;p&gt;I’ll put some stuff here for advanced users.&lt;/p&gt;
+
+&lt;h3 id=&quot;custom-build&quot;&gt;Custom Build&lt;/h3&gt;
+
+&lt;p&gt;If you want to build your site without using GitHub Pages, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script build&lt;/code&gt;, making sure that your &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; key is changed appropriately in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;. The resulting &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; folder can be served from any HTTP server.&lt;/p&gt;
+
+&lt;h3 id=&quot;font&quot;&gt;Font&lt;/h3&gt;
+
+&lt;p&gt;This project uses &lt;a href=&quot;https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/bc-visual-identity/bc-sans&quot;&gt;BC SANS&lt;/a&gt; by default in order to properly render characters in BC Indigenous languages. You can change this in &lt;code class=&quot;highlighter-rouge&quot;&gt;index.css&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-domain&quot;&gt;Custom Domain&lt;/h3&gt;
 
