@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Jan 2022 00:43:05 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Jan 2022 00:43:05 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Jan 2022 17:16:33 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Jan 2022 17:16:33 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -89,9 +89,9 @@
 
 &lt;p&gt;After that little proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/homepage-gh-472-cc999c.png&quot; srcset=&quot;/assets/images/g/homepage-gh-400-cc999c.png 400w, /assets/images/g/homepage-gh-472-cc999c.png 472w&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/homepage-gh-546-af959b.png&quot; srcset=&quot;/assets/images/g/homepage-gh-400-af959b.png 400w, /assets/images/g/homepage-gh-546-af959b.png 546w&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Then, run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script deploy&lt;/code&gt; and then visit your Wordle at that address: https://yourusername.github.io/wordle&lt;/p&gt;
+&lt;p&gt;Then, run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script deploy&lt;/code&gt; and then visit your Wordle at that address: https://yourusername.github.io/AnyLanguage-Wordle&lt;/p&gt;
 
 &lt;p&gt;You can change the words or make other changes and then deploy again. Congratulations - you did it!&lt;/p&gt;
 
