@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Jan 2022 22:31:40 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Jan 2022 22:31:40 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Jan 2022 22:35:31 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Jan 2022 22:35:31 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -90,7 +90,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note, you don’t need to use googleAnalytics, but you should put something for all the other parameters! Note that the default here uses NFC Unicode normalization on all words and letters in your alphabet. If you don’t know what the heck that means, &lt;a href=&quot;https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html&quot;&gt;you’re not alone!&lt;/a&gt; but it’s actually pretty important for making sure all the words in your wordlist are using the same bits and bytes as your writing system.&lt;/p&gt;
+&lt;p&gt;Note, you don’t need to put values for the advanced settings (‘googleAnalytics’, ‘shuffle’, or ‘normalization’), but you should put something for all the other parameters! The default ‘normalization’ here uses NFC Unicode normalization on all words and letters in your alphabet, which will be OK for 99% of cases. If you don’t know what the heck Unicode normalization means, &lt;a href=&quot;https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html&quot;&gt;you’re not alone!&lt;/a&gt; but it’s actually pretty important for making sure all the words in your wordlist are using the same bits and bytes as your writing system.&lt;/p&gt;
 
 &lt;h2 id=&quot;step-5-publish&quot;&gt;Step 5: Publish&lt;/h2&gt;
 
