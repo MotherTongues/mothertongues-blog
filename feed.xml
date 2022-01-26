@@ -5,9 +5,134 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Jan 2022 01:28:43 +0000</pubDate>
-    <lastBuildDate>Tue, 11 Jan 2022 01:28:43 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Jan 2022 00:43:05 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Jan 2022 00:43:05 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>How to make a Wordle clone for your language</title>
+        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;This tutorial will help you adapt the popular &lt;a href=&quot;https://www.powerlanguage.co.uk/wordle/&quot;&gt;Wordle game&lt;/a&gt; to another language!&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In order to do this, you’ll have to know a little bit about web development, or at least not be intimidated to get your hands dirty in some code! If that already sounds intimidating, hopefully you continue to read on a bit - it might be scary at first but it gets easier! Remember there are a lot of resources online to help you and you can always reach out to me if you have questions.&lt;/li&gt;
+  &lt;li&gt;Specifically, you’ll need a &lt;a href=&quot;https://github.com/&quot;&gt;GitHub Account&lt;/a&gt;, a text editor for code (I like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;), and, ideally, a computer with &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node&lt;/a&gt; installed and ready for devlopment.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Author/Blog Maintainer: &lt;a href=&quot;https://aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-projecttechnologytip&quot;&gt;What are the motivations behind this project/technology/tip?&lt;/h1&gt;
+
+&lt;p&gt;Everybody I know has been loving the Wordle game in English, and there are many other Wordlers who have made clones of the original Wordle. I ‘forked’ (ie copied) Hannah Park’s (@hannahcode) &lt;a href=&quot;https://github.com/hannahcode/wordle&quot;&gt;open source clone&lt;/a&gt; and adapted it to allow for different languages.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-make-your-wordle&quot;&gt;How to make your Wordle&lt;/h1&gt;
+
+&lt;h2 id=&quot;step-1-get-the-code&quot;&gt;Step 1: Get the code&lt;/h2&gt;
+
+&lt;p&gt;The first step is to copy &lt;a href=&quot;https://github.com/roedoejet/AnyLanguage-Wordle&quot;&gt;my version&lt;/a&gt; of the @hannahcode’s clone to your computer. To do this, first ‘fork’ &lt;a href=&quot;https://github.com/roedoejet/AnyLanguage-Wordle&quot;&gt;my version&lt;/a&gt; by clicking on the fork button as seen below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/fork-wordle-800-6d4812.png&quot; srcset=&quot;/assets/images/g/fork-wordle-400-6d4812.png 400w, /assets/images/g/fork-wordle-600-6d4812.png 600w, /assets/images/g/fork-wordle-800-6d4812.png 800w, /assets/images/g/fork-wordle-1000-6d4812.png 1000w&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then clone your copy to your computer&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/YourGitHubUsername/AnyLanguage-Wordle.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username.&lt;/p&gt;
+
+&lt;p&gt;Then, you will need to install all the dependencies:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd wordle &amp;amp;&amp;amp; npm install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Tada! You can now run my copy on your machine:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm serve&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step-2-change-the-orthography-writing-system&quot;&gt;Step 2: Change the orthography (writing system)&lt;/h2&gt;
+
+&lt;p&gt;You can change the &lt;code class=&quot;highlighter-rouge&quot;&gt;ORTHOGRAPHY&lt;/code&gt; variable in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/orthography.ts&lt;/code&gt; to use your language’s alphabet. This must be a list of strings, and the letters can be more than one character long. Don’t change the name of the variable, or anything else. For example if your language has the five letters ‘a’, ‘b’, ‘c’, ‘aa’, and ‘aaa’:&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ORTHOGRAPHY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'aaa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-3-change-the-words&quot;&gt;Step 3: Change the words&lt;/h2&gt;
+
+&lt;p&gt;You can change the valid guesses and the wordlist used by wordle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/validGuesses.ts&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/wordlist.ts&lt;/code&gt; files. Just replace the list that is there with new lists. Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-4-configure-the-app&quot;&gt;Step 4: Configure the app&lt;/h2&gt;
+
+&lt;p&gt;You can change other aspects related to the app in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/config.ts&lt;/code&gt;. Here is the default with a description for each value:&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CONFIG&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;tries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes how many tries you get to finish the wordle&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLanguageHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes the display name for your language&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;wordLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;googleAnalytics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// You can use this if you use Google Analytics&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourNameHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put your name here so people know who made this Wordle!&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authorWebsite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLinkHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to your website or social media here&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;wordListSource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionarySource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Describe the source material for your words here&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;wordListSourceLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionaryLink&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to the source material for your words here&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note, you don’t need to use googleAnalytics, but you should put something for all the other parameters!&lt;/p&gt;
+
+&lt;h2 id=&quot;step-5-publish&quot;&gt;Step 5: Publish&lt;/h2&gt;
+
+&lt;p&gt;Wait - are you &lt;em&gt;sure&lt;/em&gt; you have permission to publish this? Are you a member of the language community? Did you ask permission and follow the proper protocols? Just because you &lt;em&gt;can&lt;/em&gt; build something cool doesn’t necessarily mean you &lt;em&gt;should&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;After that little proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/homepage-gh-472-cc999c.png&quot; srcset=&quot;/assets/images/g/homepage-gh-400-cc999c.png 400w, /assets/images/g/homepage-gh-472-cc999c.png 472w&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script deploy&lt;/code&gt; and then visit your Wordle at that address: https://yourusername.github.io/wordle&lt;/p&gt;
+
+&lt;p&gt;You can change the words or make other changes and then deploy again. Congratulations - you did it!&lt;/p&gt;
+
+&lt;h2 id=&quot;advanced&quot;&gt;Advanced&lt;/h2&gt;
+
+&lt;p&gt;I’ll put some stuff here for advanced users.&lt;/p&gt;
+
+&lt;h3 id=&quot;custom-domain&quot;&gt;Custom Domain&lt;/h3&gt;
+
+&lt;p&gt;If you want to use a custom domain, first create a CNAME record, then change the &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; script to create a CNAME file before deploying:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{...
+    &quot;scripts&quot;: {
+        &quot;start&quot;: &quot;react-scripts start&quot;,
+        &quot;predeploy&quot;: &quot;npm run build&quot;,
+        &quot;deploy&quot;: &quot;echo 'yourdomain.org' &amp;gt; ./build/CNAME &amp;amp;&amp;amp; gh-pages -d build&quot;,
+        &quot;build&quot;: &quot;react-scripts build&quot;,
+        &quot;test&quot;: &quot;react-scripts test&quot;,
+        &quot;eject&quot;: &quot;react-scripts eject&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will set the domain properly for GitHub Pages.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/wordle/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/wordle/</guid>
+        
+        <category>tutorial</category>
+        
+        <category>explanation</category>
+        
+        <category>wordle</category>
+        
+        <category>game</category>
+        
+        
+        <category>Tutorial</category>
+        
+      </item>
     
       <item>
         <title>Preventing feeding of g2p rules with case</title>
@@ -1718,160 +1843,6 @@ addition to a few fonts from Google Fonts to round things out:&lt;/p&gt;
         
         
         <category>Tutorial</category>
-        
-      </item>
-    
-      <item>
-        <title>How to use the new Convertextract application for 'quality control' of ELAN annotations</title>
-        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
-
-&lt;p&gt;Have you ever wanted to &lt;em&gt;NOT&lt;/em&gt; spend hours tediously checking that &lt;strong&gt;k + ‘&lt;/strong&gt; is written as &lt;strong&gt;k̓&lt;/strong&gt; and not &lt;strong&gt;k’&lt;/strong&gt;?
-If you said &lt;strong&gt;YES!&lt;/strong&gt;, &lt;em&gt;Convertextract&lt;/em&gt; is the app for you. With minimal technical knowledge, you can now systemically make your &lt;a href=&quot;https://archive.mpi.nl/tla/elan&quot;&gt;ELAN&lt;/a&gt; annotations consistent.&lt;/p&gt;
-
-&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
-
-&lt;p&gt;I assume that you know some background about the &lt;a href=&quot;https://github.com/roedoejet/g2p&quot;&gt;g2p library&lt;/a&gt;.
-For the purposes of using these tools, a library is a collection of code and documentation, but if you would like to dig deeper you can check out this &lt;a href=&quot;https://en.wikipedia.org/wiki/Library_(computing)&quot;&gt;Wikipedia article&lt;/a&gt; 
-The g2p library uses existing and custom mappings (i.e. arbitrary input-&amp;gt;output conversions). For example, you might want &lt;strong&gt;k’&lt;/strong&gt; (input) to be converted to &lt;strong&gt;k̓&lt;/strong&gt; (output). The Mapping is the roadmap for converting.
-These conversions are &lt;strong&gt;arbitrary&lt;/strong&gt;, so depending on your use case you may need to create new mappings. Most of the existing mappings convert &lt;em&gt;Graphemes&lt;/em&gt; (a character in the writing system of a language) to &lt;em&gt;Phonemes&lt;/em&gt; (their equivalent sound in the language), hence the name ‘g2p’. 
-To see existing mappings click &lt;a href=&quot;https://g2p-studio.herokuapp.com&quot;&gt;here&lt;/a&gt;
-To keep this post simple, I will not explain how to add new g2p mappings. The documentation for adding mappings is &lt;a href=&quot;https://github.com/roedoejet/g2p#writing-mapping-files&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Kwak̓wala Corpus Collection group&lt;/p&gt;
-
-    &lt;p&gt;Sara Child &lt;a href=&quot;mailto:saratlilinukw@gmail.com&quot;&gt;saratlilinukw@gmail.com&lt;/a&gt;
-  Daisy Rosenblum &lt;a href=&quot;mailto:daisy.rosenblum@ubc.ca&quot;&gt;daisy.rosenblum@ubc.ca&lt;/a&gt;
-  Caroline Running Wolf &lt;a href=&quot;mailto:caroline.oldcoyote@gmail.com&quot;&gt;caroline.oldcoyote@gmail.com&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;App developer: &lt;a href=&quot;https://aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Support for adding mappings/parsers: &lt;a href=&quot;mailto:fineen.davis@gmail.com&quot;&gt;Fineen Davis&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-is-needed-to-replicate-the-content-in-the-post&quot;&gt;What is needed to replicate the content in the post?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://g2p-studio.herokuapp.com&quot;&gt;g2p&lt;/a&gt; Mapping of the desired conversions&lt;/li&gt;
-  &lt;li&gt;Language text to be converted&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/roedoejet/convertextract/&quot;&gt;Convertextract&lt;/a&gt; app (read the post for installation!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-are-the-motivations-behind-this-technology&quot;&gt;What are the motivations behind this technology?&lt;/h1&gt;
-
-&lt;p&gt;As a Student Intern on the NRC’s &lt;a href=&quot;https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project&quot;&gt;Indigenous Language Technology (ILT) project&lt;/a&gt;, I was approached by the Kwak̓wala Corpus Collection group to help create a systemic way to streamline the quality control process for their ELAN annotation data. Having many different people with many different orthographic conventions (i.e. different ways of writing the same thing) all working on annotating Kwak̓wala language data had resulted in inconsistencies.&lt;/p&gt;
-
-&lt;p&gt;For example, there was four ways that people were writing &lt;strong&gt;t̓s&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;t’s&lt;/strong&gt;, &lt;strong&gt;t̕s&lt;/strong&gt;, &lt;strong&gt;ts̓&lt;/strong&gt;, &lt;strong&gt;ts’&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So, I added mappings in the g2p library that took the alternative forms and &lt;em&gt;streamlined&lt;/em&gt; them therefore producing only one form in the output.Then I added support for ELAN files in the Convertextract library, so that the process became automated. Aidan Pine then turned Convertextract into an app!&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-use-the-new-convertextract-app-for-quality-control-of-elan-annotations&quot;&gt;How to use the new Convertextract app for ‘quality control’ of ELAN annotations&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/roedoejet/convertextract&quot;&gt;Convertextract&lt;/a&gt;, created by Aidan Pine, is a &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; library which extracts text data and finds/replaces specific text based on arbitrary correspondences. 
-Until now, only basic &lt;a href=&quot;https://en.wikipedia.org/wiki/Command-line_interface&quot;&gt;CLI&lt;/a&gt; (Command Line Interface) was supported. Using Convertextract in the CLI allowed the user to convert a file based on pre-existing Mappings in the &lt;a href=&quot;https://github.com/roedoejet/g2p/tree/master/g2p/mappings/langs&quot;&gt;g2p library&lt;/a&gt; or based on a custom Mapping (not described here). However, the downside is that some programming knowledge is needed to use the CLI.
-The latest update now includes a &lt;a href=&quot;https://en.wikipedia.org/wiki/Graphical_user_interface&quot;&gt;GUI&lt;/a&gt; (Graphical User Interface) in the form of an app (for Mac computers &lt;strong&gt;only&lt;/strong&gt;). The app makes Convertextract more accessible for non-programmers.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-g2p-mapping&quot;&gt;1. G2P mapping&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Convertextract&lt;/em&gt; will carry out the streamlining for you, but it has to know what to convert. The g2p Mapping is this roadmap. See the section &lt;em&gt;What you need to know to understand this post&lt;/em&gt; for more information on how to see if your language is supported.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-language-data&quot;&gt;2. Language data&lt;/h3&gt;
-
-&lt;p&gt;You language data must be in one of the supported file formats. The most recent addition is &lt;code class=&quot;highlighter-rouge&quot;&gt;.eaf&lt;/code&gt; files, which allows ELAN annotations to be used!
-For a full list of supported file types click &lt;a href=&quot;https://github.com/roedoejet/convertextract/tree/master/convertextract/parsers&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;3-convertextract-application&quot;&gt;3. Convertextract application&lt;/h3&gt;
-
-&lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt; The app works on &lt;strong&gt;Mac only!!!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;To download the app: &lt;a href=&quot;https://github.com/roedoejet/convertextract/releases&quot;&gt;https://github.com/roedoejet/convertextract/releases&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In your downloads folder, find the .zip file and double click on it to unzip.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Downloads&amp;gt;&lt;strong&gt;convertextract&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Right-click on the application in the dist folder and select &lt;em&gt;Open&lt;/em&gt;.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Downloads&amp;gt;convertextract&amp;gt;dist&amp;gt;&lt;strong&gt;Convertextract&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;Note: If you try to double click to open the app, you will get a security message. Right-clicking to open will allow you to override the security message.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;using-the-app&quot;&gt;Using the app&lt;/h4&gt;
-
-&lt;p&gt;This is what the app looks like when you open it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/gui-800-e3246b.png&quot; alt=&quot;convertextract GUI&quot; srcset=&quot;/assets/images/g/gui-400-e3246b.png 400w, /assets/images/g/gui-600-e3246b.png 600w, /assets/images/g/gui-800-e3246b.png 800w, /assets/images/g/gui-807-e3246b.png 807w&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;All you have to do is add your language data, choose the encoding (usually ‘utf-8’ should suffice), and pick your g2p mapping!
-The output will be exported as a copy of the input file + &lt;em&gt;_converted.ext&lt;/em&gt; in the filename.&lt;/p&gt;
-
-&lt;h5 id=&quot;example-case&quot;&gt;Example case&lt;/h5&gt;
-
-&lt;p&gt;When typing, there is more than one way to write &lt;strong&gt;k̓&lt;/strong&gt; in the Kwak̓wala language. Convertextract takes all of these possibilities and generates &lt;em&gt;one&lt;/em&gt; output for the sake of consistency.&lt;/p&gt;
-
-&lt;p&gt;I used the following inputs for &lt;em&gt;Convertextract&lt;/em&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Encoding: &lt;code class=&quot;highlighter-rouge&quot;&gt;utf-8&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Input_language: &lt;code class=&quot;highlighter-rouge&quot;&gt;kwk-umista &lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Output_language: &lt;code class=&quot;highlighter-rouge&quot;&gt;kwk-umista-con&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Performing ‘&lt;em&gt;quality control&lt;/em&gt;’&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Input language&lt;/th&gt;
-      &lt;th&gt;Output language&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Language code&lt;/td&gt;
-      &lt;td&gt;kwk-umista&lt;/td&gt;
-      &lt;td&gt;kwk-umista-con&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Sample text&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;kwak’wala&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;kwak̓wala&lt;/em&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;kwak]wala&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;kwak̓wala&lt;/em&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;If you need help setting up the app or have any questions at all, please feel free to comment below or send me an email!&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-        <link>https://blog.mothertongues.org/convertextract-app/</link>
-        <guid isPermaLink="true">https://blog.mothertongues.org/convertextract-app/</guid>
-        
-        <category>basic</category>
-        
-        
-        <category>Tutorial</category>
-        
-        <category>Blog</category>
         
       </item>
     
