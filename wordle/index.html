@@ -327,7 +327,7 @@
 
 <p>Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.</p>
 
-<p>Second Note: the words will be presented in whatever order you put them in here! So make sure to randomize your wordlist in advance. The valid guesses list can be in any order but if the word list is in alphabetical order it’ll make it easier for people to guess. If you can’t easily shuffle/randomize your wordlist, you can set the <code class="highlighter-rouge">shuffle: true </code> parameter in the configuration in Step 4.</p>
+<p>Second Note: the words will be presented in whatever order you put them in here! So make sure to randomize your wordlist in advance. The valid guesses list can be in any order but if the word list is in alphabetical order it’ll make it easier for people to guess.</p>
 
 <h2 id="step-4-configure-the-app">Step 4: Configure the app</h2>
 
@@ -345,7 +345,7 @@
     <span class="c1">// THESE NEXT SETTINGS ARE FOR ADVANCED USERS</span>
     <span class="c1">//</span>
     <span class="na">googleAnalytics</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span> <span class="c1">// You can use this if you use Google Analytics</span>
-    <span class="na">shuffle</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether to shuffle the words in the wordlist</span>
+    <span class="na">shuffle</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether to shuffle the words in the wordlist each time you load the app (note: you will lose the 'word of the day' functionality if this is true)</span>
     <span class="na">normalization</span><span class="p">:</span> <span class="s1">'NFC'</span> <span class="c1">// whether to apply Unicode normalization to words and orthography - options: 'NFC', 'NFD', 'NKFC', 'NKFD', false</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -370,7 +370,7 @@
 
 <h3 id="custom-build">Custom Build</h3>
 
-<p>If you want to build your site without using GitHub Pages, just run <code class="highlighter-rouge">npm run-script build</code>, making sure that your <code class="highlighter-rouge">homepage</code> key is changed appropriately in <code class="highlighter-rouge">package.json</code>. The resulting <code class="highlighter-rouge">build</code> folder can be served from any HTTP server.</p>
+<p>If you want to build your site without using GitHub Pages, just run <code class="highlighter-rouge">npm run-script build</code>, making sure that your <code class="highlighter-rouge">homepage</code> key is changed appropriately in <code class="highlighter-rouge">package.json</code> to whatever address you will host your site at. The resulting <code class="highlighter-rouge">build</code> folder can be served from any HTTP server.</p>
 
 <h3 id="font">Font</h3>
 
@@ -378,13 +378,13 @@
 
 <h3 id="custom-domain">Custom Domain</h3>
 
-<p>If you want to use a custom domain, first create a CNAME record, then change the <code class="highlighter-rouge">deploy</code> script to create a CNAME file before deploying:</p>
+<p>If you want to use a custom domain while hosting on GitHub Pages, first create a CNAME record, then change the <code class="highlighter-rouge">deploy</code> script to create a CNAME file before deploying:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{...
     "scripts": {
         "start": "react-scripts start",
         "predeploy": "npm run build",
-        "deploy": "echo 'yourdomain.org' &gt; ./build/CNAME &amp;&amp; gh-pages -d build",
+        "deploy": "echo 'yoursubdomain.yourdomain.org' &gt; ./build/CNAME &amp;&amp; gh-pages -d build",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
