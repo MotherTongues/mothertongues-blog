@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Jan 2022 21:53:10 +0000</pubDate>
-    <lastBuildDate>Sat, 29 Jan 2022 21:53:10 +0000</lastBuildDate>
+    <pubDate>Sun, 30 Jan 2022 23:39:15 +0000</pubDate>
+    <lastBuildDate>Sun, 30 Jan 2022 23:39:15 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -96,7 +96,7 @@
 
 &lt;p&gt;Wait - are you &lt;em&gt;sure&lt;/em&gt; you have permission to publish this? Are you a member of the language community? Did you ask permission and follow the proper protocols? Just because you &lt;em&gt;can&lt;/em&gt; build something cool doesn’t necessarily mean you &lt;em&gt;should&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;After that little proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same.&lt;/p&gt;
+&lt;p&gt;After that little proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same. Note - if you &lt;em&gt;changed&lt;/em&gt; the name of your fork from “AnyLanguage-Wordle” to something else, you will have to change that as well.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/g/homepage-gh-546-af959b.png&quot; srcset=&quot;/assets/images/g/homepage-gh-400-af959b.png 400w, /assets/images/g/homepage-gh-546-af959b.png 546w&quot; /&gt;&lt;/p&gt;
 
@@ -106,11 +106,15 @@
 
 &lt;h2 id=&quot;advanced&quot;&gt;Advanced&lt;/h2&gt;
 
-&lt;p&gt;I’ll put some stuff here for advanced users.&lt;/p&gt;
+&lt;p&gt;I’ll put some stuff here for advanced users. If you’re running into errors, have a look at these too, and don’t forget to read the comment section below too!&lt;/p&gt;
+
+&lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
+
+&lt;p&gt;Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by running &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script test&lt;/code&gt; which will fail if certain words use symbols not defined in your &lt;code class=&quot;highlighter-rouge&quot;&gt;orthography.ts&lt;/code&gt; file.&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-build&quot;&gt;Custom Build&lt;/h3&gt;
 
-&lt;p&gt;If you want to build your site without using GitHub Pages, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script build&lt;/code&gt;, making sure that your &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; key is changed appropriately in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; to whatever address you will host your site at. The resulting &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; folder can be served from any HTTP server.&lt;/p&gt;
+&lt;p&gt;If you want to build your site without using GitHub Pages, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script build&lt;/code&gt;, making sure that your &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; key is changed appropriately in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; to whatever address you will host your site at, otherwise the site will not build correctly. The resulting &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; folder can be served from any HTTP server at the address defined in the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; setting in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;font&quot;&gt;Font&lt;/h3&gt;
 
