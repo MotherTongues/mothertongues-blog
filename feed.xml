@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 31 Jan 2022 22:03:15 +0000</pubDate>
-    <lastBuildDate>Mon, 31 Jan 2022 22:03:15 +0000</lastBuildDate>
+    <pubDate>Mon, 31 Jan 2022 23:38:58 +0000</pubDate>
+    <lastBuildDate>Mon, 31 Jan 2022 23:38:58 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -52,7 +52,7 @@
 
 &lt;p&gt;Tada! You can now run my copy on your machine:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm serve&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm start&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;step-2-change-the-orthography-writing-system&quot;&gt;Step 2: Change the orthography (writing system)&lt;/h2&gt;
 
