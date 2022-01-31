@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 30 Jan 2022 23:39:15 +0000</pubDate>
-    <lastBuildDate>Sun, 30 Jan 2022 23:39:15 +0000</lastBuildDate>
+    <pubDate>Mon, 31 Jan 2022 22:03:15 +0000</pubDate>
+    <lastBuildDate>Mon, 31 Jan 2022 22:03:15 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -48,7 +48,7 @@
 
 &lt;p&gt;Then, you will need to install all the dependencies:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd wordle &amp;amp;&amp;amp; npm install&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd AnyLanguage-Wordle &amp;amp;&amp;amp; npm install&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Tada! You can now run my copy on your machine:&lt;/p&gt;
 
