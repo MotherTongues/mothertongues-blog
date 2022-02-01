@@ -14,8 +14,8 @@
 <meta property="og:title" content="How to make a Wordle clone for your language" />
 <meta name="author" content="AidanPine" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tutorial: how to make a Wordle game for your language" />
-<meta property="og:description" content="Tutorial: how to make a Wordle game for your language" />
+<meta name="description" content="Tutorial: how to make a (not) Wordle game for your language" />
+<meta property="og:description" content="Tutorial: how to make a (not) Wordle game for your language" />
 <link rel="canonical" href="https://blog.mothertongues.org/wordle/" />
 <meta property="og:url" content="https://blog.mothertongues.org/wordle/" />
 <meta property="og:site_name" content="Mother Tongues Blog" />
@@ -26,7 +26,7 @@
 <meta name="twitter:site" content="@AidanPine" />
 <meta name="twitter:creator" content="@AidanPine" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"AidanPine"},"description":"Tutorial: how to make a Wordle game for your language","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/wordle/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/wordle.png","url":"https://blog.mothertongues.org/wordle/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"How to make a Wordle clone for your language","dateModified":"2022-01-25T00:00:00+00:00","datePublished":"2022-01-25T00:00:00+00:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"AidanPine"},"description":"Tutorial: how to make a (not) Wordle game for your language","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/wordle/"},"@type":"BlogPosting","image":"https://blog.mothertongues.org/assets/images/wordle.png","url":"https://blog.mothertongues.org/wordle/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"AidanPine"},"headline":"How to make a Wordle clone for your language","dateModified":"2022-01-25T00:00:00+00:00","datePublished":"2022-01-25T00:00:00+00:00","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -277,9 +277,15 @@
 
 <h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
 
+<p>I’ve re-written this blog post to be a bit more centered towards users who might not have a web development environment installed on their computer. See the <a href="#local-development">local development</a> section for the previous (advanced) instructions on getting your local development environment set up.</p>
+
 <ul>
-  <li>In order to do this, you’ll have to know a little bit about web development, or at least not be intimidated to get your hands dirty in some code! If that already sounds intimidating, hopefully you continue to read on a bit - it might be scary at first but it gets easier! Remember there are a lot of resources online to help you and you can always reach out to me if you have questions.</li>
-  <li>Specifically, you’ll need a <a href="https://github.com/">GitHub Account</a>, a text editor for code (I like <a href="https://code.visualstudio.com/">Visual Studio Code</a>), and, ideally, a computer with <a href="https://nodejs.org/en/">Node</a> installed and ready for devlopment.</li>
+  <li>
+    <p>In order to do this, you’ll have to know a little bit about web development, or at least not be intimidated to get your hands dirty in some code! If that already sounds intimidating, hopefully you continue to read on a bit - it might be scary at first but it gets easier! Remember there are a lot of resources online to help you and you can always reach out to me if you have questions.</p>
+  </li>
+  <li>
+    <p>You’ll need a <a href="https://github.com/">GitHub Account</a> and a text editor for code (I like <a href="https://code.visualstudio.com/">Visual Studio Code</a>).</p>
+  </li>
 </ul>
 
 <h1 id="who-is-involved-with-this-project">Who is involved with this project?</h1>
@@ -292,7 +298,7 @@
 
 <p>Everybody I know has been loving the Wordle game in English, and there are many other Wordlers who have made clones of the original Wordle. I ‘forked’ (ie copied) Hannah Park’s (@hannahcode) <a href="https://github.com/hannahcode/wordle">open source clone</a> and adapted it to allow for different languages.</p>
 
-<h1 id="how-to-make-your-wordle">How to make your Wordle</h1>
+<h1 id="how-to-make-your-not-wordle">How to make your Not Wordle</h1>
 
 <h2 id="step-1-get-the-code">Step 1: Get the code</h2>
 
@@ -304,15 +310,7 @@
 
 <p><code class="highlighter-rouge">git clone https://github.com/YourGitHubUsername/AnyLanguage-Wordle.git</code></p>
 
-<p>Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username.</p>
-
-<p>Then, you will need to install all the dependencies:</p>
-
-<p><code class="highlighter-rouge">cd AnyLanguage-Wordle &amp;&amp; npm install</code></p>
-
-<p>Tada! You can now run my copy on your machine:</p>
-
-<p><code class="highlighter-rouge">npm start</code></p>
+<p>Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username. Alternatively, you can <a href="https://desktop.github.com/">install GitHub Desktop</a> and then <a href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop">clone the repository using GitHub Desktop</a>.</p>
 
 <h2 id="step-2-change-the-orthography-writing-system">Step 2: Change the orthography (writing system)</h2>
 
@@ -323,7 +321,7 @@
 
 <h2 id="step-3-change-the-words">Step 3: Change the words</h2>
 
-<p>You can change the valid guesses and the wordlist used by wordle in the <code class="highlighter-rouge">src/constants/validGuesses.ts</code> and <code class="highlighter-rouge">src/constants/wordlist.ts</code> files. Just replace the list that is there with new lists.</p>
+<p>You can change the valid guesses and the wordlist used by Not Wordle in the <code class="highlighter-rouge">src/constants/validGuesses.ts</code> and <code class="highlighter-rouge">src/constants/wordlist.ts</code> files. Just replace the lists that are there with your language’s wordlists. The valid guesses are all the words that can be guessed in your Not Wordle, whereas the wordlist represents all the words that can be chosen as the word of the day.</p>
 
 <p>Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.</p>
 
@@ -334,10 +332,10 @@
 <p>You can change other aspects related to the app in <code class="highlighter-rouge">src/constants/config.ts</code>. Here is the default with a description for each value:</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CONFIG</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">tries</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1">// This changes how many tries you get to finish the wordle</span>
+    <span class="na">tries</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1">// This changes how many tries you get to finish the Not Wordle</span>
     <span class="na">language</span><span class="p">:</span> <span class="s2">"YourLanguageHere"</span><span class="p">,</span> <span class="c1">// This changes the display name for your language</span>
     <span class="na">wordLength</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">// This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word</span>
-    <span class="na">author</span><span class="p">:</span> <span class="s2">"YourNameHere"</span><span class="p">,</span> <span class="c1">// Put your name here so people know who made this Wordle!</span>
+    <span class="na">author</span><span class="p">:</span> <span class="s2">"YourNameHere"</span><span class="p">,</span> <span class="c1">// Put your name here so people know who made this Not Wordle!</span>
     <span class="na">authorWebsite</span><span class="p">:</span> <span class="s2">"YourLinkHere"</span><span class="p">,</span> <span class="c1">// Put a link to your website or social media here</span>
     <span class="na">wordListSource</span><span class="p">:</span> <span class="s2">"YourDictionarySource"</span><span class="p">,</span> <span class="c1">// Describe the source material for your words here</span>
     <span class="na">wordListSourceLink</span><span class="p">:</span> <span class="s2">"YourDictionaryLink"</span><span class="p">,</span> <span class="c1">// Put a link to the source material for your words here</span>
@@ -356,25 +354,43 @@
 
 <p>Wait - are you <em>sure</em> you have permission to publish this? Are you a member of the language community? Did you ask permission and follow the proper protocols? Just because you <em>can</em> build something cool doesn’t necessarily mean you <em>should</em>.</p>
 
-<p>After that little proviso, you can publish to your GitHub by changing the <code class="highlighter-rouge">homepage</code> value in the <code class="highlighter-rouge">package.json</code> as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same. Note - if you <em>changed</em> the name of your fork from “AnyLanguage-Wordle” to something else, you will have to change that as well.</p>
+<p>After that proviso, you can publish to your GitHub by changing the <code class="highlighter-rouge">homepage</code> value in the <code class="highlighter-rouge">package.json</code> as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same. Note - if you <em>changed</em> the name of your fork from “AnyLanguage-Wordle” to something else, you will have to change that as well.</p>
 
 <p><img src="/assets/images/g/homepage-gh-546-af959b.png" srcset="/assets/images/g/homepage-gh-400-af959b.png 400w, /assets/images/g/homepage-gh-546-af959b.png 546w" /></p>
 
-<p>Then, run <code class="highlighter-rouge">npm run-script deploy</code> and then visit your Wordle at that address: https://yourusername.github.io/AnyLanguage-Wordle</p>
+<p>Then, just commit your changes and push them and the GitHub Action workflow found in <code class="highlighter-rouge">.github/workflows/publish.yml</code> will take care of the rest! You can change the words or make other changes and then deploy again by making another commit. If you don’t know how to make a commit, this is very Google-able! There are a ton of different videos online geared towards different types of users of either command line git or GitHub Desktop.</p>
 
-<p>You can change the words or make other changes and then deploy again. Congratulations - you did it!</p>
+<p>If everything worked well, you’ll get a green checkmark next to your commit message in GitHub (see screenshot below) - this means that the <a href="#testing">tests passed</a> and your Not Wordle was published at https://YourUsername.github.io/AnyLanguage-Wordle</p>
+
+<p><img src="/assets/images/g/deploy-success-800-d4bd10.png" srcset="/assets/images/g/deploy-success-400-d4bd10.png 400w, /assets/images/g/deploy-success-600-d4bd10.png 600w, /assets/images/g/deploy-success-800-d4bd10.png 800w, /assets/images/g/deploy-success-1000-d4bd10.png 1000w" /></p>
+
+<p>Congratulations - you did it!</p>
 
 <h2 id="advanced">Advanced</h2>
 
 <p>I’ll put some stuff here for advanced users. If you’re running into errors, have a look at these too, and don’t forget to read the comment section below too!</p>
 
+<h3 id="local-development">Local Development</h3>
+
+<p>If you want to get a sneak-preview before publishing, you will need to have <a href="https://nodejs.org/en/">node</a> installed on your computer (I recommend version 16 or higher). Then, using your terminal, you will need to install all the dependencies:</p>
+
+<p><code class="highlighter-rouge">cd AnyLanguage-Wordle &amp;&amp; npm install</code></p>
+
+<p>Tada! You can now run my copy on your machine:</p>
+
+<p><code class="highlighter-rouge">npm start</code></p>
+
+<p>You can also publish without pushing to your repo by running <code class="highlighter-rouge">npm run-script deploy</code></p>
+
 <h3 id="testing">Testing</h3>
 
-<p>Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by running <code class="highlighter-rouge">npm run-script test</code> which will fail if certain words use symbols not defined in your <code class="highlighter-rouge">orthography.ts</code> file.</p>
+<p>Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by first making sure you are set up for <a href="#local-development">local development</a> and then running <code class="highlighter-rouge">npm run-script test</code> which will fail if certain words use symbols not defined in your <code class="highlighter-rouge">orthography.ts</code> file.</p>
+
+<p>This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass!</p>
 
 <h3 id="custom-build">Custom Build</h3>
 
-<p>If you want to build your site without using GitHub Pages, just run <code class="highlighter-rouge">npm run-script build</code>, making sure that your <code class="highlighter-rouge">homepage</code> key is changed appropriately in <code class="highlighter-rouge">package.json</code> to whatever address you will host your site at, otherwise the site will not build correctly. The resulting <code class="highlighter-rouge">build</code> folder can be served from any HTTP server at the address defined in the <code class="highlighter-rouge">homepage</code> setting in <code class="highlighter-rouge">package.json</code>.</p>
+<p>If you want to build your site without using GitHub Pages, make sure you are set up for <a href="#local-development">local development</a> and then just run <code class="highlighter-rouge">npm run-script build</code>, making sure that your <code class="highlighter-rouge">homepage</code> key is changed appropriately in <code class="highlighter-rouge">package.json</code> to whatever address you will host your site at. Otherwise the site will not build correctly. The resulting <code class="highlighter-rouge">build</code> folder can be served from any HTTP server at the address defined in the <code class="highlighter-rouge">homepage</code> setting in <code class="highlighter-rouge">package.json</code>.</p>
 
 <h3 id="font">Font</h3>
 
@@ -382,14 +398,14 @@
 
 <h3 id="custom-domain">Custom Domain</h3>
 
-<p>If you want to use a custom domain while hosting on GitHub Pages, first create a CNAME record, then change the <code class="highlighter-rouge">deploy</code> script to create a CNAME file before deploying:</p>
+<p>If you want to use a custom domain while hosting on GitHub Pages, first create a CNAME record, then change the <code class="highlighter-rouge">build</code> scripts to create a CNAME file before deploying:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{...
     "scripts": {
         "start": "react-scripts start",
         "predeploy": "npm run build",
-        "deploy": "echo 'yoursubdomain.yourdomain.org' &gt; ./build/CNAME &amp;&amp; gh-pages -d build",
-        "build": "react-scripts build",
+        "deploy": "gh-pages -d build",
+        "build": "react-scripts build &amp;&amp; echo 'yoursubdomain.yourdomain.org' &gt; ./build/CNAME",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     }

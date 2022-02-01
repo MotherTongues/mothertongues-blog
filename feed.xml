@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 31 Jan 2022 23:38:58 +0000</pubDate>
-    <lastBuildDate>Mon, 31 Jan 2022 23:38:58 +0000</lastBuildDate>
+    <pubDate>Tue, 01 Feb 2022 23:14:08 +0000</pubDate>
+    <lastBuildDate>Tue, 01 Feb 2022 23:14:08 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -17,9 +17,15 @@
 
 &lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
 
+&lt;p&gt;I’ve re-written this blog post to be a bit more centered towards users who might not have a web development environment installed on their computer. See the &lt;a href=&quot;#local-development&quot;&gt;local development&lt;/a&gt; section for the previous (advanced) instructions on getting your local development environment set up.&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;In order to do this, you’ll have to know a little bit about web development, or at least not be intimidated to get your hands dirty in some code! If that already sounds intimidating, hopefully you continue to read on a bit - it might be scary at first but it gets easier! Remember there are a lot of resources online to help you and you can always reach out to me if you have questions.&lt;/li&gt;
-  &lt;li&gt;Specifically, you’ll need a &lt;a href=&quot;https://github.com/&quot;&gt;GitHub Account&lt;/a&gt;, a text editor for code (I like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;), and, ideally, a computer with &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node&lt;/a&gt; installed and ready for devlopment.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In order to do this, you’ll have to know a little bit about web development, or at least not be intimidated to get your hands dirty in some code! If that already sounds intimidating, hopefully you continue to read on a bit - it might be scary at first but it gets easier! Remember there are a lot of resources online to help you and you can always reach out to me if you have questions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You’ll need a &lt;a href=&quot;https://github.com/&quot;&gt;GitHub Account&lt;/a&gt; and a text editor for code (I like &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;).&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
@@ -32,7 +38,7 @@
 
 &lt;p&gt;Everybody I know has been loving the Wordle game in English, and there are many other Wordlers who have made clones of the original Wordle. I ‘forked’ (ie copied) Hannah Park’s (@hannahcode) &lt;a href=&quot;https://github.com/hannahcode/wordle&quot;&gt;open source clone&lt;/a&gt; and adapted it to allow for different languages.&lt;/p&gt;
 
-&lt;h1 id=&quot;how-to-make-your-wordle&quot;&gt;How to make your Wordle&lt;/h1&gt;
+&lt;h1 id=&quot;how-to-make-your-not-wordle&quot;&gt;How to make your Not Wordle&lt;/h1&gt;
 
 &lt;h2 id=&quot;step-1-get-the-code&quot;&gt;Step 1: Get the code&lt;/h2&gt;
 
@@ -44,15 +50,7 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/YourGitHubUsername/AnyLanguage-Wordle.git&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username.&lt;/p&gt;
-
-&lt;p&gt;Then, you will need to install all the dependencies:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd AnyLanguage-Wordle &amp;amp;&amp;amp; npm install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Tada! You can now run my copy on your machine:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm start&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username. Alternatively, you can &lt;a href=&quot;https://desktop.github.com/&quot;&gt;install GitHub Desktop&lt;/a&gt; and then &lt;a href=&quot;https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop&quot;&gt;clone the repository using GitHub Desktop&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;step-2-change-the-orthography-writing-system&quot;&gt;Step 2: Change the orthography (writing system)&lt;/h2&gt;
 
@@ -63,7 +61,7 @@
 
 &lt;h2 id=&quot;step-3-change-the-words&quot;&gt;Step 3: Change the words&lt;/h2&gt;
 
-&lt;p&gt;You can change the valid guesses and the wordlist used by wordle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/validGuesses.ts&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/wordlist.ts&lt;/code&gt; files. Just replace the list that is there with new lists.&lt;/p&gt;
+&lt;p&gt;You can change the valid guesses and the wordlist used by Not Wordle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/validGuesses.ts&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/wordlist.ts&lt;/code&gt; files. Just replace the lists that are there with your language’s wordlists. The valid guesses are all the words that can be guessed in your Not Wordle, whereas the wordlist represents all the words that can be chosen as the word of the day.&lt;/p&gt;
 
 &lt;p&gt;Note: all the words have to be of the same length! The default for Wordle is 5 letters long (not characters!), but you can change this in the configuration in Step 4.&lt;/p&gt;
 
@@ -74,10 +72,10 @@
 &lt;p&gt;You can change other aspects related to the app in &lt;code class=&quot;highlighter-rouge&quot;&gt;src/constants/config.ts&lt;/code&gt;. Here is the default with a description for each value:&lt;/p&gt;
 
 &lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CONFIG&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;tries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes how many tries you get to finish the wordle&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;tries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes how many tries you get to finish the Not Wordle&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLanguageHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This changes the display name for your language&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;wordLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourNameHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put your name here so people know who made this Wordle!&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourNameHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put your name here so people know who made this Not Wordle!&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;authorWebsite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourLinkHere&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to your website or social media here&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;wordListSource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionarySource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Describe the source material for your words here&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;wordListSourceLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YourDictionaryLink&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Put a link to the source material for your words here&lt;/span&gt;
@@ -96,25 +94,43 @@
 
 &lt;p&gt;Wait - are you &lt;em&gt;sure&lt;/em&gt; you have permission to publish this? Are you a member of the language community? Did you ask permission and follow the proper protocols? Just because you &lt;em&gt;can&lt;/em&gt; build something cool doesn’t necessarily mean you &lt;em&gt;should&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;After that little proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same. Note - if you &lt;em&gt;changed&lt;/em&gt; the name of your fork from “AnyLanguage-Wordle” to something else, you will have to change that as well.&lt;/p&gt;
+&lt;p&gt;After that proviso, you can publish to your GitHub by changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; value in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; as seen below. Change the ‘roedoejet’ (my GitHub username), to your GitHub username, and leave everything else the same. Note - if you &lt;em&gt;changed&lt;/em&gt; the name of your fork from “AnyLanguage-Wordle” to something else, you will have to change that as well.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/g/homepage-gh-546-af959b.png&quot; srcset=&quot;/assets/images/g/homepage-gh-400-af959b.png 400w, /assets/images/g/homepage-gh-546-af959b.png 546w&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Then, run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script deploy&lt;/code&gt; and then visit your Wordle at that address: https://yourusername.github.io/AnyLanguage-Wordle&lt;/p&gt;
+&lt;p&gt;Then, just commit your changes and push them and the GitHub Action workflow found in &lt;code class=&quot;highlighter-rouge&quot;&gt;.github/workflows/publish.yml&lt;/code&gt; will take care of the rest! You can change the words or make other changes and then deploy again by making another commit. If you don’t know how to make a commit, this is very Google-able! There are a ton of different videos online geared towards different types of users of either command line git or GitHub Desktop.&lt;/p&gt;
 
-&lt;p&gt;You can change the words or make other changes and then deploy again. Congratulations - you did it!&lt;/p&gt;
+&lt;p&gt;If everything worked well, you’ll get a green checkmark next to your commit message in GitHub (see screenshot below) - this means that the &lt;a href=&quot;#testing&quot;&gt;tests passed&lt;/a&gt; and your Not Wordle was published at https://YourUsername.github.io/AnyLanguage-Wordle&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/deploy-success-800-d4bd10.png&quot; srcset=&quot;/assets/images/g/deploy-success-400-d4bd10.png 400w, /assets/images/g/deploy-success-600-d4bd10.png 600w, /assets/images/g/deploy-success-800-d4bd10.png 800w, /assets/images/g/deploy-success-1000-d4bd10.png 1000w&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations - you did it!&lt;/p&gt;
 
 &lt;h2 id=&quot;advanced&quot;&gt;Advanced&lt;/h2&gt;
 
 &lt;p&gt;I’ll put some stuff here for advanced users. If you’re running into errors, have a look at these too, and don’t forget to read the comment section below too!&lt;/p&gt;
 
+&lt;h3 id=&quot;local-development&quot;&gt;Local Development&lt;/h3&gt;
+
+&lt;p&gt;If you want to get a sneak-preview before publishing, you will need to have &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;node&lt;/a&gt; installed on your computer (I recommend version 16 or higher). Then, using your terminal, you will need to install all the dependencies:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd AnyLanguage-Wordle &amp;amp;&amp;amp; npm install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Tada! You can now run my copy on your machine:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm start&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also publish without pushing to your repo by running &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script deploy&lt;/code&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
 
-&lt;p&gt;Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by running &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script test&lt;/code&gt; which will fail if certain words use symbols not defined in your &lt;code class=&quot;highlighter-rouge&quot;&gt;orthography.ts&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by first making sure you are set up for &lt;a href=&quot;#local-development&quot;&gt;local development&lt;/a&gt; and then running &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script test&lt;/code&gt; which will fail if certain words use symbols not defined in your &lt;code class=&quot;highlighter-rouge&quot;&gt;orthography.ts&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass!&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-build&quot;&gt;Custom Build&lt;/h3&gt;
 
-&lt;p&gt;If you want to build your site without using GitHub Pages, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script build&lt;/code&gt;, making sure that your &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; key is changed appropriately in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; to whatever address you will host your site at, otherwise the site will not build correctly. The resulting &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; folder can be served from any HTTP server at the address defined in the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; setting in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to build your site without using GitHub Pages, make sure you are set up for &lt;a href=&quot;#local-development&quot;&gt;local development&lt;/a&gt; and then just run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script build&lt;/code&gt;, making sure that your &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; key is changed appropriately in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; to whatever address you will host your site at. Otherwise the site will not build correctly. The resulting &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; folder can be served from any HTTP server at the address defined in the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; setting in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;font&quot;&gt;Font&lt;/h3&gt;
 
@@ -122,14 +138,14 @@
 
 &lt;h3 id=&quot;custom-domain&quot;&gt;Custom Domain&lt;/h3&gt;
 
-&lt;p&gt;If you want to use a custom domain while hosting on GitHub Pages, first create a CNAME record, then change the &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; script to create a CNAME file before deploying:&lt;/p&gt;
+&lt;p&gt;If you want to use a custom domain while hosting on GitHub Pages, first create a CNAME record, then change the &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt; scripts to create a CNAME file before deploying:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{...
     &quot;scripts&quot;: {
         &quot;start&quot;: &quot;react-scripts start&quot;,
         &quot;predeploy&quot;: &quot;npm run build&quot;,
-        &quot;deploy&quot;: &quot;echo 'yoursubdomain.yourdomain.org' &amp;gt; ./build/CNAME &amp;amp;&amp;amp; gh-pages -d build&quot;,
-        &quot;build&quot;: &quot;react-scripts build&quot;,
+        &quot;deploy&quot;: &quot;gh-pages -d build&quot;,
+        &quot;build&quot;: &quot;react-scripts build &amp;amp;&amp;amp; echo 'yoursubdomain.yourdomain.org' &amp;gt; ./build/CNAME&quot;,
         &quot;test&quot;: &quot;react-scripts test&quot;,
         &quot;eject&quot;: &quot;react-scripts eject&quot;
     }
