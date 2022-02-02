@@ -8,7 +8,7 @@ var documents = [{
     "id": 1,
     "url": "https://blog.mothertongues.org/about",
     "title": "",
-    "body": "Welome to the Mother Tongues Blog. "
+    "body": "Welcome to the Mother Tongues official blog!: Mother Tongues is an organization that releases free and open source tools for language revitalization. Here you'll find blog posts, tips, tricks and tutorials for developing language technology with a focus on Indigenous languages. Be sure to sign up to our mailing list to keep track of new blog posts and any events. If you're interested in becoming an author, and you have a GitHub account, please checkout how to become an author and after you've signed up, learn how to write a post. "
     }, {
     "id": 2,
     "url": "https://blog.mothertongues.org/categories",
