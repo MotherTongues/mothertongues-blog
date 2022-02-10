@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 02 Feb 2022 17:10:55 +0000</pubDate>
-    <lastBuildDate>Wed, 02 Feb 2022 17:10:55 +0000</lastBuildDate>
+    <pubDate>Thu, 10 Feb 2022 21:22:55 +0000</pubDate>
+    <lastBuildDate>Thu, 10 Feb 2022 21:22:55 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -85,6 +85,9 @@
     &lt;span class=&quot;na&quot;&gt;googleAnalytics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// You can use this if you use Google Analytics&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;shuffle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// whether to shuffle the words in the wordlist each time you load the app (note: you will lose the 'word of the day' functionality if this is true)&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;normalization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NFC'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// whether to apply Unicode normalization to words and orthography - options: 'NFC', 'NFD', 'NKFC', 'NKFD', false&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;startDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'January 1, 2022 00:00:00'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// what date and time to start your game from&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;defaultLang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'en'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// the default interface language&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;availableLangs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'en'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'es'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// the options available to the user for translation languages&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -153,6 +156,39 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This will set the domain properly for GitHub Pages.&lt;/p&gt;
+
+&lt;h3 id=&quot;start-date&quot;&gt;Start date&lt;/h3&gt;
+
+&lt;p&gt;By default, the word list starts at midnight on January 1, 2022. This is written in the &lt;code class=&quot;highlighter-rouge&quot;&gt;startDate&lt;/code&gt; key in the configuration file as &lt;code class=&quot;highlighter-rouge&quot;&gt;January 1, 2022 00:00:00&lt;/code&gt;. If you want to change this to the date you are releasing the app, you may do so here. You can also change the time that the new word is launched by adjusting the time. For example, to renew words every 24 hours from February 15 at 8pm you would set this value to &lt;code class=&quot;highlighter-rouge&quot;&gt;February 15, 2022 20:00:00&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;localization&quot;&gt;Localization&lt;/h3&gt;
+
+&lt;p&gt;As of February 10th 2022, the code is now completely localizable to your language. Thanks to &lt;a href=&quot;https://github.com/ckomeara&quot;&gt;Carolyn O’Meara&lt;/a&gt; for contributing the Spanish translation - other translations and pull requests are welcome!&lt;/p&gt;
+
+&lt;p&gt;In order to add your translation, you must do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Determine your &lt;a href=&quot;https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes&quot;&gt;language’s locale code&lt;/a&gt; and add a folder under &lt;code class=&quot;highlighter-rouge&quot;&gt;public/locales/&lt;/code&gt; in the code named that. For example, if you were adding a Hausa translation you would add a folder at &lt;code class=&quot;highlighter-rouge&quot;&gt;public/locales/ha&lt;/code&gt;. Then copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;translation.json&lt;/code&gt; file from &lt;code class=&quot;highlighter-rouge&quot;&gt;public/locales/en/translation.json&lt;/code&gt; to that folder.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Then, you must translate all of the values, but &lt;em&gt;not&lt;/em&gt; the keys. For example, below, you would translate the word for “Enter”, but &lt;em&gt;not&lt;/em&gt; “enterKey”. Additionally, you must preserve anything that is inside curly brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;{{}}&lt;/code&gt; or other markup like &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;1&amp;gt;&amp;lt;/1&amp;gt;&lt;/code&gt;. You &lt;em&gt;can&lt;/em&gt; change the order of it though, so, if you were translating the “solution” key below in Danish, you could write “{{solution}} var dagens ord”.&lt;/p&gt;
+
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;about&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;About this game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;enterKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Enter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;deleteKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;notEnoughLetters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Not enough letters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;wordNotFound&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Word not found&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;solution&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;The word was {{solution}}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+ &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally, you can set the &lt;code class=&quot;highlighter-rouge&quot;&gt;defaultLang&lt;/code&gt; in the configuration to your language’s language code. You can define the list of translations to make available in the interface by editing the list in &lt;code class=&quot;highlighter-rouge&quot;&gt;availableLangs&lt;/code&gt; in the config.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 </description>
         <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
         <link>https://blog.mothertongues.org/wordle/</link>

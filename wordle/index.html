@@ -345,6 +345,9 @@
     <span class="na">googleAnalytics</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span> <span class="c1">// You can use this if you use Google Analytics</span>
     <span class="na">shuffle</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether to shuffle the words in the wordlist each time you load the app (note: you will lose the 'word of the day' functionality if this is true)</span>
     <span class="na">normalization</span><span class="p">:</span> <span class="s1">'NFC'</span> <span class="c1">// whether to apply Unicode normalization to words and orthography - options: 'NFC', 'NFD', 'NKFC', 'NKFD', false</span>
+    <span class="na">startDate</span><span class="p">:</span> <span class="s1">'January 1, 2022 00:00:00'</span><span class="p">,</span> <span class="c1">// what date and time to start your game from</span>
+    <span class="na">defaultLang</span><span class="p">:</span> <span class="s1">'en'</span><span class="p">,</span> <span class="c1">// the default interface language</span>
+    <span class="na">availableLangs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'en'</span><span class="p">,</span> <span class="s1">'es'</span><span class="p">],</span> <span class="c1">// the options available to the user for translation languages</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -413,6 +416,39 @@
 </code></pre></div></div>
 
 <p>This will set the domain properly for GitHub Pages.</p>
+
+<h3 id="start-date">Start date</h3>
+
+<p>By default, the word list starts at midnight on January 1, 2022. This is written in the <code class="highlighter-rouge">startDate</code> key in the configuration file as <code class="highlighter-rouge">January 1, 2022 00:00:00</code>. If you want to change this to the date you are releasing the app, you may do so here. You can also change the time that the new word is launched by adjusting the time. For example, to renew words every 24 hours from February 15 at 8pm you would set this value to <code class="highlighter-rouge">February 15, 2022 20:00:00</code>.</p>
+
+<h3 id="localization">Localization</h3>
+
+<p>As of February 10th 2022, the code is now completely localizable to your language. Thanks to <a href="https://github.com/ckomeara">Carolyn O’Meara</a> for contributing the Spanish translation - other translations and pull requests are welcome!</p>
+
+<p>In order to add your translation, you must do the following:</p>
+
+<ol>
+  <li>
+    <p>Determine your <a href="https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes">language’s locale code</a> and add a folder under <code class="highlighter-rouge">public/locales/</code> in the code named that. For example, if you were adding a Hausa translation you would add a folder at <code class="highlighter-rouge">public/locales/ha</code>. Then copy the <code class="highlighter-rouge">translation.json</code> file from <code class="highlighter-rouge">public/locales/en/translation.json</code> to that folder.</p>
+  </li>
+  <li>
+    <p>Then, you must translate all of the values, but <em>not</em> the keys. For example, below, you would translate the word for “Enter”, but <em>not</em> “enterKey”. Additionally, you must preserve anything that is inside curly brackets <code class="highlighter-rouge">{{}}</code> or other markup like <code class="highlighter-rouge">&lt;1&gt;&lt;/1&gt;</code>. You <em>can</em> change the order of it though, so, if you were translating the “solution” key below in Danish, you could write “{{solution}} var dagens ord”.</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"about"</span><span class="p">:</span><span class="w"> </span><span class="s2">"About this game"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"enterKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enter"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"deleteKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delete"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"notEnoughLetters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not enough letters"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"wordNotFound"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word not found"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"solution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The word was {{solution}}"</span><span class="p">,</span><span class="w">
+     </span><span class="err">...</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Finally, you can set the <code class="highlighter-rouge">defaultLang</code> in the configuration to your language’s language code. You can define the list of translations to make available in the interface by editing the list in <code class="highlighter-rouge">availableLangs</code> in the config.</p>
+  </li>
+</ol>
 
             </div>
 
