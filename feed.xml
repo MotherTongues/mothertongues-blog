@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 10 Feb 2022 21:22:55 +0000</pubDate>
-    <lastBuildDate>Thu, 10 Feb 2022 21:22:55 +0000</lastBuildDate>
+    <pubDate>Thu, 10 Feb 2022 23:58:27 +0000</pubDate>
+    <lastBuildDate>Thu, 10 Feb 2022 23:58:27 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -51,6 +51,10 @@
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/YourGitHubUsername/AnyLanguage-Wordle.git&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Run the above command in your command line, changing ‘YourGitHubUsername’ to your actual GitHub username. Alternatively, you can &lt;a href=&quot;https://desktop.github.com/&quot;&gt;install GitHub Desktop&lt;/a&gt; and then &lt;a href=&quot;https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop&quot;&gt;clone the repository using GitHub Desktop&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once you do this, you will have to enable GitHub workflows (see below) in order for the build to work properly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/enable-workflow-800-af84eb.png&quot; srcset=&quot;/assets/images/g/enable-workflow-400-af84eb.png 400w, /assets/images/g/enable-workflow-600-af84eb.png 600w, /assets/images/g/enable-workflow-800-af84eb.png 800w, /assets/images/g/enable-workflow-1000-af84eb.png 1000w&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;step-2-change-the-orthography-writing-system&quot;&gt;Step 2: Change the orthography (writing system)&lt;/h2&gt;
 
