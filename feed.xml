@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 11 Feb 2022 00:13:19 +0000</pubDate>
-    <lastBuildDate>Fri, 11 Feb 2022 00:13:19 +0000</lastBuildDate>
+    <pubDate>Fri, 11 Feb 2022 00:15:42 +0000</pubDate>
+    <lastBuildDate>Fri, 11 Feb 2022 00:15:42 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -56,7 +56,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/g/enable-workflow-800-af84eb.png&quot; srcset=&quot;/assets/images/g/enable-workflow-400-af84eb.png 400w, /assets/images/g/enable-workflow-600-af84eb.png 600w, /assets/images/g/enable-workflow-800-af84eb.png 800w, /assets/images/g/enable-workflow-1000-af84eb.png 1000w&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Then, make sure that ‘GitHub Pages’ (th free service we are using to host your website) is set up to deploy from your ‘gh-pages’ branch. You can do this by going to Settings &amp;gt; Pages and then selecting “Branch: gh-pages” as the source as shown below:&lt;/p&gt;
+&lt;p&gt;Then, make sure that ‘GitHub Pages’ (the free service we are using to host your website) is set up to deploy from your ‘gh-pages’ branch. You can do this by going to Settings &amp;gt; Pages and then selecting “Branch: gh-pages” as the source as shown below:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/g/github-pages-800-30ac9e.png&quot; srcset=&quot;/assets/images/g/github-pages-400-30ac9e.png 400w, /assets/images/g/github-pages-600-30ac9e.png 600w, /assets/images/g/github-pages-800-30ac9e.png 800w, /assets/images/g/github-pages-1000-30ac9e.png 1000w&quot; /&gt;&lt;/p&gt;
 
