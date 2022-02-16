@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 11 Feb 2022 00:15:42 +0000</pubDate>
-    <lastBuildDate>Fri, 11 Feb 2022 00:15:42 +0000</lastBuildDate>
+    <pubDate>Wed, 16 Feb 2022 07:43:01 +0000</pubDate>
+    <lastBuildDate>Wed, 16 Feb 2022 07:43:01 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -163,7 +163,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This will set the domain properly for GitHub Pages.&lt;/p&gt;
+&lt;p&gt;This will set the domain properly for GitHub Pages. Note that you will also have to change the &lt;code class=&quot;highlighter-rouge&quot;&gt;homepage&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; to your custom domain as described in Step 5.&lt;/p&gt;
 
 &lt;h3 id=&quot;start-date&quot;&gt;Start date&lt;/h3&gt;
 
