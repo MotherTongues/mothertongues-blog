@@ -395,9 +395,23 @@
 
 <h3 id="testing">Testing</h3>
 
-<p>Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, all the characters in all of the words in your wordlist must also exist in your defined orthography. You can check this by first making sure you are set up for <a href="#local-development">local development</a> and then running <code class="highlighter-rouge">npm run-script test</code> which will fail if certain words use symbols not defined in your <code class="highlighter-rouge">orthography.ts</code> file.</p>
+<p>Sometimes there can be a discrepancy between the characters in your wordlist and the characters in your orthography (writing system). For your game to work properly, there are a few tests related to your data that must pass:</p>
 
-<p>This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass!</p>
+<ul>
+  <li>
+    <p>all the characters in all of the words in your wordlist must also exist in your defined orthography.</p>
+  </li>
+  <li>
+    <p>all the words in your word list must be the length defined in your configuration</p>
+  </li>
+  <li>
+    <p>the date must be formatted correctly as described in this post</p>
+  </li>
+</ul>
+
+<p>You can check these tests by first making sure you are set up for <a href="#local-development">local development</a> and then running <code class="highlighter-rouge">npm run-script test</code> which will fail if certain words use symbols not defined in your <code class="highlighter-rouge">orthography.ts</code> file.</p>
+
+<p>This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass! Note that you can check if your tests pass by clicking on the green arrow or red checkmark as seen in the photo shown at the end of Step 5. If the “Lint” has a red checkmark that’s ok (that’s just a checker for the code style that doesn’t affect if your game will work). However, the “test” check must have a green arrow next to it in order for your game to work. If it doesn’t, click “details” and try to debug where your app went wrong (usually an unexpected character in a word or a word that is too short/long). If you can’t figure it out, post your problem to the comment section below and hopefully somebody will give a hand!</p>
 
 <h3 id="custom-build">Custom Build</h3>
 
