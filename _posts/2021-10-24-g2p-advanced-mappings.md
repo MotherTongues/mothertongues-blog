@@ -29,7 +29,7 @@ You may have noticed that the rules described in the previous posts for converti
 As this post is quite long, please refer to the following index for quick navigation:
 
 - [Rule Ordering](#rule-ordering)
-- [Unicode Escape Sequences](#unicode-escape-equences)
+- [Unicode Escape Sequences](#unicode-escape-sequences)
 - [Special Settings & Configuration](#special-settings-for-your-mapping-configuration)
 - [Defining variables](#defining-sets-of-characters)
 - [Regular Expresssions](#regular-expressions)
