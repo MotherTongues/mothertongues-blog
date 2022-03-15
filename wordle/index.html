@@ -373,7 +373,7 @@
 
 <p>If everything worked well, you’ll get a green checkmark next to your commit message in GitHub (see screenshot below) - this means that the <a href="#testing">tests passed</a> and your Not Wordle was published at https://YourUsername.github.io/AnyLanguage-Wordle</p>
 
-<p><img src="/assets/images/g/deploy-success-800-d4bd10.png" srcset="/assets/images/g/deploy-success-400-d4bd10.png 400w, /assets/images/g/deploy-success-600-d4bd10.png 600w, /assets/images/g/deploy-success-800-d4bd10.png 800w, /assets/images/g/deploy-success-1000-d4bd10.png 1000w" /></p>
+<p><img src="/assets/images/g/deploy-success-800-fbcf83.png" srcset="/assets/images/g/deploy-success-400-fbcf83.png 400w, /assets/images/g/deploy-success-600-fbcf83.png 600w, /assets/images/g/deploy-success-800-fbcf83.png 800w, /assets/images/g/deploy-success-832-fbcf83.png 832w" /></p>
 
 <p>Congratulations - you did it!</p>
 
@@ -411,7 +411,7 @@
 
 <p>You can check these tests by first making sure you are set up for <a href="#local-development">local development</a> and then running <code class="highlighter-rouge">npm run-script test</code> which will fail if certain words use symbols not defined in your <code class="highlighter-rouge">orthography.ts</code> file.</p>
 
-<p>This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass! Note that you can check if your tests pass by clicking on the green arrow or red checkmark as seen in the photo shown at the end of Step 5. If the “Lint” has a red checkmark that’s ok (that’s just a checker for the code style that doesn’t affect if your game will work). However, the “test” check must have a green arrow next to it in order for your game to work. If it doesn’t, click “details” and try to debug where your app went wrong (usually an unexpected character in a word or a word that is too short/long). If you can’t figure it out, post your problem to the comment section below and hopefully somebody will give a hand!</p>
+<p>This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass! Note that you can check if your tests pass by clicking on the green arrow or red checkmark as seen in the photo shown at the end of Step 5. If it doesn’t, click “details” and try to debug where your app went wrong (usually an unexpected character in a word or a word that is too short/long). If you can’t figure it out, post your problem to the comment section below and hopefully somebody will give a hand!</p>
 
 <h3 id="custom-build">Custom Build</h3>
 
@@ -458,6 +458,7 @@
 
     <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
      </span><span class="s2">"about"</span><span class="p">:</span><span class="w"> </span><span class="s2">"About this game"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"gameName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Wordle - "</span><span class="p">,</span><span class="w">
      </span><span class="s2">"enterKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enter"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"deleteKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delete"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"notEnoughLetters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not enough letters"</span><span class="p">,</span><span class="w">

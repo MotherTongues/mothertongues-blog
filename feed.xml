@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 Feb 2022 19:34:14 +0000</pubDate>
-    <lastBuildDate>Thu, 17 Feb 2022 19:34:14 +0000</lastBuildDate>
+    <pubDate>Tue, 15 Mar 2022 18:09:41 +0000</pubDate>
+    <lastBuildDate>Tue, 15 Mar 2022 18:09:41 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -113,7 +113,7 @@
 
 &lt;p&gt;If everything worked well, you’ll get a green checkmark next to your commit message in GitHub (see screenshot below) - this means that the &lt;a href=&quot;#testing&quot;&gt;tests passed&lt;/a&gt; and your Not Wordle was published at https://YourUsername.github.io/AnyLanguage-Wordle&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/deploy-success-800-d4bd10.png&quot; srcset=&quot;/assets/images/g/deploy-success-400-d4bd10.png 400w, /assets/images/g/deploy-success-600-d4bd10.png 600w, /assets/images/g/deploy-success-800-d4bd10.png 800w, /assets/images/g/deploy-success-1000-d4bd10.png 1000w&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/deploy-success-800-fbcf83.png&quot; srcset=&quot;/assets/images/g/deploy-success-400-fbcf83.png 400w, /assets/images/g/deploy-success-600-fbcf83.png 600w, /assets/images/g/deploy-success-800-fbcf83.png 800w, /assets/images/g/deploy-success-832-fbcf83.png 832w&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Congratulations - you did it!&lt;/p&gt;
 
@@ -151,7 +151,7 @@
 
 &lt;p&gt;You can check these tests by first making sure you are set up for &lt;a href=&quot;#local-development&quot;&gt;local development&lt;/a&gt; and then running &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run-script test&lt;/code&gt; which will fail if certain words use symbols not defined in your &lt;code class=&quot;highlighter-rouge&quot;&gt;orthography.ts&lt;/code&gt; file.&lt;/p&gt;
 
-&lt;p&gt;This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass! Note that you can check if your tests pass by clicking on the green arrow or red checkmark as seen in the photo shown at the end of Step 5. If the “Lint” has a red checkmark that’s ok (that’s just a checker for the code style that doesn’t affect if your game will work). However, the “test” check must have a green arrow next to it in order for your game to work. If it doesn’t, click “details” and try to debug where your app went wrong (usually an unexpected character in a word or a word that is too short/long). If you can’t figure it out, post your problem to the comment section below and hopefully somebody will give a hand!&lt;/p&gt;
+&lt;p&gt;This test is run by default and you won’t be able to publish your Not Wordle if the test doesn’t pass! Note that you can check if your tests pass by clicking on the green arrow or red checkmark as seen in the photo shown at the end of Step 5. If it doesn’t, click “details” and try to debug where your app went wrong (usually an unexpected character in a word or a word that is too short/long). If you can’t figure it out, post your problem to the comment section below and hopefully somebody will give a hand!&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-build&quot;&gt;Custom Build&lt;/h3&gt;
 
@@ -198,6 +198,7 @@
 
     &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;about&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;About this game&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;gameName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Not Wordle - &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;enterKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Enter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;deleteKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;notEnoughLetters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Not enough letters&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
