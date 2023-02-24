@@ -322,7 +322,7 @@
   </tbody>
 </table>
 
-<p>A third example can be seen in the <a href="https://github.com/roedoejet/g2p/blob/master/g2p/mappings/langs/git/equiv.csv">Gitksan mapping</a> where the writing system uses a single quote ‘ to mark <a href="https://en.wikipedia.org/wiki/Ejective_consonant">ejectives</a> and glottal stops, but there are many apostrophe-like confusable characters, like ’ or ʼ. In this mapping we can see that they’re all mapped to the single quote ‘ (U+0027).</p>
+<p>A third example can be seen in the <a href="https://github.com/roedoejet/g2p/blob/main/g2p/mappings/langs/git/equiv.csv">Gitksan mapping</a> where the writing system uses a single quote ‘ to mark <a href="https://en.wikipedia.org/wiki/Ejective_consonant">ejectives</a> and glottal stops, but there are many apostrophe-like confusable characters, like ’ or ʼ. In this mapping we can see that they’re all mapped to the single quote ‘ (U+0027).</p>
 
 <p>How do we link this up with the rest of our mappings? We recommend calling these mappings <code class="highlighter-rouge">&lt;yourlang&gt;-equiv</code>, for “equivalencies” which is more neutral and sometimes preferred than the term “normalization”. When you run <code class="highlighter-rouge">g2p update</code>, <code class="highlighter-rouge">g2p</code> creates a <a href="https://mathinsight.org/definition/directed_graph#:~:text=A%20directed%20graph%20is%20graph,digraph%20or%20a%20directed%20network.">directed graph</a> between all possible mappings. Similar to when <a href="https://blog.mothertongues.org/g2p-applications">using g2p for ReadAlongs</a>, consider we have a <code class="highlighter-rouge">g2p</code> pipeline from ‘dan’ to ‘eng-arpabet’ that goes through the <code class="highlighter-rouge">g2p</code> graph like so, ‘dan’ → ‘dan-ipa’ → ‘eng-ipa’ → ‘eng-arpabet’. We basically want to add one more conversion along this path that does this normalization step. So, we <a href="https://blog.mothertongues.org/g2p-basic-mappings-local">configure a mapping</a> for a mapping from ‘dan’ → ‘dan-equiv’ containing our normalizations, then we rename the existing mapping to ‘dan-equiv’ → ‘dan-ipa’. Then, we <code class="highlighter-rouge">g2p update</code> and the next time we run a mapping from ‘dan’ → ‘eng-arpabet’, it will pass through the normalization mapping too.</p>
 <div class="footnotes">
@@ -502,7 +502,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                        Copyright © 2022 Mother Tongues
+                        Copyright © 2023 Mother Tongues
                     </div>
                 </div>
             </div>

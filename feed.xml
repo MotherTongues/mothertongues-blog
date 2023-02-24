@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 15 Mar 2022 18:09:41 +0000</pubDate>
-    <lastBuildDate>Tue, 15 Mar 2022 18:09:41 +0000</lastBuildDate>
+    <pubDate>Fri, 24 Feb 2023 21:33:37 +0000</pubDate>
+    <lastBuildDate>Fri, 24 Feb 2023 21:33:37 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -518,7 +518,7 @@ fra|fra-ipa|écoutons|ekutɔ̃
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;A third example can be seen in the &lt;a href=&quot;https://github.com/roedoejet/g2p/blob/master/g2p/mappings/langs/git/equiv.csv&quot;&gt;Gitksan mapping&lt;/a&gt; where the writing system uses a single quote ‘ to mark &lt;a href=&quot;https://en.wikipedia.org/wiki/Ejective_consonant&quot;&gt;ejectives&lt;/a&gt; and glottal stops, but there are many apostrophe-like confusable characters, like ’ or ʼ. In this mapping we can see that they’re all mapped to the single quote ‘ (U+0027).&lt;/p&gt;
+&lt;p&gt;A third example can be seen in the &lt;a href=&quot;https://github.com/roedoejet/g2p/blob/main/g2p/mappings/langs/git/equiv.csv&quot;&gt;Gitksan mapping&lt;/a&gt; where the writing system uses a single quote ‘ to mark &lt;a href=&quot;https://en.wikipedia.org/wiki/Ejective_consonant&quot;&gt;ejectives&lt;/a&gt; and glottal stops, but there are many apostrophe-like confusable characters, like ’ or ʼ. In this mapping we can see that they’re all mapped to the single quote ‘ (U+0027).&lt;/p&gt;
 
 &lt;p&gt;How do we link this up with the rest of our mappings? We recommend calling these mappings &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;yourlang&amp;gt;-equiv&lt;/code&gt;, for “equivalencies” which is more neutral and sometimes preferred than the term “normalization”. When you run &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p update&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; creates a &lt;a href=&quot;https://mathinsight.org/definition/directed_graph#:~:text=A%20directed%20graph%20is%20graph,digraph%20or%20a%20directed%20network.&quot;&gt;directed graph&lt;/a&gt; between all possible mappings. Similar to when &lt;a href=&quot;https://blog.mothertongues.org/g2p-applications&quot;&gt;using g2p for ReadAlongs&lt;/a&gt;, consider we have a &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; pipeline from ‘dan’ to ‘eng-arpabet’ that goes through the &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; graph like so, ‘dan’ → ‘dan-ipa’ → ‘eng-ipa’ → ‘eng-arpabet’. We basically want to add one more conversion along this path that does this normalization step. So, we &lt;a href=&quot;https://blog.mothertongues.org/g2p-basic-mappings-local&quot;&gt;configure a mapping&lt;/a&gt; for a mapping from ‘dan’ → ‘dan-equiv’ containing our normalizations, then we rename the existing mapping to ‘dan-equiv’ → ‘dan-ipa’. Then, we &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p update&lt;/code&gt; and the next time we run a mapping from ‘dan’ → ‘eng-arpabet’, it will pass through the normalization mapping too.&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
@@ -660,7 +660,7 @@ fra|fra-ipa|écoutons|ekutɔ̃
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#rule-ordering&quot;&gt;Rule Ordering&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#unicode-escape-equences&quot;&gt;Unicode Escape Sequences&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#unicode-escape-sequences&quot;&gt;Unicode Escape Sequences&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#special-settings-for-your-mapping-configuration&quot;&gt;Special Settings &amp;amp; Configuration&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#defining-sets-of-characters&quot;&gt;Defining variables&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#regular-expressions&quot;&gt;Regular Expresssions&lt;/a&gt;&lt;/li&gt;
