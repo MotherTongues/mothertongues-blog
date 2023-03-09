@@ -64,6 +64,14 @@ authors:
     web:
     twitter:
     description: "Senior ILT Developer at NRC"
+  nigel:
+    name: Nigel
+    display_name: Nigel Decontie
+    gravatar: 448fc377e94986baec3ca2c8d227b817
+    email: nigel@ursacreative.ca
+    web: https://ursacreative.ca
+    twitter:
+    description: "Developer at Ursa Creative"
 
 # Plugins
 plugins:
