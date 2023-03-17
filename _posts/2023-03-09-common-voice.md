@@ -2,7 +2,7 @@
 layout: post
 title: "Language revitalization with Mozilla's Common Voice"
 author: nigel
-categories: [ Blog ]
+categories: [Blog]
 tags: [explanation, common-voice]
 image: assets/images/common-voice--site.jpg
 description: "Supporting Indigenous language revitalization with technology"
@@ -36,6 +36,8 @@ In an effort to support Indigenous language revitalization efforts, the National
 Common Voice is an open-source project that aims to create a freely available database of human voices that can be used to train machine learning models for speech technology. The project is designed to help increase the diversity of voices available for these models, particularly for underrepresented languages and accents - something that could be vital in supporting Indigenous languages, who see fewer and fewer native speakers each year. Common Voice invites individuals to record and donate their voices to the project's database, allowing for a diverse range of voices to be collected. The project also includes tools for verifying and validating voice contributions, ensuring the accuracy and quality of the dataset. Common Voice is intended to be a collaborative effort, with individuals and organizations contributing their time and resources to help improve the accuracy and inclusivity of speech recognition technology.
 
 The National Research Council (NRC) is currently involved in a [three-year research project](https://nrc.canada.ca/en/research-development/research-collaboration/programs/speech-generation-indigenous-language-education) on speech synthesis (text-to-speech) technology and have modified Mozilla’s Common Voice to suit the needs of the recording workflow of the project. Namely, by creating a separate instance of Common Voice, communities involved in the project are able to determine their own data management policy instead of adopting Mozilla’s policy to make all voices freely available. In addition, this ‘fork’ – or adaptation - of Common Voice also allows users to configure recording quality settings like encoding format and sampling rate.
+
+You can find all the source code for this custom instance on the [GitHub page](https://github.com/SamuelLarkin/common-voice).
 
 ## Who is Ursa Creative?
 
