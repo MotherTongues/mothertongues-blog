@@ -40,7 +40,7 @@ You will need to follow the steps of [becoming an author]({{ "become-an-author" 
 
 *Was this project funded? By whom? What were the explicit goals of the technology in question, or are they left unstated?*
 
-[Mother Tongues](https://mothertongues.org) was created to release open-source software for language revitalization and includes tools for [dictionaries](https://docs.mothertongues.org) and [orthography converters][https://github.com/roedoejet/convertextract]. Please read the [About section]({{ "about" | absolute_url }}) for more information.
+[Mother Tongues](https://mothertongues.org) was created to release open-source software for language revitalization and includes tools for [dictionaries](https://docs.mothertongues.org) and [orthography converters](https://github.com/roedoejet/convertextract). Please read the [About section]({{ "about" | absolute_url }}) for more information.
 
 # Main Post <-- replace title
 
