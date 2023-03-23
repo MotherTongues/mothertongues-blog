@@ -51,7 +51,7 @@ Then, follow these steps:
    
 5. Submit a [pull request](https://github.com/MotherTongues/mothertongues-blog/pull/new/dev.author) to merge your changes in `dev.author` into the `review` branch.
 
-That's it! Start \[writing your posts]({{ "write-a-post" | absolute_url }}).
+That's it! Start [writing your posts]({{ "write-a-post" | absolute_url }}).
 
 <br> 
 <br> 

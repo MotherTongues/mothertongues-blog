@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
-        run: sudo apt-get install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev libcurl4-openssl-dev libxslt-dev libxml2-dev # required to avoid SSL errors
+        run: sudo apt-get update && sudo apt-get install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev libcurl4-openssl-dev libxslt-dev libxml2-dev # required to avoid SSL errors
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
