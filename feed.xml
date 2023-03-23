@@ -5,9 +5,69 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 24 Feb 2023 21:33:37 +0000</pubDate>
-    <lastBuildDate>Fri, 24 Feb 2023 21:33:37 +0000</lastBuildDate>
+    <pubDate>Thu, 23 Mar 2023 23:07:25 +0000</pubDate>
+    <lastBuildDate>Thu, 23 Mar 2023 23:07:25 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Language revitalization with Mozilla's Common Voice</title>
+        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;The National Research Council and Ursa Creative have adapted Mozilla’s CommonVoice tool to help streamline recording and data management for Indigenous language revitalization.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If you’re not familiar with &lt;a href=&quot;https://commonvoice.mozilla.org&quot;&gt;Mozilla’s Common Voice&lt;/a&gt;, check it out!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Nigel Decontie - Developer at &lt;a href=&quot;https://ursacreative.ca&quot;&gt;Ursa Creative&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Aidan Pine - Technical Director for NRC Speech Generation for Indigenous Language Education project&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-are-the-motivations-behind-this-project&quot;&gt;What are the motivations behind this project?&lt;/h1&gt;
+
+&lt;p&gt;Indigenous language revitalization is a movement that seeks to promote the use of the languages spoken by Indigenous peoples around the world. Many Indigenous languages are endangered, due to over a century of colonial policies against their use. The loss of these languages not only erases cultural and linguistic diversity but also undermines the cultural identity and well-being of Indigenous communities. Revitalization efforts can involve a range of strategies, including language immersion programs, community-based language learning initiatives, and the development of language documentation and preservation projects. Indigenous language revitalization is critical for the preservation of cultural heritage, and is an important step towards building a more inclusive and equitable society.&lt;/p&gt;
+
+&lt;h1 id=&quot;language-revitalization-with-mozillas-common-voice&quot;&gt;Language revitalization with Mozilla’s Common Voice&lt;/h1&gt;
+
+&lt;p&gt;In an effort to support Indigenous language revitalization efforts, the National Research Council has developed their own custom version of an open-source language collection tool. They brought us on board to build a reproducible deployment process and assist in hosting the application. With this process in place, there is an opportunity for other organizations to have their own instances of the application created.&lt;/p&gt;
+
+&lt;h2 id=&quot;about-the-nrcs-custom-common-voice&quot;&gt;About the NRC’s custom Common Voice&lt;/h2&gt;
+
+&lt;p&gt;Common Voice is an open-source project that aims to create a freely available database of human voices that can be used to train machine learning models for speech technology. The project is designed to help increase the diversity of voices available for these models, particularly for underrepresented languages and accents - something that could be vital in supporting Indigenous languages, who see fewer and fewer native speakers each year. Common Voice invites individuals to record and donate their voices to the project’s database, allowing for a diverse range of voices to be collected. The project also includes tools for verifying and validating voice contributions, ensuring the accuracy and quality of the dataset. Common Voice is intended to be a collaborative effort, with individuals and organizations contributing their time and resources to help improve the accuracy and inclusivity of speech recognition technology.&lt;/p&gt;
+
+&lt;p&gt;The National Research Council (NRC) is currently involved in a &lt;a href=&quot;https://nrc.canada.ca/en/research-development/research-collaboration/programs/speech-generation-indigenous-language-education&quot;&gt;three-year research project&lt;/a&gt; on speech synthesis (text-to-speech) technology and have modified Mozilla’s Common Voice to suit the needs of the recording workflow of the project. Namely, by creating a separate instance of Common Voice, communities involved in the project are able to determine their own data management policy instead of adopting Mozilla’s policy to make all voices freely available. In addition, this ‘fork’ – or adaptation - of Common Voice also allows users to configure recording quality settings like encoding format and sampling rate.&lt;/p&gt;
+
+&lt;p&gt;You can find all the source code for this custom instance on the &lt;a href=&quot;https://github.com/SamuelLarkin/common-voice&quot;&gt;GitHub page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;who-is-ursa-creative&quot;&gt;Who is Ursa Creative?&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/common-voice--ursa-logo-800-0df9cc.png&quot; alt=&quot;Ursa Creative logo&quot; srcset=&quot;/assets/images/g/common-voice--ursa-logo-400-0df9cc.png 400w, /assets/images/g/common-voice--ursa-logo-600-0df9cc.png 600w, /assets/images/g/common-voice--ursa-logo-800-0df9cc.png 800w, /assets/images/g/common-voice--ursa-logo-1000-0df9cc.png 1000w&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ursa Creative is an Indigenous technology company based on the traditional territories of the WSÁNEĆ and Lək̓ʷəŋən-speaking Songhees, Esquimalt peoples. We began making simple websites to help Indigenous organizations in community build their online presence. There was so much interest that it quickly became a full-time job, and we expanded our team to create new systems, websites, and consulting services. We are now fortunate enough to work with both Indigenous and non-Indigenous organizations across Canada.&lt;/p&gt;
+
+&lt;p&gt;For NRC’s Common Voice, we were brought on board to assist with the hosting and deployment of the project. One of the goals for this project was to create a streamlined deployment process to allow anyone to request their own instance of the software.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-get-set-up-with-your-own-instance&quot;&gt;How to get set up with your own instance&lt;/h2&gt;
+
+&lt;p&gt;If you have any questions or are interested in having your own instance set up, you can find us at &lt;a href=&quot;https://ursacreative.ca&quot;&gt;ursacreative.ca&lt;/a&gt; or reach out directly to &lt;a href=&quot;mailto:contact@ursacreative.ca&quot;&gt;contact@ursacreative.ca&lt;/a&gt;. We would love to hear from you!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/common-voice/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/common-voice/</guid>
+        
+        <category>explanation</category>
+        
+        <category>common-voice</category>
+        
+        
+        <category>Blog</category>
+        
+      </item>
     
       <item>
         <title>How to make a Wordle clone for your language</title>
@@ -1635,310 +1695,6 @@ HH EH YY
         
         <category>g2p</category>
         
-        
-      </item>
-    
-      <item>
-        <title>Tutorial: Choosing the right fonts to show Cree syllabics on your website</title>
-        <description>&lt;p&gt;&lt;abbr title=&quot;too long; didn't read&quot;&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;&lt;/abbr&gt;: Use this
-&lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; CSS declaration to successfully display Western Cree syllabics
-for most visitors to your website:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Gadugi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Euphemia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Euphemia UCAS'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Aboriginal Sans'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Include the following line to your website’s &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; to automatically download
-a syllabics font if no appropriate fonts are installed on your
-smartphone/computer/device:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Read the rest of this article to learn more about choosing syllabics
-fonts for the web!&lt;/p&gt;
-
-&lt;h2 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h2&gt;
-
-&lt;p&gt;You will need to know how to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;How to edit your website’s &lt;abbr title=&quot;Cascading Stylesheets&quot;&gt;&lt;a href=&quot;https://www.w3schools.com/css/css_howto.asp#:~:text=With%20an%20external%20style%20sheet,%20you%20can%20change%20the%20look%20of%20an%20entire%20website%20by%20changing%20just%20one%20file!&quot;&gt;CSS&lt;/a&gt;&lt;/abbr&gt;&lt;/li&gt;
-  &lt;li&gt;How to add a &lt;a href=&quot;https://www.w3schools.com/tags/tag_link.asp&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link&amp;gt;&lt;/code&gt;&lt;/a&gt; element to your HTML’s &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you’ve ever added a custom font from &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt; to your
-website, you know enough to follow this post!&lt;/p&gt;
-
-&lt;p&gt;It’s also helpful to know the &lt;a href=&quot;https://about.easil.com/support/serif-vs-sans-serif/&quot;&gt;difference between serif and sans-serif
-fonts&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;lets-get-started&quot;&gt;Let’s get started!&lt;/h2&gt;
-
-&lt;p&gt;Have you ever wanted to display &lt;strong&gt;Cree syllabics&lt;/strong&gt; on your website, but
-when you tried, all you got were these blank boxes, colloquially called
-&lt;em&gt;&lt;a href=&quot;https://english.stackexchange.com/a/331483&quot;&gt;tofu&lt;/a&gt;&lt;/em&gt;?&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;□□□ □□□□□□! □□□□□□□□□□ □□□□□ «□ □□□□□□□□□»□&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tofu no longer! Let’s discuss the various syllabics fonts that exist out
-there, where they are commonly found, and let’s create a &lt;strong&gt;font stack&lt;/strong&gt;:
-a list of fonts that your web browser tries in order such that it finds
-a font that displays syllabics correctly.&lt;/p&gt;
-
-&lt;aside&gt;
-  &lt;strong&gt;Note&lt;/strong&gt;: I am most familiar with &lt;strong&gt;Western Cree
-  Syllabics&lt;/strong&gt; (Y-dialect, Th-dialect, N-dialect).
-  However most of these fonts &lt;em&gt;might&lt;/em&gt; work for other languages.
-  Note that some fonts in this post do not contain &lt;em&gt;all&lt;/em&gt;
-  syllabics characters for all languages that use syllabics, and there's
-  even some incorrect characters in one font! 😱 So even though this is
-  the stack I guarantee to work for Western Cree, for other languages,
-  your mileage may vary.
-&lt;/aside&gt;
-
-&lt;h2 id=&quot;common-syllabics-fonts&quot;&gt;Common syllabics fonts&lt;/h2&gt;
-
-&lt;p&gt;I will discuss the following fonts:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Aboriginal Sans&lt;/strong&gt; and &lt;strong&gt;Aboriginal Serif&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Euphemia&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Gadugi&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Noto Sans Canadian Aboriginal&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/&quot;&gt;There are many more syllabics fonts out there&lt;/a&gt;, but in this post, I want
-to focus on just enough for you to make syllabics work on websites.&lt;/p&gt;
-
-&lt;p&gt;I made an &lt;strong&gt;interactive demonstration&lt;/strong&gt; of these fonts that you can play
-with. Go ahead and type any text in Western Cree into the box and it
-will be converted to syllabics and displayed in the appropriate font, if
-it’s available on your system:&lt;/p&gt;
-
-&lt;p class=&quot;codepen&quot; data-height=&quot;500&quot; data-theme-id=&quot;light&quot; data-default-tab=&quot;result&quot; data-user=&quot;eddieantonio&quot; data-slug-hash=&quot;GRZOBYY&quot; style=&quot;height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Syllabics font playground&quot;&gt;
-  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/eddieantonio/pen/GRZOBYY&quot;&gt;
-  Syllabics font playground&lt;/a&gt; by Eddie Antonio Santos (&lt;a href=&quot;https://codepen.io/eddieantonio&quot;&gt;@eddieantonio&lt;/a&gt;)
-  on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
-&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;But &lt;strong&gt;where&lt;/strong&gt; do these fonts come from? Where should you &lt;strong&gt;expect these fonts to be
-available&lt;/strong&gt;?&lt;/p&gt;
-
-&lt;h3 id=&quot;aboriginal-sans-and-aboriginal-serif&quot;&gt;Aboriginal Sans and Aboriginal Serif&lt;/h3&gt;
-
-&lt;p&gt;As the names suggest, they have both serif and sans-serif variants for
-writing in Latin script (e.g., English, French, etc.).&lt;/p&gt;
-
-&lt;h4 id=&quot;who-created-these-fonts&quot;&gt;Who created these fonts?&lt;/h4&gt;
-
-&lt;p&gt;These fonts were created by the Language Geek himself, &lt;a href=&quot;http://www.languagegeek.com/&quot;&gt;Chris Harvey&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;where-are-these-fonts-pre-installed&quot;&gt;Where are these fonts pre-installed?&lt;/h4&gt;
-
-&lt;p&gt;As far as I know, no system has Aboriginal Sans or Aboriginal Serif
-pre-installed, so you have to &lt;a href=&quot;http://www.languagegeek.com/font/fontdownload.html&quot;&gt;download them yourself from his
-website&lt;/a&gt;. Sometimes, they are bundled with certain
-&lt;a href=&quot;https://keyman.com/&quot;&gt;Keyman&lt;/a&gt; keyboard layouts.&lt;/p&gt;
-
-&lt;p&gt;If you’ve tried getting syllabics to work on your computer, chances are,
-you’ve downloaded either of these fonts!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.languagegeek.com/font/fontdownload.html&quot;&gt;Languagegeek.com&lt;/a&gt; has many other fonts that
-display syllabics.&lt;/p&gt;
-
-&lt;h3 id=&quot;gadugi&quot;&gt;Gadugi&lt;/h3&gt;
-
-&lt;p&gt;This is a modern font that displays both syllabics and Cherokee.
-“Gadugi” is a Cherokee word that means “&lt;a href=&quot;https://archive.org/details/cherokeeenglishd0000feel/page/92/mode/2up?q=gadugi&quot;&gt;cooperative
-labour&lt;/a&gt;”.&lt;/p&gt;
-
-&lt;h4 id=&quot;who-created-this-font&quot;&gt;Who created this font?&lt;/h4&gt;
-
-&lt;p&gt;I believe Microsoft commissioned this font.&lt;/p&gt;
-
-&lt;h4 id=&quot;where-is-this-font-pre-installed&quot;&gt;Where is this font pre-installed?&lt;/h4&gt;
-
-&lt;p&gt;Gadugi has been included in &lt;a href=&quot;https://docs.microsoft.com/en-us/typography/font-list/gadugi#products-that-supply-this-font&quot;&gt;&lt;strong&gt;all versions of Windows since Windows
-8&lt;/strong&gt;&lt;/a&gt;. &lt;a href=&quot;https://support.microsoft.com/en-us/office/cloud-fonts-in-office-f7b009fe-037f-45ed-a556-b5fe6ede6adb?ui=en-us&amp;amp;rs=en-us&amp;amp;ad=us#text:~:text=gadugi.ttf&quot;&gt;It’s also available as a “Cloud
-font”&lt;/a&gt; on Microsoft Office products.&lt;/p&gt;
-
-&lt;h3 id=&quot;euphemia&quot;&gt;Euphemia&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Euphemia&lt;/strong&gt; or &lt;strong&gt;Euphemia UCAS&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is a sleek font for syllabics. It also
-includes glyphs for Latin (e.g., English/French) characters.&lt;/p&gt;
-
-&lt;h4 id=&quot;who-created-this-font-1&quot;&gt;Who created this font?&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.tiro.com/syllabics/resources/index.html&quot;&gt;Tiro Typeworks created Euphemia&lt;/a&gt;. Ross Mills from Tiro has also
-created the &lt;a href=&quot;https://www.pauktuutit.ca/library/&quot;&gt;Pigiarniq&lt;/a&gt; for Inuktitut, but I will not cover that font
-in this blog post.&lt;/p&gt;
-
-&lt;h4 id=&quot;where-is-this-font-pre-installed-1&quot;&gt;Where is this font pre-installed?&lt;/h4&gt;
-
-&lt;p&gt;Euphemia is distributed on &lt;a href=&quot;https://docs.microsoft.com/en-us/typography/font-list/euphemia#products-that-supply-this-font&quot;&gt;&lt;strong&gt;Windows Vista and newer&lt;/strong&gt;&lt;/a&gt;.
-It is currently distributed as &lt;strong&gt;Euphemia UCAS&lt;/strong&gt; on Apple systems
-(&lt;strong&gt;macOS&lt;/strong&gt;/&lt;strong&gt;iOS&lt;/strong&gt;).&lt;/p&gt;
-
-&lt;h4 id=&quot;issues&quot;&gt;Issues&lt;/h4&gt;
-
-&lt;p&gt;Unfortunately, for East Cree, this font will &lt;strong&gt;NOT&lt;/strong&gt; work, as it has the
-&lt;a href=&quot;https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/syllabic-font-orientation/&quot;&gt;incorrect orientation for the ᔓ (&lt;em&gt;sho&lt;/em&gt;) and ᔕ (&lt;em&gt;sha&lt;/em&gt;) syllabics&lt;/a&gt; 😱&lt;/p&gt;
-
-&lt;p&gt;So I would recommend &lt;strong&gt;omitting it from the font stack for Eastern
-Cree&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;So if you can’t use Euphemia, which font should you use instead?&lt;/p&gt;
-
-&lt;h3 id=&quot;noto-sans-canadian-aboriginal&quot;&gt;Noto Sans Canadian Aboriginal&lt;/h3&gt;
-
-&lt;p&gt;Noto is Google’s project to &lt;a href=&quot;https://www.google.com/get/noto/&quot;&gt;eliminate tofu (□) for all languages of the
-world&lt;/a&gt;, hence &lt;em&gt;noto&lt;/em&gt; (“&lt;strong&gt;no&lt;/strong&gt; more &lt;strong&gt;to&lt;/strong&gt;fu”).&lt;/p&gt;
-
-&lt;p&gt;As far as I’m aware, Google does not have a “Noto &lt;em&gt;Serif&lt;/em&gt; Canadian
-Aboriginal”.&lt;/p&gt;
-
-&lt;h4 id=&quot;who-created-this-font-2&quot;&gt;Who created this font?&lt;/h4&gt;
-
-&lt;p&gt;As mentioned, &lt;a href=&quot;https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal&quot;&gt;Google created Noto Sans&lt;/a&gt;!&lt;/p&gt;
-
-&lt;h4 id=&quot;where-is-this-font-pre-installed-2&quot;&gt;Where is this font pre-installed?&lt;/h4&gt;
-
-&lt;p&gt;Noto Sans Canadian Aboriginal can be found on Google products, such as
-&lt;strong&gt;Android phones&lt;/strong&gt;, &lt;strong&gt;Android tablets&lt;/strong&gt;, and &lt;strong&gt;Chromebooks&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Importantly, Google allows website authors to &lt;strong&gt;&lt;a href=&quot;https://fonts.google.com/earlyaccess#Noto+Sans+Canadian+Aboriginal&quot;&gt;embed Noto on your
-website&lt;/a&gt;&lt;/strong&gt;, just as you can embed other fonts via their &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt;
-service.&lt;/p&gt;
-
-&lt;p&gt;Most modern web browsers will &lt;strong&gt;automatically download&lt;/strong&gt; Noto Sans if
-you included it in your font stack and no appropriate font is found.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-get-the-right-fonts-to-appear-on-your-webpage&quot;&gt;How to get the right fonts to appear on your webpage&lt;/h2&gt;
-
-&lt;p&gt;Now that we know about what fonts are out there, lets construct
-a &lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; declaration that will support syllabics on as many
-devices as possible.&lt;/p&gt;
-
-&lt;p&gt;Recall that the &lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; declaration is a list of fonts that the
-web browser &lt;strong&gt;will try in order&lt;/strong&gt;. The first font in the list that is
-installed will be used.&lt;/p&gt;
-
-&lt;p&gt;Let’s start with the &lt;strong&gt;fallbacks&lt;/strong&gt; first. Let’s say our users’ device
-does not have a font that supports syllabics installed on their
-computer. Since Google allows &lt;strong&gt;Noto Sans Canadian Aboriginal&lt;/strong&gt; to be
-automatically downloaded on your website when needed, let’s start with
-this &lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; declaration:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To get your browser to download the appropriate fonts, add this to your
-website’s &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//fonts.googleapis.com/earlyaccess/notosanscanadianaboriginal.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;add-support-for-aboriginal-sans&quot;&gt;Add support for Aboriginal Sans&lt;/h3&gt;
-
-&lt;p&gt;Perhaps your reader has installed &lt;strong&gt;Aboriginal Sans&lt;/strong&gt; to their computer.
-Update your &lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; declaration as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Aboriginal Sans'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This way, the web browser will try using Aboriginal Sans if it’s
-installed, and &lt;em&gt;then&lt;/em&gt; attempt to download Noto Sans.&lt;/p&gt;
-
-&lt;h3 id=&quot;add-support-for-maciphoneipad-users&quot;&gt;Add support for Mac/iPhone/iPad users&lt;/h3&gt;
-
-&lt;p&gt;(omit this step for &lt;a href=&quot;https://www.eastcree.org/cree/en/resources/how-to/cree-fonts/syllabic-font-orientation/&quot;&gt;East Cree&lt;/a&gt;!)&lt;/p&gt;
-
-&lt;p&gt;Now let’s support users of Apple devices. Prepend &lt;strong&gt;Euphemia UCAS&lt;/strong&gt; to
-the &lt;code class=&quot;highlighter-rouge&quot;&gt;font-family&lt;/code&gt; declaration:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Euphemia UCAS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Aboriginal Sans'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;add-support-for-windows-users&quot;&gt;Add support for Windows Users&lt;/h3&gt;
-
-&lt;p&gt;Recall that earlier versions of Windows include &lt;strong&gt;Euphemia&lt;/strong&gt;; later
-versions support &lt;strong&gt;Gadugi&lt;/strong&gt;. Prepend the following rules to try using
-Gadugi first.&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gadugi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Euphemia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Euphemia UCAS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Aboriginal Sans'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;finally-specify-your-latin-fonts&quot;&gt;Finally, specify your Latin fonts&lt;/h3&gt;
-
-&lt;p&gt;If you’re displaying Latin text (e.g., English, French, Cree SRO, etc.),
-then this font goes &lt;strong&gt;first&lt;/strong&gt;. Recall that many of the syllabics fonts
-contain glyphs for Latin characters, so we will have to list
-our preferred Latin font &lt;strong&gt;first&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;For this example, say I want to use &lt;strong&gt;Open Sans&lt;/strong&gt; (which you can
-embed from &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt;). Prepend &lt;strong&gt;Open Sans&lt;/strong&gt; to the front of
-the list:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Open Sans'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gadugi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Euphemia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Euphemia UCAS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Aboriginal Sans'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'Noto Sans Canadian Aboriginal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You’re done! You’re ready to display syllabics on the web!&lt;/p&gt;
-
-&lt;h2 id=&quot;finished&quot;&gt;Finished!&lt;/h2&gt;
-
-&lt;p&gt;With these declarations, you should be able to display syllabics on your
-website, and be reasonably confident that everybody can read it.&lt;/p&gt;
-
-&lt;p&gt;Here’s a complete example that uses our syllabics font stack in
-addition to a few fonts from Google Fonts to round things out:&lt;/p&gt;
-
-&lt;p class=&quot;codepen&quot; data-height=&quot;265&quot; data-theme-id=&quot;light&quot; data-default-tab=&quot;css,result&quot; data-user=&quot;eddieantonio&quot; data-slug-hash=&quot;mdPqoxK&quot; style=&quot;height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Syllabics font stack complete example&quot;&gt;
-  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/eddieantonio/pen/mdPqoxK&quot;&gt;
-  Syllabics font stack complete example&lt;/a&gt; by Eddie Antonio Santos (&lt;a href=&quot;https://codepen.io/eddieantonio&quot;&gt;@eddieantonio&lt;/a&gt;)
-  on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
-&lt;/p&gt;
-&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;UCAS, or “Unified Canadian Aboriginal Syllabics”, the name of &lt;a href=&quot;https://unicode.org/charts/PDF/U1400.pdf&quot;&gt;the Unicode block&lt;/a&gt; that this font covers. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate>
-        <link>https://blog.mothertongues.org/tutorial-syllabics-fonts/</link>
-        <guid isPermaLink="true">https://blog.mothertongues.org/tutorial-syllabics-fonts/</guid>
-        
-        <category>intermediate</category>
-        
-        <category>syllabics</category>
-        
-        <category>Cree</category>
-        
-        <category>fonts</category>
-        
-        <category>html</category>
-        
-        <category>css</category>
-        
-        
-        <category>Tutorial</category>
         
       </item>
     
