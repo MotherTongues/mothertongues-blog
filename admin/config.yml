@@ -17,7 +17,7 @@ collections:
     fields:
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine', '_eddieantonio', 'delaney', 'fineen', 'nigel' ] }
+      - { label: 'Author', name: 'author', widget: 'select', options: [ 'AidanPine', '_eddieantonio', 'delaney', 'fineen', 'nigel', 'rknowles' ] }
       - { label: 'Categories', name: 'categories', widget: 'list', default: [] }
       - { label: 'Tags', name: 'tags', widget: 'list', default: [] }
       - { label: 'Featured Image', name: 'image', widget: 'image', default: false }
