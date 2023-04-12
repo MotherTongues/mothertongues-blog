@@ -72,7 +72,15 @@ authors:
     web: https://ursacreative.ca
     twitter:
     description: "Developer at Ursa Creative"
-
+  rknowles:
+    name: Rebecca
+    display_name: Rebecca Knowles
+    gravatar: 
+    email: Rebecca.Knowles@nrc-cnrc.gc.ca
+    web: 
+    twitter:
+    description: "Researcher at NRC"
+    
 # Plugins
 plugins:
   - jekyll-paginate
