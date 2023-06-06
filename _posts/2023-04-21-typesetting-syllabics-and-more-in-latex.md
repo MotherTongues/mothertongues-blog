@@ -49,6 +49,7 @@ In the next section, you'll see code for a minimal working example. We'll walk t
 This minimal working example of LaTeX produces the PDF shown below, when compiled using XeLaTeX. 
 
 ```
+{% raw %}
 \documentclass{article}
 
 \usepackage{hyperref} % Just used for formatting the URL citation.
@@ -79,7 +80,7 @@ To show a longer example of a full sentence, we use this quote from Hon. Paul Qu
 \end{itemize}
 
 \end{document}
-
+{% endraw %}
 ```
 
 ## Output
