@@ -5,8 +5,8 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Jun 2023 21:01:38 +0000</pubDate>
-    <lastBuildDate>Tue, 06 Jun 2023 21:01:38 +0000</lastBuildDate>
+    <pubDate>Tue, 06 Jun 2023 21:10:47 +0000</pubDate>
+    <lastBuildDate>Tue, 06 Jun 2023 21:10:47 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -89,7 +89,7 @@ To show a longer example of a full sentence, we use this quote from Hon. Paul Qu
 &lt;h2 id=&quot;output&quot;&gt;Output&lt;/h2&gt;
 &lt;p&gt;This is what the compiled PDF looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png&quot; alt=&quot;The PDF produced by compiling the code with XeLaTeX.&quot; srcset=&quot;/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-400-xxxxxx.png 400w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-600-xxxxxx.png 600w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png 800w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-1000-xxxxxx.png 1000w&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/typesetting-syllabics-in-latex-797-1b0bf9.png&quot; alt=&quot;The PDF produced by compiling the code with XeLaTeX.&quot; srcset=&quot;/assets/images/g/typesetting-syllabics-in-latex-400-1b0bf9.png 400w, /assets/images/g/typesetting-syllabics-in-latex-600-1b0bf9.png 600w, /assets/images/g/typesetting-syllabics-in-latex-797-1b0bf9.png 797w&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;how-this-code-works&quot;&gt;How This Code Works&lt;/h2&gt;
 
