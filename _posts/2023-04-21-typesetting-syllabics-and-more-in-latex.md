@@ -4,7 +4,7 @@ title:  "Typesetting Syllabics (and More) in LaTeX"
 author: rknowles
 categories: [ Tutorial, Blog ]
 tags: [ fonts, syllabics, latex ]
-image: false
+image: assets/images/typesetting-syllabics-in-latex.png
 description: "How to include various fonts in documents formatted with LaTeX"
 featured: false
 hidden: false
