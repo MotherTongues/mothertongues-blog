@@ -86,7 +86,7 @@ To show a longer example of a full sentence, we use this quote from Hon. Paul Qu
 ## Output
 This is what the compiled PDF looks like:
 
-{% picture typesetting-syllabics-and-more-in-latex--compiled.png --alt The PDF produced by compiling the code with XeLaTeX. %}
+{% picture typesetting-syllabics-in-latex.png --alt The PDF produced by compiling the code with XeLaTeX. %}
 
 ## How This Code Works
 
