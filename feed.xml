@@ -5,9 +5,205 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 23 Mar 2023 23:07:25 +0000</pubDate>
-    <lastBuildDate>Thu, 23 Mar 2023 23:07:25 +0000</lastBuildDate>
+    <pubDate>Tue, 06 Jun 2023 21:01:38 +0000</pubDate>
+    <lastBuildDate>Tue, 06 Jun 2023 21:01:38 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Typesetting Syllabics (and More) in LaTeX</title>
+        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;This post describes one way to use certain Inuktut syllabics fonts when writing documents in LaTeX, along with some other LaTeX tips.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Knowledge of &lt;a href=&quot;https://www.latex-project.org/&quot;&gt;LaTeX&lt;/a&gt; (for typesetting documents).&lt;/li&gt;
+  &lt;li&gt;Knowledge of a typesetting system for LaTeX, like &lt;a href=&quot;https://tug.org/begin.html&quot;&gt;TeX&lt;/a&gt;, or an editor like &lt;a href=&quot;https://www.overleaf.com/&quot;&gt;Overleaf&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-needed-to-replicate-the-main-content-in-the-post&quot;&gt;What is needed to replicate the main content in the post?&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Have downloaded the font you want to use (we’ll discuss this next).&lt;/li&gt;
+  &lt;li&gt;Have access to a LaTeX typesetting system or an editor like Overleaf that allows you to compile using XeLaTeX (rather than pdfLaTeX).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;typesetting-syllabics-and-more-in-latex&quot;&gt;Typesetting Syllabics (and More) in LaTeX&lt;/h1&gt;
+
+&lt;p&gt;In an earlier blog post, you saw how to &lt;a href=&quot;https://blog.mothertongues.org/tutorial-syllabics-fonts/&quot;&gt;display various fonts in web browsers&lt;/a&gt;. Here, we’ll talk about how to use fonts like Pigiarniq in documents that are being typeset in LaTeX (e.g., many academic journals and conference papers).&lt;/p&gt;
+
+&lt;p&gt;Specifically, you’ll see one way to typeset text written in ᖃᓂᐅᔮᖅᐸᐃᑦ (qaniujaaqpait; Inuktut Syllabics) using LaTeX, XeLaTeX, and the Pigiarniq font family. Our example focuses on a scenario where you’re writing in a mix of fonts and orthographies, but it can be modified for text written entirely in syllabics.&lt;/p&gt;
+
+&lt;p&gt;You’ll also see some variations of these techniques that work for other characters and fonts.&lt;/p&gt;
+
+&lt;p&gt;Read through for more details, or skip ahead to the &lt;a href=&quot;#review-quick-start&quot;&gt;Review/Quick Start&lt;/a&gt; section if you prefer.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+&lt;p&gt;We’ll demonstrate this using &lt;em&gt;Pigiarniq&lt;/em&gt;, a font which can be downloaded from the &lt;a href=&quot;https://www.tiro.com/syllabics/resources/index.html&quot;&gt;Tiro Typeworks website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to follow along, first download the Pigiarniq zip file and extract the font files. For this demonstration, we’ll start with &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq Regular.ttf&lt;/code&gt;. If you are using a different font, you may want to read the detailed instructions for using new fonts in &lt;a href=&quot;https://www.overleaf.com/learn/latex/Questions/I_have_a_custom_font_I%27d_like_to_load_to_my_document._How_can_I_do_this%3F&quot;&gt;Overleaf’s instructions on using custom fonts&lt;/a&gt;. It explains different approaches to using new fonts, and explains why some fonts can be compiled out of the box with pdfLaTeX and others can’t. If you’re not sure whether your font can be easily compiled or not, give it a read!&lt;/p&gt;
+
+&lt;p&gt;Next, you’ll want to open your LaTeX editor of choice. If you’re using Overleaf (where we tested this approach), you can directly upload the &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq Regular.ttf&lt;/code&gt; file into your project. Other LaTeX editors may need you to specify a path to where &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq Regular.ttf&lt;/code&gt; is stored on your computer, or you may also be able to simply put it in the folder with your LaTeX files.&lt;/p&gt;
+
+&lt;p&gt;In the next section, you’ll see code for a minimal working example. We’ll walk through it step-by-step below. If you want to start right away, copy that code into a new file (named something like &lt;code class=&quot;highlighter-rouge&quot;&gt;main.tex&lt;/code&gt;) and compile it using XeLaTeX to see the output pictured below. In Overleaf, you can compile with XeLaTeX by going to Menu &amp;gt; Settings &amp;gt; Compiler and selecting XeLaTeX from the dropdown.&lt;/p&gt;
+
+&lt;h2 id=&quot;minimal-working-example&quot;&gt;Minimal Working Example&lt;/h2&gt;
+
+&lt;p&gt;This minimal working example of LaTeX produces the PDF shown below, when compiled using XeLaTeX.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;\documentclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;article&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;hyperref&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;% Just used for formatting the URL citation.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fontspec&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\newfontfamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\pigiarniq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;Pigiarniq&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;[Extension = .ttf, UprightFont = Pigiarniq Regular]
+&lt;span class=&quot;c&quot;&gt;% The font file `Pigiarniq Regular.ttf` should be located somewhere that the compiler can find it.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\setmainfont&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Times New Roman&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\pigiarniq&lt;/span&gt; ᖃᓂᐅᔮᖅᐸᐃᑦ&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; in &lt;span class=&quot;k&quot;&gt;\LaTeX&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt; Minimal Working Example&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;April 2023&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{document}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\maketitle&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;\section&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Example&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+This file is an example of how to write &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\pigiarniq&lt;/span&gt;  ᖃᓂᐅᔮᖅᐸᐃᑦ&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; (qaniujaaqpait; Inuktut Syllabics) in &lt;span class=&quot;k&quot;&gt;\LaTeX&lt;/span&gt;, which can be modified for other languages and scripts. Note that it works when compiling with XeLaTeX. This also enables more utf-8 characters supported directly in XeLaTeX's Times New Roman font, like the barred T in SENĆOŦEN, without a font macro like the Pigiarniq one. Compiling with pdfLaTeX does not support this.
+
+To show a longer example of a full sentence, we use this quote from Hon. Paul Quassa in the March 14, 2017 Nunavut Hansard (&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://www.assembly.nu.ca/sites/default/files/Hansard&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;20170314.pdf&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;):
+
+&lt;span class=&quot;nt&quot;&gt;\begin{itemize}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[]&lt;/span&gt;  Mr. Speaker, this government is taking concrete action on language revitalization and student outcomes.
+    &lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\pigiarniq&lt;/span&gt; ᐅᖃᖅᑏ, ᒐᕙᒪᒃᑯᑦ ᐊᐅᓚᔾᔭᐃᒋᐊᓪᓚᑦᑖᕋᓱᒻᒪᑕ ᐅᖃᐅᓯᖅ ᐆᒻᒪᖅᑎᑕᐅᒃᑲᓐᓂᕋᓱᓪᓗᓂ ᐊᒻᒪᓗ ᐃᓕᓐᓂᐊᖅᑏᑦ ᐃᓕᓐᓂᐊᖅᑎᑕᐅᓗᑎᒃ.&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[]&lt;/span&gt; uqaqtii, gavamakkut aulajjaigiallattaarasummata uqausiq ummaqtitaukkannirasulluni ammalu ilinniaqtiit ilinniaqtitaulutik .
+&lt;span class=&quot;nt&quot;&gt;\end{itemize}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\end{document}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;output&quot;&gt;Output&lt;/h2&gt;
+&lt;p&gt;This is what the compiled PDF looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png&quot; alt=&quot;The PDF produced by compiling the code with XeLaTeX.&quot; srcset=&quot;/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-400-xxxxxx.png 400w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-600-xxxxxx.png 600w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png 800w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-1000-xxxxxx.png 1000w&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-this-code-works&quot;&gt;How This Code Works&lt;/h2&gt;
+
+&lt;p&gt;The code above shows an article-style document in LaTeX, written mostly in English but also containing some text written in Inuktut using the Pigiarniq font. You may be using a specific conference or journal template. Here are the main things you need to pay attention to in preparing to use the font:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;\usepackage{fontspec}&lt;/code&gt;: Use the &lt;a href=&quot;https://ctan.org/pkg/fontspec?lang=en&quot;&gt;fontspec&lt;/a&gt; package.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;\newfontfamily{\pigiarniq}{Pigiarniq}[Extension = .ttf, UprightFont = Pigiarniq Regular]&lt;/code&gt;: Define a new font family. &lt;code class=&quot;highlighter-rouge&quot;&gt;\pigiarniq&lt;/code&gt; is the command you will use when you want to use this font. &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq&lt;/code&gt; is the font name. &lt;code class=&quot;highlighter-rouge&quot;&gt;Extension = .ttf&lt;/code&gt; indicates that the font’s file extension is &lt;code class=&quot;highlighter-rouge&quot;&gt;.ttf&lt;/code&gt;. For now we’ve just used &lt;code class=&quot;highlighter-rouge&quot;&gt;UprightFont = Pigiarniq Regular&lt;/code&gt;, which will be the default.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;\setmainfont{Times New Roman}&lt;/code&gt;: Because we were writing our document primarily in English, we chose to set the main font to Times New Roman and invoked the &lt;code class=&quot;highlighter-rouge&quot;&gt;\pigiarniq&lt;/code&gt; command when writing in syllabics.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}&lt;/code&gt;: When we write text in syllabics, we surround the text with curly brackets and invoke the &lt;code class=&quot;highlighter-rouge&quot;&gt;\pigiarniq&lt;/code&gt; command inside the brackets, so it applies only to the text inside the brackets (here that text is ᖃᓂᐅᔮᖅᐸᐃᑦ, or qaniujaaqpait, but in the full example file you can see that you can put full sentences or even paragraphs inside the brackets). You can invoke it as &lt;code class=&quot;highlighter-rouge&quot;&gt;\pigiarniq{ᖃᓂᐅᔮᖅᐸᐃᑦ}&lt;/code&gt; as well, if you prefer.&lt;/li&gt;
+  &lt;li&gt;Compile with XeLaTeX (in Overleaf, select it from the dropdown under Menu &amp;gt; Settings &amp;gt; Compiler). This will not work if you try to compile with pdfLaTeX.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you want to typeset all or most of your document in syllabics, you can instead use &lt;code class=&quot;highlighter-rouge&quot;&gt;\setmainfont{Pigiarniq}&lt;/code&gt; and invoke commands for any other fonts you also wish to use.&lt;/p&gt;
+
+&lt;p&gt;In our example, we only set the &lt;code class=&quot;highlighter-rouge&quot;&gt;UprightFont&lt;/code&gt;, but we could also set &lt;code class=&quot;highlighter-rouge&quot;&gt;BoldFont = Pigiarniq Bold&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ItalicFont = Pigiarniq Italic&lt;/code&gt;, comma-separated, like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;\newfontfamily{\pigiarniq}{Pigiarniq}[Extension = .ttf, UprightFont = Pigiarniq Regular, BoldFont = Pigiarniq Bold, ItalicFont = Pigiarniq Italic]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This will allow you to invoke bold or italics as &lt;code class=&quot;highlighter-rouge&quot;&gt;\textbf{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;\textit{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}&lt;/code&gt;. For additional details and other options, see the &lt;a href=&quot;https://texdoc.org/serve/fontspec/0&quot;&gt;fontspec package documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One more neat thing about compiling with XeLaTeX is that it enables more UTF-8 characters supported directly in XeLaTeX’s Times New Roman font, like the barred T in SENĆOŦEN. This doesn’t require any additional font declarations (and it doesn’t require Pigiarniq); it just works when you compile with XeLaTeX!&lt;/p&gt;
+
+&lt;h2 id=&quot;additional-options&quot;&gt;Additional Options&lt;/h2&gt;
+
+&lt;h3 id=&quot;utf-8-character-support-in-xelatex&quot;&gt;UTF-8 Character Support in XeLaTeX&lt;/h3&gt;
+
+&lt;p&gt;As mentioned above, XeLaTeX’s Time New Roman font includes a wider range of UTF-8 characters. If the characters you want to use (like the barred T in SENĆOŦEN) are included in that, you just need to type your text in the body, compile with XeLaTeX, and include just these in the header:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\usepackage{fontspec}
+\setmainfont{Times New Roman}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;noto-fonts&quot;&gt;Noto Fonts&lt;/h3&gt;
+&lt;p&gt;There are some characters that exist in Noto fonts but not in XeLaTeX’s Times New Roman font, like the W̱ in W̱SÁNEĆ. You will still need to set the compiler to XeLaTeX. If you don’t have any constraints on fonts, the simplest way to use these is to just put the following in your header and type anything you want in the Noto fonts in the body:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\usepackage{noto}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you would like to use Times New Roman as the main font, you can instead do the following in your header:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\usepackage{fontspec}
+\usepackage{noto}
+\setmainfont{Times New Roman}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Whenever you want to type something that is only included in a Noto font, you can do so as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\notoserif{W̱}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;\notosans{}&lt;/code&gt;; see the &lt;a href=&quot;https://ctan.org/tex-archive/fonts/noto?lang=en&quot;&gt;README for the noto package&lt;/a&gt; for more details and other options. Note that the size of the Noto fonts is slightly different than the Times New Roman font, so you might prefer to include whole words in the Noto font, like &lt;code class=&quot;highlighter-rouge&quot;&gt;\notoserif{W̱SÁNEĆ}&lt;/code&gt;. See below for one solution for the W̱ character that doesn’t use Noto fonts.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-tipa-with-pdflatex&quot;&gt;Using TIPA with pdfLaTeX&lt;/h3&gt;
+&lt;p&gt;This solution works with either pdfLaTeX or XeLaTeX for displaying characters like W̱ and Ŧ. In the header, use:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\usepackage{tipa}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And any time you want to use the character W̱, do:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\textsubbar{W}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The Ŧ is slightly more complicated to produce:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\ipabar{T}{0.75ex}{.6}{}{}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The 0.75ex determines how high up the bar is on the T, while the 0.6 is the bar width. If you use a different font, you may want to adjust these values for the best result.&lt;/p&gt;
+
+&lt;p&gt;The downside to this approach is that if you copy text that includes the W̱ or Ŧ from the resulting PDF, those letters will not copy correctly.&lt;/p&gt;
+
+&lt;p&gt;See Appendix C of the &lt;a href=&quot;http://www.l.u-tokyo.ac.jp/~fkr/tipa/tipaman.pdf&quot;&gt;TIPA manual&lt;/a&gt; for more examples.&lt;/p&gt;
+
+&lt;h2 id=&quot;some-words-of-caution&quot;&gt;Some Words of Caution&lt;/h2&gt;
+
+&lt;p&gt;If you are typesetting a document to submit to a publisher that has formatting requirements, you may want to check that it is ok to compile with XeLaTeX, because the output may differ visibly from the output as produced by pdfLaTeX. You can also see in the example that the syllabic text expands out too far and doesn’t have automatic hyphenation, so you may need to handle some spacing issues manually.&lt;/p&gt;
+
+&lt;h2 id=&quot;review--quick-start&quot;&gt;Review / Quick start&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Include the Pigiarniq font by downloading the Pigiarniq zip file (Pigiarniq1.2.zip) from the &lt;a href=&quot;https://www.tiro.com/syllabics/resources/index.html&quot;&gt;Tiro Typeworks website&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Extract the &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq Regular.ttf&lt;/code&gt; file.&lt;/li&gt;
+  &lt;li&gt;Move the &lt;code class=&quot;highlighter-rouge&quot;&gt;Pigiarniq Regular.ttf&lt;/code&gt; file to the appropriate location:
+    &lt;ul&gt;
+      &lt;li&gt;Overleaf: Upload directly to your project.&lt;/li&gt;
+      &lt;li&gt;On your computer: Specify the path to the file or include in the folder as your main LaTeX file will be.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Copy the code from the &lt;a href=&quot;#minimal-working-example&quot;&gt;minimal working example&lt;/a&gt; into your project in a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;main.tex&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Compile &lt;code class=&quot;highlighter-rouge&quot;&gt;main.tex&lt;/code&gt; using XeLaTeX.
+    &lt;ul&gt;
+      &lt;li&gt;This can be done in Overleaf by going to Menu &amp;gt; Settings &amp;gt; Compiler and selecting XeLaTeX from the dropdown.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;You should now have PDF output that looks like the screenshot in the &lt;a href=&quot;#output&quot;&gt;output&lt;/a&gt; section!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;In addition to the pages linked to throughout the blog post, we (Rebecca Knowles and Eric Joanis, the authors of the minimal working example above) found &lt;a href=&quot;https://web.archive.org/web/20210131225827/https://sites.google.com/site/cyrilgoutte/not-so-news/cuneiformsignsintheaclnaaclpapertemplate&quot;&gt;Cyril Goutte’s instructions on typing cuneiform&lt;/a&gt; useful in preparing this example, along with &lt;a href=&quot;https://www.overleaf.com/learn/latex/Questions/I_have_a_custom_font_I%27d_like_to_load_to_my_document._How_can_I_do_this%3F&quot;&gt;Overleaf’s instructions on using custom fonts&lt;/a&gt;, and the &lt;a href=&quot;https://texdoc.org/serve/fontspec/0&quot;&gt;fontspec package documentation&lt;/a&gt;. If you want to dig deeply into LaTeX font encodings and their history, this &lt;a href=&quot;https://www.latex-project.org/help/documentation/encguide.pdf&quot;&gt;LaTeX font encodings documentation&lt;/a&gt; may be of interest.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/</link>
+        <guid isPermaLink="true">https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/</guid>
+        
+        <category>fonts</category>
+        
+        <category>syllabics</category>
+        
+        <category>latex</category>
+        
+        
+        <category>Tutorial</category>
+        
+        <category>Blog</category>
+        
+      </item>
     
       <item>
         <title>Language revitalization with Mozilla's Common Voice</title>
@@ -1611,81 +1807,6 @@ HH EH YY
         <pubDate>Fri, 22 Oct 2021 00:00:00 +0000</pubDate>
         <link>https://blog.mothertongues.org/g2p-basic-mappings-gui/</link>
         <guid isPermaLink="true">https://blog.mothertongues.org/g2p-basic-mappings-gui/</guid>
-        
-        <category>tutorial</category>
-        
-        <category>explanation</category>
-        
-        <category>tech-showcase</category>
-        
-        <category>g2p</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>G2P Part 1: Getting from 'a' to 'b' with g2p - why g2p exists and will let you do awesome things</title>
-        <description>&lt;p&gt;This is the first blog post in a seven-part series about a software tool called &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;. This post describes some of the background context for &lt;em&gt;why&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; was created, and subsequent posts will go into more detail about how to use &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; is a tool for systematically converting certain characters&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; into other ones. This sounds fairly simple, but it can actually be incredibly powerful and useful! For example, maybe you want to &lt;a href=&quot;#use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;get the pronunciation from a word’s spelling&lt;/a&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; can help with that! Or maybe a language you’re learning or teaching has different writing systems and you want to &lt;a href=&quot;#use-case-2-a-language-with-multiple-writing-systems&quot;&gt;convert between them&lt;/a&gt;. Or, maybe your language has an historic or legacy way of writing and you want to &lt;a href=&quot;#use-case-3-converting-from-legacy-writing-systems&quot;&gt;convert it to the new writing system&lt;/a&gt;. There are also other uses for &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; which I’ll explain in following posts - keep reading to learn the basics of &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;g2p-blog-series-index&quot;&gt;G2P Blog Series Index&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Background&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-basic-mappings-gui&quot;&gt;How to write a basic mapping in G2P Studio&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-basic-mappings-local&quot;&gt;Writing mappings on your computer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-advanced-mappings&quot;&gt;Advanced mappings&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-applications&quot;&gt;ReadAlong Studio &amp;amp; Other Applications&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-preprocess&quot;&gt;Preprocessing mappings&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.mothertongues.org/g2p-contributing&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;who-is-involved-with-this-project&quot;&gt;Who is involved with this project?&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Maintainer (i.e. the person to bug with questions): &lt;a href=&quot;https://aidanpine.ca&quot;&gt;Aidan Pine&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Lots of &lt;a href=&quot;https://github.com/roedoejet/g2p/graphs/contributors&quot;&gt;other contributors&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-are-the-motivations-behind-g2p&quot;&gt;What are the motivations behind G2P?&lt;/h1&gt;
-
-&lt;p&gt;There are many reasons why you might want to systematically convert between different characters. Here are a few possible use cases:&lt;/p&gt;
-
-&lt;h3 id=&quot;use-case-1-getting-the-pronunciation-from-a-words-spelling&quot;&gt;Use Case #1: Getting the pronunciation from a word’s spelling&lt;/h3&gt;
-
-&lt;p&gt;Sometimes you want to convert from a language’s writing system (also known as &lt;em&gt;orthography&lt;/em&gt;) to its pronunciation. This is a very common task in &lt;a href=&quot;https://en.wikipedia.org/wiki/Natural_language_processing&quot;&gt;natural language processing&lt;/a&gt; and is essential in the creation of text-to-speech and automatic speech recognition systems. In &lt;a href=&quot;https://blog.mothertongues.org/g2p-applications&quot;&gt;another post in this series&lt;/a&gt;, I will describe the usefulness of &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; specifically with a project called “ReadAlongs”.&lt;/p&gt;
-
-&lt;p&gt;“Letters” in a writing system are usually referred to as “graphemes” and their corresponding meaningful sounds are referred to as “phonemes”; hence “g2p” or “grapheme-to-phoneme”. It gets a little more complicated than that though, because sometimes a grapheme is made of more than one character, as with the &lt;em&gt;digraph&lt;/em&gt; “th” which can be pronounced &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiceless%20consonants%20do%20not%20use,as%20in%20%22thing%22&quot;&gt;unvoiced&lt;/a&gt;&lt;/em&gt; as in ‘thin’ or &lt;em&gt;&lt;a href=&quot;https://www.thoughtco.com/voiced-and-voiceless-consonants-1212092#:~:text=Voiced%20Consonants,-Your%20vocal%20cords&amp;amp;text=As%20you%20pronounce%20a%20letter,W%2C%20Y%2C%20and%20Z.&quot;&gt;voiced&lt;/a&gt;&lt;/em&gt; as in ‘that’. The &lt;a href=&quot;https://en.wikipedia.org/wiki/International_Phonetic_Alphabet&quot;&gt;International Phonetic Alphabet&lt;/a&gt; (IPA) is not so ambiguous! In IPA, the ‘th’ in ‘thin’ is written as &lt;strong&gt;θ&lt;/strong&gt; and the ‘th’ in ‘that’ is written as &lt;strong&gt;ð&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;use-case-2-a-language-with-multiple-writing-systems&quot;&gt;Use Case #2: A language with multiple writing systems&lt;/h3&gt;
-
-&lt;p&gt;Some languages have two (or more!) different writing systems. Take Cree for example, where you can either write a word in &lt;em&gt;Standard Roman Orthography&lt;/em&gt; like “ê-wêpâpîhkêwêpinamâhk” or in &lt;em&gt;Syllabics&lt;/em&gt; like &lt;strong&gt;ᐁᐍᐹᐲᐦᑫᐍᐱᐊᒫᕽ&lt;/strong&gt;. My colleague &lt;a href=&quot;https://eddieantonio.ca&quot;&gt;Eddie&lt;/a&gt; has a great blog post about a tool he created to convert between the two &lt;a href=&quot;https://blog.mothertongues.org/why-a-new-cree-syllabics-converter&quot;&gt;here&lt;/a&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; can help with this kind of transformation between writing systems.&lt;/p&gt;
-
-&lt;h3 id=&quot;use-case-3-converting-from-legacy-writing-systems&quot;&gt;Use Case #3: Converting from legacy writing systems&lt;/h3&gt;
-
-&lt;p&gt;Some languages historically used “font hacks” to render the characters in their writing system before they were supported on computers. There’s a longer discussion to be had here, but the tldr version is that when computers were gaining widespread use among speakers of Indigenous languages, they weren’t typically able to &lt;em&gt;render&lt;/em&gt; (i.e., display) characters outside of the 128 characters supported by the &lt;a href=&quot;https://en.wikipedia.org/wiki/ASCII&quot;&gt;American Standard Code for Information Interchange (ASCII)&lt;/a&gt; or even any of the extensions to ASCII that provide a total of 256 character (e.g., &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO/IEC_8859-1&quot;&gt;Latin-1&lt;/a&gt; for Western European languages). To get around this, language communities would come up with their own custom fonts (often referred to as “font hacks” or “font encodings”) where they would &lt;strong&gt;override&lt;/strong&gt; the display of a characters like “©” which existed in Latin-1, as ‘ǧ’ instead (example taken from the Heiltsuk Doulos font). For more information on this topic, please check out &lt;a href=&quot;https://aidanpine.ca/static/cv/pdfs/Pine-Turin-Convertextract-2018.pdf&quot;&gt;‘Seeing the Heiltsuk Orthography from Font Encoding through to Unicode’&lt;/a&gt; or &lt;a href=&quot;https://markturin.sites.olt.ubc.ca/files/2020/06/Schillo_Turin_typeface_2020.pdf&quot;&gt;‘Applications and innovations in typeface design for North American Indigenous languages’&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;using-g2p-studio&quot;&gt;Using g2p studio&lt;/h1&gt;
-
-&lt;p&gt;If you want to use &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; to convert some text in one of the supported languages&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, simply visit the &lt;a href=&quot;https://g2p-studio.herokuapp.com&quot;&gt;G2P Studio&lt;/a&gt;, select a language from the dropdown, and type in your text, as shown below. That’s all there is to it! To learn how to add support for other languages and use &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; for other cool things, go on to &lt;a href=&quot;https://blog.mothertongues.org/g2p-basic-mappings-gui&quot;&gt;the next part of the series&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/g/studio-basic-789-d809c0.png&quot; srcset=&quot;/assets/images/g/studio-basic-400-d809c0.png 400w, /assets/images/g/studio-basic-600-d809c0.png 600w, /assets/images/g/studio-basic-789-d809c0.png 789w&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Because the word ‘letter’ usually refers to a character within a specific alphabet or writing system, instead of ‘letter’, I’m going to use the word ‘character’ throughout this post. Similarly, despite the name of this tool being ‘Grapheme-to-Phoneme’, in reality &lt;code class=&quot;highlighter-rouge&quot;&gt;g2p&lt;/code&gt; can be used to convert any characters to any other characters, not just graphemes (contrastive units of a writing system) to phonemes (contrastive units of a sound system). &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;At time of writing, this includes the following list along with their &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_639-3&quot;&gt;ISO-639-3&lt;/a&gt; codes) &lt;a href=&quot;https://en.wikipedia.org/wiki/Algonquin_language&quot;&gt;alq - Anishinàbemiwin&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Atikamekw_language&quot;&gt;atj - Atikamekw&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Michif&quot;&gt;crg - Michif&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/East_Cree&quot;&gt;crj - Southern &amp;amp; Northern East Cree&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Plains_Cree_language&quot;&gt;crx - Plains Cree&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Moose_Cree_language&quot;&gt;crm - Moose Cree&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Swampy_Cree_language&quot;&gt;csw - Swampy Cree&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Highland_Chatino&quot;&gt;ctp - Western Highland Chatino&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Danish_language&quot;&gt;dan - Danish&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/French_language&quot;&gt;fra - French&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Gitxsan_language&quot;&gt;git - Gitksan&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Scottish_Gaelic&quot;&gt;gla - Scottish Gaelic&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Gwich%CA%BCin_language&quot;&gt;gwi - Gwich’in&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/H%C3%A4n_language&quot;&gt;haa - Hän&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Inuinnaqtun&quot;&gt;ikt - Inuinnaqtun&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Inuktitut&quot;&gt;iku - Inuktitut&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Kaska_language&quot;&gt;Kaska&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Kwak%CA%BCwala&quot;&gt;kwk - Kwak’wala&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Raga_language&quot;&gt;lml - Raga&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Mi%EA%9E%8Ckmaq_language&quot;&gt;mic - Mi’kmaq&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Mohawk_language&quot;&gt;moh - Kanien’kéha&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Ojibwe_language&quot;&gt;oji - Anishinaabemowin&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Seneca_language&quot;&gt;see - Seneca&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tsuut%CA%BCina_language&quot;&gt;srs - Tsuut’ina&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Upper_Tanana_language&quot;&gt;tau - Upper Tanana&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tutchone_language&quot;&gt;tce - Southern Tutchone&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tutchone_language&quot;&gt;ttm - Northern Tutchone&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tagish_language&quot;&gt;tgx - Tagish&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tlingit_language&quot;&gt;tli - Tlingit&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
-        <link>https://blog.mothertongues.org/g2p-background/</link>
-        <guid isPermaLink="true">https://blog.mothertongues.org/g2p-background/</guid>
         
         <category>tutorial</category>
         

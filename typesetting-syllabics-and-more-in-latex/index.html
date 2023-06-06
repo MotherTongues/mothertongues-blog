@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="https://blog.mothertongues.org/assets/images/logo_no_text.png">
+
+    <title>Typesetting Syllabics (and More) in LaTeX | Mother Tongues Blog</title>
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Typesetting Syllabics (and More) in LaTeX" />
+<meta name="author" content="rknowles" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to include various fonts in documents formatted with LaTeX" />
+<meta property="og:description" content="How to include various fonts in documents formatted with LaTeX" />
+<link rel="canonical" href="https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/" />
+<meta property="og:url" content="https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/" />
+<meta property="og:site_name" content="Mother Tongues Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-04-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@AidanPine" />
+<meta name="twitter:creator" content="@rknowles" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"rknowles"},"description":"How to include various fonts in documents formatted with LaTeX","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/"},"@type":"BlogPosting","url":"https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.mothertongues.org/assets/images/logo_no_text.png"},"name":"rknowles"},"headline":"Typesetting Syllabics (and More) in LaTeX","dateModified":"2023-04-21T00:00:00+00:00","datePublished":"2023-04-21T00:00:00+00:00","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="/assets/css/screen.css" rel="stylesheet">
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/applause-button/dist/applause-button.css" rel="stylesheet">
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/readingtime.min.js"></script>
+
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <script>
+        $(function () {
+            $('.article-post').readingTime({
+                readingTimeAsNumber: false,
+                readingTimeTarget: $('.reading-time'),
+                wordsPerMinute: 150,
+                prependTimeString: "Read time: ",
+                round: true,
+                lang: 'en',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data.error);
+                    $('.reading-time').remove();
+                }
+            });
+        })
+    </script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-100872710-18', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<body class="layout-post">
+    <!-- defer loading of font and font awesome -->
+    <noscript id="deferred-styles">
+        <link
+            href="https://fonts.googleapis.com/css?family=Amatic+SC%7CRighteous%7CMerriweather:300,300i,400,400i,700,700i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    </noscript>
+
+
+    <!-- Begin Menu Navigation
+================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+        <div class="container pr-0">
+
+            <!-- Begin Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> Mother Tongues
+            </a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+
+                <!-- Begin Menu -->
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="/index.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.mothertongues.org/about">About</a>
+                    </li>
+
+                    <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                </ul>
+
+                <!-- End Menu -->
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Navigation
+================================================== -->
+
+    <div class="site-content">
+
+        <div class="container">
+
+            <!-- Site Title
+================================================== -->
+            <div class="mainheading">
+                <h1 class="sitetitle">Mother Tongues Blog</h1>
+                <p class="lead">
+                    Smashing the lore of language technology!
+                </p>
+            </div>
+
+            <!-- Content
+================================================== -->
+            <div class="main-content">
+                <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Typesetting Syllabics (and More) in LaTeX&url=https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.mothertongues.org/typesetting-syllabics-and-more-in-latex/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb"
+                            src="https://www.gravatar.com/avatar/?s=250&d=mm&r=x"
+                            alt="Rebecca Knowles">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="">Rebecca Knowles</a><a
+                            target="_blank" href="" class="btn follow">Follow</a>
+                        <span class="author-description">Researcher at NRC</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Typesetting Syllabics (and More) in LaTeX</h1>
+                <div class="eta reading-time" style='font-size: small;'>
+                </div>
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <h1 id="tldr">TL;DR</h1>
+
+<p>This post describes one way to use certain Inuktut syllabics fonts when writing documents in LaTeX, along with some other LaTeX tips.</p>
+
+<h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
+
+<ul>
+  <li>Knowledge of <a href="https://www.latex-project.org/">LaTeX</a> (for typesetting documents).</li>
+  <li>Knowledge of a typesetting system for LaTeX, like <a href="https://tug.org/begin.html">TeX</a>, or an editor like <a href="https://www.overleaf.com/">Overleaf</a>.</li>
+</ul>
+
+<h1 id="what-is-needed-to-replicate-the-main-content-in-the-post">What is needed to replicate the main content in the post?</h1>
+
+<ol>
+  <li>Have downloaded the font you want to use (we’ll discuss this next).</li>
+  <li>Have access to a LaTeX typesetting system or an editor like Overleaf that allows you to compile using XeLaTeX (rather than pdfLaTeX).</li>
+</ol>
+
+<h1 id="typesetting-syllabics-and-more-in-latex">Typesetting Syllabics (and More) in LaTeX</h1>
+
+<p>In an earlier blog post, you saw how to <a href="https://blog.mothertongues.org/tutorial-syllabics-fonts/">display various fonts in web browsers</a>. Here, we’ll talk about how to use fonts like Pigiarniq in documents that are being typeset in LaTeX (e.g., many academic journals and conference papers).</p>
+
+<p>Specifically, you’ll see one way to typeset text written in ᖃᓂᐅᔮᖅᐸᐃᑦ (qaniujaaqpait; Inuktut Syllabics) using LaTeX, XeLaTeX, and the Pigiarniq font family. Our example focuses on a scenario where you’re writing in a mix of fonts and orthographies, but it can be modified for text written entirely in syllabics.</p>
+
+<p>You’ll also see some variations of these techniques that work for other characters and fonts.</p>
+
+<p>Read through for more details, or skip ahead to the <a href="#review-quick-start">Review/Quick Start</a> section if you prefer.</p>
+
+<h2 id="setup">Setup</h2>
+<p>We’ll demonstrate this using <em>Pigiarniq</em>, a font which can be downloaded from the <a href="https://www.tiro.com/syllabics/resources/index.html">Tiro Typeworks website</a>.</p>
+
+<p>If you want to follow along, first download the Pigiarniq zip file and extract the font files. For this demonstration, we’ll start with <code class="highlighter-rouge">Pigiarniq Regular.ttf</code>. If you are using a different font, you may want to read the detailed instructions for using new fonts in <a href="https://www.overleaf.com/learn/latex/Questions/I_have_a_custom_font_I%27d_like_to_load_to_my_document._How_can_I_do_this%3F">Overleaf’s instructions on using custom fonts</a>. It explains different approaches to using new fonts, and explains why some fonts can be compiled out of the box with pdfLaTeX and others can’t. If you’re not sure whether your font can be easily compiled or not, give it a read!</p>
+
+<p>Next, you’ll want to open your LaTeX editor of choice. If you’re using Overleaf (where we tested this approach), you can directly upload the <code class="highlighter-rouge">Pigiarniq Regular.ttf</code> file into your project. Other LaTeX editors may need you to specify a path to where <code class="highlighter-rouge">Pigiarniq Regular.ttf</code> is stored on your computer, or you may also be able to simply put it in the folder with your LaTeX files.</p>
+
+<p>In the next section, you’ll see code for a minimal working example. We’ll walk through it step-by-step below. If you want to start right away, copy that code into a new file (named something like <code class="highlighter-rouge">main.tex</code>) and compile it using XeLaTeX to see the output pictured below. In Overleaf, you can compile with XeLaTeX by going to Menu &gt; Settings &gt; Compiler and selecting XeLaTeX from the dropdown.</p>
+
+<h2 id="minimal-working-example">Minimal Working Example</h2>
+
+<p>This minimal working example of LaTeX produces the PDF shown below, when compiled using XeLaTeX.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+
+<span class="k">\usepackage</span><span class="p">{</span>hyperref<span class="p">}</span> <span class="c">% Just used for formatting the URL citation.</span>
+
+<span class="k">\usepackage</span><span class="p">{</span>fontspec<span class="p">}</span>
+<span class="k">\newfontfamily</span><span class="p">{</span><span class="k">\pigiarniq</span><span class="p">}{</span>Pigiarniq<span class="p">}</span>[Extension = .ttf, UprightFont = Pigiarniq Regular]
+<span class="c">% The font file `Pigiarniq Regular.ttf` should be located somewhere that the compiler can find it.</span>
+
+<span class="k">\setmainfont</span><span class="p">{</span>Times New Roman<span class="p">}</span>
+
+<span class="k">\title</span><span class="p">{{</span><span class="k">\pigiarniq</span> ᖃᓂᐅᔮᖅᐸᐃᑦ<span class="p">}</span> in <span class="k">\LaTeX</span>:<span class="k">\\</span> Minimal Working Example<span class="p">}</span>
+<span class="k">\author</span><span class="p">{}</span>
+<span class="k">\date</span><span class="p">{</span>April 2023<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="k">\maketitle</span>
+
+<span class="k">\section</span><span class="p">{</span>Example<span class="p">}</span>
+This file is an example of how to write <span class="p">{</span><span class="k">\pigiarniq</span>  ᖃᓂᐅᔮᖅᐸᐃᑦ<span class="p">}</span> (qaniujaaqpait; Inuktut Syllabics) in <span class="k">\LaTeX</span>, which can be modified for other languages and scripts. Note that it works when compiling with XeLaTeX. This also enables more utf-8 characters supported directly in XeLaTeX's Times New Roman font, like the barred T in SENĆOŦEN, without a font macro like the Pigiarniq one. Compiling with pdfLaTeX does not support this.
+
+To show a longer example of a full sentence, we use this quote from Hon. Paul Quassa in the March 14, 2017 Nunavut Hansard (<span class="k">\url</span><span class="p">{</span>https://www.assembly.nu.ca/sites/default/files/Hansard<span class="p">_</span>20170314.pdf<span class="p">}</span>):
+
+<span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span><span class="na">[]</span>  Mr. Speaker, this government is taking concrete action on language revitalization and student outcomes.
+    <span class="k">\item</span><span class="na">[]</span> <span class="p">{</span><span class="k">\pigiarniq</span> ᐅᖃᖅᑏ, ᒐᕙᒪᒃᑯᑦ ᐊᐅᓚᔾᔭᐃᒋᐊᓪᓚᑦᑖᕋᓱᒻᒪᑕ ᐅᖃᐅᓯᖅ ᐆᒻᒪᖅᑎᑕᐅᒃᑲᓐᓂᕋᓱᓪᓗᓂ ᐊᒻᒪᓗ ᐃᓕᓐᓂᐊᖅᑏᑦ ᐃᓕᓐᓂᐊᖅᑎᑕᐅᓗᑎᒃ.<span class="p">}</span>
+    <span class="k">\item</span><span class="na">[]</span> uqaqtii, gavamakkut aulajjaigiallattaarasummata uqausiq ummaqtitaukkannirasulluni ammalu ilinniaqtiit ilinniaqtitaulutik .
+<span class="nt">\end{itemize}</span>
+
+<span class="nt">\end{document}</span>
+
+</code></pre></div></div>
+
+<h2 id="output">Output</h2>
+<p>This is what the compiled PDF looks like:</p>
+
+<p><img src="/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png" alt="The PDF produced by compiling the code with XeLaTeX." srcset="/assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-400-xxxxxx.png 400w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-600-xxxxxx.png 600w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-800-xxxxxx.png 800w, /assets/images/g/typesetting-syllabics-and-more-in-latex--compiled-1000-xxxxxx.png 1000w" /></p>
+
+<h2 id="how-this-code-works">How This Code Works</h2>
+
+<p>The code above shows an article-style document in LaTeX, written mostly in English but also containing some text written in Inuktut using the Pigiarniq font. You may be using a specific conference or journal template. Here are the main things you need to pay attention to in preparing to use the font:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">\usepackage{fontspec}</code>: Use the <a href="https://ctan.org/pkg/fontspec?lang=en">fontspec</a> package.</li>
+  <li><code class="highlighter-rouge">\newfontfamily{\pigiarniq}{Pigiarniq}[Extension = .ttf, UprightFont = Pigiarniq Regular]</code>: Define a new font family. <code class="highlighter-rouge">\pigiarniq</code> is the command you will use when you want to use this font. <code class="highlighter-rouge">Pigiarniq</code> is the font name. <code class="highlighter-rouge">Extension = .ttf</code> indicates that the font’s file extension is <code class="highlighter-rouge">.ttf</code>. For now we’ve just used <code class="highlighter-rouge">UprightFont = Pigiarniq Regular</code>, which will be the default.</li>
+  <li><code class="highlighter-rouge">\setmainfont{Times New Roman}</code>: Because we were writing our document primarily in English, we chose to set the main font to Times New Roman and invoked the <code class="highlighter-rouge">\pigiarniq</code> command when writing in syllabics.</li>
+  <li><code class="highlighter-rouge">{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}</code>: When we write text in syllabics, we surround the text with curly brackets and invoke the <code class="highlighter-rouge">\pigiarniq</code> command inside the brackets, so it applies only to the text inside the brackets (here that text is ᖃᓂᐅᔮᖅᐸᐃᑦ, or qaniujaaqpait, but in the full example file you can see that you can put full sentences or even paragraphs inside the brackets). You can invoke it as <code class="highlighter-rouge">\pigiarniq{ᖃᓂᐅᔮᖅᐸᐃᑦ}</code> as well, if you prefer.</li>
+  <li>Compile with XeLaTeX (in Overleaf, select it from the dropdown under Menu &gt; Settings &gt; Compiler). This will not work if you try to compile with pdfLaTeX.</li>
+</ol>
+
+<p>If you want to typeset all or most of your document in syllabics, you can instead use <code class="highlighter-rouge">\setmainfont{Pigiarniq}</code> and invoke commands for any other fonts you also wish to use.</p>
+
+<p>In our example, we only set the <code class="highlighter-rouge">UprightFont</code>, but we could also set <code class="highlighter-rouge">BoldFont = Pigiarniq Bold</code> and <code class="highlighter-rouge">ItalicFont = Pigiarniq Italic</code>, comma-separated, like this:</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">\newfontfamily{\pigiarniq}{Pigiarniq}[Extension = .ttf, UprightFont = Pigiarniq Regular, BoldFont = Pigiarniq Bold, ItalicFont = Pigiarniq Italic]</code></p>
+</blockquote>
+
+<p>This will allow you to invoke bold or italics as <code class="highlighter-rouge">\textbf{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}</code> or <code class="highlighter-rouge">\textit{\pigiarniq ᖃᓂᐅᔮᖅᐸᐃᑦ}</code>. For additional details and other options, see the <a href="https://texdoc.org/serve/fontspec/0">fontspec package documentation</a>.</p>
+
+<p>One more neat thing about compiling with XeLaTeX is that it enables more UTF-8 characters supported directly in XeLaTeX’s Times New Roman font, like the barred T in SENĆOŦEN. This doesn’t require any additional font declarations (and it doesn’t require Pigiarniq); it just works when you compile with XeLaTeX!</p>
+
+<h2 id="additional-options">Additional Options</h2>
+
+<h3 id="utf-8-character-support-in-xelatex">UTF-8 Character Support in XeLaTeX</h3>
+
+<p>As mentioned above, XeLaTeX’s Time New Roman font includes a wider range of UTF-8 characters. If the characters you want to use (like the barred T in SENĆOŦEN) are included in that, you just need to type your text in the body, compile with XeLaTeX, and include just these in the header:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\usepackage{fontspec}
+\setmainfont{Times New Roman}
+</code></pre></div></div>
+
+<h3 id="noto-fonts">Noto Fonts</h3>
+<p>There are some characters that exist in Noto fonts but not in XeLaTeX’s Times New Roman font, like the W̱ in W̱SÁNEĆ. You will still need to set the compiler to XeLaTeX. If you don’t have any constraints on fonts, the simplest way to use these is to just put the following in your header and type anything you want in the Noto fonts in the body:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\usepackage{noto}
+</code></pre></div></div>
+
+<p>If you would like to use Times New Roman as the main font, you can instead do the following in your header:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\usepackage{fontspec}
+\usepackage{noto}
+\setmainfont{Times New Roman}
+</code></pre></div></div>
+
+<p>Whenever you want to type something that is only included in a Noto font, you can do so as follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\notoserif{W̱}
+</code></pre></div></div>
+
+<p>You can also use <code class="highlighter-rouge">\notosans{}</code>; see the <a href="https://ctan.org/tex-archive/fonts/noto?lang=en">README for the noto package</a> for more details and other options. Note that the size of the Noto fonts is slightly different than the Times New Roman font, so you might prefer to include whole words in the Noto font, like <code class="highlighter-rouge">\notoserif{W̱SÁNEĆ}</code>. See below for one solution for the W̱ character that doesn’t use Noto fonts.</p>
+
+<h3 id="using-tipa-with-pdflatex">Using TIPA with pdfLaTeX</h3>
+<p>This solution works with either pdfLaTeX or XeLaTeX for displaying characters like W̱ and Ŧ. In the header, use:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\usepackage{tipa}
+</code></pre></div></div>
+<p>And any time you want to use the character W̱, do:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\textsubbar{W}
+</code></pre></div></div>
+<p>The Ŧ is slightly more complicated to produce:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\ipabar{T}{0.75ex}{.6}{}{}
+</code></pre></div></div>
+<p>The 0.75ex determines how high up the bar is on the T, while the 0.6 is the bar width. If you use a different font, you may want to adjust these values for the best result.</p>
+
+<p>The downside to this approach is that if you copy text that includes the W̱ or Ŧ from the resulting PDF, those letters will not copy correctly.</p>
+
+<p>See Appendix C of the <a href="http://www.l.u-tokyo.ac.jp/~fkr/tipa/tipaman.pdf">TIPA manual</a> for more examples.</p>
+
+<h2 id="some-words-of-caution">Some Words of Caution</h2>
+
+<p>If you are typesetting a document to submit to a publisher that has formatting requirements, you may want to check that it is ok to compile with XeLaTeX, because the output may differ visibly from the output as produced by pdfLaTeX. You can also see in the example that the syllabic text expands out too far and doesn’t have automatic hyphenation, so you may need to handle some spacing issues manually.</p>
+
+<h2 id="review--quick-start">Review / Quick start</h2>
+<ol>
+  <li>Include the Pigiarniq font by downloading the Pigiarniq zip file (Pigiarniq1.2.zip) from the <a href="https://www.tiro.com/syllabics/resources/index.html">Tiro Typeworks website</a>.</li>
+  <li>Extract the <code class="highlighter-rouge">Pigiarniq Regular.ttf</code> file.</li>
+  <li>Move the <code class="highlighter-rouge">Pigiarniq Regular.ttf</code> file to the appropriate location:
+    <ul>
+      <li>Overleaf: Upload directly to your project.</li>
+      <li>On your computer: Specify the path to the file or include in the folder as your main LaTeX file will be.</li>
+    </ul>
+  </li>
+  <li>Copy the code from the <a href="#minimal-working-example">minimal working example</a> into your project in a file named <code class="highlighter-rouge">main.tex</code>.</li>
+  <li>Compile <code class="highlighter-rouge">main.tex</code> using XeLaTeX.
+    <ul>
+      <li>This can be done in Overleaf by going to Menu &gt; Settings &gt; Compiler and selecting XeLaTeX from the dropdown.</li>
+    </ul>
+  </li>
+  <li>You should now have PDF output that looks like the screenshot in the <a href="#output">output</a> section!</li>
+</ol>
+
+<h2 id="references">References</h2>
+
+<p>In addition to the pages linked to throughout the blog post, we (Rebecca Knowles and Eric Joanis, the authors of the minimal working example above) found <a href="https://web.archive.org/web/20210131225827/https://sites.google.com/site/cyrilgoutte/not-so-news/cuneiformsignsintheaclnaaclpapertemplate">Cyril Goutte’s instructions on typing cuneiform</a> useful in preparing this example, along with <a href="https://www.overleaf.com/learn/latex/Questions/I_have_a_custom_font_I%27d_like_to_load_to_my_document._How_can_I_do_this%3F">Overleaf’s instructions on using custom fonts</a>, and the <a href="https://texdoc.org/serve/fontspec/0">fontspec package documentation</a>. If you want to dig deeply into LaTeX font encodings and their history, this <a href="https://www.latex-project.org/help/documentation/encguide.pdf">LaTeX font encodings documentation</a> may be of interest.</p>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+                <small>
+                    <span class="post-date"><time class="post-date"
+                            datetime="2023-04-21">21 Apr 2023</time></span>
+                    
+                </small>
+            </p>
+
+            <!-- Claps -->
+            <div class="mb-4 d-flex align-items-center" style='margin-top: 40px;'>
+                <applause-button style="width: 58px; height: 58px;" />
+            </div>
+            <!-- End Claps -->
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/categories#blog">Blog</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/categories#tutorial">Tutorial</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#fonts">#fonts</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#latex">#latex</a>
+                    </li>
+                    
+                    <li>
+                        <a data-proofer-ignore class="smoothscroll"
+                            href="/tags#syllabics">#syllabics</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                
+                <a class="prev d-block col-md-6" href="https://blog.mothertongues.org/common-voice/"> &laquo;
+                    Language revitalization with Mozilla's Common Voice</a>
+                
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'mothertongues'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+        </div>
+    </div>
+</div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+            </div>
+
+            
+            <!-- Bottom Alert Bar
+================================================== -->
+            <div class="alertbar">
+                <div class="container text-center">
+                    <span><img src="/assets/images/logo_no_text.png" alt="Mother Tongues Blog"> &nbsp; Never miss a
+                        <b>story</b> from us, subscribe to our newsletter</span>
+                    <form action="https://mailchi.mp/b87b1fbde236/mothertongues" method="post" name="mc-embedded-subscribe-form"
+                        class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="mc-field-group">
+                            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL"
+                                autocomplete="on" required>
+                            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Categories Jumbotron
+================================================== -->
+        <div class="jumbotron fortags">
+            <div class="d-md-flex h-100">
+                <div class="col-md-4 transpdark align-self-center text-center h-100">
+                    <div class="d-md-flex align-items-center justify-content-center h-100">
+                        <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span
+                                class="d-none d-md-inline">→</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-8 p-5 align-self-center text-center">
+                    
+                    
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#tutorial">Tutorial
+                        (8)</a>
+                    
+                    <a data-proofer-ignore class="mt-1 mb-1"
+                        href="/categories#blog">Blog
+                        (7)</a>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin Footer
+================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                        Copyright © 2023 Mother Tongues
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer
+================================================== -->
+
+    </div> <!-- /.site-content -->
+
+    <!-- Scripts
+================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="/assets/js/mediumish.js"></script>
+
+    
+
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    
+    <script id="dsq-count-scr" src="//mothertongues.disqus.com/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+       anchors.add();
+    </script>
+    
+
+</body>
+
+</html>
