@@ -5,15 +5,13 @@
     <description>Smashing the lore of language technology!</description>
     <link>https://blog.mothertongues.org/</link>
     <atom:link href="https://blog.mothertongues.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Jun 2023 21:15:17 +0000</pubDate>
-    <lastBuildDate>Tue, 06 Jun 2023 21:15:17 +0000</lastBuildDate>
+    <pubDate>Thu, 08 Jun 2023 19:35:35 +0000</pubDate>
+    <lastBuildDate>Thu, 08 Jun 2023 19:35:35 +0000</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>Typesetting Syllabics (and More) in LaTeX</title>
-        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
-
-&lt;p&gt;This post describes one way to use certain Inuktut syllabics fonts when writing documents in LaTeX, along with some other LaTeX tips.&lt;/p&gt;
+        <description>&lt;p&gt;This post describes one way to use certain Inuktut syllabics fonts when writing documents in LaTeX, along with some other LaTeX tips.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
 
@@ -207,9 +205,7 @@ To show a longer example of a full sentence, we use this quote from Hon. Paul Qu
     
       <item>
         <title>Language revitalization with Mozilla's Common Voice</title>
-        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
-
-&lt;p&gt;The National Research Council and Ursa Creative have adapted Mozilla’s CommonVoice tool to help streamline recording and data management for Indigenous language revitalization.&lt;/p&gt;
+        <description>&lt;p&gt;The National Research Council and Ursa Creative have adapted Mozilla’s CommonVoice tool to help streamline recording and data management for Indigenous language revitalization.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
 
@@ -267,9 +263,7 @@ To show a longer example of a full sentence, we use this quote from Hon. Paul Qu
     
       <item>
         <title>How to make a Wordle clone for your language</title>
-        <description>&lt;h1 id=&quot;tldr&quot;&gt;TL;DR&lt;/h1&gt;
-
-&lt;p&gt;This tutorial will help you adapt the popular &lt;a href=&quot;https://www.powerlanguage.co.uk/wordle/&quot;&gt;Wordle game&lt;/a&gt; to another language!&lt;/p&gt;
+        <description>&lt;p&gt;This tutorial will help you adapt the popular &lt;a href=&quot;https://www.powerlanguage.co.uk/wordle/&quot;&gt;Wordle game&lt;/a&gt; to another language!&lt;/p&gt;
 
 &lt;h1 id=&quot;what-you-need-to-know-to-understand-this-post&quot;&gt;What you need to know to understand this post&lt;/h1&gt;
 
