@@ -10,8 +10,6 @@ featured: false
 hidden: false
 ---
 
-# TL;DR
-
 This post describes one way to use certain Inuktut syllabics fonts when writing documents in LaTeX, along with some other LaTeX tips.
 
 # What you need to know to understand this post
