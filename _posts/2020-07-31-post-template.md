@@ -68,3 +68,7 @@ It will produce the following image:
 The text after the `--alt` is the text that will show up if the image
 doesn't load, or the text that screenreader users will hear when
 listening to the blog post.
+
+## Text for the blog post card
+
+Please note that the first paragraph of the post (the one that starts with "This blog post" above) is what shows up on the card for the post so please make it brief but contentful. If you just start with `# TL;DR`, that's what will show up on the card instead of your short pitch, you don't really want that. Think of your first paragraph as the text that will encourage people to read your post.
