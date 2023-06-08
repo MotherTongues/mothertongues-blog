@@ -10,8 +10,6 @@ featured: false
 hidden: false
 ---
 
-# TL;DR
-
 The National Research Council and Ursa Creative have adapted Mozilla’s CommonVoice tool to help streamline recording and data management for Indigenous language revitalization.
 
 # What you need to know to understand this post

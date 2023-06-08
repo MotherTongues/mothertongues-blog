@@ -10,8 +10,6 @@ featured: false
 hidden: false
 ---
 
-# TL;DR
-
 Have you ever wanted to *NOT* spend hours tediously checking that **k + '** is written as **k̓** and not **k'**?
 If you said **YES!**, *Convertextract* is the app for you. With minimal technical knowledge, you can now systemically make your [ELAN](https://archive.mpi.nl/tla/elan) annotations consistent.
 
