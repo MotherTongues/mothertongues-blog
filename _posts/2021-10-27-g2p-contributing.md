@@ -21,6 +21,10 @@ This is the last part of the seven-part series on g2p. In this part, we'll discu
 - [Preprocessing mappings]({{ "g2p-preprocess" | absolute_url }})
 - Contributing
 
+## NOTE!
+
+As of September 2023, there is a new version of `g2p` available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have `g2p` installed, we recommend that you upgrade your installation before continuing on with this post.
+
 ## Advanced: contributing your rules to the main `g2p` library
 
 So, you've written some cool rules and you want to contribute, that's awesome! There are lots of benefits to contributing your mapping to `g2p`. First of all, once your mapping is accepted, you'll have it available and live on [G2P Studio](https://g2p-studio.herokuapp.com). Second, once the next version of `g2p` is released with your mapping, it will be automatically built in to the [Convertextract]({{ "convertextract-app" | absolute_url }}) library. Third, if your mapping is between a language's writing system and the IPA, you can also get [ReadAlongs]({{ "g2p-applications" | absolute_url }}) support for your language.
@@ -29,7 +33,7 @@ So, you write your mapping once, and you get three things for free (G2P studio, 
 
 1. Fork g2p, see <https://docs.github.com/en/github/getting-started-with-github/fork-a-repo> for more details
 2. Add a folder for your language using the appropriate [ISO 639.3 code](https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes) to `g2p/mappings/langs`, i.e., create the folder `g2p/mapping/langs/<yourlangcode>/`
-3. Add a `config.yaml` file as described [here]({{ "g2p-basic-mappings" | absolute_url }}) in that folder
+3. Add a `config-g2p.yaml` file as described [here]({{ "g2p-basic-mappings" | absolute_url }}) in that folder
 4. Add your mapping in that same folder
 5. If your mapping is for an IPA mapping, you can optionally run `g2p update` to update your mapping into `g2p` and then generate the mapping as described in the [ReadAlongs post]({{ "g2p-applications" | absolute_url }}) between your language and English IPA.
 6. Run `g2p update` to add your mapping to `g2p`

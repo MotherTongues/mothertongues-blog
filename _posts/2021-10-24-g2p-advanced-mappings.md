@@ -22,6 +22,10 @@ This is the 4th blog post in a seven-part series about g2p. This is a relatively
 - [Preprocessing mappings]({{ "g2p-preprocess" | absolute_url }})
 - [Contributing]({{ "g2p-contributing" | absolute_url }})
 
+## NOTE!
+
+As of September 2023, there is a new version of `g2p` available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have `g2p` installed, we recommend that you upgrade your installation before continuing on with this post.
+
 ## Advanced: A deeper dive into writing tricky rules
 
 You may have noticed that the rules described in the previous posts for converting words like 'dog' and 'cat' to IPA are woefully incomplete. The real world use cases for `g2p` often need to account for a lot more messiness than was described in the artificial example above. In fact, for languages like English, `g2p` is likely **not** a good solution. The English writing system is notoriously inconsistent, and there already exist a variety of other tools that account for many of the lexical (word-specific) idiosyncracies in deriving the IPA form from the orthographic form. For many Indigenous languages, the writing system is sufficiently close to the spoken form that `g2p` is a very appropriate solution. In the following sections, I'll describe some common problems when writing rules, and how to fix them.
@@ -85,7 +89,7 @@ Note, you might find some resources that write a character's codepoint as U+0261
 
 ### Special settings for your mapping configuration
 
-You can add extra settings to your configuration file to change the way that `g2p` interprets your mappings. Below is a list of possible settings and their use. It's best practise to declare all the setting keys below for each individual mapping in your `config.yaml`, however default values do exist. Your setting keys must be declared on the same level as all of the other keys (`language_name`, `in_lang`, `out_lang` etc). These settings are also available in the G2P Studio as check boxes to select or unselect.
+You can add extra settings to your configuration file to change the way that `g2p` interprets your mappings. Below is a list of possible settings and their use. It's best practise to declare all the setting keys below for each individual mapping in your `config-g2p.yaml`, however default values do exist. Your setting keys must be declared on the same level as all of the other keys (`language_name`, `in_lang`, `out_lang` etc). These settings are also available in the G2P Studio as check boxes to select or unselect.
 
 ##### `rule_ordering` (default: 'as-written')
 As described in the earlier part of this post, your rules apply in the order you write them. And as described in the advanced section on [rule ordering](#rule-ordering), sometimes this can make your mapping produce unexpected results! 
@@ -116,7 +120,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     rule_ordering: 'apply-longest-first'   # <------- Add this
 ```
 
@@ -133,7 +137,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     case_sensitive: false   # <------- Add this
 ```
 
@@ -150,7 +154,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     escape_special: true   # <------- Add this
 ```
 
@@ -171,7 +175,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     norm_form: "NFC"   # <------- Add your Unicode normalization strategy here
 ```
 
@@ -188,7 +192,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     out_delimiter: "|"   # <------- Add your delimiter here
 ```
 
@@ -205,7 +209,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     reverse: true   # <------- Add this
 ```
 
@@ -236,7 +240,7 @@ Prevent feeding for a single rule (in JSON rule mapping file):
 ]
 ```
 
-Prevent feeding for every rule (in `config.yaml`):
+Prevent feeding for every rule (in `config-g2p.yaml`):
 
 ```yaml
 mappings:
@@ -247,7 +251,7 @@ mappings:
     type: mapping
     authors:
       - Aidan Pine
-    mapping: eng_to_ipa.json 
+    rules_path: eng_to_ipa.json 
     prevent_feeding: true   # <------- Add this
 ```
 
@@ -273,7 +277,7 @@ So, in a separate file, by convention it is usually called `abbreviations.csv`, 
 | BACK      | u | o | a |   |   |   |   |   |   |   |   |   |   |   |   | 
 
 
-Then, in your configuration, you can add the file to a specific mapping using `abbreviations: abbreviations.csv`. After adding it to your mapping, you can write the above rule like this instead:
+Then, in your configuration, you can add the file to a specific mapping using `abbreviations_path: abbreviations.csv`. After adding it to your mapping, you can write the above rule like this instead:
 
 | in | out | context_before | context_after |
 |---|---|---|---|
@@ -328,6 +332,43 @@ Now, our indices will reflect our imaginary need to index 'a' with 'a' and 'b' w
 Using the explicit indices syntax will break up your rule into a number of smaller rules that apply the same defaults of above but to explicit sets of characters. You **must** use curly brackets, but the choice of character you put inside is arbitrary — it just has to match on both sides. By convention, we use natural numbers. This will match all the characters to the left of each pair of curly brackets in the input with the matching index in the output. So here, 'a' is matched with 'a' and 'b' is matched with 'bc'.
 
 These can get fairly complicated, so we recommend only using this functionality either for demonstration purposes, or for specific applications which require the preservation of indices.
+
+### Writing Mappings in Python
+
+You can also write mappings directly in Python like so:
+
+```python
+from g2p.mappings import Mapping, Rule
+from g2p.transducer import Transducer
+
+mapping = Mapping(rules=[
+    Rule(rule_input="a", rule_output="b", context_before="c", context_after="d"),
+    Rule(rule_input="a", rule_output="e")
+  ])
+
+transducer = Transducer(mapping)
+transducer('cad') # returns "cbd"
+```
+
+### You can write your rules directly in your yaml files
+So instead of using a `rules_path` key, you can just use `rules` instead:
+
+```yaml
+mappings:
+  - language_name: My Test Language # this is a shared value for all the mappings in this configuration
+    display_name: My Test Language to IPA # this is a 'display name'. It is a user-friendly name for your mapping.
+    in_lang: test # This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code
+    out_lang: test-ipa # This is the code for the output of your mapping. In g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA
+    type: mapping 
+    authors: # This is a way to keep track of who has contributed to the mapping
+      - Aidan Pine
+    rules:
+      - in: a
+        out: b
+      - in: c
+        out: d
+        prevent_feeding: True
+```
 
 ### Footnotes
 

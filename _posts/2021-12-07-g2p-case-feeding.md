@@ -14,6 +14,10 @@ When you write [g2p mappings]({{ "g2p-background" | absolute_url }}), sometimes 
 
 This blog post describes a technique that can be used to handle complex rule feeding scenarios.
 
+## NOTE!
+
+As of September 2023, there is a new version of `g2p` available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have `g2p` installed, we recommend that you upgrade your installation before continuing on with this post.
+
 # TL;DR
 
 If you want your g2p mapping to prevent feeding between the input and output of your rules, while retaining the ability to match the output of your rules in the context of other rules, you can use this three-step mapping technique using case to prevent rule feeding, instead of a single mapping with `prevent_feeding` enabled.
@@ -77,7 +81,7 @@ un,un,,[ae]
 un,on,,
 ```
 
-and use config file `config.yaml`, where we are careful to set `prevent_feeding: true`:
+and use config file `config-g2p.yaml`, where we are careful to set `prevent_feeding: true`:
 ```
 display name: mapping example for un with prevent feeding
 mapping: mapping.csv
@@ -115,7 +119,7 @@ un,UN,,[aAeE]
 un,ON,,
 ```
 
-`case-nofeed-config.yaml`:
+`case-nofeed-config-g2p.yaml`:
 ```
 mappings:
   - display name: case-nofeed input lowercaser
@@ -137,7 +141,7 @@ mappings:
 
 For the two lowercasing mappings, notice we referred to file `empty.csv`. We indeed need to create an empty file called `empty.csv`. We're using the fact that when a case insensitive mapping (i.e., a mapping with `case_sensitive: false`) is applied, its input is lowercased before the rules are applied, so we don't need to provide any actual rules, which means an empty CSV file will do.
 
-Now, when you run `g2p convert --config case-nofeed-config.yaml untunatun l1 l2`, you get the expected "ontunetun" output because for the middle "un", the second rule matches that "E" in its `context_after`, since the first rule changed "atun" to "ETUN".
+Now, when you run `g2p convert --config case-nofeed-config-g2p.yaml untunatun l1 l2`, you get the expected "ontunetun" output because for the middle "un", the second rule matches that "E" in its `context_after`, since the first rule changed "atun" to "ETUN".
 
 ## What if my mapping is case sensitive?
 
