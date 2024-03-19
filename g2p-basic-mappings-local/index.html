@@ -283,6 +283,10 @@
   <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
 </ul>
 
+<h2 id="note">NOTE!</h2>
+
+<p>As of September 2023, there is a new version of <code class="highlighter-rouge">g2p</code> available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have <code class="highlighter-rouge">g2p</code> installed, we recommend that you upgrade your installation before continuing on with this post.</p>
+
 <h1 id="what-you-need-to-know-to-understand-this-post">What you need to know to understand this post</h1>
 
 <ul>
@@ -421,7 +425,7 @@ HH EH YY
 
 <h2 id="mapping-configuration">Mapping configuration</h2>
 
-<p>When you combine multiple rules in <code class="highlighter-rouge">g2p</code> for a particular purpose, this is called a <em>mapping</em>. In addition to each file containing your rules, you need a configuration file that tells <code class="highlighter-rouge">g2p</code> how to process your rules. We write mapping configurations in YAML files titled <code class="highlighter-rouge">config.yaml</code>. “.yaml” is the file extension for YAML which stands for ‘Yet Another Markup Language’ - which might be how you’re feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!</p>
+<p>When you combine multiple rules in <code class="highlighter-rouge">g2p</code> for a particular purpose, this is called a <em>mapping</em>. In addition to each file containing your rules, you need a configuration file that tells <code class="highlighter-rouge">g2p</code> how to process your rules. We write mapping configurations in YAML files titled <code class="highlighter-rouge">config-g2p.yaml</code>. “.yaml” is the file extension for YAML which stands for ‘Yet Another Markup Language’ - which might be how you’re feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!</p>
 
 <p>Here is a basic configuration for your mapping:</p>
 
@@ -433,7 +437,7 @@ HH EH YY
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
     <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to your mapping file. It should be in the same folder as your config.yaml file</span>
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to a file containing your rules. It should be in the same folder as your config-g2p.yaml file</span>
 </code></pre></div></div>
 
 <p>If you are familiar with yaml, you will see that you can have more than one mapping under the <code class="highlighter-rouge">mappings</code> key. So to add another mapping to this file, it would look like this:</p>
@@ -446,7 +450,7 @@ HH EH YY
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> 
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span>
     <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language IPA to Arpabet</span>
     <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> 
@@ -454,14 +458,14 @@ HH EH YY
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
     <span class="na">authors</span><span class="pi">:</span> 
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_ipa_to_arpabet.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">test_ipa_to_arpabet.json</span> 
 </code></pre></div></div>
 
 <p>If you’re not familiar with YAML, and you’re not just copy pasting from here, I recommend having a look at one of the many <a href="https://gettaurus.org/docs/YAMLTutorial/">tutorials</a> on how to use YAML properly before attempting to write your own mapping configuration, or looking at some of the examples of configurations in <code class="highlighter-rouge">g2p/mappings/langs/*</code>.</p>
 
 <h2 id="bringing-it-all-together">Bringing it all together</h2>
 
-<p>From following the previous two sections, you should have two files created: <code class="highlighter-rouge">test_to_ipa.json</code> and <code class="highlighter-rouge">config.yaml</code>. Your <code class="highlighter-rouge">config.yaml</code> file should look like this:</p>
+<p>From following the previous two sections, you should have two files created: <code class="highlighter-rouge">test_to_ipa.json</code> and <code class="highlighter-rouge">config-g2p.yaml</code>. Your <code class="highlighter-rouge">config-g2p.yaml</code> file should look like this:</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span> <span class="c1"># this is a shared value for all the mappings in this configuration</span>
@@ -471,7 +475,7 @@ HH EH YY
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
     <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to your mapping file. It should be in the same folder as your config.yaml file</span>
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">test_to_ipa.json</span> <span class="c1"># This is the path to a file containing your rules. It should be in the same folder as your config-g2p.yaml file</span>
 </code></pre></div></div>
 
 <p>and your <code class="highlighter-rouge">test_to_ipa.json</code> file should look like this:</p>
@@ -485,7 +489,7 @@ HH EH YY
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Then, type the following command in your command line or integrated terminal: <code class="highlighter-rouge">g2p convert "kæt" test test-ipa --config /path/to/config.yaml</code>, replace <code class="highlighter-rouge">/path/to/config.yaml</code> with the path from your current working directory in the command line to your config.yaml file. You should see the output <code class="highlighter-rouge">kʰæt</code> produced below. Congratulations! You did your first conversion with <code class="highlighter-rouge">g2p</code>. Try changing your rules around or converting other text and experiment to see what happens.</p>
+<p>Then, type the following command in your command line or integrated terminal: <code class="highlighter-rouge">g2p convert "kæt" test test-ipa --config /path/to/config-g2p.yaml</code>, replace <code class="highlighter-rouge">/path/to/config-g2p.yaml</code> with the path from your current working directory in the command line to your config-g2p.yaml file. You should see the output <code class="highlighter-rouge">kʰæt</code> produced below. Congratulations! You did your first conversion with <code class="highlighter-rouge">g2p</code>. Try changing your rules around or converting other text and experiment to see what happens.</p>
 
 <h3 id="footnotes">Footnotes</h3>
 
@@ -666,7 +670,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                        Copyright © 2023 Mother Tongues
+                        Copyright © 2024 Mother Tongues
                     </div>
                 </div>
             </div>

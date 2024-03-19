@@ -266,6 +266,10 @@
 
 <p>This blog post describes a technique that can be used to handle complex rule feeding scenarios.</p>
 
+<h2 id="note">NOTE!</h2>
+
+<p>As of September 2023, there is a new version of <code class="highlighter-rouge">g2p</code> available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have <code class="highlighter-rouge">g2p</code> installed, we recommend that you upgrade your installation before continuing on with this post.</p>
+
 <h1 id="tldr">TL;DR</h1>
 
 <p>If you want your g2p mapping to prevent feeding between the input and output of your rules, while retaining the ability to match the output of your rules in the context of other rules, you can use this three-step mapping technique using case to prevent rule feeding, instead of a single mapping with <code class="highlighter-rouge">prevent_feeding</code> enabled.</p>
@@ -334,7 +338,7 @@ un,un,,[ae]
 un,on,,
 </code></pre></div></div>
 
-<p>and use config file <code class="highlighter-rouge">config.yaml</code>, where we are careful to set <code class="highlighter-rouge">prevent_feeding: true</code>:</p>
+<p>and use config file <code class="highlighter-rouge">config-g2p.yaml</code>, where we are careful to set <code class="highlighter-rouge">prevent_feeding: true</code>:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display name: mapping example for un with prevent feeding
 mapping: mapping.csv
 in_lang: l1
@@ -372,7 +376,7 @@ un,UN,,[aAeE]
 un,ON,,
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">case-nofeed-config.yaml</code>:</p>
+<p><code class="highlighter-rouge">case-nofeed-config-g2p.yaml</code>:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mappings:
   - display name: case-nofeed input lowercaser
     mapping: empty.csv
@@ -393,7 +397,7 @@ un,ON,,
 
 <p>For the two lowercasing mappings, notice we referred to file <code class="highlighter-rouge">empty.csv</code>. We indeed need to create an empty file called <code class="highlighter-rouge">empty.csv</code>. We’re using the fact that when a case insensitive mapping (i.e., a mapping with <code class="highlighter-rouge">case_sensitive: false</code>) is applied, its input is lowercased before the rules are applied, so we don’t need to provide any actual rules, which means an empty CSV file will do.</p>
 
-<p>Now, when you run <code class="highlighter-rouge">g2p convert --config case-nofeed-config.yaml untunatun l1 l2</code>, you get the expected “ontunetun” output because for the middle “un”, the second rule matches that “E” in its <code class="highlighter-rouge">context_after</code>, since the first rule changed “atun” to “ETUN”.</p>
+<p>Now, when you run <code class="highlighter-rouge">g2p convert --config case-nofeed-config-g2p.yaml untunatun l1 l2</code>, you get the expected “ontunetun” output because for the middle “un”, the second rule matches that “E” in its <code class="highlighter-rouge">context_after</code>, since the first rule changed “atun” to “ETUN”.</p>
 
 <h2 id="what-if-my-mapping-is-case-sensitive">What if my mapping is case sensitive?</h2>
 
@@ -570,7 +574,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                        Copyright © 2023 Mother Tongues
+                        Copyright © 2024 Mother Tongues
                     </div>
                 </div>
             </div>

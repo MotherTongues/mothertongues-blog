@@ -285,6 +285,10 @@
   <li><a href="https://blog.mothertongues.org/g2p-contributing">Contributing</a></li>
 </ul>
 
+<h2 id="note">NOTE!</h2>
+
+<p>As of September 2023, there is a new version of <code class="highlighter-rouge">g2p</code> available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have <code class="highlighter-rouge">g2p</code> installed, we recommend that you upgrade your installation before continuing on with this post.</p>
+
 <h2 id="advanced-a-deeper-dive-into-writing-tricky-rules">Advanced: A deeper dive into writing tricky rules</h2>
 
 <p>You may have noticed that the rules described in the previous posts for converting words like ‘dog’ and ‘cat’ to IPA are woefully incomplete. The real world use cases for <code class="highlighter-rouge">g2p</code> often need to account for a lot more messiness than was described in the artificial example above. In fact, for languages like English, <code class="highlighter-rouge">g2p</code> is likely <strong>not</strong> a good solution. The English writing system is notoriously inconsistent, and there already exist a variety of other tools that account for many of the lexical (word-specific) idiosyncracies in deriving the IPA form from the orthographic form. For many Indigenous languages, the writing system is sufficiently close to the spoken form that <code class="highlighter-rouge">g2p</code> is a very appropriate solution. In the following sections, I’ll describe some common problems when writing rules, and how to fix them.</p>
@@ -387,7 +391,7 @@
 
 <h3 id="special-settings-for-your-mapping-configuration">Special settings for your mapping configuration</h3>
 
-<p>You can add extra settings to your configuration file to change the way that <code class="highlighter-rouge">g2p</code> interprets your mappings. Below is a list of possible settings and their use. It’s best practise to declare all the setting keys below for each individual mapping in your <code class="highlighter-rouge">config.yaml</code>, however default values do exist. Your setting keys must be declared on the same level as all of the other keys (<code class="highlighter-rouge">language_name</code>, <code class="highlighter-rouge">in_lang</code>, <code class="highlighter-rouge">out_lang</code> etc). These settings are also available in the G2P Studio as check boxes to select or unselect.</p>
+<p>You can add extra settings to your configuration file to change the way that <code class="highlighter-rouge">g2p</code> interprets your mappings. Below is a list of possible settings and their use. It’s best practise to declare all the setting keys below for each individual mapping in your <code class="highlighter-rouge">config-g2p.yaml</code>, however default values do exist. Your setting keys must be declared on the same level as all of the other keys (<code class="highlighter-rouge">language_name</code>, <code class="highlighter-rouge">in_lang</code>, <code class="highlighter-rouge">out_lang</code> etc). These settings are also available in the G2P Studio as check boxes to select or unselect.</p>
 
 <h5 id="rule_ordering-default-as-written"><code class="highlighter-rouge">rule_ordering</code> (default: ‘as-written’)</h5>
 <p>As described in the earlier part of this post, your rules apply in the order you write them. And as described in the advanced section on <a href="#rule-ordering">rule ordering</a>, sometimes this can make your mapping produce unexpected results!</p>
@@ -416,7 +420,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">rule_ordering</span><span class="pi">:</span> <span class="s1">'</span><span class="s">apply-longest-first'</span>   <span class="c1"># &lt;------- Add this</span>
 </code></pre></div></div>
 
@@ -432,7 +436,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">case_sensitive</span><span class="pi">:</span> <span class="no">false</span>   <span class="c1"># &lt;------- Add this</span>
 </code></pre></div></div>
 
@@ -448,7 +452,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">escape_special</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
 </code></pre></div></div>
 
@@ -468,7 +472,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">norm_form</span><span class="pi">:</span> <span class="s2">"</span><span class="s">NFC"</span>   <span class="c1"># &lt;------- Add your Unicode normalization strategy here</span>
 </code></pre></div></div>
 
@@ -484,7 +488,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">out_delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">|"</span>   <span class="c1"># &lt;------- Add your delimiter here</span>
 </code></pre></div></div>
 
@@ -500,7 +504,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">reverse</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
 </code></pre></div></div>
 
@@ -544,7 +548,7 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Prevent feeding for every rule (in <code class="highlighter-rouge">config.yaml</code>):</p>
+<p>Prevent feeding for every rule (in <code class="highlighter-rouge">config-g2p.yaml</code>):</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">English</span> 
@@ -554,7 +558,7 @@
     <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span>
     <span class="na">authors</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">Aidan Pine</span>
-    <span class="na">mapping</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
+    <span class="na">rules_path</span><span class="pi">:</span> <span class="s">eng_to_ipa.json</span> 
     <span class="na">prevent_feeding</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># &lt;------- Add this</span>
 </code></pre></div></div>
 
@@ -684,7 +688,7 @@
   </tbody>
 </table>
 
-<p>Then, in your configuration, you can add the file to a specific mapping using <code class="highlighter-rouge">abbreviations: abbreviations.csv</code>. After adding it to your mapping, you can write the above rule like this instead:</p>
+<p>Then, in your configuration, you can add the file to a specific mapping using <code class="highlighter-rouge">abbreviations_path: abbreviations.csv</code>. After adding it to your mapping, you can write the above rule like this instead:</p>
 
 <table>
   <thead>
@@ -799,6 +803,41 @@
 <p>Using the explicit indices syntax will break up your rule into a number of smaller rules that apply the same defaults of above but to explicit sets of characters. You <strong>must</strong> use curly brackets, but the choice of character you put inside is arbitrary — it just has to match on both sides. By convention, we use natural numbers. This will match all the characters to the left of each pair of curly brackets in the input with the matching index in the output. So here, ‘a’ is matched with ‘a’ and ‘b’ is matched with ‘bc’.</p>
 
 <p>These can get fairly complicated, so we recommend only using this functionality either for demonstration purposes, or for specific applications which require the preservation of indices.</p>
+
+<h3 id="writing-mappings-in-python">Writing Mappings in Python</h3>
+
+<p>You can also write mappings directly in Python like so:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">g2p.mappings</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Rule</span>
+<span class="kn">from</span> <span class="nn">g2p.transducer</span> <span class="kn">import</span> <span class="n">Transducer</span>
+
+<span class="n">mapping</span> <span class="o">=</span> <span class="n">Mapping</span><span class="p">(</span><span class="n">rules</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">Rule</span><span class="p">(</span><span class="n">rule_input</span><span class="o">=</span><span class="s">"a"</span><span class="p">,</span> <span class="n">rule_output</span><span class="o">=</span><span class="s">"b"</span><span class="p">,</span> <span class="n">context_before</span><span class="o">=</span><span class="s">"c"</span><span class="p">,</span> <span class="n">context_after</span><span class="o">=</span><span class="s">"d"</span><span class="p">),</span>
+    <span class="n">Rule</span><span class="p">(</span><span class="n">rule_input</span><span class="o">=</span><span class="s">"a"</span><span class="p">,</span> <span class="n">rule_output</span><span class="o">=</span><span class="s">"e"</span><span class="p">)</span>
+  <span class="p">])</span>
+
+<span class="n">transducer</span> <span class="o">=</span> <span class="n">Transducer</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+<span class="n">transducer</span><span class="p">(</span><span class="s">'cad'</span><span class="p">)</span> <span class="c1"># returns "cbd"
+</span></code></pre></div></div>
+
+<h3 id="you-can-write-your-rules-directly-in-your-yaml-files">You can write your rules directly in your yaml files</h3>
+<p>So instead of using a <code class="highlighter-rouge">rules_path</code> key, you can just use <code class="highlighter-rouge">rules</code> instead:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mappings</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">language_name</span><span class="pi">:</span> <span class="s">My Test Language</span> <span class="c1"># this is a shared value for all the mappings in this configuration</span>
+    <span class="na">display_name</span><span class="pi">:</span> <span class="s">My Test Language to IPA</span> <span class="c1"># this is a 'display name'. It is a user-friendly name for your mapping.</span>
+    <span class="na">in_lang</span><span class="pi">:</span> <span class="s">test</span> <span class="c1"># This is the code for your language input. By convention in g2p this should contain your language's ISO 639-3 code</span>
+    <span class="na">out_lang</span><span class="pi">:</span> <span class="s">test-ipa</span> <span class="c1"># This is the code for the output of your mapping. In g2p we suffix -ipa to the in_lang for mappings between an orthography and IPA</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">mapping</span> 
+    <span class="na">authors</span><span class="pi">:</span> <span class="c1"># This is a way to keep track of who has contributed to the mapping</span>
+      <span class="pi">-</span> <span class="s">Aidan Pine</span>
+    <span class="na">rules</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">in</span><span class="pi">:</span> <span class="s">a</span>
+        <span class="na">out</span><span class="pi">:</span> <span class="s">b</span>
+      <span class="pi">-</span> <span class="na">in</span><span class="pi">:</span> <span class="s">c</span>
+        <span class="na">out</span><span class="pi">:</span> <span class="s">d</span>
+        <span class="na">prevent_feeding</span><span class="pi">:</span> <span class="s">True</span>
+</code></pre></div></div>
 
 <h3 id="footnotes">Footnotes</h3>
 
@@ -979,7 +1018,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                        Copyright © 2023 Mother Tongues
+                        Copyright © 2024 Mother Tongues
                     </div>
                 </div>
             </div>

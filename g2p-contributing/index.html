@@ -276,6 +276,10 @@
   <li>Contributing</li>
 </ul>
 
+<h2 id="note">NOTE!</h2>
+
+<p>As of September 2023, there is a new version of <code class="highlighter-rouge">g2p</code> available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have <code class="highlighter-rouge">g2p</code> installed, we recommend that you upgrade your installation before continuing on with this post.</p>
+
 <h2 id="advanced-contributing-your-rules-to-the-main-g2p-library">Advanced: contributing your rules to the main <code class="highlighter-rouge">g2p</code> library</h2>
 
 <p>So, you’ve written some cool rules and you want to contribute, that’s awesome! There are lots of benefits to contributing your mapping to <code class="highlighter-rouge">g2p</code>. First of all, once your mapping is accepted, you’ll have it available and live on <a href="https://g2p-studio.herokuapp.com">G2P Studio</a>. Second, once the next version of <code class="highlighter-rouge">g2p</code> is released with your mapping, it will be automatically built in to the <a href="https://blog.mothertongues.org/convertextract-app">Convertextract</a> library. Third, if your mapping is between a language’s writing system and the IPA, you can also get <a href="https://blog.mothertongues.org/g2p-applications">ReadAlongs</a> support for your language.</p>
@@ -285,7 +289,7 @@
 <ol>
   <li>Fork g2p, see <a href="https://docs.github.com/en/github/getting-started-with-github/fork-a-repo">https://docs.github.com/en/github/getting-started-with-github/fork-a-repo</a> for more details</li>
   <li>Add a folder for your language using the appropriate <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">ISO 639.3 code</a> to <code class="highlighter-rouge">g2p/mappings/langs</code>, i.e., create the folder <code class="highlighter-rouge">g2p/mapping/langs/&lt;yourlangcode&gt;/</code></li>
-  <li>Add a <code class="highlighter-rouge">config.yaml</code> file as described <a href="https://blog.mothertongues.org/g2p-basic-mappings">here</a> in that folder</li>
+  <li>Add a <code class="highlighter-rouge">config-g2p.yaml</code> file as described <a href="https://blog.mothertongues.org/g2p-basic-mappings">here</a> in that folder</li>
   <li>Add your mapping in that same folder</li>
   <li>If your mapping is for an IPA mapping, you can optionally run <code class="highlighter-rouge">g2p update</code> to update your mapping into <code class="highlighter-rouge">g2p</code> and then generate the mapping as described in the <a href="https://blog.mothertongues.org/g2p-applications">ReadAlongs post</a> between your language and English IPA.</li>
   <li>Run <code class="highlighter-rouge">g2p update</code> to add your mapping to <code class="highlighter-rouge">g2p</code></li>
@@ -484,7 +488,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                        Copyright © 2023 Mother Tongues
+                        Copyright © 2024 Mother Tongues
                     </div>
                 </div>
             </div>
