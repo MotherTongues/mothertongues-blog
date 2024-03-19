@@ -20,6 +20,10 @@ This is the third blog post in a seven-part series describing how to make a basi
 - [Preprocessing mappings]({{ "g2p-preprocess" | absolute_url }})
 - [Contributing]({{ "g2p-contributing" | absolute_url }})
 
+## NOTE!
+
+As of September 2023, there is a new version of `g2p` available: 2.0 - the instructions in this blog were originally written for version 1.x. If you already have `g2p` installed, we recommend that you upgrade your installation before continuing on with this post.
+
 # What you need to know to understand this post
 
 - To be able to follow along, I suggest having some sort of text editor, like [Visual Studio Code](https://code.visualstudio.com/). 
@@ -133,7 +137,7 @@ or like this using JSON:
 
 ## Mapping configuration
 
-When you combine multiple rules in `g2p` for a particular purpose, this is called a *mapping*. In addition to each file containing your rules, you need a configuration file that tells `g2p` how to process your rules. We write mapping configurations in YAML files titled `config.yaml`. ".yaml" is the file extension for YAML which stands for 'Yet Another Markup Language' - which might be how you're feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!
+When you combine multiple rules in `g2p` for a particular purpose, this is called a *mapping*. In addition to each file containing your rules, you need a configuration file that tells `g2p` how to process your rules. We write mapping configurations in YAML files titled `config-g2p.yaml`. ".yaml" is the file extension for YAML which stands for 'Yet Another Markup Language' - which might be how you're feeling right now after having already learned about Comma Separated Value (CSV) files and JavaScript Object Notation (JSON)!!
 
 Here is a basic configuration for your mapping:
 
@@ -146,7 +150,7 @@ mappings:
     type: mapping 
     authors: # This is a way to keep track of who has contributed to the mapping
       - Aidan Pine
-    mapping: test_to_ipa.json # This is the path to your mapping file. It should be in the same folder as your config.yaml file
+    rules_path: test_to_ipa.json # This is the path to a file containing your rules. It should be in the same folder as your config-g2p.yaml file
 ```
 
 If you are familiar with yaml, you will see that you can have more than one mapping under the `mappings` key. So to add another mapping to this file, it would look like this:
@@ -160,7 +164,7 @@ mappings:
     type: mapping 
     authors:
       - Aidan Pine
-    mapping: test_to_ipa.json 
+    rules_path: test_to_ipa.json 
   - language_name: My Test Language
     display_name: My Test Language IPA to Arpabet
     in_lang: test-ipa 
@@ -168,14 +172,14 @@ mappings:
     type: mapping 
     authors: 
       - Aidan Pine
-    mapping: test_ipa_to_arpabet.json 
+    rules_path: test_ipa_to_arpabet.json 
 ```
 
 If you're not familiar with YAML, and you're not just copy pasting from here, I recommend having a look at one of the many [tutorials](https://gettaurus.org/docs/YAMLTutorial/) on how to use YAML properly before attempting to write your own mapping configuration, or looking at some of the examples of configurations in `g2p/mappings/langs/*`.
 
 ## Bringing it all together
 
-From following the previous two sections, you should have two files created: `test_to_ipa.json` and `config.yaml`. Your `config.yaml` file should look like this:
+From following the previous two sections, you should have two files created: `test_to_ipa.json` and `config-g2p.yaml`. Your `config-g2p.yaml` file should look like this:
 
 ```yaml
 mappings:
@@ -186,7 +190,7 @@ mappings:
     type: mapping 
     authors: # This is a way to keep track of who has contributed to the mapping
       - Aidan Pine
-    mapping: test_to_ipa.json # This is the path to your mapping file. It should be in the same folder as your config.yaml file
+    rules_path: test_to_ipa.json # This is the path to a file containing your rules. It should be in the same folder as your config-g2p.yaml file
 ```
 
 and your `test_to_ipa.json` file should look like this:
@@ -201,7 +205,7 @@ and your `test_to_ipa.json` file should look like this:
 ]
 ```
 
-Then, type the following command in your command line or integrated terminal: `g2p convert "kæt" test test-ipa --config /path/to/config.yaml`, replace `/path/to/config.yaml` with the path from your current working directory in the command line to your config.yaml file. You should see the output `kʰæt` produced below. Congratulations! You did your first conversion with `g2p`. Try changing your rules around or converting other text and experiment to see what happens.
+Then, type the following command in your command line or integrated terminal: `g2p convert "kæt" test test-ipa --config /path/to/config-g2p.yaml`, replace `/path/to/config-g2p.yaml` with the path from your current working directory in the command line to your config-g2p.yaml file. You should see the output `kʰæt` produced below. Congratulations! You did your first conversion with `g2p`. Try changing your rules around or converting other text and experiment to see what happens.
 
 
 ### Footnotes
